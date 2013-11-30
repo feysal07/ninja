@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="a4a8834cb8e245a2a509802fa3401b6d" Name="Diagram1">
+        <EntityTypeShape EntityType="homeninjaModel.addressdetail" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="homeninjaModel.addressmapping" Width="1.5" PointX="5.25" PointY="1.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="homeninjaModel.comment" Width="1.5" PointX="8" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="homeninjaModel.masterdatatype" Width="1.5" PointX="7.75" PointY="1.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="homeninjaModel.masterdatavalue" Width="1.5" PointX="10" PointY="0.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="homeninjaModel.post" Width="1.5" PointX="5.75" PointY="5" IsExpanded="true" />
+        <EntityTypeShape EntityType="homeninjaModel.siteuser" Width="1.5" PointX="3" PointY="1" IsExpanded="true" />
+        <EntityTypeShape EntityType="homeninjaModel.subscription" Width="1.5" PointX="5.75" PointY="8.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="homeninjaModel.usertype" Width="1.5" PointX="0.75" PointY="2" IsExpanded="true" />
+        <AssociationConnector Association="homeninjaModel.FK_addressmapping_add_id" ManuallyRouted="false" />
+        <AssociationConnector Association="homeninjaModel.FK_addressmapping_user_id" ManuallyRouted="false" />
+        <AssociationConnector Association="homeninjaModel.FK_comments_posts" ManuallyRouted="false" />
+        <AssociationConnector Association="homeninjaModel.FK_master_data_value" ManuallyRouted="false" />
+        <AssociationConnector Association="homeninjaModel.FK_siteusers_user_type" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

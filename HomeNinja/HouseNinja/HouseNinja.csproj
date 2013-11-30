@@ -1,0 +1,593 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{E24E71CA-32FF-4C28-9980-908293827487}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>HouseNinja</RootNamespace>
+    <AssemblyName>HouseNinja</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.1.7.1\lib\net45\AspNet.ScriptManager.jQuery.dll</HintPath>
+    </Reference>
+    <Reference Include="AspNet.ScriptManager.jQuery.UI.Combined">
+      <HintPath>..\packages\AspNet.ScriptManager.jQuery.UI.Combined.1.8.20\lib\net45\AspNet.ScriptManager.jQuery.UI.Combined.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.MSAjax, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.MSAjax.4.5.6\lib\net45\Microsoft.ScriptManager.MSAjax.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.ScriptManager.WebForms, Version=4.5.6.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.ScriptManager.WebForms.4.5.6\lib\net45\Microsoft.ScriptManager.WebForms.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=5.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.0.0\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Providers, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Providers.Core.1.1\lib\net40\System.Web.Providers.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.Core, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OAuth.Consumer, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OAuth.Consumer.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OAuth.Consumer.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.Core.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.OpenId.RelyingParty, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.OpenId.RelyingParty.4.0.3.12153\lib\net40-full\DotNetOpenAuth.OpenId.RelyingParty.dll</HintPath>
+    </Reference>
+    <Reference Include="DotNetOpenAuth.AspNet, Version=4.0.0.0, Culture=neutral, PublicKeyToken=2780ccd10d57b246, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\DotNetOpenAuth.AspNet.4.0.3.12153\lib\net40-full\DotNetOpenAuth.AspNet.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Membership.OpenAuth, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35">
+      <HintPath>..\packages\Microsoft.AspNet.Membership.OpenAuth.1.0.0\lib\net45\Microsoft.AspNet.Membership.OpenAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.1.0\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Web.Optimization.WebForms">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.WebForms.1.0.0\lib\net45\Microsoft.AspNet.Web.Optimization.WebForms.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\jquery-ui.css" />
+    <Content Include="Content\themes\base\jquery.ui.accordion.css" />
+    <Content Include="Content\themes\base\jquery.ui.all.css" />
+    <Content Include="Content\themes\base\jquery.ui.autocomplete.css" />
+    <Content Include="Content\themes\base\jquery.ui.base.css" />
+    <Content Include="Content\themes\base\jquery.ui.button.css" />
+    <Content Include="Content\themes\base\jquery.ui.core.css" />
+    <Content Include="Content\themes\base\jquery.ui.datepicker.css" />
+    <Content Include="Content\themes\base\jquery.ui.dialog.css" />
+    <Content Include="Content\themes\base\jquery.ui.progressbar.css" />
+    <Content Include="Content\themes\base\jquery.ui.resizable.css" />
+    <Content Include="Content\themes\base\jquery.ui.selectable.css" />
+    <Content Include="Content\themes\base\jquery.ui.slider.css" />
+    <Content Include="Content\themes\base\jquery.ui.tabs.css" />
+    <Content Include="Content\themes\base\jquery.ui.theme.css" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_0_aaaaaa_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_flat_75_ffffff_40x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_55_fbf9ee_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_65_ffffff_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_dadada_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_75_e6e6e6_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_glass_95_fef1ec_1x400.png" />
+    <Content Include="Content\themes\base\minified\images\ui-bg_highlight-soft_75_cccccc_1x100.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_222222_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_454545_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_888888_256x240.png" />
+    <Content Include="Content\themes\base\minified\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Content\themes\base\minified\jquery-ui.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.accordion.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.autocomplete.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.button.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.core.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.datepicker.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.dialog.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.progressbar.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.resizable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.selectable.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.slider.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.tabs.min.css" />
+    <Content Include="Content\themes\base\minified\jquery.ui.theme.min.css" />
+    <Content Include="Images\accent.png" />
+    <Content Include="Images\bullet.png" />
+    <Content Include="Images\heroAccent.png" />
+    <Content Include="Images\orderedList0.png" />
+    <Content Include="Images\orderedList1.png" />
+    <Content Include="Images\orderedList2.png" />
+    <Content Include="Images\orderedList3.png" />
+    <Content Include="Images\orderedList4.png" />
+    <Content Include="Images\orderedList5.png" />
+    <Content Include="Images\orderedList6.png" />
+    <Content Include="Images\orderedList7.png" />
+    <Content Include="Images\orderedList8.png" />
+    <Content Include="Images\orderedList9.png" />
+    <Content Include="packages.config" />
+    <Content Include="resources\css\login.css" />
+    <Content Include="resources\css\style1.css" />
+    <Content Include="resources\css\style2.css" />
+    <Content Include="resources\css\style3.css" />
+    <Content Include="resources\images\02a112360f33f95a_3405-w411-h222-b0-p0--traditional-pool.jpg" />
+    <Content Include="resources\images\037119ec00d7992b_8383-w411-h222-b0-p0--traditional-living-room.jpg" />
+    <Content Include="resources\images\0612fa1a02615380_0084-w100-h100-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\0912879902673194_4618-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\1152529a02679fbc_2814-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\1d82fec702662fba_8607-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\1roseaten.jpg" />
+    <Content Include="resources\images\23714be20d611523_1435-w411-h222-b0-p0--contemporary-landscape.jpg" />
+    <Content Include="resources\images\23d24218025efab8_6283-w100-h100-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\33a1b8da0203c681_9146-w411-h222-b0-p0--contemporary-exterior.jpg" />
+    <Content Include="resources\images\39b18b810f4599be_7872-w411-h222-b0-p0--traditional-landscape.jpg" />
+    <Content Include="resources\images\45122bdc0266a389_8252-w135-h135-b1-p0--home-design.jpg" />
+    <Content Include="resources\images\46c29aa50266d428_0702-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\5452802d0220c4b3_9222-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\55a2dc37026779c5_3094-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\5bf1c4720d2f6e74_1503-w411-h222-b0-p0--eclectic-family-room.jpg" />
+    <Content Include="resources\images\5e42b3920105f0e4_3851-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\678161350f31769a_3616-w411-h222-b0-p0--contemporary-staircase.jpg" />
+    <Content Include="resources\images\67e2d1680265f5ac_3746-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\8122a56501ede7da_5889-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\8482c7220261694b_5662-w135-h135-b1-p0--home-design.jpg" />
+    <Content Include="resources\images\8a417ed90f143cc3_7698-w411-h222-b0-p0--contemporary-living-room.jpg" />
+    <Content Include="resources\images\8d422626026150f6_9433-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\8d6213dd018abdff_7111-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\903264730260795f_4245-w100-h100-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\90a28a6702668e39_2795-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\90e1b8330d74148c_4107-w411-h222-b0-p0--craftsman-exterior.jpg" />
+    <Content Include="resources\images\9272a0600266d12f_9940-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\940174210db6e374_7804-w100-h100-b0-p0--contemporary-living-room.jpg" />
+    <Content Include="resources\images\9c712fb30f664462_6480-w411-h222-b0-p0--modern-.jpg" />
+    <Content Include="resources\images\abbyjean.jpg" />
+    <Content Include="resources\images\amyhendel.jpg" />
+    <Content Include="resources\images\amy_cali.jpg" />
+    <Content Include="resources\images\angel18432.jpg" />
+    <Content Include="resources\images\annsleyinteriors.jpg" />
+    <Content Include="resources\images\arley.jpg" />
+    <Content Include="resources\images\armygirl1988.jpg" />
+    <Content Include="resources\images\arugresource.jpg" />
+    <Content Include="resources\images\bananamamma.jpg" />
+    <Content Include="resources\images\bathvanities.jpg" />
+    <Content Include="resources\images\bedburyrealtors.jpg" />
+    <Content Include="resources\images\bettyw.jpg" />
+    <Content Include="resources\images\bharat_verma%281%29.jpg" />
+    <Content Include="resources\images\bharat_verma.jpg" />
+    <Content Include="resources\images\billfry.jpg" />
+    <Content Include="resources\images\bill_vincent.jpg" />
+    <Content Include="resources\images\bisbit.jpg" />
+    <Content Include="resources\images\bungalowmo.jpg" />
+    <Content Include="resources\images\c5e1e1c40efb42b7_4698-w411-h222-b0-p0--transitional-bedroom.jpg" />
+    <Content Include="resources\images\c76132000de9176a_4154-w411-h222-b0-p0--farmhouse-exterior.jpg" />
+    <Content Include="resources\images\cabinetstogoofficial.jpg" />
+    <Content Include="resources\images\cak139.jpg" />
+    <Content Include="resources\images\cancork.jpg" />
+    <Content Include="resources\images\cda110920c7a5865_1000-w411-h222-b0-p0--traditional-kitchen.jpg" />
+    <Content Include="resources\images\ce41fd220c73f7f0_1000-w100-h100-b0-p0--modern-living-room.jpg" />
+    <Content Include="resources\images\cninteriors.jpg" />
+    <Content Include="resources\images\consistence.jpg" />
+    <Content Include="resources\images\cornerstonearchitects.jpg" />
+    <Content Include="resources\images\countryState.js" />
+    <Content Include="resources\images\d4d260a1026480c6_8280-w135-h135-b0-p0--home-design.jpg" />
+    <Content Include="resources\images\dalmadarling.jpg" />
+    <Content Include="resources\images\darzy.jpg" />
+    <Content Include="resources\images\davidcpainting.jpg" />
+    <Content Include="resources\images\davidironwood.jpg" />
+    <Content Include="resources\images\ddionnedesigns.jpg" />
+    <Content Include="resources\images\debp53.jpg" />
+    <Content Include="resources\images\decoccodrapes.jpg" />
+    <Content Include="resources\images\decoenthusiaste.jpg" />
+    <Content Include="resources\images\decoratinglady5.jpg" />
+    <Content Include="resources\images\designingsolutions.jpg" />
+    <Content Include="resources\images\devina_living.jpg" />
+    <Content Include="resources\images\dickclark.jpg" />
+    <Content Include="resources\images\divinekitchens.jpg" />
+    <Content Include="resources\images\dmhdesign.jpg" />
+    <Content Include="resources\images\dontstandstillorillpaintyou.jpg" />
+    <Content Include="resources\images\dsbutler.jpg" />
+    <Content Include="resources\images\durasupremecabinetry.jpg" />
+    <Content Include="resources\images\dwayne_chandler.jpg" />
+    <Content Include="resources\images\dytecture.jpg" />
+    <Content Include="resources\images\eagledzines.jpg" />
+    <Content Include="resources\images\edxlee.jpg" />
+    <Content Include="resources\images\efmcgriff.jpg" />
+    <Content Include="resources\images\eilbp.jpg" />
+    <Content Include="resources\images\electroluxus.jpg" />
+    <Content Include="resources\images\elpelicano.jpg" />
+    <Content Include="resources\images\eugenesakai.jpg" />
+    <Content Include="resources\images\f211bdaa0049fddc_6401-w411-h222-b0-p0--eclectic-bedroom.jpg" />
+    <Content Include="resources\images\f611fc520065d809_1729-w411-h222-b0-p0--traditional-exterior.jpg" />
+    <Content Include="resources\images\finecraft.jpg" />
+    <Content Include="resources\images\fred_stevenson.jpg" />
+    <Content Include="resources\images\gabberts3501.jpg" />
+    <Content Include="resources\images\galilee_lighting.jpg" />
+    <Content Include="resources\images\garyfinley.jpg" />
+    <Content Include="resources\images\gayle_jensen.jpg" />
+    <Content Include="resources\images\genericQuestion.png" />
+    <Content Include="resources\images\ghid.jpg" />
+    <Content Include="resources\images\glasstilestore.jpg" />
+    <Content Include="resources\images\gokeesee.jpg" />
+    <Content Include="resources\images\grizzly.jpg" />
+    <Content Include="resources\images\groveraxle.jpg" />
+    <Content Include="resources\images\haroldleidner.jpg" />
+    <Content Include="resources\images\harrell.jpg" />
+    <Content Include="resources\images\here_design_and_architecture.jpg" />
+    <Content Include="resources\images\highmarkbuilders.jpg" />
+    <Content Include="resources\images\historicalconcepts.jpg" />
+    <Content Include="resources\images\homesublime.jpg" />
+    <Content Include="resources\images\indianpatti.jpg" />
+    <Content Include="resources\images\interiorarchaeology.jpg" />
+    <Content Include="resources\images\inthekitchen1619.jpg" />
+    <Content Include="resources\images\james_crisp.jpg" />
+    <Content Include="resources\images\jane_lake7104.jpg" />
+    <Content Include="resources\images\jayme_h.jpg" />
+    <Content Include="resources\images\ja_bugz.jpg" />
+    <Content Include="resources\images\jen046.jpg" />
+    <Content Include="resources\images\jennyhagin.jpg" />
+    <Content Include="resources\images\jkandsons.jpg" />
+    <Content Include="resources\images\jolene_escalante.jpg" />
+    <Content Include="resources\images\karemore55.jpg" />
+    <Content Include="resources\images\karima_ermak.jpg" />
+    <Content Include="resources\images\kasrayzd.jpg" />
+    <Content Include="resources\images\kcar66.jpg" />
+    <Content Include="resources\images\kimdee24.jpg" />
+    <Content Include="resources\images\kklinton.jpg" />
+    <Content Include="resources\images\lampertaia.jpg" />
+    <Content Include="resources\images\lessismoore.jpg" />
+    <Content Include="resources\images\liliava.jpg" />
+    <Content Include="resources\images\lindylou.jpg" />
+    <Content Include="resources\images\liquidscapes.jpg" />
+    <Content Include="resources\images\lorraineblasetti.jpg" />
+    <Content Include="resources\images\lydia1971.jpg" />
+    <Content Include="resources\images\lzjones10.jpg" />
+    <Content Include="resources\images\marblesystemsmiami.jpg" />
+    <Content Include="resources\images\margo_corpening.jpg" />
+    <Content Include="resources\images\marke.jpg" />
+    <Content Include="resources\images\martic511.jpg" />
+    <Content Include="resources\images\maureenb93.jpg" />
+    <Content Include="resources\images\mbts.jpg" />
+    <Content Include="resources\images\mccroskeyinteriors.jpg" />
+    <Content Include="resources\images\michaelabrams.jpg" />
+    <Content Include="resources\images\mikeross.jpg" />
+    <Content Include="resources\images\mingleteam.jpg" />
+    <Content Include="resources\images\mircoteai.jpg" />
+    <Content Include="resources\images\misslaur57.jpg" />
+    <Content Include="resources\images\mjkdesign.jpg" />
+    <Content Include="resources\images\mlx395.jpg" />
+    <Content Include="resources\images\mmccabe.jpg" />
+    <Content Include="resources\images\monicaellison.jpg" />
+    <Content Include="resources\images\morningstarbuilders.jpg" />
+    <Content Include="resources\images\mousemaker.jpg" />
+    <Content Include="resources\images\mtibaths1.jpg" />
+    <Content Include="resources\images\myownstyle13.jpg" />
+    <Content Include="resources\images\nancy_walton.jpg" />
+    <Content Include="resources\images\nathan_stannard.jpg" />
+    <Content Include="resources\images\natkelmat.jpg" />
+    <Content Include="resources\images\oharainteriors.jpg" />
+    <Content Include="resources\images\oneplan.jpg" />
+    <Content Include="resources\images\ourfarmhouse.jpg" />
+    <Content Include="resources\images\pamdecuir.jpg" />
+    <Content Include="resources\images\partition.png" />
+    <Content Include="resources\images\patb.jpg" />
+    <Content Include="resources\images\paula_kates.jpg" />
+    <Content Include="resources\images\pcmom1.jpg" />
+    <Content Include="resources\images\pegonia1.jpg" />
+    <Content Include="resources\images\pmh1221.jpg" />
+    <Content Include="resources\images\postcardfromparis.jpg" />
+    <Content Include="resources\images\printperfect.jpg" />
+    <Content Include="resources\images\print_logo.png" />
+    <Content Include="resources\images\progressivesolutionswindowsdoors.jpg" />
+    <Content Include="resources\images\projectguru.jpg" />
+    <Content Include="resources\images\puredesign.jpg" />
+    <Content Include="resources\images\purehome.jpg" />
+    <Content Include="resources\images\resquare.jpg" />
+    <Content Include="resources\images\restoreparadise.jpg" />
+    <Content Include="resources\images\rinamin.jpg" />
+    <Content Include="resources\images\samantha_lienhop.jpg" />
+    <Content Include="resources\images\seattlestagedtosell.jpg" />
+    <Content Include="resources\images\shakuff.jpg" />
+    <Content Include="resources\images\sharpkl.jpg" />
+    <Content Include="resources\images\shelleyuk.jpg" />
+    <Content Include="resources\images\sigrida.jpg" />
+    <Content Include="resources\images\smileyface2013.jpg" />
+    <Content Include="resources\images\solincia.jpg" />
+    <Content Include="resources\images\spacer.gif" />
+    <Content Include="resources\images\sparkie986.jpg" />
+    <Content Include="resources\images\sstarr93.jpg" />
+    <Content Include="resources\images\stantondesigns.jpg" />
+    <Content Include="resources\images\studiosantalla.jpg" />
+    <Content Include="resources\images\stylish.jpg" />
+    <Content Include="resources\images\suhayward.jpg" />
+    <Content Include="resources\images\swiddop.jpg" />
+    <Content Include="resources\images\tatumbrowncustomhomes.jpg" />
+    <Content Include="resources\images\thereluctantdesigner.jpg" />
+    <Content Include="resources\images\tmkremodeling.jpg" />
+    <Content Include="resources\images\user_0.gif" />
+    <Content Include="resources\images\victorianbungalowranch.jpg" />
+    <Content Include="resources\images\webuser_29057.jpg" />
+    <Content Include="resources\images\wesharding.jpg" />
+    <Content Include="resources\images\windycityjohn.jpg" />
+    <Content Include="resources\images\winter_baby26.jpg" />
+    <Content Include="resources\images\_rugsdoneright.jpg" />
+    <Content Include="resources\js\jquery.min.js" />
+    <Content Include="resources\js\vpb_script.js" />
+    <Content Include="Webpages\aboutUs.aspx" />
+    <Content Include="Webpages\blogDetails.aspx" />
+    <Content Include="Webpages\blogs.aspx" />
+    <Content Include="Webpages\contactUs.aspx" />
+    <Content Include="Webpages\CustomControls\Footer.ascx" />
+    <Content Include="Webpages\CustomControls\Header.ascx" />
+    <Content Include="Webpages\register.aspx" />
+    <Content Include="Webpages\search.aspx" />
+    <EntityDeploy Include="DAO\HomeNinja.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>HomeNinja.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="DAO\HomeNinja.edmx.diagram">
+      <DependentUpon>HomeNinja.edmx</DependentUpon>
+    </Content>
+    <Content Include="resources\images\log" />
+    <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Scripts\jquery-1.7.1.js" />
+    <Content Include="Scripts\jquery-1.7.1.min.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.js" />
+    <Content Include="Scripts\jquery-ui-1.8.20.min.js" />
+    <Content Include="Scripts\modernizr-2.5.3.js" />
+    <Content Include="Scripts\WebForms\DetailsView.js" />
+    <Content Include="Scripts\WebForms\Focus.js" />
+    <Content Include="Scripts\WebForms\GridView.js" />
+    <Content Include="Scripts\WebForms\Menu.js" />
+    <Content Include="Scripts\WebForms\MenuStandards.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjax.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxApplicationServices.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxComponentModel.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxCore.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxGlobalization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxHistory.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxNetwork.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxSerialization.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxTimer.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebForms.js" />
+    <Content Include="Scripts\WebForms\MSAjax\MicrosoftAjaxWebServices.js" />
+    <Content Include="Scripts\WebForms\SmartNav.js" />
+    <Content Include="Scripts\WebForms\TreeView.js" />
+    <Content Include="Scripts\WebForms\WebForms.js" />
+    <Content Include="Scripts\WebForms\WebParts.js" />
+    <Content Include="Scripts\WebForms\WebUIValidation.js" />
+    <Content Include="Scripts\_references.js" />
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+    <Content Include="Bundle.config" />
+    <Content Include="Webpages\MasterPage\Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="DAO\Global.cs" />
+    <Compile Include="DAO\Helper.cs" />
+    <Compile Include="DAO\HomeNinja.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>HomeNinja.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="DAO\masterdatavalue.cs" />
+    <Compile Include="DAO\siteuser.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Implimentation\MasterDataService.cs" />
+    <Compile Include="Services\Implimentation\PostDataService.cs" />
+    <Compile Include="Services\Implimentation\UserService.cs" />
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\aboutUs.aspx.cs">
+      <DependentUpon>aboutUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\aboutUs.aspx.designer.cs">
+      <DependentUpon>aboutUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\blogDetails.aspx.cs">
+      <DependentUpon>blogDetails.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\blogDetails.aspx.designer.cs">
+      <DependentUpon>blogDetails.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\blogs.aspx.cs">
+      <DependentUpon>blogs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\blogs.aspx.designer.cs">
+      <DependentUpon>blogs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\contactUs.aspx.cs">
+      <DependentUpon>contactUs.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\contactUs.aspx.designer.cs">
+      <DependentUpon>contactUs.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\CustomControls\Footer.ascx.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\CustomControls\Footer.ascx.designer.cs">
+      <DependentUpon>Footer.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\CustomControls\Header.ascx.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\CustomControls\Header.ascx.designer.cs">
+      <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\MasterPage\Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\MasterPage\Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\register.aspx.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\register.aspx.designer.cs">
+      <DependentUpon>register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\search.aspx.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\search.aspx.designer.cs">
+      <DependentUpon>search.aspx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Services\Interface\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Site.Master" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:26718/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
