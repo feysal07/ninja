@@ -1,0 +1,35 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Site.master.cs" Inherits="HouseNinja.Webpages.MasterPage.Site" %>
+<%@ Register Src="~/Webpages/CustomControls/Header.ascx" TagPrefix="uc" TagName="Header" %>
+<%@ Register Src="~/Webpages/CustomControls/Footer.ascx" TagPrefix="uc2" TagName="Footer" %>
+
+
+
+<!DOCTYPE html>
+<!-- CSS FILES-->
+<link href="../../resources/css/style1.css" rel="stylesheet" />
+<link href="../../resources/css/style2.css" rel="stylesheet" />
+<link href="../../resources/css/style3.css" rel="stylesheet" />
+<link href="../../resources/css/login.css" rel="stylesheet" />
+
+<!-- JS FILES-->
+<script src="../.../resources/js/jquery.min.js"></script>
+<script src="../.../resources/js/vpb_script.js"></script>
+<style type="text/css">.reloadMe.rimg img.reloadable { width: 00%; height: auto; }</style>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+</head>
+<body class="hbs">
+    <form id="form1" runat="server">
+    <div>
+        <uc:Header runat="server" id="Header" />
+        <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
+        </asp:ContentPlaceHolder>
+        <uc2:Footer runat="server" id="Footer" />
+    </div>
+    </form>
+</body>
+</html>
