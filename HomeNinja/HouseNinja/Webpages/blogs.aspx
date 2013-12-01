@@ -5,7 +5,48 @@
     <div id="mainArea"> 
         <div id="mainContent">
 		<div class="container">
-	<div class="leftSideBar"></div>
+	<div class="leftSideBar">
+        	<div class="sidebar"><div class="sidebar-header">Filter by Topic</div><div class="sidebar-body">		<ul id="">
+		<li class="sidebar-item">
+			<a href="" class="sidebar-item-label">All Topics</a>
+					</li>
+		<li class="sidebar-item">
+			<a href="" class="sidebar-item-label">Design Dilemma</a>
+					</li>
+		<li class="sidebar-item">
+			<a href="" class="sidebar-item-label">Before &amp; After</a>
+					</li>
+		<li class="sidebar-item">
+			<a href="" class="sidebar-item-label">Photo Questions</a>
+					</li>
+		<li class="sidebar-item selected">
+			<a href="" class="sidebar-item-label">Using Houzz</a>
+					</li>
+		<li class="sidebar-item">
+			<a href="" class="sidebar-item-label">Other</a>
+					</li>
+				</ul>
+		</div>
+		</div>
+        <%--<div class="sidebar"><div class="sidebar-header">Filter by Activity</div><div class="sidebar-body">		<ul id="Ul1">
+		<li class="sidebar-item selected">
+			<a href="http://www.houzz.com/discussions/using-houzz/sort=latest-activity" class="sidebar-item-label">Latest Activity</a>
+					</li>
+		<li class="sidebar-item">
+			<a href="http://www.houzz.com/discussions/using-houzz/sort=featured" class="sidebar-item-label">Featured</a>
+					</li>
+		<li class="sidebar-item">
+			<a href="http://www.houzz.com/discussions/using-houzz/sort=popular" class="sidebar-item-label">Popular</a>
+					</li>
+		<li class="sidebar-item">
+			<a href="http://www.houzz.com/discussions/using-houzz/view=2" class="sidebar-item-label">New</a>
+					</li>
+				</ul>
+		</div>
+		</div>	--%>
+
+
+	</div>
 	<div class="middleContent">
 						<h2 class="askQuestionTitle large-header top">What are you working on?</h2>
 				<div class="askQuestionSubTitle">Get help for your projects, share your finds and show off your Before and After.</div>
