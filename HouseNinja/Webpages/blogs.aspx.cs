@@ -20,6 +20,15 @@ namespace HouseNinja.Webpages
                  userId = Convert.ToInt32(Session["userId"]);
             }
 
+            loadAllPosts();
+        }
+
+        private void loadAllPosts()
+        {
+ 	        //throw new NotImplementedException();
+
+
+            pds.getAllPosts();
         }
 
         protected void editQuestionSubmitBtn_Click(object sender, EventArgs e)
@@ -37,5 +46,8 @@ namespace HouseNinja.Webpages
             
             pds.CreateNewPost(newpost);   
         }
-        }
+
+        
+
+      }
     }
