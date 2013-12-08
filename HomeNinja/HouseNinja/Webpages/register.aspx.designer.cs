@@ -13,15 +13,6 @@ namespace HouseNinja.Webpages {
     public partial class register {
         
         /// <summary>
-        /// mainUserProfilePic control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Image mainUserProfilePic;
-        
-        /// <summary>
         /// PhotoUpload control.
         /// </summary>
         /// <remarks>
@@ -29,6 +20,15 @@ namespace HouseNinja.Webpages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.FileUpload PhotoUpload;
+        
+        /// <summary>
+        /// mainUserProfilePic control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Image mainUserProfilePic;
         
         /// <summary>
         /// btnPhotoPreview control.
@@ -137,5 +137,14 @@ namespace HouseNinja.Webpages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button updateBtn;
+        
+        /// <summary>
+        /// btnSkip control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnSkip;
     }
 }

@@ -99,10 +99,10 @@
                             </div>
                         </div>
                         <div class="editProfileSectionBtns">
-                            <div class="control-group">
+                          <%--  <div class="control-group">
                                 <label class="control-label"></label>
                                 <div class="controls"><a class="btn btn-small" href="" ref="nofollow">Change User Name</a><a class="btn btn-small" id="editLinkBtn" href="" ref="nofollow">Change Password</a></div>
-                            </div>
+                            </div>--%>
                         </div>
                         <div class="editProfileSectionClear"></div>
                     </div>
@@ -248,7 +248,8 @@
 	</div>-->
                     <div class="editProfileSection">
                         <%--<input id="updateBtn" type="submit" class="hzBtn primary " value="Update">--%>
-                        <asp:Button runat="server" ID="updateBtn" CssClass="hzBtn primary" Text="Update" OnClick="updateBtn_Click"/>
+                        <asp:Button runat="server" ID="updateBtn" CssClass="vpb_general_button" Text="Update" OnClick="updateBtn_Click"/>
+                        <asp:Button runat="server" ID="btnSkip" CssClass="vpb_general_button" Text="Skip" />
                     </div>
 
                 </div>
