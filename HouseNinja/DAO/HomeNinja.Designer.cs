@@ -19,15 +19,15 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_addressmapping_add_id", "addressdetails", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.addressdetail), "addressmapping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.addressmapping), true)]
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_addressmapping_user_id", "siteusers", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "addressmapping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.addressmapping), true)]
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_createdBy", "siteusers", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "comments", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_post_id", "posts", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comments", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_posts", "posts", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comments", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_addressmapping_add_id", "addressdetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.addressdetail), "addressmapping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.addressmapping), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_addressmapping_user_id", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "addressmapping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.addressmapping), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_createdBy", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_post_id", "post", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_posts", "post", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_master_data_value", "masterdatatype", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HouseNinja.DAO.masterdatatype), "masterdatavalue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.masterdatavalue), true)]
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_posts_posttype", "posttype", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.posttype), "posts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.post), true)]
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_posts_user_id", "siteusers", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "posts", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.post), true)]
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_siteusers_user_type", "usertype", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HouseNinja.DAO.usertype), "siteusers", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.siteuser), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_posts_posttype", "posttype", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.posttype), "post", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.post), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_posts_user_id", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "post", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.post), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_siteusers_user_type", "usertype", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HouseNinja.DAO.usertype), "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.siteuser), true)]
 
 #endregion
 
@@ -837,16 +837,16 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressmapping_add_id", "addressdetails")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressmapping_add_id", "addressdetail")]
         public addressdetail addressdetail
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetails").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetail").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetails").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetail").Value = value;
             }
         }
         /// <summary>
@@ -858,13 +858,13 @@ namespace HouseNinja.DAO
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetails");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetails", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetail", value);
                 }
             }
         }
@@ -875,16 +875,16 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressmapping_user_id", "siteusers")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressmapping_user_id", "siteuser")]
         public siteuser siteuser
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteusers").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteuser").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteusers").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteuser").Value = value;
             }
         }
         /// <summary>
@@ -896,13 +896,13 @@ namespace HouseNinja.DAO
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteusers");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteuser");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteusers", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteuser", value);
                 }
             }
         }
@@ -1093,16 +1093,16 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_createdBy", "siteusers")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_createdBy", "siteuser")]
         public siteuser siteuser
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_comments_createdBy", "siteusers").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_comments_createdBy", "siteuser").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_comments_createdBy", "siteusers").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_comments_createdBy", "siteuser").Value = value;
             }
         }
         /// <summary>
@@ -1114,13 +1114,13 @@ namespace HouseNinja.DAO
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_comments_createdBy", "siteusers");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_comments_createdBy", "siteuser");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<siteuser>("HomeNinjaModel.FK_comments_createdBy", "siteusers", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<siteuser>("HomeNinjaModel.FK_comments_createdBy", "siteuser", value);
                 }
             }
         }
@@ -1131,16 +1131,16 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_post_id", "posts")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_post_id", "post")]
         public post post
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_post_id", "posts").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_post_id", "post").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_post_id", "posts").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_post_id", "post").Value = value;
             }
         }
         /// <summary>
@@ -1152,13 +1152,13 @@ namespace HouseNinja.DAO
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_post_id", "posts");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_post_id", "post");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<post>("HomeNinjaModel.FK_comments_post_id", "posts", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<post>("HomeNinjaModel.FK_comments_post_id", "post", value);
                 }
             }
         }
@@ -1169,16 +1169,16 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_posts", "posts")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_posts", "post")]
         public post post1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_posts", "posts").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_posts", "post").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_posts", "posts").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_posts", "post").Value = value;
             }
         }
         /// <summary>
@@ -1190,13 +1190,13 @@ namespace HouseNinja.DAO
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_posts", "posts");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<post>("HomeNinjaModel.FK_comments_posts", "post");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<post>("HomeNinjaModel.FK_comments_posts", "posts", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<post>("HomeNinjaModel.FK_comments_posts", "post", value);
                 }
             }
         }
@@ -1817,18 +1817,18 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_post_id", "comments")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_post_id", "comment")]
         public EntityCollection<comment> comments
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comment>("HomeNinjaModel.FK_comments_post_id", "comments");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comment>("HomeNinjaModel.FK_comments_post_id", "comment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comment>("HomeNinjaModel.FK_comments_post_id", "comments", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comment>("HomeNinjaModel.FK_comments_post_id", "comment", value);
                 }
             }
         }
@@ -1839,18 +1839,18 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_posts", "comments")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_posts", "comment")]
         public EntityCollection<comment> comments1
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comment>("HomeNinjaModel.FK_comments_posts", "comments");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comment>("HomeNinjaModel.FK_comments_posts", "comment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comment>("HomeNinjaModel.FK_comments_posts", "comments", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comment>("HomeNinjaModel.FK_comments_posts", "comment", value);
                 }
             }
         }
@@ -1899,16 +1899,16 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_posts_user_id", "siteusers")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_posts_user_id", "siteuser")]
         public siteuser siteuser
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_posts_user_id", "siteusers").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_posts_user_id", "siteuser").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_posts_user_id", "siteusers").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_posts_user_id", "siteuser").Value = value;
             }
         }
         /// <summary>
@@ -1920,13 +1920,13 @@ namespace HouseNinja.DAO
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_posts_user_id", "siteusers");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_posts_user_id", "siteuser");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<siteuser>("HomeNinjaModel.FK_posts_user_id", "siteusers", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<siteuser>("HomeNinjaModel.FK_posts_user_id", "siteuser", value);
                 }
             }
         }
@@ -2021,18 +2021,18 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_posts_posttype", "posts")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_posts_posttype", "post")]
         public EntityCollection<post> posts
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<post>("HomeNinjaModel.FK_posts_posttype", "posts");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<post>("HomeNinjaModel.FK_posts_posttype", "post");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<post>("HomeNinjaModel.FK_posts_posttype", "posts", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<post>("HomeNinjaModel.FK_posts_posttype", "post", value);
                 }
             }
         }
@@ -2118,6 +2118,54 @@ namespace HouseNinja.DAO
         private global::System.String _userName;
         partial void OnuserNameChanging(global::System.String value);
         partial void OnuserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String firstName
+        {
+            get
+            {
+                return _firstName;
+            }
+            set
+            {
+                OnfirstNameChanging(value);
+                ReportPropertyChanging("firstName");
+                _firstName = StructuralObject.SetValidValue(value, true, "firstName");
+                ReportPropertyChanged("firstName");
+                OnfirstNameChanged();
+            }
+        }
+        private global::System.String _firstName;
+        partial void OnfirstNameChanging(global::System.String value);
+        partial void OnfirstNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String lastName
+        {
+            get
+            {
+                return _lastName;
+            }
+            set
+            {
+                OnlastNameChanging(value);
+                ReportPropertyChanging("lastName");
+                _lastName = StructuralObject.SetValidValue(value, true, "lastName");
+                ReportPropertyChanged("lastName");
+                OnlastNameChanged();
+            }
+        }
+        private global::System.String _lastName;
+        partial void OnlastNameChanging(global::System.String value);
+        partial void OnlastNameChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2391,18 +2439,18 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_createdBy", "comments")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_comments_createdBy", "comment")]
         public EntityCollection<comment> comments
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comment>("HomeNinjaModel.FK_comments_createdBy", "comments");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<comment>("HomeNinjaModel.FK_comments_createdBy", "comment");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comment>("HomeNinjaModel.FK_comments_createdBy", "comments", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<comment>("HomeNinjaModel.FK_comments_createdBy", "comment", value);
                 }
             }
         }
@@ -2413,18 +2461,18 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_posts_user_id", "posts")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_posts_user_id", "post")]
         public EntityCollection<post> posts
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<post>("HomeNinjaModel.FK_posts_user_id", "posts");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<post>("HomeNinjaModel.FK_posts_user_id", "post");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<post>("HomeNinjaModel.FK_posts_user_id", "posts", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<post>("HomeNinjaModel.FK_posts_user_id", "post", value);
                 }
             }
         }
@@ -2711,18 +2759,18 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_siteusers_user_type", "siteusers")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_siteusers_user_type", "siteuser")]
         public EntityCollection<siteuser> siteusers
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<siteuser>("HomeNinjaModel.FK_siteusers_user_type", "siteusers");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<siteuser>("HomeNinjaModel.FK_siteusers_user_type", "siteuser");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<siteuser>("HomeNinjaModel.FK_siteusers_user_type", "siteusers", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<siteuser>("HomeNinjaModel.FK_siteusers_user_type", "siteuser", value);
                 }
             }
         }
