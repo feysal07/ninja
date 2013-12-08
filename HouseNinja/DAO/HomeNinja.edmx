@@ -4,34 +4,51 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="homeninjaModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
-        <EntityContainer Name="homeninjaModelStoreContainer">
-          <EntitySet Name="addressdetails" EntityType="homeninjaModel.Store.addressdetails" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="addressmapping" EntityType="homeninjaModel.Store.addressmapping" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="comments" EntityType="homeninjaModel.Store.comments" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="masterdatatype" EntityType="homeninjaModel.Store.masterdatatype" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="masterdatavalue" EntityType="homeninjaModel.Store.masterdatavalue" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="posts" EntityType="homeninjaModel.Store.posts" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="siteusers" EntityType="homeninjaModel.Store.siteusers" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="subscription" EntityType="homeninjaModel.Store.subscription" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="usertype" EntityType="homeninjaModel.Store.usertype" store:Type="Tables" Schema="homeninja" />
-          <AssociationSet Name="FK_addressmapping_add_id" Association="homeninjaModel.Store.FK_addressmapping_add_id">
+      <Schema Namespace="HomeNinjaModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityContainer Name="HomeNinjaModelStoreContainer">
+          <EntitySet Name="addressdetails" EntityType="HomeNinjaModel.Store.addressdetails" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="addressmapping" EntityType="HomeNinjaModel.Store.addressmapping" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="comments" EntityType="HomeNinjaModel.Store.comments" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="masterdatatype" EntityType="HomeNinjaModel.Store.masterdatatype" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="masterdatavalue" EntityType="HomeNinjaModel.Store.masterdatavalue" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="posts" EntityType="HomeNinjaModel.Store.posts" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="posttype" EntityType="HomeNinjaModel.Store.posttype" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="siteusers" EntityType="HomeNinjaModel.Store.siteusers" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="subscription" EntityType="HomeNinjaModel.Store.subscription" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="usertype" EntityType="HomeNinjaModel.Store.usertype" store:Type="Tables" Schema="homeninja" />
+          <AssociationSet Name="FK_addressmapping_add_id" Association="HomeNinjaModel.Store.FK_addressmapping_add_id">
             <End Role="addressdetails" EntitySet="addressdetails" />
             <End Role="addressmapping" EntitySet="addressmapping" />
           </AssociationSet>
-          <AssociationSet Name="FK_addressmapping_user_id" Association="homeninjaModel.Store.FK_addressmapping_user_id">
+          <AssociationSet Name="FK_addressmapping_user_id" Association="HomeNinjaModel.Store.FK_addressmapping_user_id">
             <End Role="siteusers" EntitySet="siteusers" />
             <End Role="addressmapping" EntitySet="addressmapping" />
           </AssociationSet>
-          <AssociationSet Name="FK_comments_posts" Association="homeninjaModel.Store.FK_comments_posts">
+          <AssociationSet Name="FK_comments_createdBy" Association="HomeNinjaModel.Store.FK_comments_createdBy">
+            <End Role="siteusers" EntitySet="siteusers" />
+            <End Role="comments" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comments_post_id" Association="HomeNinjaModel.Store.FK_comments_post_id">
             <End Role="posts" EntitySet="posts" />
             <End Role="comments" EntitySet="comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_master_data_value" Association="homeninjaModel.Store.FK_master_data_value">
+          <AssociationSet Name="FK_comments_posts" Association="HomeNinjaModel.Store.FK_comments_posts">
+            <End Role="posts" EntitySet="posts" />
+            <End Role="comments" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_master_data_value" Association="HomeNinjaModel.Store.FK_master_data_value">
             <End Role="masterdatatype" EntitySet="masterdatatype" />
             <End Role="masterdatavalue" EntitySet="masterdatavalue" />
           </AssociationSet>
-          <AssociationSet Name="FK_siteusers_user_type" Association="homeninjaModel.Store.FK_siteusers_user_type">
+          <AssociationSet Name="FK_posts_posttype" Association="HomeNinjaModel.Store.FK_posts_posttype">
+            <End Role="posttype" EntitySet="posttype" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_posts_user_id" Association="HomeNinjaModel.Store.FK_posts_user_id">
+            <End Role="siteusers" EntitySet="siteusers" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siteusers_user_type" Association="HomeNinjaModel.Store.FK_siteusers_user_type">
             <End Role="usertype" EntitySet="usertype" />
             <End Role="siteusers" EntitySet="siteusers" />
           </AssociationSet>
@@ -72,8 +89,7 @@
           <Property Name="postId" Type="bigint" />
           <Property Name="createdBy" Type="bigint" />
           <Property Name="createdDate" Type="datetime" />
-          <Property Name="ModifiedDate" Type="datetime" />
-          <Property Name="ModifiedBy" Type="bigint" />
+          <Property Name="modifiedDate" Type="datetime" />
         </EntityType>
         <EntityType Name="masterdatatype">
           <Key>
@@ -103,9 +119,17 @@
           <Property Name="postDate" Type="datetime" />
           <Property Name="postTitle" Type="varchar" MaxLength="50" />
           <Property Name="postStatus" Type="varchar" MaxLength="50" />
+          <Property Name="attachmentUrl" Type="varchar" MaxLength="100" />
           <Property Name="commentCount" Type="int" />
-          <Property Name="postType" Type="varchar" MaxLength="50" />
+          <Property Name="postType" Type="int" />
           <Property Name="modifiedDate" Type="datetime" />
+        </EntityType>
+        <EntityType Name="posttype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="postType" Type="varchar" MaxLength="50" />
         </EntityType>
         <EntityType Name="siteusers">
           <Key>
@@ -117,6 +141,7 @@
           <Property Name="loginEmail" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
           <Property Name="isActive" Type="bit" />
+          <Property Name="profilPic" Type="binary" MaxLength="1" />
           <Property Name="aboutMe" Type="text" />
           <Property Name="nextProject" Type="text" />
           <Property Name="myFavoriteStyle" Type="text" />
@@ -141,8 +166,8 @@
           <Property Name="userType" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
         <Association Name="FK_addressmapping_add_id">
-          <End Role="addressdetails" Type="homeninjaModel.Store.addressdetails" Multiplicity="0..1" />
-          <End Role="addressmapping" Type="homeninjaModel.Store.addressmapping" Multiplicity="*" />
+          <End Role="addressdetails" Type="HomeNinjaModel.Store.addressdetails" Multiplicity="0..1" />
+          <End Role="addressmapping" Type="HomeNinjaModel.Store.addressmapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="addressdetails">
               <PropertyRef Name="id" />
@@ -153,8 +178,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_addressmapping_user_id">
-          <End Role="siteusers" Type="homeninjaModel.Store.siteusers" Multiplicity="0..1" />
-          <End Role="addressmapping" Type="homeninjaModel.Store.addressmapping" Multiplicity="*" />
+          <End Role="siteusers" Type="HomeNinjaModel.Store.siteusers" Multiplicity="0..1" />
+          <End Role="addressmapping" Type="HomeNinjaModel.Store.addressmapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="siteusers">
               <PropertyRef Name="userId" />
@@ -164,9 +189,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_comments_createdBy">
+          <End Role="siteusers" Type="HomeNinjaModel.Store.siteusers" Multiplicity="0..1" />
+          <End Role="comments" Type="HomeNinjaModel.Store.comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siteusers">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="comments">
+              <PropertyRef Name="createdBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comments_post_id">
+          <End Role="posts" Type="HomeNinjaModel.Store.posts" Multiplicity="0..1" />
+          <End Role="comments" Type="HomeNinjaModel.Store.comments" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="posts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comments">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_comments_posts">
-          <End Role="posts" Type="homeninjaModel.Store.posts" Multiplicity="0..1" />
-          <End Role="comments" Type="homeninjaModel.Store.comments" Multiplicity="*" />
+          <End Role="posts" Type="HomeNinjaModel.Store.posts" Multiplicity="0..1" />
+          <End Role="comments" Type="HomeNinjaModel.Store.comments" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="posts">
               <PropertyRef Name="id" />
@@ -177,8 +226,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_master_data_value">
-          <End Role="masterdatatype" Type="homeninjaModel.Store.masterdatatype" Multiplicity="1" />
-          <End Role="masterdatavalue" Type="homeninjaModel.Store.masterdatavalue" Multiplicity="*" />
+          <End Role="masterdatatype" Type="HomeNinjaModel.Store.masterdatatype" Multiplicity="1" />
+          <End Role="masterdatavalue" Type="HomeNinjaModel.Store.masterdatavalue" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="masterdatatype">
               <PropertyRef Name="mnemonic" />
@@ -188,11 +237,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_posts_posttype">
+          <End Role="posttype" Type="HomeNinjaModel.Store.posttype" Multiplicity="0..1" />
+          <End Role="posts" Type="HomeNinjaModel.Store.posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="posttype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="postType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_posts_user_id">
+          <End Role="siteusers" Type="HomeNinjaModel.Store.siteusers" Multiplicity="0..1" />
+          <End Role="posts" Type="HomeNinjaModel.Store.posts" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siteusers">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="postAuthor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_siteusers_user_type">
-          <End Role="usertype" Type="homeninjaModel.Store.usertype" Multiplicity="1">
+          <End Role="usertype" Type="HomeNinjaModel.Store.usertype" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="siteusers" Type="homeninjaModel.Store.siteusers" Multiplicity="*" />
+          <End Role="siteusers" Type="HomeNinjaModel.Store.siteusers" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usertype">
               <PropertyRef Name="id" />
@@ -206,34 +279,51 @@
     </edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
-      <Schema Namespace="homeninjaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+      <Schema Namespace="HomeNinjaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="HomeNinja" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="addressdetails" EntityType="homeninjaModel.addressdetail" />
-          <EntitySet Name="addressmappings" EntityType="homeninjaModel.addressmapping" />
-          <EntitySet Name="comments" EntityType="homeninjaModel.comment" />
-          <EntitySet Name="masterdatatypes" EntityType="homeninjaModel.masterdatatype" />
-          <EntitySet Name="masterdatavalues" EntityType="homeninjaModel.masterdatavalue" />
-          <EntitySet Name="posts" EntityType="homeninjaModel.post" />
-          <EntitySet Name="siteusers" EntityType="homeninjaModel.siteuser" />
-          <EntitySet Name="subscriptions" EntityType="homeninjaModel.subscription" />
-          <EntitySet Name="usertypes" EntityType="homeninjaModel.usertype" />
-          <AssociationSet Name="FK_addressmapping_add_id" Association="homeninjaModel.FK_addressmapping_add_id">
+          <EntitySet Name="addressdetails" EntityType="HomeNinjaModel.addressdetail" />
+          <EntitySet Name="addressmappings" EntityType="HomeNinjaModel.addressmapping" />
+          <EntitySet Name="comments" EntityType="HomeNinjaModel.comment" />
+          <EntitySet Name="masterdatatypes" EntityType="HomeNinjaModel.masterdatatype" />
+          <EntitySet Name="masterdatavalues" EntityType="HomeNinjaModel.masterdatavalue" />
+          <EntitySet Name="posts" EntityType="HomeNinjaModel.post" />
+          <EntitySet Name="posttypes" EntityType="HomeNinjaModel.posttype" />
+          <EntitySet Name="siteusers" EntityType="HomeNinjaModel.siteuser" />
+          <EntitySet Name="subscriptions" EntityType="HomeNinjaModel.subscription" />
+          <EntitySet Name="usertypes" EntityType="HomeNinjaModel.usertype" />
+          <AssociationSet Name="FK_addressmapping_add_id" Association="HomeNinjaModel.FK_addressmapping_add_id">
             <End Role="addressdetails" EntitySet="addressdetails" />
             <End Role="addressmapping" EntitySet="addressmappings" />
           </AssociationSet>
-          <AssociationSet Name="FK_addressmapping_user_id" Association="homeninjaModel.FK_addressmapping_user_id">
+          <AssociationSet Name="FK_addressmapping_user_id" Association="HomeNinjaModel.FK_addressmapping_user_id">
             <End Role="siteusers" EntitySet="siteusers" />
             <End Role="addressmapping" EntitySet="addressmappings" />
           </AssociationSet>
-          <AssociationSet Name="FK_comments_posts" Association="homeninjaModel.FK_comments_posts">
+          <AssociationSet Name="FK_comments_createdBy" Association="HomeNinjaModel.FK_comments_createdBy">
+            <End Role="siteusers" EntitySet="siteusers" />
+            <End Role="comments" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_comments_post_id" Association="HomeNinjaModel.FK_comments_post_id">
             <End Role="posts" EntitySet="posts" />
             <End Role="comments" EntitySet="comments" />
           </AssociationSet>
-          <AssociationSet Name="FK_master_data_value" Association="homeninjaModel.FK_master_data_value">
+          <AssociationSet Name="FK_comments_posts" Association="HomeNinjaModel.FK_comments_posts">
+            <End Role="posts" EntitySet="posts" />
+            <End Role="comments" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_master_data_value" Association="HomeNinjaModel.FK_master_data_value">
             <End Role="masterdatatype" EntitySet="masterdatatypes" />
             <End Role="masterdatavalue" EntitySet="masterdatavalues" />
           </AssociationSet>
-          <AssociationSet Name="FK_siteusers_user_type" Association="homeninjaModel.FK_siteusers_user_type">
+          <AssociationSet Name="FK_posts_posttype" Association="HomeNinjaModel.FK_posts_posttype">
+            <End Role="posttype" EntitySet="posttypes" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_posts_user_id" Association="HomeNinjaModel.FK_posts_user_id">
+            <End Role="siteusers" EntitySet="siteusers" />
+            <End Role="posts" EntitySet="posts" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siteusers_user_type" Association="HomeNinjaModel.FK_siteusers_user_type">
             <End Role="usertype" EntitySet="usertypes" />
             <End Role="siteusers" EntitySet="siteusers" />
           </AssociationSet>
@@ -256,7 +346,7 @@
           <Property Name="userId" Type="Int64" />
           <Property Name="longitude" Type="Double" />
           <Property Name="latitude" Type="Double" />
-          <NavigationProperty Name="addressmappings" Relationship="homeninjaModel.FK_addressmapping_add_id" FromRole="addressdetails" ToRole="addressmapping" />
+          <NavigationProperty Name="addressmappings" Relationship="HomeNinjaModel.FK_addressmapping_add_id" FromRole="addressdetails" ToRole="addressmapping" />
         </EntityType>
         <EntityType Name="addressmapping">
           <Key>
@@ -265,8 +355,8 @@
           <Property Name="addressMappingId" Type="Int64" Nullable="false" />
           <Property Name="addressId" Type="Int64" />
           <Property Name="userId" Type="Int64" />
-          <NavigationProperty Name="addressdetail" Relationship="homeninjaModel.FK_addressmapping_add_id" FromRole="addressmapping" ToRole="addressdetails" />
-          <NavigationProperty Name="siteuser" Relationship="homeninjaModel.FK_addressmapping_user_id" FromRole="addressmapping" ToRole="siteusers" />
+          <NavigationProperty Name="addressdetail" Relationship="HomeNinjaModel.FK_addressmapping_add_id" FromRole="addressmapping" ToRole="addressdetails" />
+          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_addressmapping_user_id" FromRole="addressmapping" ToRole="siteusers" />
         </EntityType>
         <EntityType Name="comment">
           <Key>
@@ -277,9 +367,10 @@
           <Property Name="postId" Type="Int64" />
           <Property Name="createdBy" Type="Int64" />
           <Property Name="createdDate" Type="DateTime" Precision="0" />
-          <Property Name="ModifiedDate" Type="DateTime" Precision="0" />
-          <Property Name="ModifiedBy" Type="Int64" />
-          <NavigationProperty Name="post" Relationship="homeninjaModel.FK_comments_posts" FromRole="comments" ToRole="posts" />
+          <Property Name="modifiedDate" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_comments_createdBy" FromRole="comments" ToRole="siteusers" />
+          <NavigationProperty Name="post" Relationship="HomeNinjaModel.FK_comments_post_id" FromRole="comments" ToRole="posts" />
+          <NavigationProperty Name="post1" Relationship="HomeNinjaModel.FK_comments_posts" FromRole="comments" ToRole="posts" />
         </EntityType>
         <EntityType Name="masterdatatype">
           <Key>
@@ -288,7 +379,7 @@
           <Property Name="mnemonic" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
           <Property Name="description" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="isActive" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="masterdatavalues" Relationship="homeninjaModel.FK_master_data_value" FromRole="masterdatatype" ToRole="masterdatavalue" />
+          <NavigationProperty Name="masterdatavalues" Relationship="HomeNinjaModel.FK_master_data_value" FromRole="masterdatatype" ToRole="masterdatavalue" />
         </EntityType>
         <EntityType Name="masterdatavalue">
           <Key>
@@ -299,7 +390,7 @@
           <Property Name="value" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="orderId" Type="Int64" Nullable="false" />
           <Property Name="isActive" Type="Boolean" />
-          <NavigationProperty Name="masterdatatype" Relationship="homeninjaModel.FK_master_data_value" FromRole="masterdatavalue" ToRole="masterdatatype" />
+          <NavigationProperty Name="masterdatatype" Relationship="HomeNinjaModel.FK_master_data_value" FromRole="masterdatavalue" ToRole="masterdatatype" />
         </EntityType>
         <EntityType Name="post">
           <Key>
@@ -311,10 +402,22 @@
           <Property Name="postDate" Type="DateTime" Precision="0" />
           <Property Name="postTitle" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="postStatus" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="attachmentUrl" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
           <Property Name="commentCount" Type="Int32" />
-          <Property Name="postType" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="postType" Type="Int32" />
           <Property Name="modifiedDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="comments" Relationship="homeninjaModel.FK_comments_posts" FromRole="posts" ToRole="comments" />
+          <NavigationProperty Name="comments" Relationship="HomeNinjaModel.FK_comments_post_id" FromRole="posts" ToRole="comments" />
+          <NavigationProperty Name="comments1" Relationship="HomeNinjaModel.FK_comments_posts" FromRole="posts" ToRole="comments" />
+          <NavigationProperty Name="posttype1" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="posts" ToRole="posttype" />
+          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_posts_user_id" FromRole="posts" ToRole="siteusers" />
+        </EntityType>
+        <EntityType Name="posttype">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
+          <Property Name="postType1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="posttype" ToRole="posts" />
         </EntityType>
         <EntityType Name="siteuser">
           <Key>
@@ -326,13 +429,16 @@
           <Property Name="loginEmail" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
           <Property Name="isActive" Type="Boolean" />
+          <Property Name="profilPic" Type="Binary" MaxLength="1" FixedLength="true" />
           <Property Name="aboutMe" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
           <Property Name="nextProject" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
           <Property Name="myFavoriteStyle" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
           <Property Name="createdDate" Type="DateTime" Precision="0" />
           <Property Name="modifiedDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="addressmappings" Relationship="homeninjaModel.FK_addressmapping_user_id" FromRole="siteusers" ToRole="addressmapping" />
-          <NavigationProperty Name="usertype1" Relationship="homeninjaModel.FK_siteusers_user_type" FromRole="siteusers" ToRole="usertype" />
+          <NavigationProperty Name="addressmappings" Relationship="HomeNinjaModel.FK_addressmapping_user_id" FromRole="siteusers" ToRole="addressmapping" />
+          <NavigationProperty Name="comments" Relationship="HomeNinjaModel.FK_comments_createdBy" FromRole="siteusers" ToRole="comments" />
+          <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_user_id" FromRole="siteusers" ToRole="posts" />
+          <NavigationProperty Name="usertype1" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="siteusers" ToRole="usertype" />
         </EntityType>
         <EntityType Name="subscription">
           <Key>
@@ -350,11 +456,11 @@
           </Key>
           <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
           <Property Name="userType1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="siteusers" Relationship="homeninjaModel.FK_siteusers_user_type" FromRole="usertype" ToRole="siteusers" />
+          <NavigationProperty Name="siteusers" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="usertype" ToRole="siteusers" />
         </EntityType>
         <Association Name="FK_addressmapping_add_id">
-          <End Role="addressdetails" Type="homeninjaModel.addressdetail" Multiplicity="0..1" />
-          <End Role="addressmapping" Type="homeninjaModel.addressmapping" Multiplicity="*" />
+          <End Role="addressdetails" Type="HomeNinjaModel.addressdetail" Multiplicity="0..1" />
+          <End Role="addressmapping" Type="HomeNinjaModel.addressmapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="addressdetails">
               <PropertyRef Name="id" />
@@ -365,8 +471,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_addressmapping_user_id">
-          <End Role="siteusers" Type="homeninjaModel.siteuser" Multiplicity="0..1" />
-          <End Role="addressmapping" Type="homeninjaModel.addressmapping" Multiplicity="*" />
+          <End Role="siteusers" Type="HomeNinjaModel.siteuser" Multiplicity="0..1" />
+          <End Role="addressmapping" Type="HomeNinjaModel.addressmapping" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="siteusers">
               <PropertyRef Name="userId" />
@@ -376,9 +482,33 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_comments_createdBy">
+          <End Role="siteusers" Type="HomeNinjaModel.siteuser" Multiplicity="0..1" />
+          <End Role="comments" Type="HomeNinjaModel.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siteusers">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="comments">
+              <PropertyRef Name="createdBy" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_comments_post_id">
+          <End Role="posts" Type="HomeNinjaModel.post" Multiplicity="0..1" />
+          <End Role="comments" Type="HomeNinjaModel.comment" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="posts">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="comments">
+              <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_comments_posts">
-          <End Role="posts" Type="homeninjaModel.post" Multiplicity="0..1" />
-          <End Role="comments" Type="homeninjaModel.comment" Multiplicity="*" />
+          <End Role="posts" Type="HomeNinjaModel.post" Multiplicity="0..1" />
+          <End Role="comments" Type="HomeNinjaModel.comment" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="posts">
               <PropertyRef Name="id" />
@@ -389,8 +519,8 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_master_data_value">
-          <End Role="masterdatatype" Type="homeninjaModel.masterdatatype" Multiplicity="1" />
-          <End Role="masterdatavalue" Type="homeninjaModel.masterdatavalue" Multiplicity="*" />
+          <End Role="masterdatatype" Type="HomeNinjaModel.masterdatatype" Multiplicity="1" />
+          <End Role="masterdatavalue" Type="HomeNinjaModel.masterdatavalue" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="masterdatatype">
               <PropertyRef Name="mnemonic" />
@@ -400,11 +530,35 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_posts_posttype">
+          <End Role="posttype" Type="HomeNinjaModel.posttype" Multiplicity="0..1" />
+          <End Role="posts" Type="HomeNinjaModel.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="posttype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="postType" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_posts_user_id">
+          <End Role="siteusers" Type="HomeNinjaModel.siteuser" Multiplicity="0..1" />
+          <End Role="posts" Type="HomeNinjaModel.post" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="siteusers">
+              <PropertyRef Name="userId" />
+            </Principal>
+            <Dependent Role="posts">
+              <PropertyRef Name="postAuthor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_siteusers_user_type">
-          <End Role="usertype" Type="homeninjaModel.usertype" Multiplicity="1">
+          <End Role="usertype" Type="HomeNinjaModel.usertype" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="siteusers" Type="homeninjaModel.siteuser" Multiplicity="*" />
+          <End Role="siteusers" Type="HomeNinjaModel.siteuser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usertype">
               <PropertyRef Name="id" />
@@ -419,9 +573,9 @@
     <!-- C-S mapping content -->
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-        <EntityContainerMapping StorageEntityContainer="homeninjaModelStoreContainer" CdmEntityContainer="HomeNinja">
+        <EntityContainerMapping StorageEntityContainer="HomeNinjaModelStoreContainer" CdmEntityContainer="HomeNinja">
           <EntitySetMapping Name="addressdetails">
-            <EntityTypeMapping TypeName="homeninjaModel.addressdetail">
+            <EntityTypeMapping TypeName="HomeNinjaModel.addressdetail">
               <MappingFragment StoreEntitySet="addressdetails">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="address" ColumnName="address" />
@@ -441,7 +595,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="addressmappings">
-            <EntityTypeMapping TypeName="homeninjaModel.addressmapping">
+            <EntityTypeMapping TypeName="HomeNinjaModel.addressmapping">
               <MappingFragment StoreEntitySet="addressmapping">
                 <ScalarProperty Name="addressMappingId" ColumnName="addressMappingId" />
                 <ScalarProperty Name="addressId" ColumnName="addressId" />
@@ -450,20 +604,19 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="comments">
-            <EntityTypeMapping TypeName="homeninjaModel.comment">
+            <EntityTypeMapping TypeName="HomeNinjaModel.comment">
               <MappingFragment StoreEntitySet="comments">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="comment1" ColumnName="comment" />
                 <ScalarProperty Name="postId" ColumnName="postId" />
                 <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-                <ScalarProperty Name="ModifiedDate" ColumnName="ModifiedDate" />
-                <ScalarProperty Name="ModifiedBy" ColumnName="ModifiedBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="masterdatatypes">
-            <EntityTypeMapping TypeName="homeninjaModel.masterdatatype">
+            <EntityTypeMapping TypeName="HomeNinjaModel.masterdatatype">
               <MappingFragment StoreEntitySet="masterdatatype">
                 <ScalarProperty Name="mnemonic" ColumnName="mnemonic" />
                 <ScalarProperty Name="description" ColumnName="description" />
@@ -472,7 +625,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="masterdatavalues">
-            <EntityTypeMapping TypeName="homeninjaModel.masterdatavalue">
+            <EntityTypeMapping TypeName="HomeNinjaModel.masterdatavalue">
               <MappingFragment StoreEntitySet="masterdatavalue">
                 <ScalarProperty Name="masterDataId" ColumnName="masterDataId" />
                 <ScalarProperty Name="mnemonic" ColumnName="mnemonic" />
@@ -483,7 +636,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="posts">
-            <EntityTypeMapping TypeName="homeninjaModel.post">
+            <EntityTypeMapping TypeName="HomeNinjaModel.post">
               <MappingFragment StoreEntitySet="posts">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="postAuthor" ColumnName="postAuthor" />
@@ -491,14 +644,23 @@
                 <ScalarProperty Name="postDate" ColumnName="postDate" />
                 <ScalarProperty Name="postTitle" ColumnName="postTitle" />
                 <ScalarProperty Name="postStatus" ColumnName="postStatus" />
+                <ScalarProperty Name="attachmentUrl" ColumnName="attachmentUrl" />
                 <ScalarProperty Name="commentCount" ColumnName="commentCount" />
                 <ScalarProperty Name="postType" ColumnName="postType" />
                 <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="posttypes">
+            <EntityTypeMapping TypeName="HomeNinjaModel.posttype">
+              <MappingFragment StoreEntitySet="posttype">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="postType1" ColumnName="postType" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="siteusers">
-            <EntityTypeMapping TypeName="homeninjaModel.siteuser">
+            <EntityTypeMapping TypeName="HomeNinjaModel.siteuser">
               <MappingFragment StoreEntitySet="siteusers">
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
@@ -506,6 +668,7 @@
                 <ScalarProperty Name="loginEmail" ColumnName="loginEmail" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="profilPic" ColumnName="profilPic" />
                 <ScalarProperty Name="aboutMe" ColumnName="aboutMe" />
                 <ScalarProperty Name="nextProject" ColumnName="nextProject" />
                 <ScalarProperty Name="myFavoriteStyle" ColumnName="myFavoriteStyle" />
@@ -515,7 +678,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="subscriptions">
-            <EntityTypeMapping TypeName="homeninjaModel.subscription">
+            <EntityTypeMapping TypeName="HomeNinjaModel.subscription">
               <MappingFragment StoreEntitySet="subscription">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
@@ -526,7 +689,7 @@
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="usertypes">
-            <EntityTypeMapping TypeName="homeninjaModel.usertype">
+            <EntityTypeMapping TypeName="HomeNinjaModel.usertype">
               <MappingFragment StoreEntitySet="usertype">
                 <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="userType1" ColumnName="userType" />

@@ -199,6 +199,7 @@
     line-height: 1.28;
     color: #333;
     background-color: #fff;
+    margin: -454px 0 0;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
 }
@@ -2229,7 +2230,7 @@
     color: #fff;
     background-color: #2e2e2e;
     background-repeat: repeat-x;
-    background-image: linear-gradient(to bottom,#333,#262626);
+    /*background-image: linear-gradient(to bottom,#333,#262626);*/
 }
 
 .hbs .dropdown-menu > .active > a,.hbs .dropdown-menu > .active > a:hover,.hbs .dropdown-menu > .active > a:focus {
@@ -2238,7 +2239,7 @@
     outline: 0;
     background-color: #2e2e2e;
     background-repeat: repeat-x;
-    background-image: linear-gradient(to bottom,#333,#262626);
+    /*background-image: linear-gradient(to bottom,#333,#262626);*/
 }
 
 .hbs .dropdown-menu > .disabled > a,.hbs .dropdown-menu > .disabled > a:hover,.hbs .dropdown-menu > .disabled > a:focus {
@@ -3958,7 +3959,7 @@
 }
 
 .hbs .navbar-inverse .nav > li > a:focus,.hbs .navbar-inverse .nav > li > a:hover {
-    background-color: #262626;
+   /* background-color: #262626;*/
     color: #46a546;
 }
 
@@ -5275,12 +5276,12 @@ html,body {
 }
 
 ::selection {
-    background: #7cc04b;
+    /*background: #7cc04b;*/
     color: #fff;
 }
 
 ::-moz-selection {
-    background: #7cc04b;
+   /* background: #7cc04b;*/
     color: #fff;
 }
 

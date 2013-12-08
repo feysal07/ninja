@@ -408,6 +408,8 @@
     <Content Include="Webpages\CustomControls\Header.ascx" />
     <Content Include="Webpages\register.aspx" />
     <Content Include="Webpages\search.aspx" />
+    <Content Include="resources\images\log" />
+    <Content Include="ImageHandler.ashx" />
     <EntityDeploy Include="DAO\HomeNinja.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>HomeNinja.Designer.cs</LastGenOutput>
@@ -415,7 +417,6 @@
     <Content Include="DAO\HomeNinja.edmx.diagram">
       <DependentUpon>HomeNinja.edmx</DependentUpon>
     </Content>
-    <Content Include="resources\images\log" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
     <Content Include="Scripts\jquery-1.7.1.js" />
     <Content Include="Scripts\jquery-1.7.1.min.js" />
@@ -461,6 +462,8 @@
       <DependentUpon>HomeNinja.edmx</DependentUpon>
     </Compile>
     <Compile Include="DAO\masterdatavalue.cs" />
+    <Compile Include="DAO\post.cs" />
+    <Compile Include="DAO\posttype.cs" />
     <Compile Include="DAO\siteuser.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

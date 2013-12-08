@@ -8,10 +8,13 @@
                 <div class="leftSideBar">
                     <div class="profilePic">
                         <a href="user/bharat-verma">
-                            <img id="mainUserProfilePic" src="../resources/images/bharat_verma().jpg">
+                            <%--<img id="mainUserProfilePic" src="../resources/images/bharat_verma().jpg">--%>
+                             <asp:Image runat="server"  ID="ImagePreview" CssClass="mainUserProfilePic"/>
                         </a>
-
-                        <a class="editProfilePicLink " href="" onclick="">Change picture</a>
+                           <asp:Label ID="Label2" runat="server" Text="Photo upload" />
+                                <asp:FileUpload runat="server" ID="PhotoUpload" />
+                                <asp:Button runat="server" OnClick="btnPreview_Click" ID="btnPhotoPreview" Text="Preview" />
+                        <%--<a class="editProfilePicLink " href="" onclick="">Change picture</a>--%>
                     </div>
                     <!--	<div class="sidebar collapsible"><div class="sidebar-header">Your Houzz					<span class="sidebar-icon collapse-icon toggle"></span>					
 				</div><div class="sidebar-body">		<ul id="">
