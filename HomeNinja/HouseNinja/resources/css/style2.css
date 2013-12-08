@@ -1434,8 +1434,8 @@ a#navHome:hover {
 }
 
 #navHeader li.navBlock > a:hover {
-    background-image: none;
-   background-color: #262626; 
+   /*background-image: none;
+  background-color: #262626; */  
 }
 
 #navHeader li.navBlock > a.tabOn {
@@ -1448,6 +1448,8 @@ a#navHome:hover {
 
 #navHeader a.tabOn,#navHeader a.tabOff:hover {
     color: #fff;
+    font-weight:bold;
+    font-size:15px;
 }
 
 #navHeader a.tabOn .tabTitle,#navHeader a.tabOff:hover .tabTitle,.narrow #navMyHouzz a.tabOff:hover .tabTitleSmallBottom {

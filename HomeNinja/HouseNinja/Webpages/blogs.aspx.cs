@@ -20,15 +20,36 @@ namespace HouseNinja.Webpages
                  userId = Convert.ToInt32(Session["userId"]);
             }
 
+            loadAllDropDownList();
             loadAllPosts();
+        }
+
+        private void loadAllDropDownList()
+        {
+            List<posttype> allPostTypes = null;
+
+            allPostTypes = pds.getAllPostTypes();
+
+            if (allPostTypes != null)
+            {
+
+                ddlPostType.DataSource = allPostTypes;
+                ddlPostType.DataTextField = "postType";
+                ddlPostType.DataValueField = "id";
+                ddlPostType.DataBind();
+                
+            }
         }
 
         private void loadAllPosts()
         {
- 	        //throw new NotImplementedException();
+ 	       
 
 
-            pds.getAllPosts();
+          List<post> posts=  pds.getAllPosts();
+          rptBlogs.DataSource = posts;
+          rptBlogs.DataBind();
+                
         }
 
         protected void editQuestionSubmitBtn_Click(object sender, EventArgs e)
@@ -39,12 +60,13 @@ namespace HouseNinja.Webpages
                postTitle  = txtEditQuestionBody.Value.Trim(),
                postAuthor= 1,
                postContent = txtEditQuestionTitle.Value.Trim(),
-               postType = ddlPostType.SelectedValue,
+               postType = Convert.ToInt32(ddlPostType.SelectedItem.Value),
                postDate = System.DateTime.Now,
                id=0
             };
             
-            pds.CreateNewPost(newpost);   
+            pds.CreateNewPost(newpost);
+            loadAllPosts();
         }
 
         

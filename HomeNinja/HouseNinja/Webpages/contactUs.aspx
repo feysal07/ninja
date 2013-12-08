@@ -4,6 +4,8 @@
    <div id="mainArea">
       <div id="mainContent">
          <div class="middleContent">
+             HomeNinja Contact Form
+             We would love to hear from you! Please fill out this form and we will get in touch with you shortly.
             <div id="profileErrors" style="display: none;"></div>
             <div class="form-horizontal">
                <div class="editProfileSection">

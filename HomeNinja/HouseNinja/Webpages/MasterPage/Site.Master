@@ -12,8 +12,8 @@
 <link href="../../resources/css/login.css" rel="stylesheet" />
 
 <!-- JS FILES-->
-<script src="../.../resources/js/jquery.min.js"></script>
-<script src="../.../resources/js/vpb_script.js"></script>
+<script src="../../resources/js/jquery.min.js"></script>
+<script src="../../resources/js/vpb_script.js"></script>
 <style type="text/css">.reloadMe.rimg img.reloadable { width: 00%; height: auto; }</style>
 
 <html xmlns="http://www.w3.org/1999/xhtml">
