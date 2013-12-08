@@ -9,7 +9,8 @@
                     <div class="profilePic">
                         <a href="user/bharat-verma">
                             <%--<img id="mainUserProfilePic" src="../resources/images/bharat_verma().jpg">--%>
-                             <asp:Image runat="server"  ID="ImagePreview" CssClass="mainUserProfilePic"/>
+                            
+                             <asp:Image runat="server"  ID="mainUserProfilePic" CssClass="mainUserProfilePic" Height="50px" Width="50px"/>
                         </a>
                            <asp:Label ID="Label2" runat="server" Text="Photo upload" />
                                 <asp:FileUpload runat="server" ID="PhotoUpload" />

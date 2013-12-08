@@ -68,7 +68,7 @@ namespace HouseNinja.Webpages
         protected void btnPreview_Click(object sender, EventArgs e)
         {
             Session["ImageBytes"] = PhotoUpload.FileBytes;
-            ImagePreview.ImageUrl = "~/ImageHandler.ashx";
+            mainUserProfilePic.ImageUrl = "~/ImageHandler.ashx";
         }
 
     }
