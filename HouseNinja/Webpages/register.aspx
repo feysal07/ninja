@@ -2,19 +2,42 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    
+    <script type="text/javascript">
+
+       $(document).ready(function () {
+            $("#uploadProfilPic").click(function () {
+
+                $("#PhotoUpload").click();
+
+            });
+
+            $('input[type=file]').bind('change', function () {
+                var str = "";
+                str = $(this).val();
+                $("#filename").text(str);
+            }).change();
+
+        });
+
+    </script>
+    <asp:FileUpload runat="server" ID="PhotoUpload" ClientIDMode="Static" CssClass="hide-fields"  />
     <div id="mainArea">
         <div id="mainContent">
             <div class="container">
                 <div class="leftSideBar">
-                    <div class="profilePic">
-                        <a href="user/bharat-verma">
+                    <div class="profilePic" style="min-height:400px; min-width:200px;">
+                       <%-- <a href="user/bharat-verma">--%>
                             <%--<img id="mainUserProfilePic" src="../resources/images/bharat_verma().jpg">--%>
-                            
-                             <asp:Image runat="server"  ID="mainUserProfilePic" CssClass="mainUserProfilePic" Height="300px" Width="200px"/>
-                        </a>
-                           <asp:Label ID="Label2" runat="server" Text="Photo upload" />
-                                <asp:FileUpload runat="server" ID="PhotoUpload" />
-                                <asp:Button runat="server" OnClick="btnPreview_Click" ID="btnPhotoPreview" Text="Preview" />
+                              <asp:Image runat="server"  ID="mainUserProfilePic" CssClass="mainUserProfilePic" Height="300px" Width="200px"/>
+                        <%--</a>--%>
+                          
+                           <%--<asp:Label ID="Label2" runat="server" Text="Photo upload" />--%>
+                               <div style="width:200px">
+                                <div style="width:90px;float:left">  <input type="button" class="vpb_general_button" title="upload"  id="uploadProfilPic" value="Upload"/></div> 
+                                 <div style="width:90px;float:right"><asp:Button runat="server" OnClick="btnPreview_Click" ID="btnPhotoPreview" CssClass="vpb_general_button" ClientIDMode="Static" Text="Preview" /></div>
+                                </div>
+                                <label id="filename"></label>
                         <%--<a class="editProfilePicLink " href="" onclick="">Change picture</a>--%>
                     </div>
                     <!--	<div class="sidebar collapsible"><div class="sidebar-header">Your Houzz					<span class="sidebar-icon collapse-icon toggle"></span>					
