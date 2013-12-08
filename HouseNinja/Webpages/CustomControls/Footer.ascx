@@ -1,6 +1,6 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Footer.ascx.cs" Inherits="HouseNinja.Webpages.CustomControls.Footer" %>
 <div id="footerContainer" class="footerContainer normal-text">
-								<div id="footercontent" class="container">
+	<%--<div id="footercontent" class="container">
 					<div class="footerColumn" id="footerColumn">
 						<a rel="nofollow" href="aboutUs">About Houzz</a><br>
 						<a rel="nofollow" href="inTheNews">In the News</a><br>						
@@ -33,14 +33,9 @@
 							<a href="https://plus.google.com/+houzz/" title="google+" class="noHoverLink" rel="nofollow" target="_blank"><img class="footerButtons footerButtonGoogle" src="../resources/images/spacer.gif"></a>
 						</div>
 					</div>											
-				</div>
+				</div>--%>
 				<div id="footerbanner" class="container">
-					<a rel="nofollow" href="termsOfUse#copyrights">©203 Houzz Inc.</a><br>
-					<div>Houzz® The new way to design your home™</div>
+					<a rel="nofollow" href="termsOfUse#copyrights">©2013 HomeNinja.</a><br>
+					<div>HomeNinja® The new way to design your home™</div>
 				</div>	
-							
-						<img src="../resources/images/k=MTM4MjQ0MzUwMywyLDAsMjQMjcYTYtODc0Yi00OTUyLWI0OTUtYTIOTEYjJkNGRiLE4sMTELjExNS4xMTUuOTgsL0lOLzE5LDAsMCwwLDAsNjAwMTIsMCwwLDEwMjMxMzU0ODIsQBNLFVTRCwwLCwsOzs4YjIxODczZjZhYzI3ZDY2MTMZWY" style="position:absolute;top:-5px;left:-5000px;height:px;width:px;">
-						<img src="../resources/images/k=MTM4MjQ0MzUwMywxMiwyLDIsMSwwLDI0NTI3NWE2LTg3NGItNDkMiiNDkLWEyNTkxNWIyZDRkYixOLDExNS4xMTUuMTELjk4LC9JTi8xOSwyMDM0NDksMTAMDc3MjAxNSwsMjs7Y2Q2Y2YzNTg3ZjYyZWMzNmE4NmZmOWQ3M2FjYzQ2Mjc_MTM" style="position:absolute;top:-4px;left:-5000px;height:px;width:px;">
-				
-		
-							</div>
+				</div>
