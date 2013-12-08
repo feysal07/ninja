@@ -544,6 +544,7 @@
          <asp:Button ID="Button2" class="vpb_general_button" Text="Cancel" runat="server" OnClientClick="vpb_hide_popup_boxes();" />
       </div>
       <br clear="all"><br clear="all">
+       <asp:Button ID="btnLogin" runat="server" Text="Login with FaceBook" OnClick="Login" />
    </div>
    <!-- Sign Up Box Ends Here -->
    <!-- Login Box Starts Here -->
