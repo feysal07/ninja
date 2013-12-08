@@ -1,4 +1,4 @@
-﻿<%@ WebHandler Language="C#" CodeBehind="ImageHandler.ashx.cs" Class="HouseNinja.ImageHandler" %>
+﻿<%@ WebHandler Language="C#" Class="ImageHandler" %>
 
 using System;
 using System.Web;

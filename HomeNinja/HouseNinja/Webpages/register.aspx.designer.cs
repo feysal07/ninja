@@ -13,13 +13,13 @@ namespace HouseNinja.Webpages {
     public partial class register {
         
         /// <summary>
-        /// ImagePreview control.
+        /// mainUserProfilePic control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Image ImagePreview;
+        protected global::System.Web.UI.WebControls.Image mainUserProfilePic;
         
         /// <summary>
         /// Label2 control.
