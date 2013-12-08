@@ -742,6 +742,11 @@
     line-height: 1;
 }
 
+.hide-fields
+{
+  visibility:hidden;
+}
+
 .hbs select {
     width: 220px;
     border: 1px solid #ccc;

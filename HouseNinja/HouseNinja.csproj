@@ -398,7 +398,6 @@
     <Content Include="resources\images\windycityjohn.jpg" />
     <Content Include="resources\images\winter_baby26.jpg" />
     <Content Include="resources\images\_rugsdoneright.jpg" />
-    <Content Include="resources\js\jquery.min.js" />
     <Content Include="resources\js\vpb_script.js" />
     <Content Include="Webpages\aboutUs.aspx" />
     <Content Include="Webpages\blogDetails.aspx" />
