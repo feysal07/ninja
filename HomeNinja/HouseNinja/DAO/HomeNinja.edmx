@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="HomeNinjaModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="HomeNinjaModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="HomeNinjaModelStoreContainer">
           <EntitySet Name="addressdetails" EntityType="HomeNinjaModel.Store.addressdetails" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="addressmapping" EntityType="HomeNinjaModel.Store.addressmapping" store:Type="Tables" Schema="homeninja" />
@@ -137,6 +137,8 @@
           </Key>
           <Property Name="userId" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="userName" Type="varchar" MaxLength="50" />
+          <Property Name="firstName" Type="varchar" MaxLength="50" />
+          <Property Name="lastName" Type="varchar" MaxLength="50" />
           <Property Name="userType" Type="int" Nullable="false" />
           <Property Name="loginEmail" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
@@ -275,8 +277,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="HomeNinjaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -292,24 +293,24 @@
           <EntitySet Name="subscriptions" EntityType="HomeNinjaModel.subscription" />
           <EntitySet Name="usertypes" EntityType="HomeNinjaModel.usertype" />
           <AssociationSet Name="FK_addressmapping_add_id" Association="HomeNinjaModel.FK_addressmapping_add_id">
-            <End Role="addressdetails" EntitySet="addressdetails" />
+            <End Role="addressdetail" EntitySet="addressdetails" />
             <End Role="addressmapping" EntitySet="addressmappings" />
           </AssociationSet>
           <AssociationSet Name="FK_addressmapping_user_id" Association="HomeNinjaModel.FK_addressmapping_user_id">
-            <End Role="siteusers" EntitySet="siteusers" />
+            <End Role="siteuser" EntitySet="siteusers" />
             <End Role="addressmapping" EntitySet="addressmappings" />
           </AssociationSet>
           <AssociationSet Name="FK_comments_createdBy" Association="HomeNinjaModel.FK_comments_createdBy">
-            <End Role="siteusers" EntitySet="siteusers" />
-            <End Role="comments" EntitySet="comments" />
+            <End Role="siteuser" EntitySet="siteusers" />
+            <End Role="comment" EntitySet="comments" />
           </AssociationSet>
           <AssociationSet Name="FK_comments_post_id" Association="HomeNinjaModel.FK_comments_post_id">
-            <End Role="posts" EntitySet="posts" />
-            <End Role="comments" EntitySet="comments" />
+            <End Role="post" EntitySet="posts" />
+            <End Role="comment" EntitySet="comments" />
           </AssociationSet>
           <AssociationSet Name="FK_comments_posts" Association="HomeNinjaModel.FK_comments_posts">
-            <End Role="posts" EntitySet="posts" />
-            <End Role="comments" EntitySet="comments" />
+            <End Role="post" EntitySet="posts" />
+            <End Role="comment" EntitySet="comments" />
           </AssociationSet>
           <AssociationSet Name="FK_master_data_value" Association="HomeNinjaModel.FK_master_data_value">
             <End Role="masterdatatype" EntitySet="masterdatatypes" />
@@ -317,152 +318,154 @@
           </AssociationSet>
           <AssociationSet Name="FK_posts_posttype" Association="HomeNinjaModel.FK_posts_posttype">
             <End Role="posttype" EntitySet="posttypes" />
-            <End Role="posts" EntitySet="posts" />
+            <End Role="post" EntitySet="posts" />
           </AssociationSet>
           <AssociationSet Name="FK_posts_user_id" Association="HomeNinjaModel.FK_posts_user_id">
-            <End Role="siteusers" EntitySet="siteusers" />
-            <End Role="posts" EntitySet="posts" />
+            <End Role="siteuser" EntitySet="siteusers" />
+            <End Role="post" EntitySet="posts" />
           </AssociationSet>
           <AssociationSet Name="FK_siteusers_user_type" Association="HomeNinjaModel.FK_siteusers_user_type">
             <End Role="usertype" EntitySet="usertypes" />
-            <End Role="siteusers" EntitySet="siteusers" />
+            <End Role="siteuser" EntitySet="siteusers" />
           </AssociationSet>
         </EntityContainer>
         <EntityType Name="addressdetail">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="address" Type="String" Nullable="false" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="location" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="city" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
-          <Property Name="state" Type="String" MaxLength="128" Unicode="false" FixedLength="false" />
-          <Property Name="zipCode" Type="String" MaxLength="6" Unicode="false" FixedLength="false" />
-          <Property Name="isPrimary" Type="Boolean" />
-          <Property Name="createdDate" Type="DateTime" Precision="0" />
-          <Property Name="modifiedDate" Type="DateTime" Precision="0" />
-          <Property Name="createdBy" Type="Int64" />
-          <Property Name="modifiedBy" Type="Int64" />
-          <Property Name="userId" Type="Int64" />
-          <Property Name="longitude" Type="Double" />
-          <Property Name="latitude" Type="Double" />
-          <NavigationProperty Name="addressmappings" Relationship="HomeNinjaModel.FK_addressmapping_add_id" FromRole="addressdetails" ToRole="addressmapping" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="address" Nullable="false" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="location" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="city" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="state" MaxLength="128" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="zipCode" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="isPrimary" />
+          <Property Type="DateTime" Name="createdDate" Precision="0" />
+          <Property Type="DateTime" Name="modifiedDate" Precision="0" />
+          <Property Type="Int64" Name="createdBy" />
+          <Property Type="Int64" Name="modifiedBy" />
+          <Property Type="Int64" Name="userId" />
+          <Property Type="Double" Name="longitude" />
+          <Property Type="Double" Name="latitude" />
+          <NavigationProperty Name="addressmappings" Relationship="HomeNinjaModel.FK_addressmapping_add_id" FromRole="addressdetail" ToRole="addressmapping" />
         </EntityType>
         <EntityType Name="addressmapping">
           <Key>
             <PropertyRef Name="addressMappingId" />
           </Key>
-          <Property Name="addressMappingId" Type="Int64" Nullable="false" />
-          <Property Name="addressId" Type="Int64" />
-          <Property Name="userId" Type="Int64" />
-          <NavigationProperty Name="addressdetail" Relationship="HomeNinjaModel.FK_addressmapping_add_id" FromRole="addressmapping" ToRole="addressdetails" />
-          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_addressmapping_user_id" FromRole="addressmapping" ToRole="siteusers" />
+          <Property Type="Int64" Name="addressMappingId" Nullable="false" />
+          <Property Type="Int64" Name="addressId" />
+          <Property Type="Int64" Name="userId" />
+          <NavigationProperty Name="addressdetail" Relationship="HomeNinjaModel.FK_addressmapping_add_id" FromRole="addressmapping" ToRole="addressdetail" />
+          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_addressmapping_user_id" FromRole="addressmapping" ToRole="siteuser" />
         </EntityType>
         <EntityType Name="comment">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="comment1" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="postId" Type="Int64" />
-          <Property Name="createdBy" Type="Int64" />
-          <Property Name="createdDate" Type="DateTime" Precision="0" />
-          <Property Name="modifiedDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_comments_createdBy" FromRole="comments" ToRole="siteusers" />
-          <NavigationProperty Name="post" Relationship="HomeNinjaModel.FK_comments_post_id" FromRole="comments" ToRole="posts" />
-          <NavigationProperty Name="post1" Relationship="HomeNinjaModel.FK_comments_posts" FromRole="comments" ToRole="posts" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="comment1" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="postId" />
+          <Property Type="Int64" Name="createdBy" />
+          <Property Type="DateTime" Name="createdDate" Precision="0" />
+          <Property Type="DateTime" Name="modifiedDate" Precision="0" />
+          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_comments_createdBy" FromRole="comment" ToRole="siteuser" />
+          <NavigationProperty Name="post" Relationship="HomeNinjaModel.FK_comments_post_id" FromRole="comment" ToRole="post" />
+          <NavigationProperty Name="post1" Relationship="HomeNinjaModel.FK_comments_posts" FromRole="comment" ToRole="post" />
         </EntityType>
         <EntityType Name="masterdatatype">
           <Key>
             <PropertyRef Name="mnemonic" />
           </Key>
-          <Property Name="mnemonic" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="description" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="isActive" Type="Boolean" Nullable="false" />
+          <Property Type="String" Name="mnemonic" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="description" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="isActive" Nullable="false" />
           <NavigationProperty Name="masterdatavalues" Relationship="HomeNinjaModel.FK_master_data_value" FromRole="masterdatatype" ToRole="masterdatavalue" />
         </EntityType>
         <EntityType Name="masterdatavalue">
           <Key>
             <PropertyRef Name="masterDataId" />
           </Key>
-          <Property Name="masterDataId" Type="Int64" Nullable="false" />
-          <Property Name="mnemonic" Type="String" Nullable="false" MaxLength="20" Unicode="false" FixedLength="false" />
-          <Property Name="value" Type="String" Nullable="false" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="orderId" Type="Int64" Nullable="false" />
-          <Property Name="isActive" Type="Boolean" />
+          <Property Type="Int64" Name="masterDataId" Nullable="false" />
+          <Property Type="String" Name="mnemonic" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="value" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int64" Name="orderId" Nullable="false" />
+          <Property Type="Boolean" Name="isActive" />
           <NavigationProperty Name="masterdatatype" Relationship="HomeNinjaModel.FK_master_data_value" FromRole="masterdatavalue" ToRole="masterdatatype" />
         </EntityType>
         <EntityType Name="post">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="postAuthor" Type="Int64" />
-          <Property Name="postContent" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
-          <Property Name="postDate" Type="DateTime" Precision="0" />
-          <Property Name="postTitle" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="postStatus" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="attachmentUrl" Type="String" MaxLength="100" Unicode="false" FixedLength="false" />
-          <Property Name="commentCount" Type="Int32" />
-          <Property Name="postType" Type="Int32" />
-          <Property Name="modifiedDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="comments" Relationship="HomeNinjaModel.FK_comments_post_id" FromRole="posts" ToRole="comments" />
-          <NavigationProperty Name="comments1" Relationship="HomeNinjaModel.FK_comments_posts" FromRole="posts" ToRole="comments" />
-          <NavigationProperty Name="posttype1" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="posts" ToRole="posttype" />
-          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_posts_user_id" FromRole="posts" ToRole="siteusers" />
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="postAuthor" />
+          <Property Type="String" Name="postContent" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="postDate" Precision="0" />
+          <Property Type="String" Name="postTitle" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="postStatus" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="attachmentUrl" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="commentCount" />
+          <Property Type="Int32" Name="postType" />
+          <Property Type="DateTime" Name="modifiedDate" Precision="0" />
+          <NavigationProperty Name="comments" Relationship="HomeNinjaModel.FK_comments_post_id" FromRole="post" ToRole="comment" />
+          <NavigationProperty Name="comments1" Relationship="HomeNinjaModel.FK_comments_posts" FromRole="post" ToRole="comment" />
+          <NavigationProperty Name="posttype1" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="post" ToRole="posttype" />
+          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_posts_user_id" FromRole="post" ToRole="siteuser" />
         </EntityType>
         <EntityType Name="posttype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="postType1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="posttype" ToRole="posts" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="postType1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="posttype" ToRole="post" />
         </EntityType>
         <EntityType Name="siteuser">
           <Key>
             <PropertyRef Name="userId" />
           </Key>
-          <Property Name="userId" Type="Int64" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="userName" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="userType" Type="Int32" Nullable="false" />
-          <Property Name="loginEmail" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="password" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
-          <Property Name="isActive" Type="Boolean" />
-          <Property Name="profilPic" Type="Binary" MaxLength="1" FixedLength="true" />
-          <Property Name="aboutMe" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="nextProject" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="myFavoriteStyle" Type="String" MaxLength="65535" Unicode="false" FixedLength="false" />
-          <Property Name="createdDate" Type="DateTime" Precision="0" />
-          <Property Name="modifiedDate" Type="DateTime" Precision="0" />
-          <NavigationProperty Name="addressmappings" Relationship="HomeNinjaModel.FK_addressmapping_user_id" FromRole="siteusers" ToRole="addressmapping" />
-          <NavigationProperty Name="comments" Relationship="HomeNinjaModel.FK_comments_createdBy" FromRole="siteusers" ToRole="comments" />
-          <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_user_id" FromRole="siteusers" ToRole="posts" />
-          <NavigationProperty Name="usertype1" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="siteusers" ToRole="usertype" />
+          <Property Type="Int64" Name="userId" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="userName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="firstName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="lastName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="userType" Nullable="false" />
+          <Property Type="String" Name="loginEmail" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="password" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Boolean" Name="isActive" />
+          <Property Type="Binary" Name="profilPic" MaxLength="1" FixedLength="true" />
+          <Property Type="String" Name="aboutMe" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="nextProject" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="myFavoriteStyle" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="DateTime" Name="createdDate" Precision="0" />
+          <Property Type="DateTime" Name="modifiedDate" Precision="0" />
+          <NavigationProperty Name="addressmappings" Relationship="HomeNinjaModel.FK_addressmapping_user_id" FromRole="siteuser" ToRole="addressmapping" />
+          <NavigationProperty Name="comments" Relationship="HomeNinjaModel.FK_comments_createdBy" FromRole="siteuser" ToRole="comment" />
+          <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_user_id" FromRole="siteuser" ToRole="post" />
+          <NavigationProperty Name="usertype1" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="siteuser" ToRole="usertype" />
         </EntityType>
         <EntityType Name="subscription">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="Int64" />
-          <Property Name="newsLetters" Type="SByte" />
-          <Property Name="publishNo" Type="SByte" />
-          <Property Name="publishAddress" Type="SByte" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="userId" />
+          <Property Type="SByte" Name="newsLetters" />
+          <Property Type="SByte" Name="publishNo" />
+          <Property Type="SByte" Name="publishAddress" />
         </EntityType>
         <EntityType Name="usertype">
           <Key>
             <PropertyRef Name="id" />
           </Key>
-          <Property Name="id" Type="Int32" Nullable="false" p1:StoreGeneratedPattern="Identity" />
-          <Property Name="userType1" Type="String" Nullable="false" MaxLength="50" Unicode="false" FixedLength="false" />
-          <NavigationProperty Name="siteusers" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="usertype" ToRole="siteusers" />
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="userType1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="siteusers" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="usertype" ToRole="siteuser" />
         </EntityType>
         <Association Name="FK_addressmapping_add_id">
-          <End Role="addressdetails" Type="HomeNinjaModel.addressdetail" Multiplicity="0..1" />
-          <End Role="addressmapping" Type="HomeNinjaModel.addressmapping" Multiplicity="*" />
+          <End Type="HomeNinjaModel.addressdetail" Role="addressdetail" Multiplicity="0..1" />
+          <End Type="HomeNinjaModel.addressmapping" Role="addressmapping" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="addressdetails">
+            <Principal Role="addressdetail">
               <PropertyRef Name="id" />
             </Principal>
             <Dependent Role="addressmapping">
@@ -471,10 +474,10 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_addressmapping_user_id">
-          <End Role="siteusers" Type="HomeNinjaModel.siteuser" Multiplicity="0..1" />
-          <End Role="addressmapping" Type="HomeNinjaModel.addressmapping" Multiplicity="*" />
+          <End Type="HomeNinjaModel.siteuser" Role="siteuser" Multiplicity="0..1" />
+          <End Type="HomeNinjaModel.addressmapping" Role="addressmapping" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="siteusers">
+            <Principal Role="siteuser">
               <PropertyRef Name="userId" />
             </Principal>
             <Dependent Role="addressmapping">
@@ -483,44 +486,44 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_comments_createdBy">
-          <End Role="siteusers" Type="HomeNinjaModel.siteuser" Multiplicity="0..1" />
-          <End Role="comments" Type="HomeNinjaModel.comment" Multiplicity="*" />
+          <End Type="HomeNinjaModel.siteuser" Role="siteuser" Multiplicity="0..1" />
+          <End Type="HomeNinjaModel.comment" Role="comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="siteusers">
+            <Principal Role="siteuser">
               <PropertyRef Name="userId" />
             </Principal>
-            <Dependent Role="comments">
+            <Dependent Role="comment">
               <PropertyRef Name="createdBy" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_comments_post_id">
-          <End Role="posts" Type="HomeNinjaModel.post" Multiplicity="0..1" />
-          <End Role="comments" Type="HomeNinjaModel.comment" Multiplicity="*" />
+          <End Type="HomeNinjaModel.post" Role="post" Multiplicity="0..1" />
+          <End Type="HomeNinjaModel.comment" Role="comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="posts">
+            <Principal Role="post">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="comments">
+            <Dependent Role="comment">
               <PropertyRef Name="postId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_comments_posts">
-          <End Role="posts" Type="HomeNinjaModel.post" Multiplicity="0..1" />
-          <End Role="comments" Type="HomeNinjaModel.comment" Multiplicity="*" />
+          <End Type="HomeNinjaModel.post" Role="post" Multiplicity="0..1" />
+          <End Type="HomeNinjaModel.comment" Role="comment" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="posts">
+            <Principal Role="post">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="comments">
+            <Dependent Role="comment">
               <PropertyRef Name="postId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_master_data_value">
-          <End Role="masterdatatype" Type="HomeNinjaModel.masterdatatype" Multiplicity="1" />
-          <End Role="masterdatavalue" Type="HomeNinjaModel.masterdatavalue" Multiplicity="*" />
+          <End Type="HomeNinjaModel.masterdatatype" Role="masterdatatype" Multiplicity="1" />
+          <End Type="HomeNinjaModel.masterdatavalue" Role="masterdatavalue" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="masterdatatype">
               <PropertyRef Name="mnemonic" />
@@ -531,44 +534,44 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_posts_posttype">
-          <End Role="posttype" Type="HomeNinjaModel.posttype" Multiplicity="0..1" />
-          <End Role="posts" Type="HomeNinjaModel.post" Multiplicity="*" />
+          <End Type="HomeNinjaModel.posttype" Role="posttype" Multiplicity="0..1" />
+          <End Type="HomeNinjaModel.post" Role="post" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="posttype">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="posts">
+            <Dependent Role="post">
               <PropertyRef Name="postType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_posts_user_id">
-          <End Role="siteusers" Type="HomeNinjaModel.siteuser" Multiplicity="0..1" />
-          <End Role="posts" Type="HomeNinjaModel.post" Multiplicity="*" />
+          <End Type="HomeNinjaModel.siteuser" Role="siteuser" Multiplicity="0..1" />
+          <End Type="HomeNinjaModel.post" Role="post" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="siteusers">
+            <Principal Role="siteuser">
               <PropertyRef Name="userId" />
             </Principal>
-            <Dependent Role="posts">
+            <Dependent Role="post">
               <PropertyRef Name="postAuthor" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_siteusers_user_type">
-          <End Role="usertype" Type="HomeNinjaModel.usertype" Multiplicity="1">
+          <End Type="HomeNinjaModel.usertype" Role="usertype" Multiplicity="1">
             <OnDelete Action="Cascade" />
           </End>
-          <End Role="siteusers" Type="HomeNinjaModel.siteuser" Multiplicity="*" />
+          <End Type="HomeNinjaModel.siteuser" Role="siteuser" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="usertype">
               <PropertyRef Name="id" />
             </Principal>
-            <Dependent Role="siteusers">
+            <Dependent Role="siteuser">
               <PropertyRef Name="userType" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
+        </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
     <edmx:Mappings>
@@ -577,122 +580,124 @@
           <EntitySetMapping Name="addressdetails">
             <EntityTypeMapping TypeName="HomeNinjaModel.addressdetail">
               <MappingFragment StoreEntitySet="addressdetails">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="address" ColumnName="address" />
-                <ScalarProperty Name="location" ColumnName="location" />
-                <ScalarProperty Name="city" ColumnName="city" />
-                <ScalarProperty Name="state" ColumnName="state" />
-                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
-                <ScalarProperty Name="isPrimary" ColumnName="isPrimary" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
-                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
                 <ScalarProperty Name="latitude" ColumnName="latitude" />
+                <ScalarProperty Name="longitude" ColumnName="longitude" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="isPrimary" ColumnName="isPrimary" />
+                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="location" ColumnName="location" />
+                <ScalarProperty Name="address" ColumnName="address" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="addressmappings">
             <EntityTypeMapping TypeName="HomeNinjaModel.addressmapping">
               <MappingFragment StoreEntitySet="addressmapping">
-                <ScalarProperty Name="addressMappingId" ColumnName="addressMappingId" />
-                <ScalarProperty Name="addressId" ColumnName="addressId" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="addressId" ColumnName="addressId" />
+                <ScalarProperty Name="addressMappingId" ColumnName="addressMappingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="comments">
             <EntityTypeMapping TypeName="HomeNinjaModel.comment">
               <MappingFragment StoreEntitySet="comments">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="comment1" ColumnName="comment" />
-                <ScalarProperty Name="postId" ColumnName="postId" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
+                <ScalarProperty Name="postId" ColumnName="postId" />
+                <ScalarProperty Name="comment1" ColumnName="comment" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="masterdatatypes">
             <EntityTypeMapping TypeName="HomeNinjaModel.masterdatatype">
               <MappingFragment StoreEntitySet="masterdatatype">
-                <ScalarProperty Name="mnemonic" ColumnName="mnemonic" />
-                <ScalarProperty Name="description" ColumnName="description" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="mnemonic" ColumnName="mnemonic" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="masterdatavalues">
             <EntityTypeMapping TypeName="HomeNinjaModel.masterdatavalue">
               <MappingFragment StoreEntitySet="masterdatavalue">
-                <ScalarProperty Name="masterDataId" ColumnName="masterDataId" />
-                <ScalarProperty Name="mnemonic" ColumnName="mnemonic" />
-                <ScalarProperty Name="value" ColumnName="value" />
-                <ScalarProperty Name="orderId" ColumnName="orderId" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="orderId" ColumnName="orderId" />
+                <ScalarProperty Name="value" ColumnName="value" />
+                <ScalarProperty Name="mnemonic" ColumnName="mnemonic" />
+                <ScalarProperty Name="masterDataId" ColumnName="masterDataId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="posts">
             <EntityTypeMapping TypeName="HomeNinjaModel.post">
               <MappingFragment StoreEntitySet="posts">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="postAuthor" ColumnName="postAuthor" />
-                <ScalarProperty Name="postContent" ColumnName="postContent" />
-                <ScalarProperty Name="postDate" ColumnName="postDate" />
-                <ScalarProperty Name="postTitle" ColumnName="postTitle" />
-                <ScalarProperty Name="postStatus" ColumnName="postStatus" />
-                <ScalarProperty Name="attachmentUrl" ColumnName="attachmentUrl" />
-                <ScalarProperty Name="commentCount" ColumnName="commentCount" />
-                <ScalarProperty Name="postType" ColumnName="postType" />
                 <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="postType" ColumnName="postType" />
+                <ScalarProperty Name="commentCount" ColumnName="commentCount" />
+                <ScalarProperty Name="attachmentUrl" ColumnName="attachmentUrl" />
+                <ScalarProperty Name="postStatus" ColumnName="postStatus" />
+                <ScalarProperty Name="postTitle" ColumnName="postTitle" />
+                <ScalarProperty Name="postDate" ColumnName="postDate" />
+                <ScalarProperty Name="postContent" ColumnName="postContent" />
+                <ScalarProperty Name="postAuthor" ColumnName="postAuthor" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="posttypes">
             <EntityTypeMapping TypeName="HomeNinjaModel.posttype">
               <MappingFragment StoreEntitySet="posttype">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="postType1" ColumnName="postType" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="siteusers">
             <EntityTypeMapping TypeName="HomeNinjaModel.siteuser">
               <MappingFragment StoreEntitySet="siteusers">
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="userName" ColumnName="userName" />
-                <ScalarProperty Name="userType" ColumnName="userType" />
-                <ScalarProperty Name="loginEmail" ColumnName="loginEmail" />
-                <ScalarProperty Name="password" ColumnName="password" />
-                <ScalarProperty Name="isActive" ColumnName="isActive" />
-                <ScalarProperty Name="profilPic" ColumnName="profilPic" />
-                <ScalarProperty Name="aboutMe" ColumnName="aboutMe" />
-                <ScalarProperty Name="nextProject" ColumnName="nextProject" />
-                <ScalarProperty Name="myFavoriteStyle" ColumnName="myFavoriteStyle" />
-                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
+                <ScalarProperty Name="createdDate" ColumnName="createdDate" />
+                <ScalarProperty Name="myFavoriteStyle" ColumnName="myFavoriteStyle" />
+                <ScalarProperty Name="nextProject" ColumnName="nextProject" />
+                <ScalarProperty Name="aboutMe" ColumnName="aboutMe" />
+                <ScalarProperty Name="profilPic" ColumnName="profilPic" />
+                <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="password" ColumnName="password" />
+                <ScalarProperty Name="loginEmail" ColumnName="loginEmail" />
+                <ScalarProperty Name="userType" ColumnName="userType" />
+                <ScalarProperty Name="lastName" ColumnName="lastName" />
+                <ScalarProperty Name="firstName" ColumnName="firstName" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="subscriptions">
             <EntityTypeMapping TypeName="HomeNinjaModel.subscription">
               <MappingFragment StoreEntitySet="subscription">
-                <ScalarProperty Name="id" ColumnName="id" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="newsLetters" ColumnName="newsLetters" />
-                <ScalarProperty Name="publishNo" ColumnName="publishNo" />
                 <ScalarProperty Name="publishAddress" ColumnName="publishAddress" />
+                <ScalarProperty Name="publishNo" ColumnName="publishNo" />
+                <ScalarProperty Name="newsLetters" ColumnName="newsLetters" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
           <EntitySetMapping Name="usertypes">
             <EntityTypeMapping TypeName="HomeNinjaModel.usertype">
               <MappingFragment StoreEntitySet="usertype">
-                <ScalarProperty Name="id" ColumnName="id" />
                 <ScalarProperty Name="userType1" ColumnName="userType" />
+                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

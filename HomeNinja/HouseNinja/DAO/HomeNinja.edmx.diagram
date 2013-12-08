@@ -5,25 +5,25 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="30a9f114c93745748310dd3fdd11d610" Name="Diagram1">
-        <EntityTypeShape EntityType="HomeNinjaModel.addressdetail" Width="1.5" PointX="3" PointY="9.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeNinjaModel.addressmapping" Width="1.5" PointX="5.25" PointY="5.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeNinjaModel.comment" Width="1.5" PointX="8.25" PointY="5.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeNinjaModel.masterdatatype" Width="1.5" PointX="7.75" PointY="1.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeNinjaModel.masterdatavalue" Width="1.5" PointX="10" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeNinjaModel.post" Width="1.5" PointX="5.25" PointY="0.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeNinjaModel.posttype" Width="1.5" PointX="3" PointY="1.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeNinjaModel.siteuser" Width="1.5" PointX="3" PointY="4.5" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeNinjaModel.subscription" Width="1.5" PointX="5.75" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="HomeNinjaModel.usertype" Width="1.5" PointX="0.75" PointY="5.75" IsExpanded="true" />
-        <AssociationConnector Association="HomeNinjaModel.FK_addressmapping_add_id" ManuallyRouted="false" />
-        <AssociationConnector Association="HomeNinjaModel.FK_addressmapping_user_id" ManuallyRouted="false" />
-        <AssociationConnector Association="HomeNinjaModel.FK_comments_createdBy" ManuallyRouted="false" />
-        <AssociationConnector Association="HomeNinjaModel.FK_comments_post_id" ManuallyRouted="false" />
-        <AssociationConnector Association="HomeNinjaModel.FK_comments_posts" ManuallyRouted="false" />
-        <AssociationConnector Association="HomeNinjaModel.FK_master_data_value" ManuallyRouted="false" />
-        <AssociationConnector Association="HomeNinjaModel.FK_posts_posttype" ManuallyRouted="false" />
-        <AssociationConnector Association="HomeNinjaModel.FK_posts_user_id" ManuallyRouted="false" />
-        <AssociationConnector Association="HomeNinjaModel.FK_siteusers_user_type" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="HomeNinjaModel.addressdetail" Width="1.5" PointX="5.1199150500446162" PointY="12.73940858838121" />
+        <EntityTypeShape EntityType="HomeNinjaModel.addressmapping" Width="1.5" PointX="8.547907678665549" PointY="1.84392084267173" />
+        <EntityTypeShape EntityType="HomeNinjaModel.comment" Width="1.5" PointX="3.3943718650352079" PointY="31.626329719846289" />
+        <EntityTypeShape EntityType="HomeNinjaModel.masterdatatype" Width="1.5" PointX="1.9009152752817213" PointY="30.314922451188288" />
+        <EntityTypeShape EntityType="HomeNinjaModel.masterdatavalue" Width="1.5" PointX="4.3369679731954669" PointY="5.138313310750906" />
+        <EntityTypeShape EntityType="HomeNinjaModel.post" Width="1.5" PointX="10.414309517673361" PointY="18.646599703769478" />
+        <EntityTypeShape EntityType="HomeNinjaModel.posttype" Width="1.5" PointX="3.2523018080984718" PointY="2.909442396326662" />
+        <EntityTypeShape EntityType="HomeNinjaModel.siteuser" Width="1.5" PointX="11.630639679557941" PointY="28.342381609763198" />
+        <EntityTypeShape EntityType="HomeNinjaModel.subscription" Width="1.5" PointX="6.97213280339359" PointY="24.797556024416142" />
+        <EntityTypeShape EntityType="HomeNinjaModel.usertype" Width="1.5" PointX="6.7665212819196849" PointY="24.611886557476542" />
+        <AssociationConnector Association="HomeNinjaModel.FK_addressmapping_add_id" />
+        <AssociationConnector Association="HomeNinjaModel.FK_addressmapping_user_id" />
+        <AssociationConnector Association="HomeNinjaModel.FK_comments_createdBy" />
+        <AssociationConnector Association="HomeNinjaModel.FK_comments_post_id" />
+        <AssociationConnector Association="HomeNinjaModel.FK_comments_posts" />
+        <AssociationConnector Association="HomeNinjaModel.FK_master_data_value" />
+        <AssociationConnector Association="HomeNinjaModel.FK_posts_posttype" />
+        <AssociationConnector Association="HomeNinjaModel.FK_posts_user_id" />
+        <AssociationConnector Association="HomeNinjaModel.FK_siteusers_user_type" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
