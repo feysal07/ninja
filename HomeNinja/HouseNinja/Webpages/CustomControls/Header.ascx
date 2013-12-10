@@ -544,7 +544,7 @@
          <asp:Button ID="Button2" class="vpb_general_button" Text="Cancel" runat="server" OnClientClick="vpb_hide_popup_boxes();" />
       </div>
       <br clear="all"><br clear="all">
-       <asp:Button ID="btnLogin" runat="server" Text="Login with FaceBook" OnClick="Login" />
+       
    </div>
    <!-- Sign Up Box Ends Here -->
    <!-- Login Box Starts Here -->
@@ -562,7 +562,7 @@
          <div id="signinCenterCol" style="width:00px; padding-top:0px;margin-left:0px;float:right;">	
             <img src="../../resources/images/partition.png" />
          </div>
-         <div style="min-width:0px"></div>
+         <div style="min-width:0px"><asp:Button ID="btnLogin" runat="server" Text="Login with FaceBook" OnClick="Login" /></div>
       </div>
       <div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">&nbsp;</div>
       <div style="width:300px;float:left;margin-top: -47px;" align="left">

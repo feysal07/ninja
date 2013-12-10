@@ -1992,24 +1992,24 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String postType1
+        public global::System.String postType
         {
             get
             {
-                return _postType1;
+                return _postType;
             }
             set
             {
-                OnpostType1Changing(value);
-                ReportPropertyChanging("postType1");
-                _postType1 = StructuralObject.SetValidValue(value, true, "postType1");
-                ReportPropertyChanged("postType1");
-                OnpostType1Changed();
+                OnpostTypeChanging(value);
+                ReportPropertyChanging("postType");
+                _postType = StructuralObject.SetValidValue(value, true, "postType");
+                ReportPropertyChanged("postType");
+                OnpostTypeChanged();
             }
         }
-        private global::System.String _postType1;
-        partial void OnpostType1Changing(global::System.String value);
-        partial void OnpostType1Changed();
+        private global::System.String _postType;
+        partial void OnpostTypeChanging(global::System.String value);
+        partial void OnpostTypeChanged();
 
         #endregion
 
@@ -2244,6 +2244,54 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public global::System.String gender
+        {
+            get
+            {
+                return _gender;
+            }
+            set
+            {
+                OngenderChanging(value);
+                ReportPropertyChanging("gender");
+                _gender = StructuralObject.SetValidValue(value, true, "gender");
+                ReportPropertyChanged("gender");
+                OngenderChanged();
+            }
+        }
+        private global::System.String _gender;
+        partial void OngenderChanging(global::System.String value);
+        partial void OngenderChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Boolean> loginViaFB
+        {
+            get
+            {
+                return _loginViaFB;
+            }
+            set
+            {
+                OnloginViaFBChanging(value);
+                ReportPropertyChanging("loginViaFB");
+                _loginViaFB = StructuralObject.SetValidValue(value, "loginViaFB");
+                ReportPropertyChanged("loginViaFB");
+                OnloginViaFBChanged();
+            }
+        }
+        private Nullable<global::System.Boolean> _loginViaFB;
+        partial void OnloginViaFBChanging(Nullable<global::System.Boolean> value);
+        partial void OnloginViaFBChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public Nullable<global::System.Boolean> isActive
         {
             get
@@ -2334,6 +2382,30 @@ namespace HouseNinja.DAO
         private global::System.String _nextProject;
         partial void OnnextProjectChanging(global::System.String value);
         partial void OnnextProjectChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String qualification
+        {
+            get
+            {
+                return _qualification;
+            }
+            set
+            {
+                OnqualificationChanging(value);
+                ReportPropertyChanging("qualification");
+                _qualification = StructuralObject.SetValidValue(value, true, "qualification");
+                ReportPropertyChanged("qualification");
+                OnqualificationChanged();
+            }
+        }
+        private global::System.String _qualification;
+        partial void OnqualificationChanging(global::System.String value);
+        partial void OnqualificationChanged();
     
         /// <summary>
         /// No Metadata Documentation available.

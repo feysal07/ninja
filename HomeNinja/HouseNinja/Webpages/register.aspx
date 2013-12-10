@@ -79,7 +79,7 @@
                                 <label class="control-label">User Name</label>
                                 <div class="controls">
                                     <!--<label class="plain-text">bharat_verma</label>-->
-                                    <input type="text" id="userName" runat="server" />
+                                    <input type="text" id="txtUserName" runat="server" />
 
                                 </div>
                             </div>
@@ -93,7 +93,19 @@
                             <div class="control-group">
                                 <label class="control-label" for="email">Email</label>
                                 <div class="controls">
-                                    <input type="text" id="txtemail" name="email" runat="server" class="short"><br>
+                                    <input type="text" id="txtEmail" name="email" runat="server" class="short"><br>
+                                    <small>(private)</small>
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="gender">Gender</label>
+                                <div class="controls">
+                                    <asp:RadioButtonList runat="server" ID="rdGender">
+                                        <asp:ListItem Text="Male" Value="M"></asp:ListItem>
+                                        <asp:ListItem Text="Female" Value="F"></asp:ListItem>
+
+                                    </asp:RadioButtonList>
                                     <small>(private)</small>
                                 </div>
                             </div>
@@ -168,17 +180,30 @@
                             <div class="control-group">
                                 <label class="control-label" for="aboutMyHouse">My next house project</label>
                                 <div class="controls">
-                                    <textarea id="txtaboutMyHouse" name="aboutMyHouse" runat="server"></textarea>
+                                    <textarea id="txtaboutNewProj" name="aboutMyHouse" runat="server"></textarea>
                                 </div>
                             </div>
                         </dl>
                         <div class="editProfileSectionClear"></div>
                     </div>
-                    <a name="socialLinks"></a>
+                      <div class="editProfileSection">
+                        <div class="small-header light-rule">Education</div>
+                        <dl>
+                            <div class="control-group">
+                                <label class="control-label" for="education">Qualification Details</label>
+                                <div class="controls">
+                                    <textarea id="txtQualification" name="aboutMyHouse" runat="server"></textarea>
+                                </div>
+                            </div>
+                            
+                         </dl>
+                          <div class="editProfileSectionClear"></div>
+                       </div>
+                     <!--<a name="socialLinks"></a>
                     <a name="fbPreferences" style="display: block;"></a>
 
                     <a name="emailPreferences"></a>
-                    <!--<div class="editProfileSection">
+                   <div class="editProfileSection">
 		<div class="small-header light-rule">Advanced Settings  <span id="advancedSettingsButton" class="editProfileExpandButton">[ <a href="javascript:;" class="colorLink" onclick="expandDiv(&quot;advancedSettings&quot;)">expand</a> ]</span></div>
 		<div id="advancedSettings" style="display:block;">
 			<div class="advancedSettingsContainer">

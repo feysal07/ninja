@@ -34,13 +34,33 @@ namespace HouseNinja.Webpages.CustomControls
                     string data = FaceBookConnect.Fetch(code, "me");
                     FaceBookUser faceBookUser = new JavaScriptSerializer().Deserialize<FaceBookUser>(data);
                     faceBookUser.PictureUrl = string.Format("https://graph.facebook.com/{0}/picture", faceBookUser.Id);
-                    //pnlFaceBookUser.Visible = true;
-                    //lblId.Text = faceBookUser.Id;
-                    //lblUserName.Text = faceBookUser.UserName;
-                    //lblName.Text = faceBookUser.Name;
-                    //lblEmail.Text = faceBookUser.Email;
-                    //ProfileImage.ImageUrl = faceBookUser.PictureUrl;
-                    btnLogin.Enabled = false;
+                    
+
+                    siteuser objUser = new siteuser
+                    {
+
+                        userType = Convert.ToInt32(rdUserType.SelectedValue),
+                        loginEmail = faceBookUser.Email,
+                        password = faceBookUser.Id,
+                        firstName=faceBookUser.firstName,
+                        lastName=faceBookUser.lastName,
+                        userName=faceBookUser.UserName,
+                        gender=faceBookUser.gender,
+                        loginViaFB=true,
+                        createdDate = System.DateTime.Now,
+                        isActive = true,
+                        userId = 0
+
+                    };
+
+                    long userId = userService.CreateUser(objUser);
+
+                    //newUser=userService.CreateUser(newUser);
+                    // get new created user in session
+                    Session["userId"] = userId;
+                    Response.Redirect("~/Webpages/registration.aspx");
+
+
                 }
             }
         }
@@ -71,6 +91,7 @@ namespace HouseNinja.Webpages.CustomControls
                 password = pass,
                 createdDate=System.DateTime.Now,
                 isActive = true,
+                loginViaFB = false,
                 userId=0
               
             };

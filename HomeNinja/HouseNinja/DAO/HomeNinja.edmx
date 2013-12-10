@@ -142,10 +142,13 @@
           <Property Name="userType" Type="int" Nullable="false" />
           <Property Name="loginEmail" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
+          <Property Name="gender" Type="char" MaxLength="1" />
+          <Property Name="loginViaFB" Type="bool" />
           <Property Name="isActive" Type="bit" />
           <Property Name="profilPic" Type="binary" MaxLength="1" />
           <Property Name="aboutMe" Type="text" />
           <Property Name="nextProject" Type="text" />
+          <Property Name="qualification" Type="text" />
           <Property Name="myFavoriteStyle" Type="text" />
           <Property Name="createdDate" Type="datetime" />
           <Property Name="modifiedDate" Type="datetime" />
@@ -417,7 +420,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="postType1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="postType" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="posttype" ToRole="post" />
         </EntityType>
         <EntityType Name="siteuser">
@@ -431,10 +434,13 @@
           <Property Type="Int32" Name="userType" Nullable="false" />
           <Property Type="String" Name="loginEmail" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="password" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="gender" MaxLength="1" FixedLength="true" Unicode="false" />
+          <Property Type="Boolean" Name="loginViaFB" />
           <Property Type="Boolean" Name="isActive" />
           <Property Type="Binary" Name="profilPic" MaxLength="1" FixedLength="true" />
           <Property Type="String" Name="aboutMe" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="nextProject" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="qualification" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="myFavoriteStyle" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="createdDate" Precision="0" />
           <Property Type="DateTime" Name="modifiedDate" Precision="0" />
@@ -657,7 +663,7 @@
           <EntitySetMapping Name="posttypes">
             <EntityTypeMapping TypeName="HomeNinjaModel.posttype">
               <MappingFragment StoreEntitySet="posttype">
-                <ScalarProperty Name="postType1" ColumnName="postType" />
+                <ScalarProperty Name="postType" ColumnName="postType" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -668,10 +674,13 @@
                 <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="myFavoriteStyle" ColumnName="myFavoriteStyle" />
+                <ScalarProperty Name="qualification" ColumnName="qualification" />
                 <ScalarProperty Name="nextProject" ColumnName="nextProject" />
                 <ScalarProperty Name="aboutMe" ColumnName="aboutMe" />
                 <ScalarProperty Name="profilPic" ColumnName="profilPic" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
+                <ScalarProperty Name="loginViaFB" ColumnName="loginViaFB" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
                 <ScalarProperty Name="password" ColumnName="password" />
                 <ScalarProperty Name="loginEmail" ColumnName="loginEmail" />
                 <ScalarProperty Name="userType" ColumnName="userType" />
