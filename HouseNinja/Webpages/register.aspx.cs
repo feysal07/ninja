@@ -38,9 +38,13 @@ namespace HouseNinja.Webpages
 
         private void loadPersonlDetails(siteuser user)
         {
-            txtemail.Value = user.loginEmail;
+            txtEmail.Value = user.loginEmail;
             txtfirstName.Value = user.userName;
             txtlastName.Value = user.userName;
+            txtUserName.Value = user.userName;
+            rdGender.SelectedValue = user.gender;
+           
+
 
         }
 
@@ -61,7 +65,23 @@ namespace HouseNinja.Webpages
 
         protected void updateBtn_Click(object sender, EventArgs e)
         {
-            siteuser suser = new siteuser();
+           siteuser objUser = new siteuser
+            {
+
+                //userType = Convert.ToInt32(rdUserType.SelectedValue),
+                loginEmail = txtEmail.Value.Trim(),
+                firstName = txtfirstName.Value.Trim(),
+                lastName = txtlastName.Value.Trim(),
+                userName = txtUserName.Value.Trim(),
+                gender = rdGender.SelectedValue,
+                qualification=txtQualification.Value.Trim(),
+                aboutMe = txtaboutMe.Value.Trim(),
+                modifiedDate=System.DateTime.Now,
+                nextProject = txtaboutNewProj.Value.Trim(),
+
+            };
+
+           objUser.Save();
 
 
         }

@@ -16,5 +16,7 @@ namespace HouseNinja.HelpingEntities
             public string link { get; set; }
             public string birthday { get; set; }
             public string gender { get; set; }
+            public string firstName { get; set; }
+            public string lastName { get; set; }
     }
 }

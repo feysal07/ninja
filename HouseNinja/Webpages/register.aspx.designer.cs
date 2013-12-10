@@ -40,22 +40,31 @@ namespace HouseNinja.Webpages {
         protected global::System.Web.UI.WebControls.Button btnPhotoPreview;
         
         /// <summary>
-        /// userName control.
+        /// txtUserName control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText userName;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtUserName;
         
         /// <summary>
-        /// txtemail control.
+        /// txtEmail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtemail;
+        protected global::System.Web.UI.HtmlControls.HtmlInputText txtEmail;
+        
+        /// <summary>
+        /// rdGender control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RadioButtonList rdGender;
         
         /// <summary>
         /// txtfirstName control.
@@ -121,13 +130,22 @@ namespace HouseNinja.Webpages {
         protected global::System.Web.UI.HtmlControls.HtmlInputText style;
         
         /// <summary>
-        /// txtaboutMyHouse control.
+        /// txtaboutNewProj control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtaboutMyHouse;
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtaboutNewProj;
+        
+        /// <summary>
+        /// txtQualification control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtQualification;
         
         /// <summary>
         /// updateBtn control.
