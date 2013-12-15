@@ -19,11 +19,24 @@ namespace HouseNinja.DAO
 
         public static long getUserId(string email, string pass) {
 
-            var userId =Convert.ToInt32( Global.Context.siteusers.Where(u => u.loginEmail == email && u.password == pass)
+            var userId =Convert.ToInt64( Global.Context.siteusers.Where(u => u.loginEmail == email && u.password == pass)
                 .Select(u => new {u.userId }));
 
             return userId;
            
+
+        }
+
+        public static long createUser(siteuser usr)
+        {
+            long userId = 0;
+           using(HomeNinja db =new HomeNinja()){
+
+               db.siteusers.AddObject(usr);
+               db.SaveChanges();
+               userId = usr.userId;
+           }
+           return userId;
 
         }
     }

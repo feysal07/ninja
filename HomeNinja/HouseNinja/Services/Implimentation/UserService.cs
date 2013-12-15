@@ -8,13 +8,15 @@ namespace HouseNinja.Services.Implimentation
 {
     public class UserService
     {
-        public long CreateUser(siteuser siteUser)
+        public long createUser(siteuser siteUser)
         {
-            siteUser.Save();
-            string email = siteUser.loginEmail;
-            string pass = siteUser.password;
+            //siteUser.Save();
+            //string email = siteUser.loginEmail;
+            //string pass = siteUser.password;
 
-            return siteuser.getUserId(email, pass);
+            //return siteuser.getUserId(email, pass);
+
+            return siteuser.createUser(siteUser);
         }
 
         public siteuser getUserById(long id)
@@ -26,6 +28,11 @@ namespace HouseNinja.Services.Implimentation
         public long UserExist(string email, string pass)
         {
             return siteuser.getUserId(email, pass);
+        }
+
+        public void saveUser(siteuser siteUser)
+        {
+            siteUser.Save();
         }
     }
 }

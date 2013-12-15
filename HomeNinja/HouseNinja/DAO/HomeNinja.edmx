@@ -7,7 +7,6 @@
     <Schema Namespace="HomeNinjaModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="HomeNinjaModelStoreContainer">
           <EntitySet Name="addressdetails" EntityType="HomeNinjaModel.Store.addressdetails" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="addressmapping" EntityType="HomeNinjaModel.Store.addressmapping" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="comments" EntityType="HomeNinjaModel.Store.comments" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="masterdatatype" EntityType="HomeNinjaModel.Store.masterdatatype" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="masterdatavalue" EntityType="HomeNinjaModel.Store.masterdatavalue" store:Type="Tables" Schema="homeninja" />
@@ -15,14 +14,11 @@
           <EntitySet Name="posttype" EntityType="HomeNinjaModel.Store.posttype" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="siteusers" EntityType="HomeNinjaModel.Store.siteusers" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="subscription" EntityType="HomeNinjaModel.Store.subscription" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="usersearch" EntityType="HomeNinjaModel.Store.usersearch" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="usertype" EntityType="HomeNinjaModel.Store.usertype" store:Type="Tables" Schema="homeninja" />
-          <AssociationSet Name="FK_addressmapping_add_id" Association="HomeNinjaModel.Store.FK_addressmapping_add_id">
-            <End Role="addressdetails" EntitySet="addressdetails" />
-            <End Role="addressmapping" EntitySet="addressmapping" />
-          </AssociationSet>
-          <AssociationSet Name="FK_addressmapping_user_id" Association="HomeNinjaModel.Store.FK_addressmapping_user_id">
+          <AssociationSet Name="FK_addressdetails" Association="HomeNinjaModel.Store.FK_addressdetails">
             <End Role="siteusers" EntitySet="siteusers" />
-            <End Role="addressmapping" EntitySet="addressmapping" />
+            <End Role="addressdetails" EntitySet="addressdetails" />
           </AssociationSet>
           <AssociationSet Name="FK_comments_createdBy" Association="HomeNinjaModel.Store.FK_comments_createdBy">
             <End Role="siteusers" EntitySet="siteusers" />
@@ -48,6 +44,10 @@
             <End Role="siteusers" EntitySet="siteusers" />
             <End Role="posts" EntitySet="posts" />
           </AssociationSet>
+          <AssociationSet Name="FK_siteusers" Association="HomeNinjaModel.Store.FK_siteusers">
+            <End Role="addressdetails" EntitySet="addressdetails" />
+            <End Role="siteusers" EntitySet="siteusers" />
+          </AssociationSet>
           <AssociationSet Name="FK_siteusers_user_type" Association="HomeNinjaModel.Store.FK_siteusers_user_type">
             <End Role="usertype" EntitySet="usertype" />
             <End Role="siteusers" EntitySet="siteusers" />
@@ -62,22 +62,11 @@
           <Property Name="location" Type="varchar" MaxLength="100" />
           <Property Name="city" Type="varchar" MaxLength="128" />
           <Property Name="state" Type="varchar" MaxLength="128" />
-          <Property Name="zipCode" Type="varchar" MaxLength="6" />
+          <Property Name="contactNo" Type="varchar" MaxLength="20" />
+          <Property Name="pincode" Type="varchar" MaxLength="10" />
           <Property Name="isPrimary" Type="bit" />
           <Property Name="createdDate" Type="datetime" />
           <Property Name="modifiedDate" Type="datetime" />
-          <Property Name="createdBy" Type="bigint" />
-          <Property Name="modifiedBy" Type="bigint" />
-          <Property Name="userId" Type="bigint" />
-          <Property Name="longitude" Type="double" />
-          <Property Name="latitude" Type="double" />
-        </EntityType>
-        <EntityType Name="addressmapping">
-          <Key>
-            <PropertyRef Name="addressMappingId" />
-          </Key>
-          <Property Name="addressMappingId" Type="bigint" Nullable="false" />
-          <Property Name="addressId" Type="bigint" />
           <Property Name="userId" Type="bigint" />
         </EntityType>
         <EntityType Name="comments">
@@ -146,6 +135,7 @@
           <Property Name="loginViaFB" Type="bool" />
           <Property Name="isActive" Type="bit" />
           <Property Name="profilPic" Type="binary" MaxLength="1" />
+          <Property Name="addressId" Type="bigint" />
           <Property Name="aboutMe" Type="text" />
           <Property Name="nextProject" Type="text" />
           <Property Name="qualification" Type="text" />
@@ -163,6 +153,19 @@
           <Property Name="publishNo" Type="tinyint" />
           <Property Name="publishAddress" Type="tinyint" />
         </EntityType>
+        <EntityType Name="usersearch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="bigint" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="userName" Type="varchar" MaxLength="50" />
+          <Property Name="description" Type="text" />
+          <Property Name="state" Type="varchar" MaxLength="15" />
+          <Property Name="city" Type="varchar" MaxLength="15" />
+          <Property Name="contactNo" Type="varchar" MaxLength="20" />
+          <Property Name="pincode" Type="varchar" MaxLength="10" />
+        </EntityType>
         <EntityType Name="usertype">
           <Key>
             <PropertyRef Name="id" />
@@ -170,26 +173,14 @@
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="userType" Type="varchar" Nullable="false" MaxLength="50" />
         </EntityType>
-        <Association Name="FK_addressmapping_add_id">
-          <End Role="addressdetails" Type="HomeNinjaModel.Store.addressdetails" Multiplicity="0..1" />
-          <End Role="addressmapping" Type="HomeNinjaModel.Store.addressmapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="addressdetails">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="addressmapping">
-              <PropertyRef Name="addressId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_addressmapping_user_id">
+        <Association Name="FK_addressdetails">
           <End Role="siteusers" Type="HomeNinjaModel.Store.siteusers" Multiplicity="0..1" />
-          <End Role="addressmapping" Type="HomeNinjaModel.Store.addressmapping" Multiplicity="*" />
+          <End Role="addressdetails" Type="HomeNinjaModel.Store.addressdetails" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="siteusers">
               <PropertyRef Name="userId" />
             </Principal>
-            <Dependent Role="addressmapping">
+            <Dependent Role="addressdetails">
               <PropertyRef Name="userId" />
             </Dependent>
           </ReferentialConstraint>
@@ -266,6 +257,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_siteusers">
+          <End Role="addressdetails" Type="HomeNinjaModel.Store.addressdetails" Multiplicity="0..1" />
+          <End Role="siteusers" Type="HomeNinjaModel.Store.siteusers" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="addressdetails">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="siteusers">
+              <PropertyRef Name="addressId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_siteusers_user_type">
           <End Role="usertype" Type="HomeNinjaModel.Store.usertype" Multiplicity="1">
             <OnDelete Action="Cascade" />
@@ -286,7 +289,6 @@
       <Schema Namespace="HomeNinjaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="HomeNinja" p1:LazyLoadingEnabled="true">
           <EntitySet Name="addressdetails" EntityType="HomeNinjaModel.addressdetail" />
-          <EntitySet Name="addressmappings" EntityType="HomeNinjaModel.addressmapping" />
           <EntitySet Name="comments" EntityType="HomeNinjaModel.comment" />
           <EntitySet Name="masterdatatypes" EntityType="HomeNinjaModel.masterdatatype" />
           <EntitySet Name="masterdatavalues" EntityType="HomeNinjaModel.masterdatavalue" />
@@ -294,14 +296,15 @@
           <EntitySet Name="posttypes" EntityType="HomeNinjaModel.posttype" />
           <EntitySet Name="siteusers" EntityType="HomeNinjaModel.siteuser" />
           <EntitySet Name="subscriptions" EntityType="HomeNinjaModel.subscription" />
+          <EntitySet Name="usersearches" EntityType="HomeNinjaModel.usersearch" />
           <EntitySet Name="usertypes" EntityType="HomeNinjaModel.usertype" />
-          <AssociationSet Name="FK_addressmapping_add_id" Association="HomeNinjaModel.FK_addressmapping_add_id">
-            <End Role="addressdetail" EntitySet="addressdetails" />
-            <End Role="addressmapping" EntitySet="addressmappings" />
-          </AssociationSet>
-          <AssociationSet Name="FK_addressmapping_user_id" Association="HomeNinjaModel.FK_addressmapping_user_id">
+          <AssociationSet Name="FK_addressdetails" Association="HomeNinjaModel.FK_addressdetails">
             <End Role="siteuser" EntitySet="siteusers" />
-            <End Role="addressmapping" EntitySet="addressmappings" />
+            <End Role="addressdetail" EntitySet="addressdetails" />
+          </AssociationSet>
+          <AssociationSet Name="FK_siteusers" Association="HomeNinjaModel.FK_siteusers">
+            <End Role="addressdetail" EntitySet="addressdetails" />
+            <End Role="siteuser" EntitySet="siteusers" />
           </AssociationSet>
           <AssociationSet Name="FK_comments_createdBy" Association="HomeNinjaModel.FK_comments_createdBy">
             <End Role="siteuser" EntitySet="siteusers" />
@@ -341,26 +344,14 @@
           <Property Type="String" Name="location" MaxLength="100" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="city" MaxLength="128" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="state" MaxLength="128" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="zipCode" MaxLength="6" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contactNo" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pincode" MaxLength="10" FixedLength="false" Unicode="false" />
           <Property Type="Boolean" Name="isPrimary" />
           <Property Type="DateTime" Name="createdDate" Precision="0" />
           <Property Type="DateTime" Name="modifiedDate" Precision="0" />
-          <Property Type="Int64" Name="createdBy" />
-          <Property Type="Int64" Name="modifiedBy" />
           <Property Type="Int64" Name="userId" />
-          <Property Type="Double" Name="longitude" />
-          <Property Type="Double" Name="latitude" />
-          <NavigationProperty Name="addressmappings" Relationship="HomeNinjaModel.FK_addressmapping_add_id" FromRole="addressdetail" ToRole="addressmapping" />
-        </EntityType>
-        <EntityType Name="addressmapping">
-          <Key>
-            <PropertyRef Name="addressMappingId" />
-          </Key>
-          <Property Type="Int64" Name="addressMappingId" Nullable="false" />
-          <Property Type="Int64" Name="addressId" />
-          <Property Type="Int64" Name="userId" />
-          <NavigationProperty Name="addressdetail" Relationship="HomeNinjaModel.FK_addressmapping_add_id" FromRole="addressmapping" ToRole="addressdetail" />
-          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_addressmapping_user_id" FromRole="addressmapping" ToRole="siteuser" />
+          <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_addressdetails" FromRole="addressdetail" ToRole="siteuser" />
+          <NavigationProperty Name="siteusers" Relationship="HomeNinjaModel.FK_siteusers" FromRole="addressdetail" ToRole="siteuser" />
         </EntityType>
         <EntityType Name="comment">
           <Key>
@@ -420,7 +411,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="postType" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="postType1" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="posttype" ToRole="post" />
         </EntityType>
         <EntityType Name="siteuser">
@@ -438,13 +429,15 @@
           <Property Type="Boolean" Name="loginViaFB" />
           <Property Type="Boolean" Name="isActive" />
           <Property Type="Binary" Name="profilPic" MaxLength="1" FixedLength="true" />
+          <Property Type="Int64" Name="addressId" />
           <Property Type="String" Name="aboutMe" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="nextProject" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="qualification" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="myFavoriteStyle" MaxLength="65535" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="createdDate" Precision="0" />
           <Property Type="DateTime" Name="modifiedDate" Precision="0" />
-          <NavigationProperty Name="addressmappings" Relationship="HomeNinjaModel.FK_addressmapping_user_id" FromRole="siteuser" ToRole="addressmapping" />
+          <NavigationProperty Name="addressdetails" Relationship="HomeNinjaModel.FK_addressdetails" FromRole="siteuser" ToRole="addressdetail" />
+          <NavigationProperty Name="addressdetail" Relationship="HomeNinjaModel.FK_siteusers" FromRole="siteuser" ToRole="addressdetail" />
           <NavigationProperty Name="comments" Relationship="HomeNinjaModel.FK_comments_createdBy" FromRole="siteuser" ToRole="comment" />
           <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_user_id" FromRole="siteuser" ToRole="post" />
           <NavigationProperty Name="usertype1" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="siteuser" ToRole="usertype" />
@@ -459,6 +452,19 @@
           <Property Type="SByte" Name="publishNo" />
           <Property Type="SByte" Name="publishAddress" />
         </EntityType>
+        <EntityType Name="usersearch">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int64" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="userId" />
+          <Property Type="String" Name="userName" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="description" MaxLength="65535" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="state" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="city" MaxLength="15" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="contactNo" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="pincode" MaxLength="10" FixedLength="false" Unicode="false" />
+        </EntityType>
         <EntityType Name="usertype">
           <Key>
             <PropertyRef Name="id" />
@@ -467,27 +473,27 @@
           <Property Type="String" Name="userType1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="siteusers" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="usertype" ToRole="siteuser" />
         </EntityType>
-        <Association Name="FK_addressmapping_add_id">
-          <End Type="HomeNinjaModel.addressdetail" Role="addressdetail" Multiplicity="0..1" />
-          <End Type="HomeNinjaModel.addressmapping" Role="addressmapping" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="addressdetail">
-              <PropertyRef Name="id" />
-            </Principal>
-            <Dependent Role="addressmapping">
-              <PropertyRef Name="addressId" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_addressmapping_user_id">
+        <Association Name="FK_addressdetails">
           <End Type="HomeNinjaModel.siteuser" Role="siteuser" Multiplicity="0..1" />
-          <End Type="HomeNinjaModel.addressmapping" Role="addressmapping" Multiplicity="*" />
+          <End Type="HomeNinjaModel.addressdetail" Role="addressdetail" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="siteuser">
               <PropertyRef Name="userId" />
             </Principal>
-            <Dependent Role="addressmapping">
+            <Dependent Role="addressdetail">
               <PropertyRef Name="userId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_siteusers">
+          <End Type="HomeNinjaModel.addressdetail" Role="addressdetail" Multiplicity="0..1" />
+          <End Type="HomeNinjaModel.siteuser" Role="siteuser" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="addressdetail">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="siteuser">
+              <PropertyRef Name="addressId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -586,29 +592,17 @@
           <EntitySetMapping Name="addressdetails">
             <EntityTypeMapping TypeName="HomeNinjaModel.addressdetail">
               <MappingFragment StoreEntitySet="addressdetails">
-                <ScalarProperty Name="latitude" ColumnName="latitude" />
-                <ScalarProperty Name="longitude" ColumnName="longitude" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="modifiedBy" ColumnName="modifiedBy" />
-                <ScalarProperty Name="createdBy" ColumnName="createdBy" />
                 <ScalarProperty Name="modifiedDate" ColumnName="modifiedDate" />
                 <ScalarProperty Name="createdDate" ColumnName="createdDate" />
                 <ScalarProperty Name="isPrimary" ColumnName="isPrimary" />
-                <ScalarProperty Name="zipCode" ColumnName="zipCode" />
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="contactNo" ColumnName="contactNo" />
                 <ScalarProperty Name="state" ColumnName="state" />
                 <ScalarProperty Name="city" ColumnName="city" />
                 <ScalarProperty Name="location" ColumnName="location" />
                 <ScalarProperty Name="address" ColumnName="address" />
                 <ScalarProperty Name="id" ColumnName="id" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="addressmappings">
-            <EntityTypeMapping TypeName="HomeNinjaModel.addressmapping">
-              <MappingFragment StoreEntitySet="addressmapping">
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="addressId" ColumnName="addressId" />
-                <ScalarProperty Name="addressMappingId" ColumnName="addressMappingId" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
@@ -663,7 +657,7 @@
           <EntitySetMapping Name="posttypes">
             <EntityTypeMapping TypeName="HomeNinjaModel.posttype">
               <MappingFragment StoreEntitySet="posttype">
-                <ScalarProperty Name="postType" ColumnName="postType" />
+                <ScalarProperty Name="postType1" ColumnName="postType" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
@@ -677,6 +671,7 @@
                 <ScalarProperty Name="qualification" ColumnName="qualification" />
                 <ScalarProperty Name="nextProject" ColumnName="nextProject" />
                 <ScalarProperty Name="aboutMe" ColumnName="aboutMe" />
+                <ScalarProperty Name="addressId" ColumnName="addressId" />
                 <ScalarProperty Name="profilPic" ColumnName="profilPic" />
                 <ScalarProperty Name="isActive" ColumnName="isActive" />
                 <ScalarProperty Name="loginViaFB" ColumnName="loginViaFB" />
@@ -697,6 +692,20 @@
                 <ScalarProperty Name="publishAddress" ColumnName="publishAddress" />
                 <ScalarProperty Name="publishNo" ColumnName="publishNo" />
                 <ScalarProperty Name="newsLetters" ColumnName="newsLetters" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="usersearches">
+            <EntityTypeMapping TypeName="HomeNinjaModel.usersearch">
+              <MappingFragment StoreEntitySet="usersearch">
+                <ScalarProperty Name="pincode" ColumnName="pincode" />
+                <ScalarProperty Name="contactNo" ColumnName="contactNo" />
+                <ScalarProperty Name="city" ColumnName="city" />
+                <ScalarProperty Name="state" ColumnName="state" />
+                <ScalarProperty Name="description" ColumnName="description" />
+                <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>

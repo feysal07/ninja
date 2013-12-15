@@ -15,6 +15,7 @@ namespace HouseNinja.Webpages.CustomControls
     public partial class Header : System.Web.UI.UserControl
     {
        UserService userService = new UserService();
+       UserSearchService userSearch = new UserSearchService();
         protected void Page_Load(object sender, EventArgs e)
         {
 
@@ -53,12 +54,17 @@ namespace HouseNinja.Webpages.CustomControls
 
                     };
 
-                    long userId = userService.CreateUser(objUser);
+                  
+                    long userId = userService.createUser(objUser);
+
+
+                    
+
 
                     //newUser=userService.CreateUser(newUser);
                     // get new created user in session
                     Session["userId"] = userId;
-                    Response.Redirect("~/Webpages/registration.aspx");
+                    Response.Redirect("~/Webpages/register.aspx");
 
 
                 }
@@ -86,7 +92,7 @@ namespace HouseNinja.Webpages.CustomControls
             siteuser objUser = new siteuser
             {
               
-                userType=Convert.ToInt32(rdUserType.SelectedValue),
+                userType=Convert.ToInt32(rdUserType.SelectedItem.Value),
                 loginEmail=email,
                 password = pass,
                 createdDate=System.DateTime.Now,
@@ -97,12 +103,12 @@ namespace HouseNinja.Webpages.CustomControls
             };
 
           
-           long userId= userService.CreateUser(objUser);
+            long userId= userService.createUser(objUser);
           
             //newUser=userService.CreateUser(newUser);
             // get new created user in session
             Session["userId"] = userId;
-            Response.Redirect("~/Webpages/registration.aspx");
+            Response.Redirect("~/Webpages/register.aspx");
 
         }
     }

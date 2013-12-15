@@ -19,8 +19,8 @@ using System.Xml.Serialization;
 [assembly: EdmSchemaAttribute()]
 #region EDM Relationship Metadata
 
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_addressmapping_add_id", "addressdetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.addressdetail), "addressmapping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.addressmapping), true)]
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_addressmapping_user_id", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "addressmapping", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.addressmapping), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_addressdetails", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "addressdetail", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.addressdetail), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_siteusers", "addressdetail", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.addressdetail), "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.siteuser), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_createdBy", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_post_id", "post", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_posts", "post", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
@@ -94,22 +94,6 @@ namespace HouseNinja.DAO
             }
         }
         private ObjectSet<addressdetail> _addressdetails;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        public ObjectSet<addressmapping> addressmappings
-        {
-            get
-            {
-                if ((_addressmappings == null))
-                {
-                    _addressmappings = base.CreateObjectSet<addressmapping>("addressmappings");
-                }
-                return _addressmappings;
-            }
-        }
-        private ObjectSet<addressmapping> _addressmappings;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -226,6 +210,22 @@ namespace HouseNinja.DAO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<usersearch> usersearches
+        {
+            get
+            {
+                if ((_usersearches == null))
+                {
+                    _usersearches = base.CreateObjectSet<usersearch>("usersearches");
+                }
+                return _usersearches;
+            }
+        }
+        private ObjectSet<usersearch> _usersearches;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<usertype> usertypes
         {
             get
@@ -249,14 +249,6 @@ namespace HouseNinja.DAO
         public void AddToaddressdetails(addressdetail addressdetail)
         {
             base.AddObject("addressdetails", addressdetail);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the addressmappings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddToaddressmappings(addressmapping addressmapping)
-        {
-            base.AddObject("addressmappings", addressmapping);
         }
     
         /// <summary>
@@ -313,6 +305,14 @@ namespace HouseNinja.DAO
         public void AddTosubscriptions(subscription subscription)
         {
             base.AddObject("subscriptions", subscription);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the usersearches EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTousersearches(usersearch usersearch)
+        {
+            base.AddObject("usersearches", usersearch);
         }
     
         /// <summary>
@@ -486,24 +486,48 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String zipCode
+        public global::System.String contactNo
         {
             get
             {
-                return _zipCode;
+                return _contactNo;
             }
             set
             {
-                OnzipCodeChanging(value);
-                ReportPropertyChanging("zipCode");
-                _zipCode = StructuralObject.SetValidValue(value, true, "zipCode");
-                ReportPropertyChanged("zipCode");
-                OnzipCodeChanged();
+                OncontactNoChanging(value);
+                ReportPropertyChanging("contactNo");
+                _contactNo = StructuralObject.SetValidValue(value, true, "contactNo");
+                ReportPropertyChanged("contactNo");
+                OncontactNoChanged();
             }
         }
-        private global::System.String _zipCode;
-        partial void OnzipCodeChanging(global::System.String value);
-        partial void OnzipCodeChanged();
+        private global::System.String _contactNo;
+        partial void OncontactNoChanging(global::System.String value);
+        partial void OncontactNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String pincode
+        {
+            get
+            {
+                return _pincode;
+            }
+            set
+            {
+                OnpincodeChanging(value);
+                ReportPropertyChanging("pincode");
+                _pincode = StructuralObject.SetValidValue(value, true, "pincode");
+                ReportPropertyChanged("pincode");
+                OnpincodeChanged();
+            }
+        }
+        private global::System.String _pincode;
+        partial void OnpincodeChanging(global::System.String value);
+        partial void OnpincodeChanged();
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -582,232 +606,6 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.Int64> createdBy
-        {
-            get
-            {
-                return _createdBy;
-            }
-            set
-            {
-                OncreatedByChanging(value);
-                ReportPropertyChanging("createdBy");
-                _createdBy = StructuralObject.SetValidValue(value, "createdBy");
-                ReportPropertyChanged("createdBy");
-                OncreatedByChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _createdBy;
-        partial void OncreatedByChanging(Nullable<global::System.Int64> value);
-        partial void OncreatedByChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> modifiedBy
-        {
-            get
-            {
-                return _modifiedBy;
-            }
-            set
-            {
-                OnmodifiedByChanging(value);
-                ReportPropertyChanging("modifiedBy");
-                _modifiedBy = StructuralObject.SetValidValue(value, "modifiedBy");
-                ReportPropertyChanged("modifiedBy");
-                OnmodifiedByChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _modifiedBy;
-        partial void OnmodifiedByChanging(Nullable<global::System.Int64> value);
-        partial void OnmodifiedByChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> userId
-        {
-            get
-            {
-                return _userId;
-            }
-            set
-            {
-                OnuserIdChanging(value);
-                ReportPropertyChanging("userId");
-                _userId = StructuralObject.SetValidValue(value, "userId");
-                ReportPropertyChanged("userId");
-                OnuserIdChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _userId;
-        partial void OnuserIdChanging(Nullable<global::System.Int64> value);
-        partial void OnuserIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Double> longitude
-        {
-            get
-            {
-                return _longitude;
-            }
-            set
-            {
-                OnlongitudeChanging(value);
-                ReportPropertyChanging("longitude");
-                _longitude = StructuralObject.SetValidValue(value, "longitude");
-                ReportPropertyChanged("longitude");
-                OnlongitudeChanged();
-            }
-        }
-        private Nullable<global::System.Double> _longitude;
-        partial void OnlongitudeChanging(Nullable<global::System.Double> value);
-        partial void OnlongitudeChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Double> latitude
-        {
-            get
-            {
-                return _latitude;
-            }
-            set
-            {
-                OnlatitudeChanging(value);
-                ReportPropertyChanging("latitude");
-                _latitude = StructuralObject.SetValidValue(value, "latitude");
-                ReportPropertyChanged("latitude");
-                OnlatitudeChanged();
-            }
-        }
-        private Nullable<global::System.Double> _latitude;
-        partial void OnlatitudeChanging(Nullable<global::System.Double> value);
-        partial void OnlatitudeChanged();
-
-        #endregion
-
-        #region Navigation Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressmapping_add_id", "addressmapping")]
-        public EntityCollection<addressmapping> addressmappings
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<addressmapping>("HomeNinjaModel.FK_addressmapping_add_id", "addressmapping");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<addressmapping>("HomeNinjaModel.FK_addressmapping_add_id", "addressmapping", value);
-                }
-            }
-        }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="HomeNinjaModel", Name="addressmapping")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class addressmapping : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new addressmapping object.
-        /// </summary>
-        /// <param name="addressMappingId">Initial value of the addressMappingId property.</param>
-        public static addressmapping Createaddressmapping(global::System.Int64 addressMappingId)
-        {
-            addressmapping addressmapping = new addressmapping();
-            addressmapping.addressMappingId = addressMappingId;
-            return addressmapping;
-        }
-
-        #endregion
-
-        #region Simple Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int64 addressMappingId
-        {
-            get
-            {
-                return _addressMappingId;
-            }
-            set
-            {
-                if (_addressMappingId != value)
-                {
-                    OnaddressMappingIdChanging(value);
-                    ReportPropertyChanging("addressMappingId");
-                    _addressMappingId = StructuralObject.SetValidValue(value, "addressMappingId");
-                    ReportPropertyChanged("addressMappingId");
-                    OnaddressMappingIdChanged();
-                }
-            }
-        }
-        private global::System.Int64 _addressMappingId;
-        partial void OnaddressMappingIdChanging(global::System.Int64 value);
-        partial void OnaddressMappingIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> addressId
-        {
-            get
-            {
-                return _addressId;
-            }
-            set
-            {
-                OnaddressIdChanging(value);
-                ReportPropertyChanging("addressId");
-                _addressId = StructuralObject.SetValidValue(value, "addressId");
-                ReportPropertyChanged("addressId");
-                OnaddressIdChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _addressId;
-        partial void OnaddressIdChanging(Nullable<global::System.Int64> value);
-        partial void OnaddressIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public Nullable<global::System.Int64> userId
         {
             get
@@ -837,54 +635,16 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressmapping_add_id", "addressdetail")]
-        public addressdetail addressdetail
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetail").Value;
-            }
-            set
-            {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetail").Value = value;
-            }
-        }
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [BrowsableAttribute(false)]
-        [DataMemberAttribute()]
-        public EntityReference<addressdetail> addressdetailReference
-        {
-            get
-            {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetail");
-            }
-            set
-            {
-                if ((value != null))
-                {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<addressdetail>("HomeNinjaModel.FK_addressmapping_add_id", "addressdetail", value);
-                }
-            }
-        }
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [XmlIgnoreAttribute()]
-        [SoapIgnoreAttribute()]
-        [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressmapping_user_id", "siteuser")]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressdetails", "siteuser")]
         public siteuser siteuser
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteuser").Value;
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressdetails", "siteuser").Value;
             }
             set
             {
-                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteuser").Value = value;
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressdetails", "siteuser").Value = value;
             }
         }
         /// <summary>
@@ -896,13 +656,35 @@ namespace HouseNinja.DAO
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteuser");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_addressdetails", "siteuser");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<siteuser>("HomeNinjaModel.FK_addressmapping_user_id", "siteuser", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<siteuser>("HomeNinjaModel.FK_addressdetails", "siteuser", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_siteusers", "siteuser")]
+        public EntityCollection<siteuser> siteusers
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<siteuser>("HomeNinjaModel.FK_siteusers", "siteuser");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<siteuser>("HomeNinjaModel.FK_siteusers", "siteuser", value);
                 }
             }
         }
@@ -1992,24 +1774,24 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String postType
+        public global::System.String postType1
         {
             get
             {
-                return _postType;
+                return _postType1;
             }
             set
             {
-                OnpostTypeChanging(value);
-                ReportPropertyChanging("postType");
-                _postType = StructuralObject.SetValidValue(value, true, "postType");
-                ReportPropertyChanged("postType");
-                OnpostTypeChanged();
+                OnpostType1Changing(value);
+                ReportPropertyChanging("postType1");
+                _postType1 = StructuralObject.SetValidValue(value, true, "postType1");
+                ReportPropertyChanged("postType1");
+                OnpostType1Changed();
             }
         }
-        private global::System.String _postType;
-        partial void OnpostTypeChanging(global::System.String value);
-        partial void OnpostTypeChanged();
+        private global::System.String _postType1;
+        partial void OnpostType1Changing(global::System.String value);
+        partial void OnpostType1Changed();
 
         #endregion
 
@@ -2340,6 +2122,30 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
+        public Nullable<global::System.Int64> addressId
+        {
+            get
+            {
+                return _addressId;
+            }
+            set
+            {
+                OnaddressIdChanging(value);
+                ReportPropertyChanging("addressId");
+                _addressId = StructuralObject.SetValidValue(value, "addressId");
+                ReportPropertyChanged("addressId");
+                OnaddressIdChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _addressId;
+        partial void OnaddressIdChanging(Nullable<global::System.Int64> value);
+        partial void OnaddressIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
         public global::System.String aboutMe
         {
             get
@@ -2489,18 +2295,56 @@ namespace HouseNinja.DAO
         [XmlIgnoreAttribute()]
         [SoapIgnoreAttribute()]
         [DataMemberAttribute()]
-        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressmapping_user_id", "addressmapping")]
-        public EntityCollection<addressmapping> addressmappings
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_addressdetails", "addressdetail")]
+        public EntityCollection<addressdetail> addressdetails
         {
             get
             {
-                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<addressmapping>("HomeNinjaModel.FK_addressmapping_user_id", "addressmapping");
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<addressdetail>("HomeNinjaModel.FK_addressdetails", "addressdetail");
             }
             set
             {
                 if ((value != null))
                 {
-                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<addressmapping>("HomeNinjaModel.FK_addressmapping_user_id", "addressmapping", value);
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<addressdetail>("HomeNinjaModel.FK_addressdetails", "addressdetail", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_siteusers", "addressdetail")]
+        public addressdetail addressdetail
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_siteusers", "addressdetail").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_siteusers", "addressdetail").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<addressdetail> addressdetailReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<addressdetail>("HomeNinjaModel.FK_siteusers", "addressdetail");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<addressdetail>("HomeNinjaModel.FK_siteusers", "addressdetail", value);
                 }
             }
         }
@@ -2738,6 +2582,230 @@ namespace HouseNinja.DAO
         private Nullable<global::System.SByte> _publishAddress;
         partial void OnpublishAddressChanging(Nullable<global::System.SByte> value);
         partial void OnpublishAddressChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HomeNinjaModel", Name="usersearch")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class usersearch : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new usersearch object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static usersearch Createusersearch(global::System.Int64 id)
+        {
+            usersearch usersearch = new usersearch();
+            usersearch.id = id;
+            return usersearch;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value, "id");
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> userId
+        {
+            get
+            {
+                return _userId;
+            }
+            set
+            {
+                OnuserIdChanging(value);
+                ReportPropertyChanging("userId");
+                _userId = StructuralObject.SetValidValue(value, "userId");
+                ReportPropertyChanged("userId");
+                OnuserIdChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _userId;
+        partial void OnuserIdChanging(Nullable<global::System.Int64> value);
+        partial void OnuserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String userName
+        {
+            get
+            {
+                return _userName;
+            }
+            set
+            {
+                OnuserNameChanging(value);
+                ReportPropertyChanging("userName");
+                _userName = StructuralObject.SetValidValue(value, true, "userName");
+                ReportPropertyChanged("userName");
+                OnuserNameChanged();
+            }
+        }
+        private global::System.String _userName;
+        partial void OnuserNameChanging(global::System.String value);
+        partial void OnuserNameChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String description
+        {
+            get
+            {
+                return _description;
+            }
+            set
+            {
+                OndescriptionChanging(value);
+                ReportPropertyChanging("description");
+                _description = StructuralObject.SetValidValue(value, true, "description");
+                ReportPropertyChanged("description");
+                OndescriptionChanged();
+            }
+        }
+        private global::System.String _description;
+        partial void OndescriptionChanging(global::System.String value);
+        partial void OndescriptionChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String state
+        {
+            get
+            {
+                return _state;
+            }
+            set
+            {
+                OnstateChanging(value);
+                ReportPropertyChanging("state");
+                _state = StructuralObject.SetValidValue(value, true, "state");
+                ReportPropertyChanged("state");
+                OnstateChanged();
+            }
+        }
+        private global::System.String _state;
+        partial void OnstateChanging(global::System.String value);
+        partial void OnstateChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String city
+        {
+            get
+            {
+                return _city;
+            }
+            set
+            {
+                OncityChanging(value);
+                ReportPropertyChanging("city");
+                _city = StructuralObject.SetValidValue(value, true, "city");
+                ReportPropertyChanged("city");
+                OncityChanged();
+            }
+        }
+        private global::System.String _city;
+        partial void OncityChanging(global::System.String value);
+        partial void OncityChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String contactNo
+        {
+            get
+            {
+                return _contactNo;
+            }
+            set
+            {
+                OncontactNoChanging(value);
+                ReportPropertyChanging("contactNo");
+                _contactNo = StructuralObject.SetValidValue(value, true, "contactNo");
+                ReportPropertyChanged("contactNo");
+                OncontactNoChanged();
+            }
+        }
+        private global::System.String _contactNo;
+        partial void OncontactNoChanging(global::System.String value);
+        partial void OncontactNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String pincode
+        {
+            get
+            {
+                return _pincode;
+            }
+            set
+            {
+                OnpincodeChanging(value);
+                ReportPropertyChanging("pincode");
+                _pincode = StructuralObject.SetValidValue(value, true, "pincode");
+                ReportPropertyChanged("pincode");
+                OnpincodeChanged();
+            }
+        }
+        private global::System.String _pincode;
+        partial void OnpincodeChanging(global::System.String value);
+        partial void OnpincodeChanged();
 
         #endregion
 

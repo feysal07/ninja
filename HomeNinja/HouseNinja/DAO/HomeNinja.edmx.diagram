@@ -4,19 +4,19 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="30a9f114c93745748310dd3fdd11d610" Name="Diagram1">
-        <EntityTypeShape EntityType="HomeNinjaModel.addressdetail" Width="1.5" PointX="6.4437422484363154" PointY="17.412760995986293" />
-        <EntityTypeShape EntityType="HomeNinjaModel.addressmapping" Width="1.5" PointX="8.2711151355277348" PointY="30.908041431991403" />
-        <EntityTypeShape EntityType="HomeNinjaModel.comment" Width="1.5" PointX="11.913058647845434" PointY="27.300109741883404" />
-        <EntityTypeShape EntityType="HomeNinjaModel.masterdatatype" Width="1.5" PointX="11.336403535369971" PointY="28.053127629707163" />
-        <EntityTypeShape EntityType="HomeNinjaModel.masterdatavalue" Width="1.5" PointX="0.38991690445221816" PointY="8.7151918004803317" />
-        <EntityTypeShape EntityType="HomeNinjaModel.post" Width="1.5" PointX="0.068175019728101333" PointY="15.335224754798796" />
-        <EntityTypeShape EntityType="HomeNinjaModel.posttype" Width="1.5" PointX="7.6165987698438569" PointY="27.675003347767053" />
-        <EntityTypeShape EntityType="HomeNinjaModel.siteuser" Width="1.5" PointX="5.7045029130319618" PointY="13.72907594485631" />
-        <EntityTypeShape EntityType="HomeNinjaModel.subscription" Width="1.5" PointX="9.3408443524226747" PointY="5.2370278114625384" />
-        <EntityTypeShape EntityType="HomeNinjaModel.usertype" Width="1.5" PointX="10.034874674880353" PointY="5.2329847688008959" />
-        <AssociationConnector Association="HomeNinjaModel.FK_addressmapping_add_id" />
-        <AssociationConnector Association="HomeNinjaModel.FK_addressmapping_user_id" />
+      <Diagram DiagramId="30a9f114c93745748310dd3fdd11d610" Name="Diagram1" ZoomLevel="112">
+        <EntityTypeShape EntityType="HomeNinjaModel.addressdetail" Width="1.5" PointX="10.717779842539589" PointY="0.3812629582273136" />
+        <EntityTypeShape EntityType="HomeNinjaModel.comment" Width="1.5" PointX="3.7167039139739719" PointY="3.7069525884962422" />
+        <EntityTypeShape EntityType="HomeNinjaModel.masterdatatype" Width="1.5" PointX="6.2993238895662707" PointY="27.959335817005176" />
+        <EntityTypeShape EntityType="HomeNinjaModel.masterdatavalue" Width="1.5" PointX="3.5428092626588459" PointY="16.298123546083517" />
+        <EntityTypeShape EntityType="HomeNinjaModel.post" Width="1.5" PointX="6.1670618663388588" PointY="9.3935891880623945" />
+        <EntityTypeShape EntityType="HomeNinjaModel.posttype" Width="1.5" PointX="6.86789225920471" PointY="15.761090226360173" />
+        <EntityTypeShape EntityType="HomeNinjaModel.siteuser" Width="1.5" PointX="2.286807770974379" PointY="24.840815347079566" />
+        <EntityTypeShape EntityType="HomeNinjaModel.subscription" Width="1.5" PointX="1.7051346980524875" PointY="18.566764154735377" />
+        <EntityTypeShape EntityType="HomeNinjaModel.usersearch" Width="1.5" PointX="0.014991173527665051" PointY="24.198961462918184" />
+        <EntityTypeShape EntityType="HomeNinjaModel.usertype" Width="1.5" PointX="8.79446303136389" PointY="27.282210645862953" />
+        <AssociationConnector Association="HomeNinjaModel.FK_addressdetails" />
+        <AssociationConnector Association="HomeNinjaModel.FK_siteusers" />
         <AssociationConnector Association="HomeNinjaModel.FK_comments_createdBy" />
         <AssociationConnector Association="HomeNinjaModel.FK_comments_post_id" />
         <AssociationConnector Association="HomeNinjaModel.FK_comments_posts" />

@@ -34,16 +34,16 @@
                     </div>
                     <%--<div class="sidebar"><div class="sidebar-header">Filter by Activity</div><div class="sidebar-body">		<ul id="Ul1">
 		<li class="sidebar-item selected">
-			<a href="http://www.houzz.com/discussions/using-houzz/sort=latest-activity" class="sidebar-item-label">Latest Activity</a>
+			<a href="" class="sidebar-item-label">Latest Activity</a>
 					</li>
 		<li class="sidebar-item">
-			<a href="http://www.houzz.com/discussions/using-houzz/sort=featured" class="sidebar-item-label">Featured</a>
+			<a href="" class="sidebar-item-label">Featured</a>
 					</li>
 		<li class="sidebar-item">
-			<a href="http://www.houzz.com/discussions/using-houzz/sort=popular" class="sidebar-item-label">Popular</a>
+			<a href="" class="sidebar-item-label">Popular</a>
 					</li>
 		<li class="sidebar-item">
-			<a href="http://www.houzz.com/discussions/using-houzz/view=2" class="sidebar-item-label">New</a>
+			<a href="" class="sidebar-item-label">New</a>
 					</li>
 				</ul>
 		</div>
@@ -135,8 +135,6 @@
                         <div style="clear: both"></div>
                     </div>
                     <h class="questionsIndexInfo">5,536 Discussions</h>
-                    <%--<a class="noHoverLink rssLink" type="application/rss+xml" rel="alternate" title="Discussions RSS" href="">
-                        <img class="rssButton" src="./resources/spacer.gif"><span class="rssText small-text">RSS</span></a>--%>
                     <div class="browseListBody">
 
                         <asp:Repeater ID="rptBlogs" runat="server">
@@ -163,7 +161,7 @@
                                 </div>
                                 <div class="question-latest-activity">
                                     <div class="questionUserImageDiv">
-                                        <a href="http://www.houzz.com/user/cdrdesign">
+                                        <a href="">
                                             <img width="30" height="30" class="hzHouzzer hzHCUserImage" data-type="profile" data-id="cdrdesign" src="./resources/user_0.gif"></a>
                                     </div>
                                     <div class="questionExcerpt">
@@ -180,46 +178,6 @@
                             </ItemTemplate>
                             
                         </asp:Repeater>
-
-                        
-
-
-
-
-                        <%--<div class="whiteCard pollEntry ">
-                            <div class="questionPhoto">
-                                <div class="pollCorner"></div>
-                                <a class="hzPollImg" href="http://www.houzz.com/discussions/69834/Comment-for-a-chance-to-win--POLL--Favorite">
-                                    <img class="questionImg" width="35" height="35" src="./resources/4522bdc0266a389_8252-w35-h35-b-p0--home-design.jpg">
-                                </a>
-
-                                &nbsp;&nbsp;
-                            </div>
-                            <div class="questionDetails small-text">
-                                <div class="question-meta-infos">
-                                    <div class="questionTitle normal-header"><a class="colorLink" href="http://www.houzz.com/discussions/69834/Comment-for-a-chance-to-win--POLL--Favorite">Comment for a chance to win! POLL: Favorite Cozy Material</a></div>
-                                    <div class="questionInfo">
-                                        <div class="question-authorship-strip small-text"><a class="hz-username hzHouzzer hzHCUserName " href="http://www.houzz.com/user/houzzerpolls" data-type="profile" data-id="houzzerpolls">Houzz Polls</a> | <span class="hz-date">
-                                            <abbr title="Tuesday, October 22, 203 at 9:0am" utime="38245825">8 hours ago</abbr></span> <span class="question-topic">in <a class="colorLink" href="http://www.houzz.com/discussions/design-dilemma">Design Dilemma</a></span></div>
-                                        <a class="qMetaComment" href="http://www.houzz.com/discussions/69834/Comment-for-a-chance-to-win--POLL--Favorite#addAnswer" title="Write a comment">
-                                            <img class="questionIcons iconSpeechBubble" src="./resources/spacer.gif">9</a>			<a class="qMetaVote" href="http://www.houzz.com/discussions/69834/Comment-for-a-chance-to-win--POLL--Favorite#pollOptions" title="See options">
-                                                <img class="questionIcons iconVote" src="./resources/spacer.gif">43</a>			<a class="qMetaBookmark" href="javascript:" title="Add to bookmarks" fop="f" fty="q" fid="69834">
-                                                    <img class="questionIcons iconBookmark" src="./resources/spacer.gif"></a>
-                                    </div>
-                                </div>
-                                <div class="question-latest-activity">
-                                    <div class="questionUserImageDiv">
-                                        <a href="http://www.houzz.com/user/mlx395">
-                                            <img width="30" height="30" class="hzHouzzer hzHCUserImage" data-type="profile" data-id="mlx395" src="./resources/mlx395.jpg"></a>
-                                    </div>
-                                    <div class="questionExcerpt">
-                                        <a class="hz-username hzHouzzer hzHCUserName qUserName" href="http://www.houzz.com/user/mlx395" data-type="profile" data-id="mlx395">mlx395</a> | <span class="hz-date">
-                                            <abbr title="Wednesday, October 23, 203 at 2:54am" utime="382522049">23 minutes ago</abbr></span><div><a class="qExcerptText" href="http://www.houzz.com/discussions/69834/Comment-for-a-chance-to-win--POLL--Favorite#629754">Favorite cold weather activity - making a snow family (too much snow around here for just one...</a></div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="questionSeparator"></div>
-                        </div>--%>
                     </div>
 
                     <div class="rightSideBar"></div>

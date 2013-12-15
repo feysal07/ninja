@@ -12,5 +12,10 @@ namespace HouseNinja.Services.Implimentation
         {
             return masterdatavalue.getDropDownValues(menmonic).ToList();
         }
+
+        public List<masterdatavalue> GetCitiesByStateId(int stateId)
+        {
+            return masterdatavalue.getCitiesDropDown(stateId).ToList();
+        }
     }
 }

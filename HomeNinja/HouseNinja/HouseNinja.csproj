@@ -242,6 +242,7 @@
   <ItemGroup>
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
+    <Compile Include="DAO\addressdetail.cs" />
     <Compile Include="DAO\Global.cs" />
     <Compile Include="DAO\Helper.cs" />
     <Compile Include="DAO\HomeNinja.Designer.cs">
@@ -253,13 +254,17 @@
     <Compile Include="DAO\post.cs" />
     <Compile Include="DAO\posttype.cs" />
     <Compile Include="DAO\siteuser.cs" />
+    <Compile Include="DAO\usersearch.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelpingEntities\FaceBookUser.cs" />
+    <Compile Include="HelpingEntities\UserSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Services\Implimentation\MasterDataService.cs" />
     <Compile Include="Services\Implimentation\PostDataService.cs" />
+    <Compile Include="Services\Implimentation\UserAddressService.cs" />
+    <Compile Include="Services\Implimentation\UserSearchService.cs" />
     <Compile Include="Services\Implimentation\UserService.cs" />
     <Compile Include="Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

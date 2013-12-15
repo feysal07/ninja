@@ -11,5 +11,10 @@ namespace HouseNinja.DAO
         {
             return Global.Context.masterdatavalues.Where(u => u.mnemonic == mnemonic);
         }
+
+        public static IQueryable<masterdatavalue> getCitiesDropDown(int stateId)
+        {
+            return Global.Context.masterdatavalues.Where(u => u.orderId == stateId);
+        }
     }
 }

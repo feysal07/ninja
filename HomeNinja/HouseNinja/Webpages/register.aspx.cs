@@ -13,20 +13,34 @@ namespace HouseNinja.Webpages
     {
         MasterDataService ms = new MasterDataService();
         UserService us = new UserService();
-        int userId = 0;
+        UserAddressService usaddress = new UserAddressService();
+        int userID = 0;
         private string strDDLDefaultValue = "---Select---";
-
+        //private byte[] userImg;
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (Session["userId"] != null)
+            if (!IsPostBack)
             {
-                userId = Convert.ToInt32(Session["userId"]);
 
-                var user = us.getUserById(userId);
-                loadPersonlDetails(user);
+                if (Session["userId"] != null)
+                {
+                    userID = Convert.ToInt32(Session["userId"]);
+
+                    var user = us.getUserById(userID);
+                    loadPersonlDetails(user);
+                }
+
+                loadDDlData();
             }
-
-            loadDDlData();
+            else {
+                if (Session["ImageBytes"] != null)
+                {
+                    //userImg = Convert.ToBase64CharArray( Session["ImageBytes"]);
+                
+                }
+            
+            }
+        
         }
 
         private void loadDDlData()
@@ -65,25 +79,70 @@ namespace HouseNinja.Webpages
 
         protected void updateBtn_Click(object sender, EventArgs e)
         {
-           siteuser objUser = new siteuser
+            String email= txtEmail.Value.Trim();
+            String fname =txtfirstName.Value.Trim();
+            String lname=txtlastName.Value.Trim();
+            String userName = txtUserName.Value.Trim();
+            String qualification = txtQualification.Value.Trim();
+            String nextProj = txtaboutNewProj.Value.Trim();
+            String aboutMe = txtaboutMe.Value.Trim();
+            String city = ddlCities.SelectedItem.Value;
+            String state = ddlState.SelectedItem.Value;
+            String contact=txtcontactNo.Value.Trim();
+            String pin=txtPinCode.Value.Trim();
+            siteuser objUser = new siteuser
             {
 
                 //userType = Convert.ToInt32(rdUserType.SelectedValue),
-                loginEmail = txtEmail.Value.Trim(),
-                firstName = txtfirstName.Value.Trim(),
-                lastName = txtlastName.Value.Trim(),
-                userName = txtUserName.Value.Trim(),
+                loginEmail = email,
+                firstName =  fname,
+                lastName =   lname,
+                userName = userName,
                 gender = rdGender.SelectedValue,
-                qualification=txtQualification.Value.Trim(),
-                aboutMe = txtaboutMe.Value.Trim(),
+                qualification = qualification,
+                aboutMe = aboutMe,
                 modifiedDate=System.DateTime.Now,
-                nextProject = txtaboutNewProj.Value.Trim(),
+                nextProject = nextProj,
+                userId = userID,
+               // profilPic = userImg,
 
             };
 
-           objUser.Save();
+           addressdetail address = new addressdetail
+           {
+               city = city,
+               modifiedDate=System.DateTime.Now,
+               state=state,
+               userId = userID,
+               contactNo = contact,
+               pincode=txtPinCode.Value.Trim()
+              
 
+           };
 
+           // save data in search table 
+
+           usersearch usrSearch = new usersearch
+           {
+               userId = userID,
+               city = city,
+               state = state,
+               userName = fname +" " +lname,
+               description = aboutMe,
+               contactNo=contact,
+               pincode = pin
+           
+           };
+
+            //save user data in user search table
+           usrSearch.saveUserInSearchTable(usrSearch);
+           
+            //add address object for current user
+           objUser.addressdetails.Add(address);
+           
+           //save user data in user search table
+           us.saveUser(objUser);
+           
         }
         protected void btnPreview_Click(object sender, EventArgs e)
         {
