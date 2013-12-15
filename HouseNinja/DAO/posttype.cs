@@ -9,8 +9,7 @@ namespace HouseNinja.DAO
     {
         public List<posttype> getAllPostTypes()
         {
-
-            return Global.Context.posttypes.ToList();
+           return Global.Context.posttypes.ToList();
         }
     }
 }

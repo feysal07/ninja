@@ -521,7 +521,7 @@
       <div style="width:300px;float:left;" align="left">
          <!--<input type="text" id="usernames" name="usernames" value="" class="vpb_textAreaBoxInputs">-->
          <asp:DropDownList ID="rdUserType" runat="server"  RepeatDirection="Horizontal" Font-Size="Small" >
-            <asp:ListItem Value="">Designer</asp:ListItem>
+            <asp:ListItem Value="1">Designer</asp:ListItem>
             <asp:ListItem Value="2">Contractor</asp:ListItem>
             <asp:ListItem Value="3">Supplier</asp:ListItem>
          </asp:DropDownList>

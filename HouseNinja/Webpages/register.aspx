@@ -156,9 +156,17 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="country">Country</label>
+                                <label class="control-label" for="city">City</label>
                                 <div class="controls">
-                                <label class="plain-text">India</label>
+                                   <input type="text" id="txtPinCode" name="pincode"  runat="server"></div>
+                                    
+                                </div>
+                            </div>
+
+                            <div class="control-group">
+                                <label class="control-label" for="country">Contact No</label>
+                                <div class="controls">
+                                <input type="text" id="txtcontactNo" name="contact" runat="server" class="short"><br>
                                 </div>
                             </div>
 
