@@ -195,6 +195,7 @@
     <Content Include="Webpages\contactUs.aspx" />
     <Content Include="Webpages\CustomControls\Footer.ascx" />
     <Content Include="Webpages\CustomControls\Header.ascx" />
+    <Content Include="Webpages\CustomControls\Search.ascx" />
     <Content Include="Webpages\register.aspx" />
     <Content Include="Webpages\search.aspx" />
     <Content Include="ImageHandler.ashx" />
@@ -314,6 +315,13 @@
     </Compile>
     <Compile Include="Webpages\CustomControls\Header.ascx.designer.cs">
       <DependentUpon>Header.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="Webpages\CustomControls\Search.ascx.cs">
+      <DependentUpon>Search.ascx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Webpages\CustomControls\Search.ascx.designer.cs">
+      <DependentUpon>Search.ascx</DependentUpon>
     </Compile>
     <Compile Include="Webpages\MasterPage\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

@@ -1,7 +1,11 @@
 ﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Webpages/MasterPage/Site.Master" AutoEventWireup="true" CodeBehind="aboutUs.aspx.cs" Inherits="HouseNinja.Webpages.aboutUs" %>
+
+<%@ Register Src="~/Webpages/CustomControls/Search.ascx" TagPrefix="uc1" TagName="Search" %>
+
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <uc1:Search runat="server" id="Search" />
 <div id="mainArea"> 
         <div id="mainContent">
 		<div class="container">

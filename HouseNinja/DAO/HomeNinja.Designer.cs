@@ -1774,24 +1774,24 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String postType1
+        public global::System.String postType
         {
             get
             {
-                return _postType1;
+                return _postType;
             }
             set
             {
-                OnpostType1Changing(value);
-                ReportPropertyChanging("postType1");
-                _postType1 = StructuralObject.SetValidValue(value, true, "postType1");
-                ReportPropertyChanged("postType1");
-                OnpostType1Changed();
+                OnpostTypeChanging(value);
+                ReportPropertyChanging("postType");
+                _postType = StructuralObject.SetValidValue(value, true, "postType");
+                ReportPropertyChanged("postType");
+                OnpostTypeChanged();
             }
         }
-        private global::System.String _postType1;
-        partial void OnpostType1Changing(global::System.String value);
-        partial void OnpostType1Changed();
+        private global::System.String _postType;
+        partial void OnpostTypeChanging(global::System.String value);
+        partial void OnpostTypeChanged();
 
         #endregion
 

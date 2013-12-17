@@ -444,7 +444,7 @@
                               </tbody>
                            </table>
                         </div>
-                        <script>HZ.navigation.SideBar.init({ "defaultMainTopic": "allRooms" });</script>
+                        
                      </div>
                   </div>
                </li>
@@ -458,7 +458,7 @@
                      <div class="tabBody"><span class="tabTitle">CONTACT US</span></div>
                   </a>
                </li>
-               <li id="navSearch" class="navBlock searchMid">
+               <%--<li id="navSearch" class="navBlock searchMid">
                   <div class="navInputs">
                      <div class="navSearchInputShell"></div>
                      <input id="navSearchInput" value="" name="search" placeholder="Search professionals..." class="searchPlaceholder" style="">
@@ -477,7 +477,7 @@
                      <input class="navSearchSubmit" type="submit">
                   </div>
                   <div id="navSearchAutoSuggestContainer" class="autoSuggContainer" style="display: none;"></div>
-               </li>
+               </li>--%>
                <li id="navReg" class="navBlock navBlockDouble">
                   <a href="javascript:void(0);" class="tabOff" onclick="vpb_show_sign_up_box();">
                      <div class="tabBody">

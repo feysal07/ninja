@@ -411,7 +411,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="postType1" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="postType" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="posttype" ToRole="post" />
         </EntityType>
         <EntityType Name="siteuser">
@@ -657,7 +657,7 @@
           <EntitySetMapping Name="posttypes">
             <EntityTypeMapping TypeName="HomeNinjaModel.posttype">
               <MappingFragment StoreEntitySet="posttype">
-                <ScalarProperty Name="postType1" ColumnName="postType" />
+                <ScalarProperty Name="postType" ColumnName="postType" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
