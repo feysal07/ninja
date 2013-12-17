@@ -26,6 +26,7 @@ namespace HouseNinja.DAO
 
         public List<usersearch> getFilteredUsers(UserSearch userPram)
         {
+            //List<usersearch> users = null;
             string query = "SELECT   USERID, USERNAME, DESCRIPTION, STATE,  CITY,  CONTACTNO,  PINCODE FROM USERSEARCH WHERE 1=1";
 
             if (userPram.searchType.Equals("adv"))
@@ -89,7 +90,7 @@ namespace HouseNinja.DAO
             using (HomeNinja db = new HomeNinja())
             {
 
-                var users = db.ExecuteStoreCommand(query);
+                var users = db.ExecuteStoreQuery<usersearch>(query);
             }
 
             //using (var context = new EFRecipesEntities())
@@ -98,6 +99,8 @@ namespace HouseNinja.DAO
             //    var args = new DbParameter[] { new SqlParameter { ParameterName = "Major", Value = "Masters" } };
             //    var students = context.ExecuteStoreQuery<Student>(sql, args);
             //}
+
+            return null;
 
         }
     }
