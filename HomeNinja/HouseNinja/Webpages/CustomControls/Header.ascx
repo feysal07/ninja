@@ -1,5 +1,5 @@
 ﻿<%@ Control Language="C#" AutoEventWireup="true" CodeBehind="Header.ascx.cs" Inherits="HouseNinja.Webpages.CustomControls.Header" %>
-<div id="navContainer" class="">
+<div id="navContainer" class="searchFocused">
    <div id="navHeader" class="unsigned  ">
       <div class="navbar navbar-inverse container">
          <div class="navbar-inner">
@@ -453,6 +453,16 @@
                      <div class="tabBody"><span class="tabTitle">BLOGS</span></div>
                   </a>
                </li>
+               <li id="discussion" class="navBlock">
+                  <a href="blogs.aspx" class="tabOff">
+                     <div class="tabBody"><span class="tabTitle">DISCUSSION</span></div>
+                  </a>
+               </li>
+               <%-- <li id="jobs" class="navBlock">
+                  <a href="blogs.aspx" class="tabOff">
+                     <div class="tabBody"><span class="tabTitle">JOBS</span></div>
+                  </a>
+               </li>--%>
                <li id="navDiscussions" class="navBlock">
                   <a href="contactUs.aspx" class="tabOff">
                      <div class="tabBody"><span class="tabTitle">CONTACT US</span></div>

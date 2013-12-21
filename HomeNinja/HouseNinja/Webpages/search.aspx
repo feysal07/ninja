@@ -10,7 +10,8 @@
 <div class="rightSideContent">
 	<div class="proDirectory newHeader">
 		<div class="headerContainer">
-		<h class="large-header top">2,237,328 Home Improvement Professionals</h><div class="pageDescription pageDescriptionHeader">Even if you're the kind of person who makes everything a DIY project, there's always a point when a home remodeling or decorating project could use a professional set of eyes. Whether you are redoing your backyard, need some help planning your living room or can't figure out where to put the kitchen sink, a quality home professional can help you do it right. Hiring a qualified home professional puts their years of schooling, certifications, training and experience right at your fingertips. <a class="colorLink" href="javascript:HZ.ui.Utils.scrollTo(".pageDescriptionFooter");">More&nbsp;<span class="downChevron">&nbsp;&nbsp;</span></a></div></div>
+		<h class="large-header top">2,237,328 Home Improvement Professionals</h>
+            <div class="pageDescription pageDescriptionHeader">Even if you're the kind of person who makes everything a DIY project, there's always a point when a home remodeling or decorating project could use a professional set of eyes. Whether you are redoing your backyard, need some help planning your living room or can't figure out where to put the kitchen sink, a quality home professional can help you do it right. Hiring a qualified home professional puts their years of schooling, certifications, training and experience right at your fingertips. <a class="colorLink" href="javascript:HZ.ui.Utils.scrollTo(".pageDescriptionFooter");">More&nbsp;<span class="downChevron">&nbsp;&nbsp;</span></a></div></div>
 			<div class="proSearchBar">
 		<ul class="proSearch form-inline">
 			<li>

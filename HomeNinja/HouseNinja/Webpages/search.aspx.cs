@@ -73,9 +73,9 @@ namespace HouseNinja.Webpages
             UserSearch userPram = new UserSearch();
             userPram .city= ddlCity.SelectedValue.ToString();
             userPram.state = ddlState.SelectedValue.ToString();
-           userPram.name= txtUserName.Value.Trim();
-           userPram.pincode = txtZipCode.Value.Trim();
-
+            userPram.name= txtUserName.Value.Trim();
+            userPram.pincode = txtZipCode.Value.Trim();
+            userPram.searchType = "basic";
            usearch.getFilteredUsers(userPram);
 
         }

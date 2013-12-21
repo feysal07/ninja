@@ -193,8 +193,7 @@
                             </div>
                         </dl>
                         <div class="editProfileSectionClear"></div>
-                    </div>
-                      <div class="editProfileSection">
+                     <div class="editProfileSection">
                         <div class="small-header light-rule">Education</div>
                         <dl>
                             <div class="control-group">
@@ -207,6 +206,17 @@
                          </dl>
                           <div class="editProfileSectionClear"></div>
                        </div>
+                       <div class="editProfileSection">
+                        <%--<input id="updateBtn" type="submit" class="hzBtn primary " value="Update">--%>
+                        <asp:Button runat="server" ID="updateBtn" CssClass="vpb_general_button" Text="Update" OnClick="updateBtn_Click"/>
+                        <asp:Button runat="server" ID="btnSkip" CssClass="vpb_general_button" Text="Skip" />
+                       <div class="editProfileSectionClear"></div>
+                       </div>
+
+
+
+                    </div>
+                   
                      <!--<a name="socialLinks"></a>
                     <a name="fbPreferences" style="display: block;"></a>
 
@@ -279,17 +289,12 @@
 			<div class="deactivateContainer"><a class="deactivateAccountLink colorLink" href="deactivateAccount">Deactivate Account</a></div>		</div>
 		<div class="editProfileSectionClear"></div>
 	</div>-->
-                    <div class="editProfileSection">
-                        <%--<input id="updateBtn" type="submit" class="hzBtn primary " value="Update">--%>
-                        <asp:Button runat="server" ID="updateBtn" CssClass="vpb_general_button" Text="Update" OnClick="updateBtn_Click"/>
-                        <asp:Button runat="server" ID="btnSkip" CssClass="vpb_general_button" Text="Skip" />
-                    </div>
-
+                 
                 </div>
                 <div class="rightSideBar"></div>
             </div>
             <div id="mainContentSeparator"></div>
         </div>
-    </div>
+    
 
 </asp:Content>
