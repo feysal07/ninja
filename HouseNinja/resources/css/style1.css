@@ -722,13 +722,13 @@
 
 .hbs textarea:focus,.hbs input[type="text"]:focus,.hbs input[type="password"]:focus,.hbs input[type="datetime"]:focus,.hbs input[type="datetime-local"]:focus,.hbs input[type="date"]:focus,.hbs input[type="month"]:focus,.hbs input[type="time"]:focus,.hbs input[type="week"]:focus,.hbs input[type="number"]:focus,.hbs input[type="email"]:focus,.hbs input[type="url"]:focus,.hbs input[type="search"]:focus,.hbs input[type="tel"]:focus,.hbs input[type="color"]:focus,.hbs .uneditable-input:focus {
     outline: 0;
-    outline: thin dotted \9;
+    outline: thin dotted ;
 }
 
 .hbs input[type="radio"],.hbs input[type="checkbox"] {
     margin: 4px 0 0;
     *margin-top: 0;
-    margin-top: 1px \9;
+    margin-top: 1px ;
     line-height: normal;
 }
 
@@ -1217,9 +1217,9 @@
 
 .hbs input.search-query {
     padding-right: 14px;
-    padding-right: 4px \9;
+    padding-right: 4px ;
     padding-left: 14px;
-    padding-left: 4px \9;
+    padding-left: 4px ;
     margin-bottom: 0;
     -webkit-border-radius: 10px;
     -moz-border-radius: 10px;
@@ -2509,7 +2509,7 @@
 }
 
 .hbs .btn:active,.hbs .btn.active {
-    background-color: #d6d6d6 \9;
+    background-color: #d6d6d6 ;
 }
 
 .hbs .btn:first-child {
@@ -2624,7 +2624,7 @@
 }
 
 .hbs .btn-primary:active,.hbs .btn-primary.active {
-    background-color: #3a952b \9;
+    background-color: #3a952b ;
 }
 
 .hbs .btn-warning {
@@ -2647,7 +2647,7 @@
 }
 
 .hbs .btn-warning:active,.hbs .btn-warning.active {
-    background-color: #c67605 \9;
+    background-color: #c67605 ;
 }
 
 .hbs .btn-danger {
@@ -2670,7 +2670,7 @@
 }
 
 .hbs .btn-danger:active,.hbs .btn-danger.active {
-    background-color: #942a25 \9;
+    background-color: #942a25 ;
 }
 
 .hbs .btn-success {
@@ -2693,7 +2693,7 @@
 }
 
 .hbs .btn-success:active,.hbs .btn-success.active {
-    background-color: #408140 \9;
+    background-color: #408140 ;
 }
 
 .hbs .btn-info {
@@ -2716,7 +2716,7 @@
 }
 
 .hbs .btn-info:active,.hbs .btn-info.active {
-    background-color: #24748c \9;
+    background-color: #24748c ;
 }
 
 .hbs .btn-inverse {
@@ -2739,7 +2739,7 @@
 }
 
 .hbs .btn-inverse:active,.hbs .btn-inverse.active {
-    background-color: #090909 \9;
+    background-color: #090909 ;
 }
 
 .hbs button.btn,.hbs input[type="submit"].btn {
@@ -2815,7 +2815,7 @@
 }
 
 .hbs .btn-gray:active,.hbs .btn-gray.active {
-    background-color: #393939 \9;
+    background-color: #393939 ;
 }
 
 .hbs .btn > .whitebuttonIcon {
@@ -3079,7 +3079,7 @@
 }
 
 .hbs .btn-group.flat .btn:active,.hbs .btn-group.flat .btn.active {
-    background-color: #e6e6e6 \9;
+    background-color: #e6e6e6 ;
 }
 
 .hbs .btn-group.flat .btn.active,.hbs .btn-group.flat .btn:active {
@@ -3105,7 +3105,7 @@
 }
 
 .hbs .btn-group.flat .btn.active:active,.hbs .btn-group.flat .btn.active.active,.hbs .btn-group.flat .btn:active:active,.hbs .btn-group.flat .btn:active.active {
-    background-color: #d7d7d7 \9;
+    background-color: #d7d7d7 ;
 }
 
 .hbs .alert {
@@ -3835,7 +3835,7 @@
 }
 
 .hbs .navbar .btn-navbar:active,.hbs .navbar .btn-navbar.active {
-    background-color: #ccc \9;
+    background-color: #ccc ;
 }
 
 .hbs .navbar .btn-navbar .icon-bar {
@@ -4062,7 +4062,7 @@
 }
 
 .hbs .navbar-inverse .btn-navbar:active,.hbs .navbar-inverse .btn-navbar.active {
-    background-color: #171717 \9;
+    background-color: #171717 ;
 }
 
 .hbs .breadcrumb {

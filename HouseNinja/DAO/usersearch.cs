@@ -56,7 +56,7 @@ namespace HouseNinja.DAO
                     }
 
             }
-            else {
+            else if(userPram.searchType.Equals("basic")) {
 
                 if (userPram.name != null && userPram.name.Equals(""))
                 {
