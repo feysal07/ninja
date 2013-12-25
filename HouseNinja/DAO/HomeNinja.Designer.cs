@@ -102,6 +102,38 @@ namespace HouseNinja.DAO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<advancesetting> advancesettings
+        {
+            get
+            {
+                if ((_advancesettings == null))
+                {
+                    _advancesettings = base.CreateObjectSet<advancesetting>("advancesettings");
+                }
+                return _advancesettings;
+            }
+        }
+        private ObjectSet<advancesetting> _advancesettings;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<advancesettingusremapp> advancesettingusremapps
+        {
+            get
+            {
+                if ((_advancesettingusremapps == null))
+                {
+                    _advancesettingusremapps = base.CreateObjectSet<advancesettingusremapp>("advancesettingusremapps");
+                }
+                return _advancesettingusremapps;
+            }
+        }
+        private ObjectSet<advancesettingusremapp> _advancesettingusremapps;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<comment> comments
         {
             get
@@ -230,22 +262,6 @@ namespace HouseNinja.DAO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        public ObjectSet<subscription> subscriptions
-        {
-            get
-            {
-                if ((_subscriptions == null))
-                {
-                    _subscriptions = base.CreateObjectSet<subscription>("subscriptions");
-                }
-                return _subscriptions;
-            }
-        }
-        private ObjectSet<subscription> _subscriptions;
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
         public ObjectSet<usersearch> usersearches
         {
             get
@@ -301,6 +317,22 @@ namespace HouseNinja.DAO
         public void AddToaddressdetails(addressdetail addressdetail)
         {
             base.AddObject("addressdetails", addressdetail);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the advancesettings EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToadvancesettings(advancesetting advancesetting)
+        {
+            base.AddObject("advancesettings", advancesetting);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the advancesettingusremapps EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddToadvancesettingusremapps(advancesettingusremapp advancesettingusremapp)
+        {
+            base.AddObject("advancesettingusremapps", advancesettingusremapp);
         }
     
         /// <summary>
@@ -365,14 +397,6 @@ namespace HouseNinja.DAO
         public void AddTositeusers(siteuser siteuser)
         {
             base.AddObject("siteusers", siteuser);
-        }
-    
-        /// <summary>
-        /// Deprecated Method for adding a new object to the subscriptions EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
-        /// </summary>
-        public void AddTosubscriptions(subscription subscription)
-        {
-            base.AddObject("subscriptions", subscription);
         }
     
         /// <summary>
@@ -764,6 +788,238 @@ namespace HouseNinja.DAO
                 }
             }
         }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HomeNinjaModel", Name="advancesetting")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class advancesetting : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new advancesetting object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static advancesetting Createadvancesetting(global::System.Int32 id)
+        {
+            advancesetting advancesetting = new advancesetting();
+            advancesetting.id = id;
+            return advancesetting;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value, "id");
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String fieldName
+        {
+            get
+            {
+                return _fieldName;
+            }
+            set
+            {
+                OnfieldNameChanging(value);
+                ReportPropertyChanging("fieldName");
+                _fieldName = StructuralObject.SetValidValue(value, true, "fieldName");
+                ReportPropertyChanged("fieldName");
+                OnfieldNameChanged();
+            }
+        }
+        private global::System.String _fieldName;
+        partial void OnfieldNameChanging(global::System.String value);
+        partial void OnfieldNameChanged();
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HomeNinjaModel", Name="advancesettingusremapp")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class advancesettingusremapp : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new advancesettingusremapp object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static advancesettingusremapp Createadvancesettingusremapp(global::System.Int32 id)
+        {
+            advancesettingusremapp advancesettingusremapp = new advancesettingusremapp();
+            advancesettingusremapp.id = id;
+            return advancesettingusremapp;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value, "id");
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> userId
+        {
+            get
+            {
+                return _userId;
+            }
+            set
+            {
+                OnuserIdChanging(value);
+                ReportPropertyChanging("userId");
+                _userId = StructuralObject.SetValidValue(value, "userId");
+                ReportPropertyChanged("userId");
+                OnuserIdChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _userId;
+        partial void OnuserIdChanging(Nullable<global::System.Int64> value);
+        partial void OnuserIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.SByte> newsLetters
+        {
+            get
+            {
+                return _newsLetters;
+            }
+            set
+            {
+                OnnewsLettersChanging(value);
+                ReportPropertyChanging("newsLetters");
+                _newsLetters = StructuralObject.SetValidValue(value, "newsLetters");
+                ReportPropertyChanged("newsLetters");
+                OnnewsLettersChanged();
+            }
+        }
+        private Nullable<global::System.SByte> _newsLetters;
+        partial void OnnewsLettersChanging(Nullable<global::System.SByte> value);
+        partial void OnnewsLettersChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.SByte> publishContactNo
+        {
+            get
+            {
+                return _publishContactNo;
+            }
+            set
+            {
+                OnpublishContactNoChanging(value);
+                ReportPropertyChanging("publishContactNo");
+                _publishContactNo = StructuralObject.SetValidValue(value, "publishContactNo");
+                ReportPropertyChanged("publishContactNo");
+                OnpublishContactNoChanged();
+            }
+        }
+        private Nullable<global::System.SByte> _publishContactNo;
+        partial void OnpublishContactNoChanging(Nullable<global::System.SByte> value);
+        partial void OnpublishContactNoChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.SByte> publishAddress
+        {
+            get
+            {
+                return _publishAddress;
+            }
+            set
+            {
+                OnpublishAddressChanging(value);
+                ReportPropertyChanging("publishAddress");
+                _publishAddress = StructuralObject.SetValidValue(value, "publishAddress");
+                ReportPropertyChanged("publishAddress");
+                OnpublishAddressChanged();
+            }
+        }
+        private Nullable<global::System.SByte> _publishAddress;
+        partial void OnpublishAddressChanging(Nullable<global::System.SByte> value);
+        partial void OnpublishAddressChanged();
 
         #endregion
 
@@ -2778,158 +3034,6 @@ namespace HouseNinja.DAO
                 }
             }
         }
-
-        #endregion
-
-    }
-    
-    /// <summary>
-    /// No Metadata Documentation available.
-    /// </summary>
-    [EdmEntityTypeAttribute(NamespaceName="HomeNinjaModel", Name="subscription")]
-    [Serializable()]
-    [DataContractAttribute(IsReference=true)]
-    public partial class subscription : EntityObject
-    {
-        #region Factory Method
-    
-        /// <summary>
-        /// Create a new subscription object.
-        /// </summary>
-        /// <param name="id">Initial value of the id property.</param>
-        public static subscription Createsubscription(global::System.Int32 id)
-        {
-            subscription subscription = new subscription();
-            subscription.id = id;
-            return subscription;
-        }
-
-        #endregion
-
-        #region Simple Properties
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
-        [DataMemberAttribute()]
-        public global::System.Int32 id
-        {
-            get
-            {
-                return _id;
-            }
-            set
-            {
-                if (_id != value)
-                {
-                    OnidChanging(value);
-                    ReportPropertyChanging("id");
-                    _id = StructuralObject.SetValidValue(value, "id");
-                    ReportPropertyChanged("id");
-                    OnidChanged();
-                }
-            }
-        }
-        private global::System.Int32 _id;
-        partial void OnidChanging(global::System.Int32 value);
-        partial void OnidChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.Int64> userId
-        {
-            get
-            {
-                return _userId;
-            }
-            set
-            {
-                OnuserIdChanging(value);
-                ReportPropertyChanging("userId");
-                _userId = StructuralObject.SetValidValue(value, "userId");
-                ReportPropertyChanged("userId");
-                OnuserIdChanged();
-            }
-        }
-        private Nullable<global::System.Int64> _userId;
-        partial void OnuserIdChanging(Nullable<global::System.Int64> value);
-        partial void OnuserIdChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.SByte> newsLetters
-        {
-            get
-            {
-                return _newsLetters;
-            }
-            set
-            {
-                OnnewsLettersChanging(value);
-                ReportPropertyChanging("newsLetters");
-                _newsLetters = StructuralObject.SetValidValue(value, "newsLetters");
-                ReportPropertyChanged("newsLetters");
-                OnnewsLettersChanged();
-            }
-        }
-        private Nullable<global::System.SByte> _newsLetters;
-        partial void OnnewsLettersChanging(Nullable<global::System.SByte> value);
-        partial void OnnewsLettersChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.SByte> publishNo
-        {
-            get
-            {
-                return _publishNo;
-            }
-            set
-            {
-                OnpublishNoChanging(value);
-                ReportPropertyChanging("publishNo");
-                _publishNo = StructuralObject.SetValidValue(value, "publishNo");
-                ReportPropertyChanged("publishNo");
-                OnpublishNoChanged();
-            }
-        }
-        private Nullable<global::System.SByte> _publishNo;
-        partial void OnpublishNoChanging(Nullable<global::System.SByte> value);
-        partial void OnpublishNoChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
-        public Nullable<global::System.SByte> publishAddress
-        {
-            get
-            {
-                return _publishAddress;
-            }
-            set
-            {
-                OnpublishAddressChanging(value);
-                ReportPropertyChanging("publishAddress");
-                _publishAddress = StructuralObject.SetValidValue(value, "publishAddress");
-                ReportPropertyChanged("publishAddress");
-                OnpublishAddressChanged();
-            }
-        }
-        private Nullable<global::System.SByte> _publishAddress;
-        partial void OnpublishAddressChanging(Nullable<global::System.SByte> value);
-        partial void OnpublishAddressChanged();
 
         #endregion
 

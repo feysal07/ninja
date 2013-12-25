@@ -245,6 +245,8 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\AuthConfig.cs" />
     <Compile Include="DAO\addressdetail.cs" />
+    <Compile Include="DAO\advancesetting.cs" />
+    <Compile Include="DAO\advancesettingusremapp.cs" />
     <Compile Include="DAO\Global.cs" />
     <Compile Include="DAO\Helper.cs" />
     <Compile Include="DAO\HomeNinja.Designer.cs">
@@ -260,12 +262,14 @@
     <Compile Include="DAO\siteuser.cs" />
     <Compile Include="DAO\usersearch.cs" />
     <Compile Include="DAO\usersjobcatagory.cs" />
+    <Compile Include="DAO\usertype.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelpingEntities\FaceBookUser.cs" />
     <Compile Include="HelpingEntities\UserSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Implimentation\AdvanceSetingService.cs" />
     <Compile Include="Services\Implimentation\JobCategoryService.cs" />
     <Compile Include="Services\Implimentation\MasterDataService.cs" />
     <Compile Include="Services\Implimentation\PostDataService.cs" />

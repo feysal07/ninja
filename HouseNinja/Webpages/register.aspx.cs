@@ -18,19 +18,19 @@ namespace HouseNinja.Webpages
         private string strDDLDefaultValue = "---Select---";
         private string strJobCategories = "";
         private string strJobSubCategories = "";
-        //private byte[] userImg;
+       
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
 
-                //if (Session["userId"] != null)
-                //{
-                //    userID = Convert.ToInt32(Session["userId"]);
+                if (Session["userId"] != null)
+                {
+                   userID = Convert.ToInt32(Session["userId"]);
 
                     var user = us.getUserById(1);
                     loadPersonlDetails(user);
-               // }
+                }
 
                 loadDDlData();
                 loadCheckBoxData();
@@ -49,6 +49,7 @@ namespace HouseNinja.Webpages
         private void loadCheckBoxData()
         {
             var jobcategories = JobCategoryService.getCategories();
+            var advSettingOpts = AdvanceSetingService.getAllAdvOptions();
 
             if (jobcategories != null)
             {
@@ -56,8 +57,22 @@ namespace HouseNinja.Webpages
                 chkJobCat.DataTextField = "jobCat";
                 chkJobCat.DataValueField = "id";
                 chkJobCat.DataBind();
-               // chkJobCat.Items.Insert(0, strDDLDefaultValue);
+                
             }
+
+            if (advSettingOpts != null)
+            { 
+            
+                
+                chkAdvSettings.DataSource =advSettingOpts;
+                chkAdvSettings.DataTextField = "fieldName";
+                chkAdvSettings.DataValueField = "id";
+                chkAdvSettings.DataBind();
+            
+            }
+
+
+
         }
 
         private void loadDDlData()
@@ -157,7 +172,23 @@ namespace HouseNinja.Webpages
             //save data in user job categories detail table
            saveUserJobCategories();
 
+           int [] advOpts=saveAdvSettingsDetails();
+           if (advOpts.Sum() > 0)
+           {
 
+               advancesettingusremapp advUsrSetting = new advancesettingusremapp
+               {
+                   userId = userID,
+                   newsLetters = (sbyte)advOpts[0],
+                   publishAddress = (sbyte)advOpts[1],
+                   publishContactNo = (sbyte)advOpts[2]
+
+               };
+
+               //save advance setting options
+               us.saveAdvanceOptsSetting(advUsrSetting);
+           }
+            
            // save data in search table 
            usersearch usrSearch = new usersearch
            {
@@ -254,6 +285,38 @@ namespace HouseNinja.Webpages
 
             Session["strJobSubCategories"] = strJobSubCategories;
         }
+
+
+        protected int[] saveAdvSettingsDetails()
+        {
+            int lastSelectedIndex = 0;
+            int[] arrayAdvOpts=new int[3];
+
+
+            List<int> lastSelectedValue = new List<int>();
+            foreach (ListItem listitem in chkJobSubCat.Items)
+            {
+                if (listitem.Selected)
+                {
+                    int thisIndex = chkJobSubCat.Items.IndexOf(listitem);
+
+                    if (lastSelectedIndex <= thisIndex)
+                    {
+                        arrayAdvOpts[lastSelectedIndex] = 1;
+                    }
+                }
+            }
+
+            return arrayAdvOpts;
+        }
+
+
+
+
+
+
+
+
 
     }
 }

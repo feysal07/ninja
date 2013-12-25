@@ -34,5 +34,15 @@ namespace HouseNinja.Services.Implimentation
         {
             siteUser.Save();
         }
+
+        public List<usertype> populateUserType() {
+
+            return usertype.populateUserType();
+        }
+
+        public  void  saveAdvanceOptsSetting(advancesettingusremapp advSetValues) {
+
+             advancesettingusremapp.saveUserAdvSettingOpts(advSetValues);
+        }
     }
 }

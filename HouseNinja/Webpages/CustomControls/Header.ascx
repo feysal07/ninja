@@ -522,35 +522,35 @@
    <!-- General Pop-up Background -->
    <!-- Sign Up Box Starts Here -->
    <div id="vpb_signup_pop_up_box">
-      <div align="left" style="font-family:proxima-nova; font-size:6px; font-weight:bold;">Register</div>
+      <div align="left" style="font-family:proxima-nova; font-size:16px; font-weight:bold;">Register</div>
       <br clear="all">
       <!--<div align="left" style="font-family:proxima-nova; font-size:px;">To exit this sign-up box, click on the cancel button or outside this box..</div><br clear="all"><br clear="all">-->
       <!--<div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">Your Fullname:</div>
          <div style="width:300px;float:left;" align="left"><input type="text" id="fullnames" name="fullnames" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">-->
-      <div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">Register As:</div>
+      <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">Register As:</div>
       <div style="width:300px;float:left;" align="left">
          <!--<input type="text" id="usernames" name="usernames" value="" class="vpb_textAreaBoxInputs">-->
-         <asp:DropDownList ID="rdUserType" runat="server"  RepeatDirection="Horizontal" Font-Size="Small" >
-            <asp:ListItem Value="1">Designer</asp:ListItem>
+         <asp:DropDownList ID="ddlUserType" runat="server"  RepeatDirection="Horizontal" Font-Size="Small" >
+            <%--<asp:ListItem Value="1">Designer</asp:ListItem>
             <asp:ListItem Value="2">Contractor</asp:ListItem>
-            <asp:ListItem Value="3">Supplier</asp:ListItem>
+            <asp:ListItem Value="3">Supplier</asp:ListItem>--%>
          </asp:DropDownList>
       </div>
       <br clear="all"><br clear="all">
-      <div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">Email</div>
+      <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">Email</div>
       <div style="width:300px;float:left;" align="left"><input type="text" id="emails" name="emails" value="" class="vpb_textAreaBoxInputs" runat="server"></div>
       <br clear="all"><br clear="all">
-      <div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">Password:</div>
+      <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">Password:</div>
       <div style="width:300px;float:left;" align="left"><input type="password" id="passs" name="passs" value="" class="vpb_textAreaBoxInputs" runat="server"></div>
       <br clear="all"><br clear="all">
-      <div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">Confirm Password:</div>
+      <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">Confirm Password:</div>
       <div style="width:300px;float:left;" align="left"><input type="password" id="confirmPass" name="confirmPass" value="" class="vpb_textAreaBoxInputs" runat="server"></div>
       <br clear="all"><br clear="all">
-      <div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">&nbsp;</div>
+      <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">&nbsp;</div>
       <div style="width:300px;float:left;" align="left">
          <!--<a href="javascript:void(0);" class="vpb_general_button" onClick="alert('Hello There!\n\n There is no functionality associated with the button you have just clicked. \n\nThis is just a demonstration of Pop-up Boxes and that\'s all.\n\nThanks.');">Submit</a>
             <a href="javascript:void(0);" class="vpb_general_button" onClick="vpb_hide_popup_boxes();">Cancel</a>-->
-         <asp:Button ID="Button"  class="vpb_general_button" Text="Register" runat="server"  OnClick="Register_Click"/>
+         <asp:Button ID="Button"  class="vpb_general_button" Text="Register" runat="server" OnClick="Register_Click"/>&nbsp;&nbsp;&nbsp;&nbsp;
          <asp:Button ID="Button2" class="vpb_general_button" Text="Cancel" runat="server" OnClientClick="vpb_hide_popup_boxes();" />
       </div>
       <br clear="all"><br clear="all">
@@ -559,13 +559,13 @@
    <!-- Sign Up Box Ends Here -->
    <!-- Login Box Starts Here -->
    <div id="vpb_login_pop_up_box" class="vpb_signup_pop_up_box">
-      <div align="left" style="font-family:proxima-nova; font-size:6px; font-weight:bold;">Sign In</div>
+      <div align="left" style="font-family:proxima-nova; font-size:16px; font-weight:bold;">Sign In</div>
       <br clear="all">
       <!--<div align="left" style="font-family:proxima-nova; font-size:px;">To exit this login box, click on the cancel button or outside this box..</div><br clear="all"><br clear="all">-->
-      <div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">Your Username:</div>
+      <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">Your Username:</div>
       <div style="width:300px;float:left;" align="left"><input type="text" id="txtUserName" name="usernames" value="" class="vpb_textAreaBoxInputs" runat="server"></div>
       <br clear="all"><br clear="all">
-      <div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">Your Password:</div>
+      <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">Your Password:</div>
       <div style="width:300px;float:left;" align="left"><input type="password" id="txtPassword" name="passs" value="" class="vpb_textAreaBoxInputs" runat="server"></div>
       <br clear="all"><br clear="all">
       <div align="left" style="width:300px;float:right; margin-right: 37px;margin-top: -47px;">
@@ -574,7 +574,7 @@
          </div>
          <div style="min-width:0px"><asp:Button ID="btnLogin" runat="server" Text="Login with FaceBook" OnClick="Login" /></div>
       </div>
-      <div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">&nbsp;</div>
+      <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">&nbsp;</div>
       <div style="width:300px;float:left;margin-top: -47px;" align="left">
          <!--<a href="javascript:void(0);" class="vpb_general_button" onClick="alert(hi);">Sign In</a> 
             <a href="javascript:void(0);" class="vpb_general_button" onClick="vpb_hide_popup_boxes();">Cancel</a>-->

@@ -4,20 +4,21 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="30a9f114c93745748310dd3fdd11d610" Name="Diagram1" ZoomLevel="94">
-        <EntityTypeShape EntityType="HomeNinjaModel.addressdetail" Width="1.5" PointX="4.9666560632021426" PointY="16.316513218133018" />
-        <EntityTypeShape EntityType="HomeNinjaModel.comment" Width="1.5" PointX="11.858200823822152" PointY="21.191449115607632" />
-        <EntityTypeShape EntityType="HomeNinjaModel.jobcategory" Width="1.5" PointX="9.7928483047489312" PointY="18.354234078132656" />
-        <EntityTypeShape EntityType="HomeNinjaModel.jobsubcategory" Width="1.5" PointX="9.4191591727636563" PointY="11.24945274519243" />
-        <EntityTypeShape EntityType="HomeNinjaModel.masterdatatype" Width="1.5" PointX="3.9239216148499034" PointY="3.2972271159744015" />
-        <EntityTypeShape EntityType="HomeNinjaModel.masterdatavalue" Width="1.5" PointX="5.4027227207099662" PointY="0.71351450714912013" />
-        <EntityTypeShape EntityType="HomeNinjaModel.post" Width="1.5" PointX="1.9252337636077934" PointY="21.787581439031094" />
-        <EntityTypeShape EntityType="HomeNinjaModel.posttype" Width="1.5" PointX="9.052362602694128" PointY="24.798563938959763" />
-        <EntityTypeShape EntityType="HomeNinjaModel.siteuser" Width="1.5" PointX="7.5114471686591617" PointY="29.451592473989162" />
-        <EntityTypeShape EntityType="HomeNinjaModel.subscription" Width="1.5" PointX="2.5193670720417831" PointY="31.73448967921291" />
-        <EntityTypeShape EntityType="HomeNinjaModel.usersearch" Width="1.5" PointX="5.8767914240606087" PointY="18.440514632705838" />
-        <EntityTypeShape EntityType="HomeNinjaModel.usersjobcatagory" Width="1.5" PointX="2.8244519190976636" PointY="5.6772694763155975" />
-        <EntityTypeShape EntityType="HomeNinjaModel.usertype" Width="1.5" PointX="7.9440143480636243" PointY="11.321811457780102" />
+      <Diagram DiagramId="30a9f114c93745748310dd3fdd11d610" Name="Diagram1" ZoomLevel="100">
+        <EntityTypeShape EntityType="HomeNinjaModel.addressdetail" Width="1.5" PointX="7.3696697630778276" PointY="4.2546321322464538" />
+        <EntityTypeShape EntityType="HomeNinjaModel.advancesetting" Width="1.5" PointX="6.7358473384454136" PointY="19.199048617481743" />
+        <EntityTypeShape EntityType="HomeNinjaModel.advancesettingusremapp" Width="1.5" PointX="3.2824141025926985" PointY="26.102185932035646" />
+        <EntityTypeShape EntityType="HomeNinjaModel.comment" Width="1.5" PointX="7.3086099230258768" PointY="1.6248675741371081" />
+        <EntityTypeShape EntityType="HomeNinjaModel.jobcategory" Width="1.5" PointX="5.502486926271807" PointY="9.2889057143074023" />
+        <EntityTypeShape EntityType="HomeNinjaModel.jobsubcategory" Width="1.5" PointX="3.0773858107055476" PointY="10.514749308356432" />
+        <EntityTypeShape EntityType="HomeNinjaModel.masterdatatype" Width="1.5" PointX="8.0497795380883765" PointY="29.768774597797904" />
+        <EntityTypeShape EntityType="HomeNinjaModel.masterdatavalue" Width="1.5" PointX="10.881453159675679" PointY="13.835541508083949" />
+        <EntityTypeShape EntityType="HomeNinjaModel.post" Width="1.5" PointX="3.9366441201123616" PointY="2.3258853416544785" />
+        <EntityTypeShape EntityType="HomeNinjaModel.posttype" Width="1.5" PointX="3.9485373478143186" PointY="13.746346912228663" />
+        <EntityTypeShape EntityType="HomeNinjaModel.siteuser" Width="1.5" PointX="0.63419704541293764" PointY="25.436147329134936" />
+        <EntityTypeShape EntityType="HomeNinjaModel.usersearch" Width="1.5" PointX="3.0553414947611008" PointY="8.66775609956484" />
+        <EntityTypeShape EntityType="HomeNinjaModel.usersjobcatagory" Width="1.5" PointX="9.1849031900916724" PointY="7.5304850971002528" />
+        <EntityTypeShape EntityType="HomeNinjaModel.usertype" Width="1.5" PointX="11.011240286292154" PointY="9.340003315983342" />
         <AssociationConnector Association="HomeNinjaModel.FK_addressdetails" />
         <AssociationConnector Association="HomeNinjaModel.FK_siteusers" />
         <AssociationConnector Association="HomeNinjaModel.FK_comments_createdBy" />
