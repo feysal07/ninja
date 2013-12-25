@@ -102,9 +102,9 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="userId" Type="bigint" />
-          <Property Name="newsLetters" Type="tinyint" />
-          <Property Name="publishContactNo" Type="tinyint" />
-          <Property Name="publishAddress" Type="tinyint" />
+          <Property Name="newsLetters" Type="bool" />
+          <Property Name="publishContactNo" Type="bool" />
+          <Property Name="publishAddress" Type="bool" />
         </EntityType>
         <EntityType Name="comments">
           <Key>
@@ -486,9 +486,9 @@
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="Int64" Name="userId" />
-          <Property Type="SByte" Name="newsLetters" />
-          <Property Type="SByte" Name="publishContactNo" />
-          <Property Type="SByte" Name="publishAddress" />
+          <Property Type="Boolean" Name="newsLetters" />
+          <Property Type="Boolean" Name="publishContactNo" />
+          <Property Type="Boolean" Name="publishAddress" />
         </EntityType>
         <EntityType Name="comment">
           <Key>

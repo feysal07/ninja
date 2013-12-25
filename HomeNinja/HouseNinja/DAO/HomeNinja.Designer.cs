@@ -954,7 +954,7 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.SByte> newsLetters
+        public Nullable<global::System.Boolean> newsLetters
         {
             get
             {
@@ -969,8 +969,8 @@ namespace HouseNinja.DAO
                 OnnewsLettersChanged();
             }
         }
-        private Nullable<global::System.SByte> _newsLetters;
-        partial void OnnewsLettersChanging(Nullable<global::System.SByte> value);
+        private Nullable<global::System.Boolean> _newsLetters;
+        partial void OnnewsLettersChanging(Nullable<global::System.Boolean> value);
         partial void OnnewsLettersChanged();
     
         /// <summary>
@@ -978,7 +978,7 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.SByte> publishContactNo
+        public Nullable<global::System.Boolean> publishContactNo
         {
             get
             {
@@ -993,8 +993,8 @@ namespace HouseNinja.DAO
                 OnpublishContactNoChanged();
             }
         }
-        private Nullable<global::System.SByte> _publishContactNo;
-        partial void OnpublishContactNoChanging(Nullable<global::System.SByte> value);
+        private Nullable<global::System.Boolean> _publishContactNo;
+        partial void OnpublishContactNoChanging(Nullable<global::System.Boolean> value);
         partial void OnpublishContactNoChanged();
     
         /// <summary>
@@ -1002,7 +1002,7 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public Nullable<global::System.SByte> publishAddress
+        public Nullable<global::System.Boolean> publishAddress
         {
             get
             {
@@ -1017,8 +1017,8 @@ namespace HouseNinja.DAO
                 OnpublishAddressChanged();
             }
         }
-        private Nullable<global::System.SByte> _publishAddress;
-        partial void OnpublishAddressChanging(Nullable<global::System.SByte> value);
+        private Nullable<global::System.Boolean> _publishAddress;
+        partial void OnpublishAddressChanging(Nullable<global::System.Boolean> value);
         partial void OnpublishAddressChanged();
 
         #endregion
