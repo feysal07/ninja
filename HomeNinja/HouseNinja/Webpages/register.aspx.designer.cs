@@ -175,6 +175,15 @@ namespace HouseNinja.Webpages {
         protected global::System.Web.UI.WebControls.CheckBoxList chkJobSubCat;
         
         /// <summary>
+        /// chkAdvSettings control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkAdvSettings;
+        
+        /// <summary>
         /// updateBtn control.
         /// </summary>
         /// <remarks>

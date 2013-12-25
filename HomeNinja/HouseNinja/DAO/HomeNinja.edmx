@@ -7,6 +7,8 @@
     <Schema Namespace="HomeNinjaModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="HomeNinjaModelStoreContainer">
           <EntitySet Name="addressdetails" EntityType="HomeNinjaModel.Store.addressdetails" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="advancesetting" EntityType="HomeNinjaModel.Store.advancesetting" store:Type="Tables" Schema="homeninja" />
+          <EntitySet Name="advancesettingusremapp" EntityType="HomeNinjaModel.Store.advancesettingusremapp" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="comments" EntityType="HomeNinjaModel.Store.comments" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="jobcategory" EntityType="HomeNinjaModel.Store.jobcategory" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="jobsubcategory" EntityType="HomeNinjaModel.Store.jobsubcategory" store:Type="Tables" Schema="homeninja" />
@@ -15,7 +17,6 @@
           <EntitySet Name="posts" EntityType="HomeNinjaModel.Store.posts" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="posttype" EntityType="HomeNinjaModel.Store.posttype" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="siteusers" EntityType="HomeNinjaModel.Store.siteusers" store:Type="Tables" Schema="homeninja" />
-          <EntitySet Name="subscription" EntityType="HomeNinjaModel.Store.subscription" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="usersearch" EntityType="HomeNinjaModel.Store.usersearch" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="usersjobcatagories" EntityType="HomeNinjaModel.Store.usersjobcatagories" store:Type="Tables" Schema="homeninja" />
           <EntitySet Name="usertype" EntityType="HomeNinjaModel.Store.usertype" store:Type="Tables" Schema="homeninja" />
@@ -87,6 +88,23 @@
           <Property Name="createdDate" Type="datetime" />
           <Property Name="modifiedDate" Type="datetime" />
           <Property Name="userId" Type="bigint" />
+        </EntityType>
+        <EntityType Name="advancesetting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="fieldName" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="advancesettingusremapp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userId" Type="bigint" />
+          <Property Name="newsLetters" Type="tinyint" />
+          <Property Name="publishContactNo" Type="tinyint" />
+          <Property Name="publishAddress" Type="tinyint" />
         </EntityType>
         <EntityType Name="comments">
           <Key>
@@ -175,16 +193,6 @@
           <Property Name="myFavoriteStyle" Type="text" />
           <Property Name="createdDate" Type="datetime" />
           <Property Name="modifiedDate" Type="datetime" />
-        </EntityType>
-        <EntityType Name="subscription">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
-          <Property Name="userId" Type="bigint" />
-          <Property Name="newsLetters" Type="tinyint" />
-          <Property Name="publishNo" Type="tinyint" />
-          <Property Name="publishAddress" Type="tinyint" />
         </EntityType>
         <EntityType Name="usersearch">
           <Key>
@@ -381,6 +389,8 @@
       <Schema Namespace="HomeNinjaModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="HomeNinja" p1:LazyLoadingEnabled="true">
           <EntitySet Name="addressdetails" EntityType="HomeNinjaModel.addressdetail" />
+          <EntitySet Name="advancesettings" EntityType="HomeNinjaModel.advancesetting" />
+          <EntitySet Name="advancesettingusremapps" EntityType="HomeNinjaModel.advancesettingusremapp" />
           <EntitySet Name="comments" EntityType="HomeNinjaModel.comment" />
           <EntitySet Name="jobcategories" EntityType="HomeNinjaModel.jobcategory" />
           <EntitySet Name="jobsubcategories" EntityType="HomeNinjaModel.jobsubcategory" />
@@ -389,7 +399,6 @@
           <EntitySet Name="posts" EntityType="HomeNinjaModel.post" />
           <EntitySet Name="posttypes" EntityType="HomeNinjaModel.posttype" />
           <EntitySet Name="siteusers" EntityType="HomeNinjaModel.siteuser" />
-          <EntitySet Name="subscriptions" EntityType="HomeNinjaModel.subscription" />
           <EntitySet Name="usersearches" EntityType="HomeNinjaModel.usersearch" />
           <EntitySet Name="usersjobcatagories" EntityType="HomeNinjaModel.usersjobcatagory" />
           <EntitySet Name="usertypes" EntityType="HomeNinjaModel.usertype" />
@@ -463,6 +472,23 @@
           <Property Type="Int64" Name="userId" />
           <NavigationProperty Name="siteuser" Relationship="HomeNinjaModel.FK_addressdetails" FromRole="addressdetail" ToRole="siteuser" />
           <NavigationProperty Name="siteusers" Relationship="HomeNinjaModel.FK_siteusers" FromRole="addressdetail" ToRole="siteuser" />
+        </EntityType>
+        <EntityType Name="advancesetting">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="String" Name="fieldName" MaxLength="50" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="advancesettingusremapp">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Type="Int64" Name="userId" />
+          <Property Type="SByte" Name="newsLetters" />
+          <Property Type="SByte" Name="publishContactNo" />
+          <Property Type="SByte" Name="publishAddress" />
         </EntityType>
         <EntityType Name="comment">
           <Key>
@@ -570,16 +596,6 @@
           <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_user_id" FromRole="siteuser" ToRole="post" />
           <NavigationProperty Name="usertype1" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="siteuser" ToRole="usertype" />
           <NavigationProperty Name="usersjobcatagories" Relationship="HomeNinjaModel.FK_usersjobcatagories_users" FromRole="siteuser" ToRole="usersjobcatagory" />
-        </EntityType>
-        <EntityType Name="subscription">
-          <Key>
-            <PropertyRef Name="id" />
-          </Key>
-          <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="Int64" Name="userId" />
-          <Property Type="SByte" Name="newsLetters" />
-          <Property Type="SByte" Name="publishNo" />
-          <Property Type="SByte" Name="publishAddress" />
         </EntityType>
         <EntityType Name="usersearch">
           <Key>
@@ -798,6 +814,25 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="advancesettings">
+            <EntityTypeMapping TypeName="HomeNinjaModel.advancesetting">
+              <MappingFragment StoreEntitySet="advancesetting">
+                <ScalarProperty Name="fieldName" ColumnName="fieldName" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="advancesettingusremapps">
+            <EntityTypeMapping TypeName="HomeNinjaModel.advancesettingusremapp">
+              <MappingFragment StoreEntitySet="advancesettingusremapp">
+                <ScalarProperty Name="publishAddress" ColumnName="publishAddress" />
+                <ScalarProperty Name="publishContactNo" ColumnName="publishContactNo" />
+                <ScalarProperty Name="newsLetters" ColumnName="newsLetters" />
+                <ScalarProperty Name="userId" ColumnName="userId" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <EntitySetMapping Name="comments">
             <EntityTypeMapping TypeName="HomeNinjaModel.comment">
               <MappingFragment StoreEntitySet="comments">
@@ -891,17 +926,6 @@
                 <ScalarProperty Name="firstName" ColumnName="firstName" />
                 <ScalarProperty Name="userName" ColumnName="userName" />
                 <ScalarProperty Name="userId" ColumnName="userId" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
-          <EntitySetMapping Name="subscriptions">
-            <EntityTypeMapping TypeName="HomeNinjaModel.subscription">
-              <MappingFragment StoreEntitySet="subscription">
-                <ScalarProperty Name="publishAddress" ColumnName="publishAddress" />
-                <ScalarProperty Name="publishNo" ColumnName="publishNo" />
-                <ScalarProperty Name="newsLetters" ColumnName="newsLetters" />
-                <ScalarProperty Name="userId" ColumnName="userId" />
-                <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>

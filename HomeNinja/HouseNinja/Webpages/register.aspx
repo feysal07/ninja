@@ -218,20 +218,20 @@
                           <div class="editProfileSectionClear"></div>
                        </div>
 
-                     <%--<div class="editProfileSection">
-                        <div class="small-header light-rule">Services</div>
+                     <div class="editProfileSection">
+                        <div class="small-header light-rule">Advance Setting</div>
                         <dl>
                             <div class="control-group">
-                                <label class="control-label" for="education">Job Types</label>
+                                <%--<label class="control-label" for="education">Job Types</label>--%>
                                 <div class="controls">
-                                 <asp:CheckBoxList ID="chkJobSubCat" runat="server" OnSelectedIndexChanged="chkJobSubCat_SelectedIndexChanged" AutoPostBack="true" 
+                                 <asp:CheckBoxList ID="chkAdvSettings" runat="server" 
                                         RepeatDirection="Horizontal" RepeatColumns="2"></asp:CheckBoxList>
                                 </div>
                             </div>
                             
                          </dl>
                           <div class="editProfileSectionClear"></div>
-                       </div>--%>
+                       </div>
                        <div class="editProfileSection">
                         <%--<input id="updateBtn" type="submit" class="hzBtn primary " value="Update">--%>
                         <asp:Button runat="server" ID="updateBtn" CssClass="vpb_general_button" Text="Update" OnClick="updateBtn_Click"/>
@@ -243,78 +243,7 @@
 
                     </div>
                    
-                     <!--<a name="socialLinks"></a>
-                    <a name="fbPreferences" style="display: block;"></a>
-
-                    <a name="emailPreferences"></a>
-                   <div class="editProfileSection">
-		<div class="small-header light-rule">Advanced Settings  <span id="advancedSettingsButton" class="editProfileExpandButton">[ <a href="javascript:;" class="colorLink" onclick="expandDiv(&quot;advancedSettings&quot;)">expand</a> ]</span></div>
-		<div id="advancedSettings" style="display:block;">
-			<div class="advancedSettingsContainer">
-				<div class="control-group pushNotifControlGroup">
-			<label class="control-label">Push notification</label>
-			<div class="controls"><label class="plain-text" id="pushNotifSection"><span class="notSupported">Please adjust your notification preferences through the Safari preferences -&gt; Notifications pane</span><a id="enablePushNotifLink" href="javascript:;">Enable push notifications for this Mac</a></label></div>
-		</div>
-				<input type="hidden" name="containsPreferences" value="yes">
-		<div class="control-group">
-			<label class="control-label">Email notification</label>
-			<div class="controls"><label class="checkbox">
-	<input name="newsletter" type="checkbox" classname="checkbox" checked="checked" value="2">Subscribe to the Houzz Newsletter.</label>
-		<input name="marketing" type="hidden" value="4"><br>Send me an email when:<br><label class="checkbox">
-	<input name="notify_ideabook_comment" type="checkbox" checked="checked" value="">someone comments on my ideabook<br></label>
-<label class="checkbox">
-	<input name="notfiy_answers_to_questions" type="checkbox" checked="checked" value="">someone comments on my post<br></label>
-<label class="checkbox">
-	<input name="notfiy_answers_to_answers" type="checkbox" checked="checked" value="">someone replies to my comment<br></label>
-<label class="checkbox">
-	<input name="notify_likes_received_on_comment" type="checkbox" checked="checked" value="">someone likes my discussion<br></label>
-<label class="checkbox">
-	<input name="notify_likes_received_on_galleries" type="checkbox" checked="checked" value="">someone likes my ideabook<br></label>
-<label class="checkbox">
-	<input name="notify_likes_received_on_reviews" type="checkbox" checked="checked" value="">someone likes a review that I wrote<br></label>
-<label class="checkbox">
-	<input name="notify_thanks_received_on_comment" type="checkbox" checked="checked" value="">someone thanks me for my comment<br></label>
-<label class="checkbox">
-	<input name="notfiy_questions_on_pictures" type="checkbox" checked="checked" value="">someone asks a question about one of my photos<br></label>
-<label class="checkbox">
-	<input name="notfiy_new_followers" type="checkbox" checked="checked" value="">someone follows me<br></label>
-<label class="checkbox">
-	<input name="nofity_new_badges_received" type="checkbox" checked="checked" value="">I earn a badge<br></label>
-<label class="checkbox">
-	<input name="notifyMessage" type="checkbox" checked="checked" value="">someone messages me</label>
-</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">My Profile Page</label>
-			<div class="controls"><div>The following will be visible on my public profile page, and shared with my followers:</div><label class="checkbox">
-		<input name="pp_galleries" type="checkbox" checked="checked" value="">My public ideabooks</label>
-	<label class="checkbox">
-		<input name="pp_photos" type="checkbox" checked="checked" value="">My uploaded photos and projects</label>
-	<label class="checkbox">
-		<input name="pp_questions" type="checkbox" checked="checked" value="">My discussions</label>
-	<label class="checkbox">
-		<input name="pp_social_links" type="checkbox" checked="checked" value="">My social media profiles</label>
-	<label class="checkbox">
-		<input name="pp_followers" type="checkbox" checked="checked" value="">People who follow me</label>
-	<label class="checkbox">
-		<input name="pp_followees" type="checkbox" checked="checked" value="">People I follow</label>
-	</div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">Privacy settings</label>
-			<div class="controls"><label class="checkbox">
-		<input name="allowFollow" type="checkbox" classname="checkbox" checked="checked" value="">Allow users to follow my profile
-</label></div>
-		</div>
-		<div class="control-group">
-			<label class="control-label">Other Settings</label>
-			<div class="controls"><label class="checkbox">
-	<input name="addtoibk_confirmdlg" type="checkbox" checked="checked" value="">Enable add to ideabook confirmation</label></div>
-		</div>
-					</div>
-			<div class="deactivateContainer"><a class="deactivateAccountLink colorLink" href="deactivateAccount">Deactivate Account</a></div>		</div>
-		<div class="editProfileSectionClear"></div>
-	</div>-->
+                    
                  
                 </div>
                 <div class="rightSideBar"></div>
