@@ -14,23 +14,26 @@ namespace HouseNinja.Webpages
         MasterDataService ms = new MasterDataService();
         UserService us = new UserService();
         UserAddressService usaddress = new UserAddressService();
-        int userID = 0;
+        int userID = 1;
         private string strDDLDefaultValue = "---Select---";
+        private string strJobCategories = "";
+        private string strJobSubCategories = "";
         //private byte[] userImg;
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
             {
 
-                if (Session["userId"] != null)
-                {
-                    userID = Convert.ToInt32(Session["userId"]);
+                //if (Session["userId"] != null)
+                //{
+                //    userID = Convert.ToInt32(Session["userId"]);
 
-                    var user = us.getUserById(userID);
+                    var user = us.getUserById(1);
                     loadPersonlDetails(user);
-                }
+               // }
 
                 loadDDlData();
+                loadCheckBoxData();
             }
             else {
                 if (Session["ImageBytes"] != null)
@@ -43,10 +46,31 @@ namespace HouseNinja.Webpages
         
         }
 
+        private void loadCheckBoxData()
+        {
+            var jobcategories = JobCategoryService.getCategories();
+
+            if (jobcategories != null)
+            {
+                chkJobCat.DataSource = jobcategories;
+                chkJobCat.DataTextField = "jobCat";
+                chkJobCat.DataValueField = "id";
+                chkJobCat.DataBind();
+               // chkJobCat.Items.Insert(0, strDDLDefaultValue);
+            }
+        }
+
         private void loadDDlData()
         {
-            ms.GetMasterValueByMenmonic("STATES_NAME");
-
+         var states=    ms.GetMasterValueByMenmonic("STATES_NAME");
+         if (states != null)
+         {
+             ddlState.DataSource = states;
+             ddlState.DataTextField = "value";
+             ddlState.DataValueField = "masterDataId";
+             ddlState.DataBind();
+             ddlState.Items.Insert(0, strDDLDefaultValue);
+         }
 
         }
 
@@ -57,15 +81,16 @@ namespace HouseNinja.Webpages
             txtlastName.Value = user.userName;
             txtUserName.Value = user.userName;
             rdGender.SelectedValue = user.gender;
-           
+            hdnUserType.Value = user.userType.ToString();
 
 
         }
 
         protected void ddlState_SelectedIndexChanged(object sender, EventArgs e)
         {
-            var cities = ms.GetMasterValueByMenmonic("CITIES_NAME");
 
+            int stateId = Convert.ToInt32(ddlState.SelectedItem.Value);
+            var cities = ms.GetCitiesByStateId(stateId);
             if (cities != null)
             {
                 ddlCities.DataSource = cities;
@@ -83,13 +108,16 @@ namespace HouseNinja.Webpages
             String fname =txtfirstName.Value.Trim();
             String lname=txtlastName.Value.Trim();
             String userName = txtUserName.Value.Trim();
-            String qualification = txtQualification.Value.Trim();
             String nextProj = txtaboutNewProj.Value.Trim();
             String aboutMe = txtaboutMe.Value.Trim();
-            String city = ddlCities.SelectedItem.Value;
-            String state = ddlState.SelectedItem.Value;
+            int city = Convert.ToInt32(ddlCities.SelectedItem.Value);
+            int state =  Convert.ToInt32(ddlState.SelectedItem.Value);
+            String strCity = ddlCities.SelectedItem.Text;
+            String strState = ddlState.SelectedItem.Text;
             String contact=txtcontactNo.Value.Trim();
             String pin=txtPinCode.Value.Trim();
+            int userTypeId=Convert.ToInt32(hdnUserType.Value.Trim());
+
             siteuser objUser = new siteuser
             {
 
@@ -99,7 +127,6 @@ namespace HouseNinja.Webpages
                 lastName =   lname,
                 userName = userName,
                 gender = rdGender.SelectedValue,
-                qualification = qualification,
                 aboutMe = aboutMe,
                 modifiedDate=System.DateTime.Now,
                 nextProject = nextProj,
@@ -120,34 +147,112 @@ namespace HouseNinja.Webpages
 
            };
 
-           // save data in search table 
-
-           usersearch usrSearch = new usersearch
-           {
-               userId = userID,
-               city = city,
-               state = state,
-               userName = fname +" " +lname,
-               description = aboutMe,
-               contactNo=contact,
-               pincode = pin
-           
-           };
-
-            //save user data in user search table
-           usrSearch.saveUserInSearchTable(usrSearch);
-           
+          
             //add address object for current user
            objUser.addressdetails.Add(address);
            
            //save user data in user search table
            us.saveUser(objUser);
+
+            //save data in user job categories detail table
+           saveUserJobCategories();
+
+
+           // save data in search table 
+           usersearch usrSearch = new usersearch
+           {
+               userId = userID,
+               city = strCity,
+               state = strState,
+               userName = fname + " " + lname,
+               description = aboutMe,
+               contactNo = contact,
+               pincode = pin,
+               jobCategories = Session["strJobCategories"].ToString(),
+               jobSubCategories = Session["strJobSubCategories"].ToString(),
+               userTypeId = userTypeId
+
+            };
+
+           //save user data in user search table
+           usrSearch.saveUserInSearchTable(usrSearch);
+           
            
         }
         protected void btnPreview_Click(object sender, EventArgs e)
         {
             Session["ImageBytes"] = PhotoUpload.FileBytes;
             mainUserProfilePic.ImageUrl = "~/ImageHandler.ashx";
+        }
+
+        protected void chkJobCat_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int lastSelectedIndex = 0;
+            List<int> lastSelectedValue =new List<int>();
+            foreach (ListItem listitem in chkJobCat.Items)
+            {
+                if (listitem.Selected)
+                {
+                    int thisIndex = chkJobCat.Items.IndexOf(listitem);
+
+                    if (lastSelectedIndex <= thisIndex)
+                    {
+                        lastSelectedValue.Add(Convert.ToInt32(listitem.Value));
+                        strJobCategories = strJobCategories + "-" + listitem.Value;                       
+                    }
+                }
+            }
+
+            Session["strJobCategories"] = strJobCategories;
+            bindSubJobCategories(lastSelectedValue);
+        }
+
+        private void bindSubJobCategories( List<int> jobCatIds)
+        {
+            var jobSubcategories = JobCategoryService.getSubCategories(jobCatIds);
+
+            if (jobSubcategories != null)
+            {
+                chkJobSubCat.DataSource = jobSubcategories;
+                chkJobSubCat.DataTextField = "jobSubCat";
+                chkJobSubCat.DataValueField = "id";
+                chkJobSubCat.DataBind();
+                // chkJobCat.Items.Insert(0, strDDLDefaultValue);
+            }
+
+            //throw new NotImplementedException();
+        }
+
+        protected void saveUserJobCategories()
+        {
+            int lastSelectedIndex = 0;
+            List<int> lastSelectedValue = new List<int>();
+            foreach (ListItem listitem in chkJobSubCat.Items)
+            {
+                if (listitem.Selected)
+                {
+                    int thisIndex = chkJobSubCat.Items.IndexOf(listitem);
+
+                    if (lastSelectedIndex <= thisIndex)
+                    {
+                        //lastSelectedValue.Add(Convert.ToInt32(listitem.Value));
+
+                        strJobSubCategories=strJobSubCategories+"-"+listitem.Value;
+                        usersjobcatagory usrJobCat = new usersjobcatagory
+                        {
+                            jobSubCatId = Convert.ToInt32(listitem.Value),
+                            userId=userID
+
+                        };
+
+
+                        UserJobCategoryService.saveJobSubCatForUser(usrJobCat);
+
+                    }
+                }
+            }
+
+            Session["strJobSubCategories"] = strJobSubCategories;
         }
 
     }

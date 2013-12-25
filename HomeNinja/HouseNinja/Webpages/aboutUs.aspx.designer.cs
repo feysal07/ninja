@@ -11,14 +11,5 @@ namespace HouseNinja.Webpages {
     
     
     public partial class aboutUs {
-        
-        /// <summary>
-        /// Search control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::HouseNinja.Webpages.CustomControls.Search Search;
     }
 }

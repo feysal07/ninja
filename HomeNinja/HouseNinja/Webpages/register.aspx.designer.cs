@@ -157,13 +157,22 @@ namespace HouseNinja.Webpages {
         protected global::System.Web.UI.HtmlControls.HtmlTextArea txtaboutNewProj;
         
         /// <summary>
-        /// txtQualification control.
+        /// chkJobCat control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlTextArea txtQualification;
+        protected global::System.Web.UI.WebControls.CheckBoxList chkJobCat;
+        
+        /// <summary>
+        /// chkJobSubCat control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CheckBoxList chkJobSubCat;
         
         /// <summary>
         /// updateBtn control.
@@ -182,5 +191,14 @@ namespace HouseNinja.Webpages {
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSkip;
+        
+        /// <summary>
+        /// hdnUserType control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HiddenField hdnUserType;
     }
 }

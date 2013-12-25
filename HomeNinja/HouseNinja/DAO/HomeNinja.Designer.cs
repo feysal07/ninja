@@ -24,10 +24,14 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_createdBy", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_post_id", "post", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_posts", "post", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_jobsubcategory", "jobcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.jobcategory), "jobsubcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.jobsubcategory), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_usersjobcatagories", "jobsubcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.jobsubcategory), "usersjobcatagory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.usersjobcatagory), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_master_data_value", "masterdatatype", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HouseNinja.DAO.masterdatatype), "masterdatavalue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.masterdatavalue), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_posts_posttype", "posttype", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.posttype), "post", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.post), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_posts_user_id", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "post", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.post), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_siteusers_user_type", "usertype", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HouseNinja.DAO.usertype), "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.siteuser), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_usersjobcatagories_users", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "usersjobcatagory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.usersjobcatagory), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_usersearch_usertype", "usertype", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.usertype), "usersearch", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.usersearch), true)]
 
 #endregion
 
@@ -110,6 +114,38 @@ namespace HouseNinja.DAO
             }
         }
         private ObjectSet<comment> _comments;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<jobcategory> jobcategories
+        {
+            get
+            {
+                if ((_jobcategories == null))
+                {
+                    _jobcategories = base.CreateObjectSet<jobcategory>("jobcategories");
+                }
+                return _jobcategories;
+            }
+        }
+        private ObjectSet<jobcategory> _jobcategories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        public ObjectSet<jobsubcategory> jobsubcategories
+        {
+            get
+            {
+                if ((_jobsubcategories == null))
+                {
+                    _jobsubcategories = base.CreateObjectSet<jobsubcategory>("jobsubcategories");
+                }
+                return _jobsubcategories;
+            }
+        }
+        private ObjectSet<jobsubcategory> _jobsubcategories;
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -226,6 +262,22 @@ namespace HouseNinja.DAO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
+        public ObjectSet<usersjobcatagory> usersjobcatagories
+        {
+            get
+            {
+                if ((_usersjobcatagories == null))
+                {
+                    _usersjobcatagories = base.CreateObjectSet<usersjobcatagory>("usersjobcatagories");
+                }
+                return _usersjobcatagories;
+            }
+        }
+        private ObjectSet<usersjobcatagory> _usersjobcatagories;
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
         public ObjectSet<usertype> usertypes
         {
             get
@@ -257,6 +309,22 @@ namespace HouseNinja.DAO
         public void AddTocomments(comment comment)
         {
             base.AddObject("comments", comment);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the jobcategories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTojobcategories(jobcategory jobcategory)
+        {
+            base.AddObject("jobcategories", jobcategory);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the jobsubcategories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTojobsubcategories(jobsubcategory jobsubcategory)
+        {
+            base.AddObject("jobsubcategories", jobsubcategory);
         }
     
         /// <summary>
@@ -313,6 +381,14 @@ namespace HouseNinja.DAO
         public void AddTousersearches(usersearch usersearch)
         {
             base.AddObject("usersearches", usersearch);
+        }
+    
+        /// <summary>
+        /// Deprecated Method for adding a new object to the usersjobcatagories EntitySet. Consider using the .Add method of the associated ObjectSet&lt;T&gt; property instead.
+        /// </summary>
+        public void AddTousersjobcatagories(usersjobcatagory usersjobcatagory)
+        {
+            base.AddObject("usersjobcatagories", usersjobcatagory);
         }
     
         /// <summary>
@@ -438,7 +514,7 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String city
+        public Nullable<global::System.Int32> city
         {
             get
             {
@@ -448,13 +524,13 @@ namespace HouseNinja.DAO
             {
                 OncityChanging(value);
                 ReportPropertyChanging("city");
-                _city = StructuralObject.SetValidValue(value, true, "city");
+                _city = StructuralObject.SetValidValue(value, "city");
                 ReportPropertyChanged("city");
                 OncityChanged();
             }
         }
-        private global::System.String _city;
-        partial void OncityChanging(global::System.String value);
+        private Nullable<global::System.Int32> _city;
+        partial void OncityChanging(Nullable<global::System.Int32> value);
         partial void OncityChanged();
     
         /// <summary>
@@ -462,7 +538,7 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String state
+        public Nullable<global::System.Int32> state
         {
             get
             {
@@ -472,13 +548,13 @@ namespace HouseNinja.DAO
             {
                 OnstateChanging(value);
                 ReportPropertyChanging("state");
-                _state = StructuralObject.SetValidValue(value, true, "state");
+                _state = StructuralObject.SetValidValue(value, "state");
                 ReportPropertyChanged("state");
                 OnstateChanged();
             }
         }
-        private global::System.String _state;
-        partial void OnstateChanging(global::System.String value);
+        private Nullable<global::System.Int32> _state;
+        partial void OnstateChanging(Nullable<global::System.Int32> value);
         partial void OnstateChanged();
     
         /// <summary>
@@ -979,6 +1055,280 @@ namespace HouseNinja.DAO
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<post>("HomeNinjaModel.FK_comments_posts", "post", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HomeNinjaModel", Name="jobcategory")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class jobcategory : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new jobcategory object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static jobcategory Createjobcategory(global::System.Int32 id)
+        {
+            jobcategory jobcategory = new jobcategory();
+            jobcategory.id = id;
+            return jobcategory;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value, "id");
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String jobCat
+        {
+            get
+            {
+                return _jobCat;
+            }
+            set
+            {
+                OnjobCatChanging(value);
+                ReportPropertyChanging("jobCat");
+                _jobCat = StructuralObject.SetValidValue(value, true, "jobCat");
+                ReportPropertyChanged("jobCat");
+                OnjobCatChanged();
+            }
+        }
+        private global::System.String _jobCat;
+        partial void OnjobCatChanging(global::System.String value);
+        partial void OnjobCatChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_jobsubcategory", "jobsubcategory")]
+        public EntityCollection<jobsubcategory> jobsubcategories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<jobsubcategory>("HomeNinjaModel.FK_jobsubcategory", "jobsubcategory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<jobsubcategory>("HomeNinjaModel.FK_jobsubcategory", "jobsubcategory", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HomeNinjaModel", Name="jobsubcategory")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class jobsubcategory : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new jobsubcategory object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static jobsubcategory Createjobsubcategory(global::System.Int32 id)
+        {
+            jobsubcategory jobsubcategory = new jobsubcategory();
+            jobsubcategory.id = id;
+            return jobsubcategory;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value, "id");
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int32 _id;
+        partial void OnidChanging(global::System.Int32 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> jobCatId
+        {
+            get
+            {
+                return _jobCatId;
+            }
+            set
+            {
+                OnjobCatIdChanging(value);
+                ReportPropertyChanging("jobCatId");
+                _jobCatId = StructuralObject.SetValidValue(value, "jobCatId");
+                ReportPropertyChanged("jobCatId");
+                OnjobCatIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _jobCatId;
+        partial void OnjobCatIdChanging(Nullable<global::System.Int32> value);
+        partial void OnjobCatIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String jobSubCat
+        {
+            get
+            {
+                return _jobSubCat;
+            }
+            set
+            {
+                OnjobSubCatChanging(value);
+                ReportPropertyChanging("jobSubCat");
+                _jobSubCat = StructuralObject.SetValidValue(value, true, "jobSubCat");
+                ReportPropertyChanged("jobSubCat");
+                OnjobSubCatChanged();
+            }
+        }
+        private global::System.String _jobSubCat;
+        partial void OnjobSubCatChanging(global::System.String value);
+        partial void OnjobSubCatChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_jobsubcategory", "jobcategory")]
+        public jobcategory jobcategory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<jobcategory>("HomeNinjaModel.FK_jobsubcategory", "jobcategory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<jobcategory>("HomeNinjaModel.FK_jobsubcategory", "jobcategory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<jobcategory> jobcategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<jobcategory>("HomeNinjaModel.FK_jobsubcategory", "jobcategory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<jobcategory>("HomeNinjaModel.FK_jobsubcategory", "jobcategory", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_usersjobcatagories", "usersjobcatagory")]
+        public EntityCollection<usersjobcatagory> usersjobcatagories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<usersjobcatagory>("HomeNinjaModel.FK_usersjobcatagories", "usersjobcatagory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<usersjobcatagory>("HomeNinjaModel.FK_usersjobcatagories", "usersjobcatagory", value);
                 }
             }
         }
@@ -2194,30 +2544,6 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String qualification
-        {
-            get
-            {
-                return _qualification;
-            }
-            set
-            {
-                OnqualificationChanging(value);
-                ReportPropertyChanging("qualification");
-                _qualification = StructuralObject.SetValidValue(value, true, "qualification");
-                ReportPropertyChanged("qualification");
-                OnqualificationChanged();
-            }
-        }
-        private global::System.String _qualification;
-        partial void OnqualificationChanging(global::System.String value);
-        partial void OnqualificationChanged();
-    
-        /// <summary>
-        /// No Metadata Documentation available.
-        /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
-        [DataMemberAttribute()]
         public global::System.String myFavoriteStyle
         {
             get
@@ -2427,6 +2753,28 @@ namespace HouseNinja.DAO
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<usertype>("HomeNinjaModel.FK_siteusers_user_type", "usertype", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_usersjobcatagories_users", "usersjobcatagory")]
+        public EntityCollection<usersjobcatagory> usersjobcatagories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<usersjobcatagory>("HomeNinjaModel.FK_usersjobcatagories_users", "usersjobcatagory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<usersjobcatagory>("HomeNinjaModel.FK_usersjobcatagories_users", "usersjobcatagory", value);
                 }
             }
         }
@@ -2806,6 +3154,304 @@ namespace HouseNinja.DAO
         private global::System.String _pincode;
         partial void OnpincodeChanging(global::System.String value);
         partial void OnpincodeChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String jobCategories
+        {
+            get
+            {
+                return _jobCategories;
+            }
+            set
+            {
+                OnjobCategoriesChanging(value);
+                ReportPropertyChanging("jobCategories");
+                _jobCategories = StructuralObject.SetValidValue(value, true, "jobCategories");
+                ReportPropertyChanged("jobCategories");
+                OnjobCategoriesChanged();
+            }
+        }
+        private global::System.String _jobCategories;
+        partial void OnjobCategoriesChanging(global::System.String value);
+        partial void OnjobCategoriesChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public global::System.String jobSubCategories
+        {
+            get
+            {
+                return _jobSubCategories;
+            }
+            set
+            {
+                OnjobSubCategoriesChanging(value);
+                ReportPropertyChanging("jobSubCategories");
+                _jobSubCategories = StructuralObject.SetValidValue(value, true, "jobSubCategories");
+                ReportPropertyChanged("jobSubCategories");
+                OnjobSubCategoriesChanged();
+            }
+        }
+        private global::System.String _jobSubCategories;
+        partial void OnjobSubCategoriesChanging(global::System.String value);
+        partial void OnjobSubCategoriesChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> userTypeId
+        {
+            get
+            {
+                return _userTypeId;
+            }
+            set
+            {
+                OnuserTypeIdChanging(value);
+                ReportPropertyChanging("userTypeId");
+                _userTypeId = StructuralObject.SetValidValue(value, "userTypeId");
+                ReportPropertyChanged("userTypeId");
+                OnuserTypeIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _userTypeId;
+        partial void OnuserTypeIdChanging(Nullable<global::System.Int32> value);
+        partial void OnuserTypeIdChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_usersearch_usertype", "usertype")]
+        public usertype usertype
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<usertype>("HomeNinjaModel.FK_usersearch_usertype", "usertype").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<usertype>("HomeNinjaModel.FK_usersearch_usertype", "usertype").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<usertype> usertypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<usertype>("HomeNinjaModel.FK_usersearch_usertype", "usertype");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<usertype>("HomeNinjaModel.FK_usersearch_usertype", "usertype", value);
+                }
+            }
+        }
+
+        #endregion
+
+    }
+    
+    /// <summary>
+    /// No Metadata Documentation available.
+    /// </summary>
+    [EdmEntityTypeAttribute(NamespaceName="HomeNinjaModel", Name="usersjobcatagory")]
+    [Serializable()]
+    [DataContractAttribute(IsReference=true)]
+    public partial class usersjobcatagory : EntityObject
+    {
+        #region Factory Method
+    
+        /// <summary>
+        /// Create a new usersjobcatagory object.
+        /// </summary>
+        /// <param name="id">Initial value of the id property.</param>
+        public static usersjobcatagory Createusersjobcatagory(global::System.Int64 id)
+        {
+            usersjobcatagory usersjobcatagory = new usersjobcatagory();
+            usersjobcatagory.id = id;
+            return usersjobcatagory;
+        }
+
+        #endregion
+
+        #region Simple Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=true, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int64 id
+        {
+            get
+            {
+                return _id;
+            }
+            set
+            {
+                if (_id != value)
+                {
+                    OnidChanging(value);
+                    ReportPropertyChanging("id");
+                    _id = StructuralObject.SetValidValue(value, "id");
+                    ReportPropertyChanged("id");
+                    OnidChanged();
+                }
+            }
+        }
+        private global::System.Int64 _id;
+        partial void OnidChanging(global::System.Int64 value);
+        partial void OnidChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int32> jobSubCatId
+        {
+            get
+            {
+                return _jobSubCatId;
+            }
+            set
+            {
+                OnjobSubCatIdChanging(value);
+                ReportPropertyChanging("jobSubCatId");
+                _jobSubCatId = StructuralObject.SetValidValue(value, "jobSubCatId");
+                ReportPropertyChanged("jobSubCatId");
+                OnjobSubCatIdChanged();
+            }
+        }
+        private Nullable<global::System.Int32> _jobSubCatId;
+        partial void OnjobSubCatIdChanging(Nullable<global::System.Int32> value);
+        partial void OnjobSubCatIdChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
+        [DataMemberAttribute()]
+        public Nullable<global::System.Int64> userId
+        {
+            get
+            {
+                return _userId;
+            }
+            set
+            {
+                OnuserIdChanging(value);
+                ReportPropertyChanging("userId");
+                _userId = StructuralObject.SetValidValue(value, "userId");
+                ReportPropertyChanged("userId");
+                OnuserIdChanged();
+            }
+        }
+        private Nullable<global::System.Int64> _userId;
+        partial void OnuserIdChanging(Nullable<global::System.Int64> value);
+        partial void OnuserIdChanged();
+
+        #endregion
+
+        #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_usersjobcatagories", "jobsubcategory")]
+        public jobsubcategory jobsubcategory
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<jobsubcategory>("HomeNinjaModel.FK_usersjobcatagories", "jobsubcategory").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<jobsubcategory>("HomeNinjaModel.FK_usersjobcatagories", "jobsubcategory").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<jobsubcategory> jobsubcategoryReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<jobsubcategory>("HomeNinjaModel.FK_usersjobcatagories", "jobsubcategory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<jobsubcategory>("HomeNinjaModel.FK_usersjobcatagories", "jobsubcategory", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_usersjobcatagories_users", "siteuser")]
+        public siteuser siteuser
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_usersjobcatagories_users", "siteuser").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_usersjobcatagories_users", "siteuser").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<siteuser> siteuserReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<siteuser>("HomeNinjaModel.FK_usersjobcatagories_users", "siteuser");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<siteuser>("HomeNinjaModel.FK_usersjobcatagories_users", "siteuser", value);
+                }
+            }
+        }
 
         #endregion
 
@@ -2911,6 +3557,28 @@ namespace HouseNinja.DAO
                 if ((value != null))
                 {
                     ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<siteuser>("HomeNinjaModel.FK_siteusers_user_type", "siteuser", value);
+                }
+            }
+        }
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_usersearch_usertype", "usersearch")]
+        public EntityCollection<usersearch> usersearches
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<usersearch>("HomeNinjaModel.FK_usersearch_usertype", "usersearch");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<usersearch>("HomeNinjaModel.FK_usersearch_usertype", "usersearch", value);
                 }
             }
         }

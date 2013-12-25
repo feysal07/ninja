@@ -137,11 +137,11 @@
                             </div>
                         </dl>
                         <dl>
-
-                            <div class="control-group">
+                        <div class="control-group">
                                 <label class="control-label" for="state">State</label>
                                 <div class="controls">
-                                    <asp:DropDownList ID="ddlState" runat="server" OnSelectedIndexChanged="ddlState_SelectedIndexChanged">
+                                    <asp:DropDownList ID="ddlState" runat="server" 
+                                        OnSelectedIndexChanged="ddlState_SelectedIndexChanged" AutoPostBack="true">
                                     </asp:DropDownList>
                                 </div>
                             </div>
@@ -194,18 +194,44 @@
                         </dl>
                         <div class="editProfileSectionClear"></div>
                      <div class="editProfileSection">
-                        <div class="small-header light-rule">Education</div>
+                        <div class="small-header light-rule">Services</div>
                         <dl>
                             <div class="control-group">
-                                <label class="control-label" for="education">Qualification Details</label>
+                                <label class="control-label" for="education">Job Types</label>
                                 <div class="controls">
-                                    <textarea id="txtQualification" name="aboutMyHouse" runat="server"></textarea>
+                                    <asp:CheckBoxList ID="chkJobCat" runat="server" OnSelectedIndexChanged="chkJobCat_SelectedIndexChanged" 
+                                        AutoPostBack="true" RepeatDirection="Horizontal" RepeatColumns="3"></asp:CheckBoxList>
+                                </div>
+                            </div>
+                            
+                         </dl>
+                         <dl>
+                            <div class="control-group">
+                                <label class="control-label" for="education">Job Sub Categories</label>
+                                <div class="controls">
+                                    <asp:CheckBoxList ID="chkJobSubCat" runat="server" 
+                                        RepeatDirection="Horizontal" RepeatColumns="3"></asp:CheckBoxList>
                                 </div>
                             </div>
                             
                          </dl>
                           <div class="editProfileSectionClear"></div>
                        </div>
+
+                     <%--<div class="editProfileSection">
+                        <div class="small-header light-rule">Services</div>
+                        <dl>
+                            <div class="control-group">
+                                <label class="control-label" for="education">Job Types</label>
+                                <div class="controls">
+                                 <asp:CheckBoxList ID="chkJobSubCat" runat="server" OnSelectedIndexChanged="chkJobSubCat_SelectedIndexChanged" AutoPostBack="true" 
+                                        RepeatDirection="Horizontal" RepeatColumns="2"></asp:CheckBoxList>
+                                </div>
+                            </div>
+                            
+                         </dl>
+                          <div class="editProfileSectionClear"></div>
+                       </div>--%>
                        <div class="editProfileSection">
                         <%--<input id="updateBtn" type="submit" class="hzBtn primary " value="Update">--%>
                         <asp:Button runat="server" ID="updateBtn" CssClass="vpb_general_button" Text="Update" OnClick="updateBtn_Click"/>
@@ -295,6 +321,6 @@
             </div>
             <div id="mainContentSeparator"></div>
         </div>
-    
+    <asp:HiddenField runat="server" ID="hdnUserType"/>
 
 </asp:Content>

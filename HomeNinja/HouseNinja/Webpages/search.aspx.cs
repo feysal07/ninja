@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.UI;
+using System.Web.UI.HtmlControls;
 using System.Web.UI.WebControls;
 using HouseNinja.DAO;
 using HouseNinja.HelpingEntities;
@@ -26,6 +27,7 @@ namespace HouseNinja.Webpages
             
             }
         }
+
 
         private void bindAllDropDowns()
         {
@@ -71,12 +73,30 @@ namespace HouseNinja.Webpages
         protected void proSearchBtn_Click(object sender, EventArgs e)
         {
             UserSearch userPram = new UserSearch();
+            List<usersearch> users = null;
             userPram .city= ddlCity.SelectedValue.ToString();
             userPram.state = ddlState.SelectedValue.ToString();
             userPram.name= txtUserName.Value.Trim();
             userPram.pincode = txtZipCode.Value.Trim();
             userPram.searchType = "basic";
-           usearch.getFilteredUsers(userPram);
+            
+            users = usearch.getFilteredUsers(userPram);
+
+            rptUsers.DataSource = users;
+            rptUsers.DataBind();
+
+            
+
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            //string strSearch=
+
+                 HiddenField myObject;
+                 myObject = (HiddenField)Master.FindControl("hdnSearchText");
+                 string strSearch = myObject.Value;
+
 
         }
 

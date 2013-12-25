@@ -6079,7 +6079,7 @@ a.hzBtn:hover {
     background-repeat: repeat-x;
     display: inline;
     zoom: 1;
-    background-image: linear-gradient(to bottom,#fafafa,#f3f3f3);*
+    background-image: linear-gradient(to bottom,#fafafa,#f3f3f3);
 }
 
 .whitebutton.followBtn .whitebuttonIcon,.whitebutton.noCountRightIconButton .whitebuttonIcon {
