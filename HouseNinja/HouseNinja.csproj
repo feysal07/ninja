@@ -196,7 +196,6 @@
     <Content Include="Webpages\CustomControls\Footer.ascx" />
     <Content Include="resources\images\go_bttn.png" />
     <Content Include="Webpages\CustomControls\Header.ascx" />
-    <Content Include="Webpages\CustomControls\Search.ascx" />
     <Content Include="resources\images\search_bck.png" />
     <Content Include="Webpages\register.aspx" />
     <Content Include="Webpages\search.aspx" />
@@ -253,20 +252,25 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>HomeNinja.edmx</DependentUpon>
     </Compile>
+    <Compile Include="DAO\jobcategory.cs" />
+    <Compile Include="DAO\jobsubcategory.cs" />
     <Compile Include="DAO\masterdatavalue.cs" />
     <Compile Include="DAO\post.cs" />
     <Compile Include="DAO\posttype.cs" />
     <Compile Include="DAO\siteuser.cs" />
     <Compile Include="DAO\usersearch.cs" />
+    <Compile Include="DAO\usersjobcatagory.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="HelpingEntities\FaceBookUser.cs" />
     <Compile Include="HelpingEntities\UserSearch.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Services\Implimentation\JobCategoryService.cs" />
     <Compile Include="Services\Implimentation\MasterDataService.cs" />
     <Compile Include="Services\Implimentation\PostDataService.cs" />
     <Compile Include="Services\Implimentation\UserAddressService.cs" />
+    <Compile Include="Services\Implimentation\UserJobCategoryService.cs" />
     <Compile Include="Services\Implimentation\UserSearchService.cs" />
     <Compile Include="Services\Implimentation\UserService.cs" />
     <Compile Include="Site.Master.cs">
@@ -317,13 +321,6 @@
     </Compile>
     <Compile Include="Webpages\CustomControls\Header.ascx.designer.cs">
       <DependentUpon>Header.ascx</DependentUpon>
-    </Compile>
-    <Compile Include="Webpages\CustomControls\Search.ascx.cs">
-      <DependentUpon>Search.ascx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Webpages\CustomControls\Search.ascx.designer.cs">
-      <DependentUpon>Search.ascx</DependentUpon>
     </Compile>
     <Compile Include="Webpages\MasterPage\Site.Master.cs">
       <DependentUpon>Site.Master</DependentUpon>

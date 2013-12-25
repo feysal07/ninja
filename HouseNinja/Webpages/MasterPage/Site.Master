@@ -4,6 +4,8 @@
 
 
 
+
+
 <!DOCTYPE html>
 <!-- CSS FILES-->
 <link href="../../resources/css/style1.css" rel="stylesheet" />
@@ -17,7 +19,46 @@
 
 <style type="text/css">.reloadMe.rimg img.reloadable { width: 00%; height: auto; }</style>
 
+<script type="text/javascript">
+
+    function searchClick() {
+        alert($('#txtSearchText').val());
+        $('#hdnSearchText').val($('#txtSearchText').val());
+        $('#btnSearch').click();
+    }
+
+    jQuery(document).ready(function () {
+
+        $("#searchDropdownBox").change(function () {
+            var Search_Str = $(this).val();
+            //replace search str in span value
+            $("#nav-search-in-content").text(Search_Str);
+        });
+
+        //download script
+        jQuery('.s_download').on("click", function (e) {
+            var semail = jQuery("#itzurkarthi_email").val();
+            if (semail == '') {
+                alert('Enter Email');
+                return false;
+            }
+            var str = "sub_email=" + semail
+            jQuery.ajax({
+                type: "POST",
+                url: "download.php",
+                data: str,
+                cache: false,
+                success: function (htmld) {
+                    jQuery('#down_update').html(htmld);
+                }
+            });
+        });
+    });
+</script>
+
 <html xmlns="http://www.w3.org/1999/xhtml">
+
+
 <head runat="server">
     <title></title>
     <asp:ContentPlaceHolder ID="head" runat="server">
@@ -27,10 +68,33 @@
     <form id="form1" runat="server">
     <div>
         <uc:Header runat="server" id="Header" />
+        <div class="search_bar">
+	<label id="nav-search-label">Search</label>
+    		<span class=" nav-facade-active" id="nav-search-in" style="width: auto;">
+              <span data-value="search-alias=aps" id="nav-search-in-content" style="width: 60px; overflow: visible;">
+                All Books
+              </span>
+              <span class="nav-down-arrow nav-sprite"></span>
+              <select title="Search in" class="searchSelect" id="searchDropdownBox" name="books_category"  style="top: 0px;">
+				<option value="All Books" selected="selected">All Books</option>
+				<option value="Arts & Photography" title="Arts & Photography">Arts & Photography</option>
+				<option value="Biographies" title="Biographies & Memoirs">Biographies</option>
+			  </select>
+            </span>
+            <div class="nav-searchfield-outer nav-sprite">
+              <input type="text" runat="server" autocomplete="off" name="field-keywords" placeholder="Eg : Contractor Name, Job Type" title="Search For" id="txtSearchText" style="padding-right: 1px;">
+            </div>
+            <div class="nav-submit-button">
+              <%--<input type="submit" title="Go" class="nav-submit-input" value="Go">--%>
+                <asp:Button runat="server" ID="txtSearch" CssClass="nav-submit-input" Text="GO" OnClientClick="searchClick()"></asp:Button>
+            </div>
+        </div>
         <asp:ContentPlaceHolder ID="ContentPlaceHolder1" runat="server">
         </asp:ContentPlaceHolder>
         <uc2:Footer runat="server" id="Footer" />
     </div>
+         <asp:HiddenField runat="server" ID="hdnSearchText" ClientIDMode="Static"/>
     </form>
+   
 </body>
 </html>
