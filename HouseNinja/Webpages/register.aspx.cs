@@ -14,7 +14,7 @@ namespace HouseNinja.Webpages
         MasterDataService ms = new MasterDataService();
         UserService us = new UserService();
         UserAddressService usaddress = new UserAddressService();
-        int userID = 1;
+        int userID = 0;
         private string strDDLDefaultValue = "---Select---";
         private string strJobCategories = "";
         private string strJobSubCategories = "";
@@ -230,7 +230,7 @@ namespace HouseNinja.Webpages
                     if (lastSelectedIndex <= thisIndex)
                     {
                         lastSelectedValue.Add(Convert.ToInt32(listitem.Value));
-                        strJobCategories = strJobCategories + "-" + listitem.Value;                       
+                        strJobCategories = strJobCategories + "-" + listitem.Text;                       
                     }
                 }
             }
@@ -269,7 +269,7 @@ namespace HouseNinja.Webpages
                     {
                         //lastSelectedValue.Add(Convert.ToInt32(listitem.Value));
 
-                        strJobSubCategories=strJobSubCategories+"-"+listitem.Value;
+                        strJobSubCategories=strJobSubCategories+"-"+listitem.Text;
                         usersjobcatagory usrJobCat = new usersjobcatagory
                         {
                             jobSubCatId = Convert.ToInt32(listitem.Value),
