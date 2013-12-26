@@ -28,7 +28,7 @@ namespace HouseNinja.Webpages
                 {
                    userID = Convert.ToInt32(Session["userId"]);
 
-                    var user = us.getUserById(1);
+                   var user = us.getUserById(userID);
                     loadPersonlDetails(user);
                 }
 
@@ -146,6 +146,7 @@ namespace HouseNinja.Webpages
                 modifiedDate=System.DateTime.Now,
                 nextProject = nextProj,
                 userId = userID,
+                userType = userTypeId
                // profilPic = userImg,
 
             };
@@ -179,9 +180,9 @@ namespace HouseNinja.Webpages
                advancesettingusremapp advUsrSetting = new advancesettingusremapp
                {
                    userId = userID,
-                   newsLetters = (sbyte)advOpts[0],
-                   publishAddress = (sbyte)advOpts[1],
-                   publishContactNo = (sbyte)advOpts[2]
+                   newsLetters = advOpts[0]== 1 ? true:false,
+                   publishAddress = advOpts[1] == 1 ? true : false,
+                   publishContactNo = advOpts[2] == 1 ? true : false,
 
                };
 
@@ -294,7 +295,7 @@ namespace HouseNinja.Webpages
 
 
             List<int> lastSelectedValue = new List<int>();
-            foreach (ListItem listitem in chkJobSubCat.Items)
+            foreach (ListItem listitem in chkAdvSettings.Items)
             {
                 if (listitem.Selected)
                 {

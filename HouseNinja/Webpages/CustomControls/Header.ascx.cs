@@ -85,7 +85,7 @@ namespace HouseNinja.Webpages.CustomControls
                
 
                 ddlUserType.DataSource = userTypes;
-                ddlUserType.DataTextField = "userType";
+                ddlUserType.DataTextField = "userType1";
                 ddlUserType.DataValueField = "id";
                 ddlUserType.DataBind();
                 ddlUserType.Items.Insert(0, strDDLDefaultValue);
