@@ -36,6 +36,10 @@
             <End Role="posts" EntitySet="posts" />
             <End Role="comments" EntitySet="comments" />
           </AssociationSet>
+          <AssociationSet Name="FK_jobcategory_userTypes" Association="HomeNinjaModel.Store.FK_jobcategory_userTypes">
+            <End Role="usertype" EntitySet="usertype" />
+            <End Role="jobcategory" EntitySet="jobcategory" />
+          </AssociationSet>
           <AssociationSet Name="FK_jobsubcategory" Association="HomeNinjaModel.Store.FK_jobsubcategory">
             <End Role="jobcategory" EntitySet="jobcategory" />
             <End Role="jobsubcategory" EntitySet="jobsubcategory" />
@@ -123,6 +127,7 @@
           </Key>
           <Property Name="id" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
           <Property Name="jobCat" Type="varchar" MaxLength="50" />
+          <Property Name="userTypeId" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="jobsubcategory">
           <Key>
@@ -180,7 +185,7 @@
           <Property Name="userName" Type="varchar" MaxLength="50" />
           <Property Name="firstName" Type="varchar" MaxLength="50" />
           <Property Name="lastName" Type="varchar" MaxLength="50" />
-          <Property Name="userType" Type="int" Nullable="false" />
+          <Property Name="userType" Type="int" />
           <Property Name="loginEmail" Type="varchar" MaxLength="50" />
           <Property Name="password" Type="varchar" MaxLength="50" />
           <Property Name="gender" Type="char" MaxLength="1" />
@@ -273,6 +278,18 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_jobcategory_userTypes">
+          <End Role="usertype" Type="HomeNinjaModel.Store.usertype" Multiplicity="1" />
+          <End Role="jobcategory" Type="HomeNinjaModel.Store.jobcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usertype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="jobcategory">
+              <PropertyRef Name="userTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_jobsubcategory">
           <End Role="jobcategory" Type="HomeNinjaModel.Store.jobcategory" Multiplicity="0..1" />
           <End Role="jobsubcategory" Type="HomeNinjaModel.Store.jobsubcategory" Multiplicity="*" />
@@ -334,7 +351,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_siteusers_user_type">
-          <End Role="usertype" Type="HomeNinjaModel.Store.usertype" Multiplicity="1">
+          <End Role="usertype" Type="HomeNinjaModel.Store.usertype" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Role="siteusers" Type="HomeNinjaModel.Store.siteusers" Multiplicity="*" />
@@ -421,6 +438,10 @@
           <AssociationSet Name="FK_comments_posts" Association="HomeNinjaModel.FK_comments_posts">
             <End Role="post" EntitySet="posts" />
             <End Role="comment" EntitySet="comments" />
+          </AssociationSet>
+          <AssociationSet Name="FK_jobcategory_userTypes" Association="HomeNinjaModel.FK_jobcategory_userTypes">
+            <End Role="usertype" EntitySet="usertypes" />
+            <End Role="jobcategory" EntitySet="jobcategories" />
           </AssociationSet>
           <AssociationSet Name="FK_jobsubcategory" Association="HomeNinjaModel.FK_jobsubcategory">
             <End Role="jobcategory" EntitySet="jobcategories" />
@@ -510,6 +531,8 @@
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="jobCat" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="Int32" Name="userTypeId" Nullable="false" />
+          <NavigationProperty Name="usertype" Relationship="HomeNinjaModel.FK_jobcategory_userTypes" FromRole="jobcategory" ToRole="usertype" />
           <NavigationProperty Name="jobsubcategories" Relationship="HomeNinjaModel.FK_jobsubcategory" FromRole="jobcategory" ToRole="jobsubcategory" />
         </EntityType>
         <EntityType Name="jobsubcategory">
@@ -566,7 +589,7 @@
             <PropertyRef Name="id" />
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Type="String" Name="postType" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="postType1" MaxLength="50" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="posts" Relationship="HomeNinjaModel.FK_posts_posttype" FromRole="posttype" ToRole="post" />
         </EntityType>
         <EntityType Name="siteuser">
@@ -577,7 +600,7 @@
           <Property Type="String" Name="userName" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="firstName" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="lastName" MaxLength="50" FixedLength="false" Unicode="false" />
-          <Property Type="Int32" Name="userType" Nullable="false" />
+          <Property Type="Int32" Name="userType" />
           <Property Type="String" Name="loginEmail" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="password" MaxLength="50" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="gender" MaxLength="1" FixedLength="true" Unicode="false" />
@@ -630,6 +653,7 @@
           </Key>
           <Property Type="Int32" Name="id" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Type="String" Name="userType1" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="jobcategories" Relationship="HomeNinjaModel.FK_jobcategory_userTypes" FromRole="usertype" ToRole="jobcategory" />
           <NavigationProperty Name="siteusers" Relationship="HomeNinjaModel.FK_siteusers_user_type" FromRole="usertype" ToRole="siteuser" />
           <NavigationProperty Name="usersearches" Relationship="HomeNinjaModel.FK_usersearch_usertype" FromRole="usertype" ToRole="usersearch" />
         </EntityType>
@@ -690,6 +714,18 @@
             </Principal>
             <Dependent Role="comment">
               <PropertyRef Name="postId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_jobcategory_userTypes">
+          <End Type="HomeNinjaModel.usertype" Role="usertype" Multiplicity="1" />
+          <End Type="HomeNinjaModel.jobcategory" Role="jobcategory" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="usertype">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="jobcategory">
+              <PropertyRef Name="userTypeId" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -754,7 +790,7 @@
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_siteusers_user_type">
-          <End Type="HomeNinjaModel.usertype" Role="usertype" Multiplicity="1">
+          <End Type="HomeNinjaModel.usertype" Role="usertype" Multiplicity="0..1">
             <OnDelete Action="Cascade" />
           </End>
           <End Type="HomeNinjaModel.siteuser" Role="siteuser" Multiplicity="*" />
@@ -848,6 +884,7 @@
           <EntitySetMapping Name="jobcategories">
             <EntityTypeMapping TypeName="HomeNinjaModel.jobcategory">
               <MappingFragment StoreEntitySet="jobcategory">
+                <ScalarProperty Name="userTypeId" ColumnName="userTypeId" />
                 <ScalarProperty Name="jobCat" ColumnName="jobCat" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
@@ -901,7 +938,7 @@
           <EntitySetMapping Name="posttypes">
             <EntityTypeMapping TypeName="HomeNinjaModel.posttype">
               <MappingFragment StoreEntitySet="posttype">
-                <ScalarProperty Name="postType" ColumnName="postType" />
+                <ScalarProperty Name="postType1" ColumnName="postType" />
                 <ScalarProperty Name="id" ColumnName="id" />
               </MappingFragment>
             </EntityTypeMapping>

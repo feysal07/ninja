@@ -196,6 +196,18 @@
                      <div class="editProfileSection">
                         <div class="small-header light-rule">Services</div>
                         <dl>
+                             <div class="control-group">
+                                <label class="control-label" for="education">User Types</label>
+                                <div class="controls">
+                           <asp:RadioButtonList ID="rdUserType" runat="server" RepeatLayout="Flow" RepeatColumns="2" AutoPostBack="true" OnSelectedIndexChanged="rdUserType_SelectedIndexChanged"  
+                               RepeatDirection="Horizontal" Font-Size="Small" >
+                            </asp:RadioButtonList>
+                             </div>
+                            </div>
+
+                        </dl>
+                         
+                         <dl>
                             <div class="control-group">
                                 <label class="control-label" for="education">Job Types</label>
                                 <div class="controls">
@@ -210,7 +222,7 @@
                                 <label class="control-label" for="education">Job Sub Categories</label>
                                 <div class="controls">
                                     <asp:CheckBoxList ID="chkJobSubCat" runat="server" 
-                                        RepeatDirection="Horizontal" RepeatColumns="3"></asp:CheckBoxList>
+                                        RepeatDirection="Horizontal" RepeatColumns="1"></asp:CheckBoxList>
                                 </div>
                             </div>
                             
@@ -250,6 +262,6 @@
             </div>
             <div id="mainContentSeparator"></div>
         </div>
-    <asp:HiddenField runat="server" ID="hdnUserType"/>
+    <%--<asp:HiddenField runat="server" ID="hdnUserType"/>--%>
 
 </asp:Content>
