@@ -156,7 +156,7 @@
                             </div>
 
                             <div class="control-group">
-                                <label class="control-label" for="city">City</label>
+                                <label class="control-label" for="city">Pincode</label>
                                 <div class="controls">
                                    <input type="text" id="txtPinCode" name="pincode"  runat="server"></div>
                                     
