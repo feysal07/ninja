@@ -21,16 +21,15 @@ namespace HouseNinja.Webpages
        
         protected void Page_Load(object sender, EventArgs e)
         {
+            if (Session["userId"] != null)
+            {
+                userID = Convert.ToInt32(Session["userId"]);
+            }
             if (!IsPostBack)
             {
-
-                if (Session["userId"] != null)
-                {
-                   userID = Convert.ToInt32(Session["userId"]);
-
-                   var user = us.getUserById(userID);
+                var user = us.getUserById(userID);
                     loadPersonlDetails(user);
-                }
+               
 
                 loadDDlData();
                 loadCheckBoxData();
@@ -48,18 +47,10 @@ namespace HouseNinja.Webpages
 
         private void loadCheckBoxData()
         {
-            var jobcategories = JobCategoryService.getCategories();
+            
             var advSettingOpts = AdvanceSetingService.getAllAdvOptions();
 
-            if (jobcategories != null)
-            {
-                chkJobCat.DataSource = jobcategories;
-                chkJobCat.DataTextField = "jobCat";
-                chkJobCat.DataValueField = "id";
-                chkJobCat.DataBind();
-                
-            }
-
+            
             if (advSettingOpts != null)
             { 
             
@@ -78,6 +69,8 @@ namespace HouseNinja.Webpages
         private void loadDDlData()
         {
          var states=    ms.GetMasterValueByMenmonic("STATES_NAME");
+         var userTypes = us.populateUserType();
+
          if (states != null)
          {
              ddlState.DataSource = states;
@@ -87,6 +80,19 @@ namespace HouseNinja.Webpages
              ddlState.Items.Insert(0, strDDLDefaultValue);
          }
 
+
+        
+
+         if (null != userTypes)
+         {
+
+             rdUserType.DataSource = userTypes;
+             rdUserType.DataTextField = "userType1";
+             rdUserType.DataValueField = "id";
+             rdUserType.DataBind();
+             //rdUserType.Items.Insert(0, strDDLDefaultValue);
+
+         }
         }
 
         private void loadPersonlDetails(siteuser user)
@@ -96,7 +102,7 @@ namespace HouseNinja.Webpages
             txtlastName.Value = user.userName;
             txtUserName.Value = user.userName;
             rdGender.SelectedValue = user.gender;
-            hdnUserType.Value = user.userType.ToString();
+            //hdnUserType.Value = user.userType.ToString();
 
 
         }
@@ -131,7 +137,7 @@ namespace HouseNinja.Webpages
             String strState = ddlState.SelectedItem.Text;
             String contact=txtcontactNo.Value.Trim();
             String pin=txtPinCode.Value.Trim();
-            int userTypeId=Convert.ToInt32(hdnUserType.Value.Trim());
+            int userTypeId=Convert.ToInt32(rdUserType.SelectedItem.Value);
 
             siteuser objUser = new siteuser
             {
@@ -299,7 +305,7 @@ namespace HouseNinja.Webpages
             {
                 if (listitem.Selected)
                 {
-                    int thisIndex = chkJobSubCat.Items.IndexOf(listitem);
+                    int thisIndex = chkAdvSettings.Items.IndexOf(listitem);
 
                     if (lastSelectedIndex <= thisIndex)
                     {
@@ -309,6 +315,23 @@ namespace HouseNinja.Webpages
             }
 
             return arrayAdvOpts;
+        }
+
+        protected void rdUserType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            int userTypeId = Convert.ToInt32(rdUserType.SelectedItem.Value);
+
+            var jobcategories = JobCategoryService.getCategoriesByUserType(userTypeId);
+            if (jobcategories != null)
+            {
+                chkJobCat.DataSource = jobcategories;
+                chkJobCat.DataTextField = "jobCat";
+                chkJobCat.DataValueField = "id";
+                chkJobCat.DataBind();
+
+            }
+
+
         }
 
 

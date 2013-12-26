@@ -528,14 +528,11 @@
       <!--<div style="width:00px; padding-top:0px;margin-left:0px;float:left;" align="left">Your Fullname:</div>
          <div style="width:300px;float:left;" align="left"><input type="text" id="fullnames" name="fullnames" value="" class="vpb_textAreaBoxInputs"></div><br clear="all"><br clear="all">-->
       <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">Register As:</div>
-      <div style="width:300px;float:left;" align="left">
+     <%-- <div style="width:300px;float:left;" align="left">
          <!--<input type="text" id="usernames" name="usernames" value="" class="vpb_textAreaBoxInputs">-->
          <asp:DropDownList ID="ddlUserType" runat="server"  RepeatDirection="Horizontal" Font-Size="Small" >
-            <%--<asp:ListItem Value="1">Designer</asp:ListItem>
-            <asp:ListItem Value="2">Contractor</asp:ListItem>
-            <asp:ListItem Value="3">Supplier</asp:ListItem>--%>
          </asp:DropDownList>
-      </div>
+      </div>--%>
       <br clear="all"><br clear="all">
       <div style="width:100px; padding-top:0px;margin-left:0px;float:left;" align="left">Email</div>
       <div style="width:300px;float:left;" align="left"><input type="text" id="emails" name="emails" value="" class="vpb_textAreaBoxInputs" runat="server"></div>

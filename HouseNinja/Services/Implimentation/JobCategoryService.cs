@@ -13,12 +13,17 @@ namespace HouseNinja.Services.Implimentation
             return jobcategory.getCategories();
         }
 
+        public static List<jobcategory> getCategoriesByUserType(int userTypeId)
+        {
+            return jobcategory.getCategoriesByUserType(userTypeId);
+        }
+
         public static List<jobsubcategory> getSubCategories(List<int> jobCatIds)
         {
             return jobsubcategory.getSubCategories(jobCatIds);
-        
+
         }
 
-        
+
     }
 }

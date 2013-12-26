@@ -21,7 +21,7 @@ namespace HouseNinja.Webpages.CustomControls
         {
             if (!IsPostBack)
             {
-                dropDownLoad();
+                //dropDownLoad();
             }
             FaceBookConnect.API_Key = "266386026803426";
             FaceBookConnect.API_Secret = "d1b241e2b9f0854ba2bdcfc64ce93f69";
@@ -44,7 +44,7 @@ namespace HouseNinja.Webpages.CustomControls
                     siteuser objUser = new siteuser
                     {
 
-                        userType = Convert.ToInt32(ddlUserType.SelectedItem.Value),
+                        //userType = Convert.ToInt32(ddlUserType.SelectedItem.Value),
                         loginEmail = faceBookUser.Email,
                         password = faceBookUser.Id,
                         firstName=faceBookUser.firstName,
@@ -75,24 +75,24 @@ namespace HouseNinja.Webpages.CustomControls
             }
         }
 
-        private void dropDownLoad()
-        {
+        //private void dropDownLoad()
+        //{
 
-            var userTypes = userService.populateUserType();
+        //    var userTypes = userService.populateUserType();
 
-            if (null != userTypes) {
+        //    if (null != userTypes) {
 
                
 
-                ddlUserType.DataSource = userTypes;
-                ddlUserType.DataTextField = "userType1";
-                ddlUserType.DataValueField = "id";
-                ddlUserType.DataBind();
-                ddlUserType.Items.Insert(0, strDDLDefaultValue);
+        //        ddlUserType.DataSource = userTypes;
+        //        ddlUserType.DataTextField = "userType1";
+        //        ddlUserType.DataValueField = "id";
+        //        ddlUserType.DataBind();
+        //        ddlUserType.Items.Insert(0, strDDLDefaultValue);
 
-            }
+        //    }
             
-        }
+        //}
 
         protected void Login(object sender, EventArgs e)
         {
@@ -115,7 +115,7 @@ namespace HouseNinja.Webpages.CustomControls
             siteuser objUser = new siteuser
             {
               
-                userType=Convert.ToInt32(ddlUserType.SelectedItem.Value),
+                //userType=Convert.ToInt32(ddlUserType.SelectedItem.Value),
                 loginEmail=email,
                 password = pass,
                 createdDate=System.DateTime.Now,

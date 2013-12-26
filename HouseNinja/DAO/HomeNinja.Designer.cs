@@ -24,12 +24,13 @@ using System.Xml.Serialization;
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_createdBy", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_post_id", "post", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_comments_posts", "post", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.post), "comment", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.comment), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_jobcategory_userTypes", "usertype", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HouseNinja.DAO.usertype), "jobcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.jobcategory), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_jobsubcategory", "jobcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.jobcategory), "jobsubcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.jobsubcategory), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_usersjobcatagories", "jobsubcategory", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.jobsubcategory), "usersjobcatagory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.usersjobcatagory), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_master_data_value", "masterdatatype", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HouseNinja.DAO.masterdatatype), "masterdatavalue", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.masterdatavalue), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_posts_posttype", "posttype", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.posttype), "post", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.post), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_posts_user_id", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "post", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.post), true)]
-[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_siteusers_user_type", "usertype", System.Data.Metadata.Edm.RelationshipMultiplicity.One, typeof(HouseNinja.DAO.usertype), "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.siteuser), true)]
+[assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_siteusers_user_type", "usertype", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.usertype), "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.siteuser), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_usersjobcatagories_users", "siteuser", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.siteuser), "usersjobcatagory", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.usersjobcatagory), true)]
 [assembly: EdmRelationshipAttribute("HomeNinjaModel", "FK_usersearch_usertype", "usertype", System.Data.Metadata.Edm.RelationshipMultiplicity.ZeroOrOne, typeof(HouseNinja.DAO.usertype), "usersearch", System.Data.Metadata.Edm.RelationshipMultiplicity.Many, typeof(HouseNinja.DAO.usersearch), true)]
 
@@ -1333,10 +1334,12 @@ namespace HouseNinja.DAO
         /// Create a new jobcategory object.
         /// </summary>
         /// <param name="id">Initial value of the id property.</param>
-        public static jobcategory Createjobcategory(global::System.Int32 id)
+        /// <param name="userTypeId">Initial value of the userTypeId property.</param>
+        public static jobcategory Createjobcategory(global::System.Int32 id, global::System.Int32 userTypeId)
         {
             jobcategory jobcategory = new jobcategory();
             jobcategory.id = id;
+            jobcategory.userTypeId = userTypeId;
             return jobcategory;
         }
 
@@ -1394,10 +1397,72 @@ namespace HouseNinja.DAO
         private global::System.String _jobCat;
         partial void OnjobCatChanging(global::System.String value);
         partial void OnjobCatChanged();
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [DataMemberAttribute()]
+        public global::System.Int32 userTypeId
+        {
+            get
+            {
+                return _userTypeId;
+            }
+            set
+            {
+                OnuserTypeIdChanging(value);
+                ReportPropertyChanging("userTypeId");
+                _userTypeId = StructuralObject.SetValidValue(value, "userTypeId");
+                ReportPropertyChanged("userTypeId");
+                OnuserTypeIdChanged();
+            }
+        }
+        private global::System.Int32 _userTypeId;
+        partial void OnuserTypeIdChanging(global::System.Int32 value);
+        partial void OnuserTypeIdChanged();
 
         #endregion
 
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_jobcategory_userTypes", "usertype")]
+        public usertype usertype
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<usertype>("HomeNinjaModel.FK_jobcategory_userTypes", "usertype").Value;
+            }
+            set
+            {
+                ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<usertype>("HomeNinjaModel.FK_jobcategory_userTypes", "usertype").Value = value;
+            }
+        }
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [BrowsableAttribute(false)]
+        [DataMemberAttribute()]
+        public EntityReference<usertype> usertypeReference
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedReference<usertype>("HomeNinjaModel.FK_jobcategory_userTypes", "usertype");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedReference<usertype>("HomeNinjaModel.FK_jobcategory_userTypes", "usertype", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
@@ -2380,24 +2445,24 @@ namespace HouseNinja.DAO
         /// </summary>
         [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.String postType
+        public global::System.String postType1
         {
             get
             {
-                return _postType;
+                return _postType1;
             }
             set
             {
-                OnpostTypeChanging(value);
-                ReportPropertyChanging("postType");
-                _postType = StructuralObject.SetValidValue(value, true, "postType");
-                ReportPropertyChanged("postType");
-                OnpostTypeChanged();
+                OnpostType1Changing(value);
+                ReportPropertyChanging("postType1");
+                _postType1 = StructuralObject.SetValidValue(value, true, "postType1");
+                ReportPropertyChanged("postType1");
+                OnpostType1Changed();
             }
         }
-        private global::System.String _postType;
-        partial void OnpostTypeChanging(global::System.String value);
-        partial void OnpostTypeChanged();
+        private global::System.String _postType1;
+        partial void OnpostType1Changing(global::System.String value);
+        partial void OnpostType1Changed();
 
         #endregion
 
@@ -2443,12 +2508,10 @@ namespace HouseNinja.DAO
         /// Create a new siteuser object.
         /// </summary>
         /// <param name="userId">Initial value of the userId property.</param>
-        /// <param name="userType">Initial value of the userType property.</param>
-        public static siteuser Createsiteuser(global::System.Int64 userId, global::System.Int32 userType)
+        public static siteuser Createsiteuser(global::System.Int64 userId)
         {
             siteuser siteuser = new siteuser();
             siteuser.userId = userId;
-            siteuser.userType = userType;
             return siteuser;
         }
 
@@ -2558,9 +2621,9 @@ namespace HouseNinja.DAO
         /// <summary>
         /// No Metadata Documentation available.
         /// </summary>
-        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=false)]
+        [EdmScalarPropertyAttribute(EntityKeyProperty=false, IsNullable=true)]
         [DataMemberAttribute()]
-        public global::System.Int32 userType
+        public Nullable<global::System.Int32> userType
         {
             get
             {
@@ -2575,8 +2638,8 @@ namespace HouseNinja.DAO
                 OnuserTypeChanged();
             }
         }
-        private global::System.Int32 _userType;
-        partial void OnuserTypeChanging(global::System.Int32 value);
+        private Nullable<global::System.Int32> _userType;
+        partial void OnuserTypeChanging(Nullable<global::System.Int32> value);
         partial void OnuserTypeChanged();
     
         /// <summary>
@@ -3642,6 +3705,28 @@ namespace HouseNinja.DAO
         #endregion
 
         #region Navigation Properties
+    
+        /// <summary>
+        /// No Metadata Documentation available.
+        /// </summary>
+        [XmlIgnoreAttribute()]
+        [SoapIgnoreAttribute()]
+        [DataMemberAttribute()]
+        [EdmRelationshipNavigationPropertyAttribute("HomeNinjaModel", "FK_jobcategory_userTypes", "jobcategory")]
+        public EntityCollection<jobcategory> jobcategories
+        {
+            get
+            {
+                return ((IEntityWithRelationships)this).RelationshipManager.GetRelatedCollection<jobcategory>("HomeNinjaModel.FK_jobcategory_userTypes", "jobcategory");
+            }
+            set
+            {
+                if ((value != null))
+                {
+                    ((IEntityWithRelationships)this).RelationshipManager.InitializeRelatedCollection<jobcategory>("HomeNinjaModel.FK_jobcategory_userTypes", "jobcategory", value);
+                }
+            }
+        }
     
         /// <summary>
         /// No Metadata Documentation available.
