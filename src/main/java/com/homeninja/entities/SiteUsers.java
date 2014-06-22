@@ -1,7 +1,12 @@
 package com.homeninja.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 @Entity
@@ -9,12 +14,14 @@ import javax.persistence.Table;
 public class SiteUsers {
 	
 	@Id
-	private String userId;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long userId;
 	private String userName;
 	private String firstName;
 	private String lastName;
-	private String userType;
+	private long userType;
 	private String loginEmail;
+	private String phoneNumber;
 	private String password;
 	private String gender;
 	private String loginViaFB;
@@ -24,12 +31,12 @@ public class SiteUsers {
 	private String aboutMe;
 	private String nextProject;
 	private String myFavoriteStyle;
-	private String createdDate;
-	private String modifiedDate;
-	public String getUserId() {
+	private Date createdDate;
+	private Date modifiedDate;
+	public long getUserId() {
 		return userId;
 	}
-	public void setUserId(String userId) {
+	public void setUserId(long userId) {
 		this.userId = userId;
 	}
 	public String getUserName() {
@@ -50,10 +57,10 @@ public class SiteUsers {
 	public void setLastName(String lastName) {
 		this.lastName = lastName;
 	}
-	public String getUserType() {
+	public long getUserType() {
 		return userType;
 	}
-	public void setUserType(String userType) {
+	public void setUserType(long userType) {
 		this.userType = userType;
 	}
 	public String getLoginEmail() {
@@ -61,6 +68,13 @@ public class SiteUsers {
 	}
 	public void setLoginEmail(String loginEmail) {
 		this.loginEmail = loginEmail;
+	}
+	
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
 	}
 	public String getPassword() {
 		return password;
@@ -116,16 +130,16 @@ public class SiteUsers {
 	public void setMyFavoriteStyle(String myFavoriteStyle) {
 		this.myFavoriteStyle = myFavoriteStyle;
 	}
-	public String getCreatedDate() {
+	public Date getCreatedDate() {
 		return createdDate;
 	}
-	public void setCreatedDate(String createdDate) {
+	public void setCreatedDate(Date createdDate) {
 		this.createdDate = createdDate;
 	}
-	public String getModifiedDate() {
+	public Date getModifiedDate() {
 		return modifiedDate;
 	}
-	public void setModifiedDate(String modifiedDate) {
+	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
 	

@@ -1,4 +1,3 @@
-package com.homeninja.service;
 /*
  * Copyright (c) 2008 - 2013 10gen, Inc. <http://10gen.com>
  *
@@ -13,12 +12,13 @@ package com.homeninja.service;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
+ *
  */
- 
+
+package com.homeninja.dao;
 
 
-
-public interface SessionService {
+public interface SessionDAO {
    
 
     public String findUserNameBySessionId(String sessionId) ;
@@ -29,4 +29,5 @@ public interface SessionService {
     public void endSession(String sessionID);
 
     // retrieves the session from the sessions table
+   /* public DBObject getSession(String sessionID);*/
 }

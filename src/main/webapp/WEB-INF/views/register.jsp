@@ -6,14 +6,15 @@
 <script type="text/javascript">
 function doRegister(){
   var myObject = new Object();
-  myObject.fname=$('#fname').val();
-  myObject.lname=$('#lname').val();
-  myObject.email=$('#email').val();
+  myObject.firstName=$('#fname').val();
+  myObject.lastName=$('#lname').val();
+  myObject.loginEmail=$('#email').val();
+  myObject.phoneNumber=$('#phone').val();
   myObject.password=$('#password').val();
     
   $.ajax({
 		type : "POST",
-		url : "/app/doRegister",
+		url : "${pageContext.request.contextPath}/doRegister",
 		data : JSON.stringify(myObject),
 		contentType: 'application/json',
 
@@ -58,7 +59,7 @@ function doRegister(){
             <div class="reg-page">
                 <div class="reg-header">
                     <h2>Register a new account</h2>
-                    <p>Already Signed Up? Click <a href="../app/login" class="color-green">Sign In</a> to login your account.</p>                    
+                    <p>Already Signed Up? Click <a href="./login" class="color-green">Sign In</a> to login your account.</p>                    
                 </div>
                 
                 <label>First Name</label>
@@ -69,6 +70,9 @@ function doRegister(){
                
                 <label>Email Address <span class="color-red">*</span></label>
                 <input type="text" id="email" class="form-control margin-bottom-20">
+                
+                <label>Phone Number</label>
+                <input type="text" id="phone" class="form-control margin-bottom-20">
 
                 <div class="row">
                     <div class="col-sm-6">

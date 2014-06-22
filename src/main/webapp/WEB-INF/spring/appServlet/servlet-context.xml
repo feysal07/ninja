@@ -29,9 +29,9 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="ecommerce.jobportal.controller" />
-	<context:component-scan base-package="ecommerce.jobportal.service.*" />
-	<context:component-scan base-package="ecommerce.jobportal.dao.*" />
+	<context:component-scan base-package="com.homeninja.controller" />
+	<context:component-scan base-package="com.homeninja.service.*" />
+	<context:component-scan base-package="com.homeninja.dao.*" />
 
 
 	

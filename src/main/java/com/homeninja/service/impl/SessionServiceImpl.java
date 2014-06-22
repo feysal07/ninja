@@ -13,16 +13,14 @@ package com.homeninja.service.impl;
  * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
  * See the License for the specific language governing permissions and
  * limitations under the License.
- *
+ */
  
 
-package com.homeninja.service.impl;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
 import com.homeninja.dao.SessionDAO;
 import com.homeninja.service.SessionService;
-import com.mongodb.DBObject;
 
 public class SessionServiceImpl implements SessionService {
 	
@@ -46,14 +44,13 @@ public class SessionServiceImpl implements SessionService {
 		// TODO Auto-generated method stub
 		sessionDAO.endSession(sessionID);
 	}
-
+/*
 	@Override
 	public DBObject getSession(String sessionID) {
 		// TODO Auto-generated method stub
 		return sessionDAO.getSession(sessionID);
-	}
+	}*/
    
 
    
 }
-*/

@@ -24,6 +24,9 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 	@Override
 	public boolean addUser(SiteUsers user) {
 		try {
+			//user.setUserId(5);
+			user.setUserType(4);
+			user.setAddressId("1");
 			this.sessionFactory.getCurrentSession().save(user);
 			return true;
 		} catch (Exception e) {
