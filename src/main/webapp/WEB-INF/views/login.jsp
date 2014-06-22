@@ -20,9 +20,20 @@
 
 			},
 			success : function(response) {
-				alert(response);
-				location.href = "${pageContext.request.contextPath}/"
-						+ response;
+				if(response ==  "login-fail-nouser" || response == "login-fail-usernoexist"){
+					alert("Invalid user. Please try again");
+				}
+				if(response == "login-fail-nopassword"){
+					alert("Password not entered. Please try again");
+				}
+				
+				if(response == "home"){
+					location.href = "${pageContext.request.contextPath}/home";
+				}
+				else{
+					location.href = "${pageContext.request.contextPath}/login";
+				}
+				
 			},
 			complete : function() {
 
@@ -56,13 +67,17 @@
 <!--=== Content Part ===-->
 <div class="container">
 	<div class="row">
-
+		<c:if test="${not empty param.error}">
+			<!-- Display error message -->
+		</c:if>
 		<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
-			<div class="input-group margin-bottom-20">
-			</div>
+			<div class="input-group margin-bottom-20"></div>
 			<div class="reg-header">
 				<h2>Login to your account</h2>
-				<p>New User? Click <a href="./Register" class="color-green">Sign Up</a> to create your account.</p>
+				<p>
+					New User? Click <a href="./Register" class="color-green">Sign
+						Up</a> to create your account.
+				</p>
 			</div>
 
 			<div class="input-group margin-bottom-20">
@@ -72,7 +87,7 @@
 			</div>
 			<div class="input-group margin-bottom-20">
 				<span class="input-group-addon"><i class="icon-lock"></i></span> <input
-					type="text" placeholder="Password" id="Password" name="Password"
+					type="password" placeholder="Password" id="Password" name="Password"
 					class="form-control">
 			</div>
 
