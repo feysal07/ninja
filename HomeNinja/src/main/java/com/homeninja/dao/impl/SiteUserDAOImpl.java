@@ -24,9 +24,6 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 	@Override
 	public boolean addUser(SiteUsers user) {
 		try {
-			//user.setUserId(5);
-			user.setUserType(4);
-			user.setAddressId("1");
 			this.sessionFactory.getCurrentSession().save(user);
 			return true;
 		} catch (Exception e) {
@@ -47,6 +44,9 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 				user = (SiteUsers) list.get(0);
 			}
 
+			if (user != null && user.getPassword() != null && !user.getPassword().equals(password)){
+				user = null;
+			}
 			return user;
 		} catch (HibernateException e) {
 			e.printStackTrace();

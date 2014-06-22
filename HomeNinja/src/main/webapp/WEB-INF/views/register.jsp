@@ -10,6 +10,7 @@ function doRegister(){
   myObject.lastName=$('#lname').val();
   myObject.loginEmail=$('#email').val();
   myObject.phoneNumber=$('#phone').val();
+  myObject.userName = $('#email').val();
   myObject.password=$('#password').val();
     
   $.ajax({
@@ -22,6 +23,8 @@ function doRegister(){
 			
 		},
 		success : function(response) {
+			location.href = "${pageContext.request.contextPath}/"
+				+ response;
 		
 		},
 		complete : function() {
@@ -69,7 +72,7 @@ function doRegister(){
                 <input type="text" id="lname" class="form-control margin-bottom-20">
                
                 <label>Email Address <span class="color-red">*</span></label>
-                <input type="text" id="email" class="form-control margin-bottom-20">
+                <input type="email" id="email" class="form-control margin-bottom-20">
                 
                 <label>Phone Number</label>
                 <input type="text" id="phone" class="form-control margin-bottom-20">
@@ -77,11 +80,11 @@ function doRegister(){
                 <div class="row">
                     <div class="col-sm-6">
                         <label>Password <span class="color-red">*</span></label>
-                        <input type="text" id="password" class="form-control margin-bottom-20">
+                        <input type="password" id="password" class="form-control margin-bottom-20">
                     </div>
                     <div class="col-sm-6">
                         <label>Confirm Password <span class="color-red">*</span></label>
-                        <input type="text" id="cnfrmPassword" class="form-control margin-bottom-20">
+                        <input type="password" id="cnfrmPassword" class="form-control margin-bottom-20">
                     </div>
                 </div>
 

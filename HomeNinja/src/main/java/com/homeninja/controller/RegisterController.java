@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.google.gson.Gson;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.service.SiteUserService;
+import com.homeninja.utils.Utils;
 
 @Controller
 public class RegisterController {
@@ -45,6 +46,7 @@ public class RegisterController {
 		logger.info("inside dologin method");
 		Gson gson = new Gson();
 		SiteUsers registerUser = gson.fromJson(myObject, SiteUsers.class);
+		registerUser.setPassword(Utils.md5Encryption(registerUser.getPassword()));
 
 		String email = registerUser.getLoginEmail();
 		if (!siteUserService.isEmailExists(email)) {
