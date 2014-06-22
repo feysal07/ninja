@@ -44,7 +44,8 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 				user = (SiteUsers) list.get(0);
 			}
 
-			if (user != null && user.getPassword() != null && !user.getPassword().equals(password)){
+			if (user != null && user.getPassword() != null
+					&& !user.getPassword().equals(password)) {
 				user = null;
 			}
 			return user;
@@ -56,8 +57,20 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 
 	@Override
 	public boolean isEmailExists(String userName) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+		try {
 
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from SiteUsers where username = :username ");
+			query.setParameter("username", userName);
+			List list = query.list();
+			if (list.size() > 0) {
+				return true;
+			}
+			return false;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return false;
+		}
+	}
 }

@@ -23,8 +23,20 @@ function doRegister(){
 			
 		},
 		success : function(response) {
-			location.href = "${pageContext.request.contextPath}/"
-				+ response;
+			if(response ==  "register-alreadyexist" ){
+				alert("User already exists. Please try again");
+			}
+			if(response == "register-emailnotentered"){
+				alert("Email not entered. Please try again");
+			}
+			if(response == "register-passwordnotentered"){
+				alert("Password not entered. Please try again");
+			}
+			
+			if(response == "home"){
+				location.href = "${pageContext.request.contextPath}/home";
+			}
+			
 		
 		},
 		complete : function() {

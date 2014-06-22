@@ -26,9 +26,9 @@ public class RegisterController {
 	@Resource
 	public SiteUserService siteUserService;
 
-	/*@Autowired
-	public SessionService sessionService;
-*/
+	/*
+	 * @Autowired public SessionService sessionService;
+	 */
 	private static final Logger logger = LoggerFactory
 			.getLogger(RegisterController.class);
 
@@ -45,17 +45,32 @@ public class RegisterController {
 
 		logger.info("inside dologin method");
 		Gson gson = new Gson();
+		
 		SiteUsers registerUser = gson.fromJson(myObject, SiteUsers.class);
-		registerUser.setPassword(Utils.md5Encryption(registerUser.getPassword()));
-
+		
 		String email = registerUser.getLoginEmail();
+		if (email == null || email.length() == 0) {
+			return "register-emailnotentered";
+		}
+		
+		if (registerUser.getPassword() == null
+				|| registerUser.getPassword().length() == 0) {
+			return "register-passwordnotentered";
+		}
+		registerUser
+				.setPassword(Utils.md5Encryption(registerUser.getPassword()));
+
+
+		
 		if (!siteUserService.isEmailExists(email)) {
 			// good user
 			if (!siteUserService.addUser(registerUser)) {
 				return "register";
 			}
 
-			
+		}
+		if (siteUserService.isEmailExists(email)) {
+			return "register-alreadyexist";
 		}
 		return "home";
 	}
