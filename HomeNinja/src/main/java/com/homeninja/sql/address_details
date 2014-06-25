@@ -1,0 +1,16 @@
+CREATE TABLE `address_details` (
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `address` text NOT NULL,
+  `location` varchar(100) DEFAULT NULL,
+  `city` int(11) DEFAULT NULL,
+  `state` int(11) DEFAULT NULL,
+  `contactNo` varchar(20) DEFAULT NULL,
+  `pincode` varchar(10) DEFAULT NULL,
+  `isPrimary` bit(1) DEFAULT NULL,
+  `createdDate` datetime DEFAULT NULL,
+  `modifiedDate` datetime DEFAULT NULL,
+  `userId` bigint(20) DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  KEY `FK_addressdetails` (`userId`),
+  CONSTRAINT `FK_addressdetails` FOREIGN KEY (`userId`) REFERENCES `site_users` (`userId`) ON DELETE NO ACTION ON UPDATE NO ACTION
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
