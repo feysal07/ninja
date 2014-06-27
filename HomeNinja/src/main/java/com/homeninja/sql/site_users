@@ -19,5 +19,4 @@ CREATE TABLE `site_users` (
   `phoneNumber` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`userId`),
   UNIQUE KEY `NewIndex1` (`addressId`),
-  KEY `FK_siteusers_user_type` (`userType`)
 ) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8;
