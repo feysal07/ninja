@@ -31,6 +31,17 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 		}
 
 	}
+	
+	@Override
+	public boolean updateUser(SiteUsers user) {
+		try {
+			this.sessionFactory.getCurrentSession().update(user);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+
+	}
 
 	@Override
 	public SiteUsers validateLogin(String username, String password) {

@@ -2,10 +2,13 @@ package com.homeninja.entities;
 
 import java.util.Date;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -27,7 +30,9 @@ public class SiteUsers {
 	private String loginViaFB;
 	private String isActive;
 	private String profilPic;
-	private String addressId;
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="addressId")
+	private Address address;
 	private String aboutMe;
 	private String nextProject;
 	private String myFavoriteStyle;
@@ -106,11 +111,12 @@ public class SiteUsers {
 	public void setProfilPic(String profilPic) {
 		this.profilPic = profilPic;
 	}
-	public String getAddressId() {
-		return addressId;
+
+	public Address getAddress() {
+		return address;
 	}
-	public void setAddressId(String addressId) {
-		this.addressId = addressId;
+	public void setAddress(Address address) {
+		this.address = address;
 	}
 	public String getAboutMe() {
 		return aboutMe;
