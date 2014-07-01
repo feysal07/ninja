@@ -22,6 +22,12 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 		return siteUserDAO.addUser(registerUser);
 	}
 
+	@Override
+	public boolean updateUser(SiteUsers registerUser) {
+		// TODO Auto-generated method stub
+		return siteUserDAO.updateUser(registerUser);
+	}
+	
 	@Override	
 	public SiteUsers validateLogin(String username, String password) {
 		// TODO Auto-generated method stub

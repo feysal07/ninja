@@ -1,4 +1,5 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page session="false" %>
 <c:import url="../include.jsp"></c:import> 
 <c:import url="../header.jsp"></c:import>
@@ -13,7 +14,7 @@ function doRegister(){
   myObject.userName = $('#email').val();
   myObject.password=$('#password').val();
     
-  $.ajax({
+ /*  $.ajax({
 		type : "POST",
 		url : "${pageContext.request.contextPath}/doRegister",
 		data : JSON.stringify(myObject),
@@ -45,7 +46,7 @@ function doRegister(){
 		error : function(e) {
 			
 		}
-	});
+	}); */
 }
 </script>
 
@@ -68,6 +69,8 @@ function doRegister(){
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
+
+<form:form action ="./doRegister" method="POST" modelAttribute="siteUser">
 <div class="container">
     <div class="row">
         <div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -78,25 +81,25 @@ function doRegister(){
                 </div>
                 
                 <label>First Name</label>
-                <input type="text" id="fname" class="form-control margin-bottom-20">
+                <form:input type="text" id="fname" class="form-control margin-bottom-20" path="firstName"/>
                
                 <label>Last Name</label>
-                <input type="text" id="lname" class="form-control margin-bottom-20">
+               <form:input type="text" id="lname" class="form-control margin-bottom-20" path="lastName"/>
                
                 <label>Email Address <span class="color-red">*</span></label>
-                <input type="email" id="email" class="form-control margin-bottom-20">
+                <form:input type="email" id="email" class="form-control margin-bottom-20" path="loginEmail"/>
                 
                 <label>Phone Number</label>
-                <input type="text" id="phone" class="form-control margin-bottom-20">
+                <form:input type="text" id="phone" class="form-control margin-bottom-20" path="phoneNumber"/>
 
                 <div class="row">
                     <div class="col-sm-6">
                         <label>Password <span class="color-red">*</span></label>
-                        <input type="password" id="password" class="form-control margin-bottom-20">
+                        <form:input  type="password" id="password" class="form-control margin-bottom-20" path="password"/>
                     </div>
                     <div class="col-sm-6">
                         <label>Confirm Password <span class="color-red">*</span></label>
-                        <input type="password" id="cnfrmPassword" class="form-control margin-bottom-20">
+                        <input  type="password" id="cnfrmPassword" class="form-control margin-bottom-20"/>
                     </div>
                 </div>
 
@@ -110,13 +113,14 @@ function doRegister(){
                         </label>                        
                     </div>
                     <div class="col-lg-6 text-right">
-                        <button class="btn-u" onclick="javascript:doRegister()">Register</button>                        
+                        <input type ="submit"  value="Register" class="btn-u" onclick="javascript:doRegister()">                      
                     </div>
                 </div>
             </div>
         </div>
     </div>
-</div><!--/container-->		
+</div><!--/container-->	
+</form:form>	
 <!--=== End Content Part ===-->
 
 <!-- Footer-->

@@ -1,13 +1,16 @@
 package com.homeninja.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class Address {
 	
 	@Id
-	private String id;
+	@GeneratedValue(strategy=GenerationType.AUTO)
+	private long id;
 	private String address;
 	private String location;
 	private String city;
@@ -21,10 +24,10 @@ public class Address {
 	private String longitude;
 	private String lattitude;
 	
-	public String getId() {
+	public long getId() {
 		return id;
 	}
-	public void setId(String id) {
+	public void setId(long id) {
 		this.id = id;
 	}
 	public String getAddress() {

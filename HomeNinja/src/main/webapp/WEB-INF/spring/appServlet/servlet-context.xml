@@ -81,6 +81,8 @@
 
  	<beans:bean class="org.springframework.social.connect.web.ConnectController">
 	</beans:bean> 
+	
+	 <beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"/>
 	<!-- <beans:bean id="blogPostDAO" class="com.homeninja.dao.impl.BlogPostDAOImpl"> 
 		</beans:bean> <beans:bean id="contactUsDAO" class="com.homeninja.dao.impl.ContactUsDAOImpl"> 
 		</beans:bean> <beans:bean id="jobPostDAO" class="com.homeninja.dao.impl.JobPostDAOImpl"> 
