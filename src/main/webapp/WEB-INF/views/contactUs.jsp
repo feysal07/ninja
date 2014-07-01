@@ -9,14 +9,14 @@
 <script type="text/javascript">
 function submitQuery(){
 	var myObject = new Object();
-	myObject.name=$('name').val();
-	myObject.email=$('email').val();
-	myObject.message=$('message').val();
-
-
+	myObject.name=$('#name').val();
+	myObject.email=$('#email').val();
+	myObject.message=$('#message').val();
+	myObject.subject=$('#subject').val();
+	myObject.contactPurpose=$('select#contactPurpose option:selected').val();
 	 $.ajax({
 			type : "POST",
-			url : "/app/submitQuery",
+			url : "${pageContext.request.contextPath}/submitQuery",
 			data : JSON.stringify(myObject),
 			contentType: 'application/json',
 
@@ -80,7 +80,24 @@ function submitQuery(){
                         <input type="text" class="form-control" id="email">
                     </div>                
                 </div>
-                
+                <label>Contact Purpose<span class="color-red">*</span></label>
+                <div class="row margin-bottom-20">
+                    <div class="col-md-7 col-md-offset-0">
+                        <!-- <input type="text" class="form-control" id="subject"> -->
+						<select name=contactPurpose id="contactPurpose">
+							<option id="0">--Select--</option>
+							<c:forEach var="item" items="${ddlContactPurpose}">
+								<option value="<c:out value="${item.id}" />"><c:out value="${item.value}" /></option>
+							</c:forEach>
+						</select>
+					</div>                
+                </div>
+                <label>Subject <span class="color-red">*</span></label>
+                <div class="row margin-bottom-20">
+                    <div class="col-md-7 col-md-offset-0">
+                        <input type="text" class="form-control" id="subject">
+                    </div>                
+                </div>
                 <label>Message</label>
                 <div class="row margin-bottom-20">
                     <div class="col-md-11 col-md-offset-0">

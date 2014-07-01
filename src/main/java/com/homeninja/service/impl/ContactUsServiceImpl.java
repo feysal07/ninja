@@ -1,9 +1,11 @@
 package com.homeninja.service.impl;
-/*package com.homeninja.service.impl;
+
 
 import java.util.Date;
+import java.util.List;
 import java.util.Properties;
 
+import javax.annotation.Resource;
 import javax.mail.Message;
 import javax.mail.MessagingException;
 import javax.mail.Session;
@@ -11,21 +13,23 @@ import javax.mail.Transport;
 import javax.mail.internet.InternetAddress;
 import javax.mail.internet.MimeMessage;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 import com.homeninja.dao.ContactUsDAO;
-import com.homeninja.entites.ContactUs;
+import com.homeninja.entities.ContactPurpose;
+import com.homeninja.entities.ContactUs;
 import com.homeninja.service.ContactUsService;
 
+@Service
 public class ContactUsServiceImpl implements ContactUsService {
 	
-	@Autowired
+	@Resource
 	public ContactUsDAO contactUsDAO;
 
 	@Override
 	public boolean sendContactUsMail(ContactUs contactUs) {
-		String fromAddress = "Your Name ";// Your Email Address//
-		String recipients = "bharatverma2488@gmail.com";
+		String fromAddress = "bharatverma2488@gmail.com";// Your Email Address//
+		String recipients = contactUs.getName();
 		String contentType = "text/plain";
 		String smtpHost = "smtp.gmail.com";// Your Outgoing Mailbox//
 		int smtpPort = 587;
@@ -61,5 +65,10 @@ public class ContactUsServiceImpl implements ContactUsService {
 	 public boolean saveMessage(ContactUs contactUsForm){
 		return contactUsDAO.saveMessage(contactUsForm);
 	   }
+
+	@Override
+	public List<ContactPurpose> getContactPurpose() {
+		// TODO Auto-generated method stub
+		return contactUsDAO.getContactPurpose();
+	}
 }
-*/

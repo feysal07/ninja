@@ -18,7 +18,7 @@
 			/>
 		<property name="hibernateProperties">
 			<props>
-				<prop key="hibernate.hbm2ddl.auto">create-drop</prop>
+				<prop key="hibernate.hbm2ddl.auto">none</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
 				 <prop key="hibernate.show_sql">true</prop>
 			</props>
@@ -27,6 +27,8 @@
 		<property name="annotatedClasses">
 			<list>
 				<value>com.homeninja.entities.SiteUsers</value>
+				<value>com.homeninja.entities.ContactUs</value>
+				<value>com.homeninja.entities.ContactPurpose</value>
 			</list>
 		</property>
 		
@@ -35,9 +37,9 @@
 	<bean id="dataSource" destroy-method="close"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://127.0.0.1:3307/jobportal" />
-		<property name="username" value="root" />
-		<property name="password" value="admin" />
+		<property name="url" value="jdbc:mysql://localhost:3307/jobportal" />
+		<property name="username" value="admin" />
+		<property name="password" value="root" />
 	</bean>
 
 	<bean id="transactionManager"
