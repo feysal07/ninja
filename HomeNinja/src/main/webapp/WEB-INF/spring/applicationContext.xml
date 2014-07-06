@@ -28,6 +28,7 @@
 				<value>com.homeninja.entities.SiteUsers</value>
 
 				<value>com.homeninja.entities.Address</value>
+				<value>com.homeninja.entities.MasterDataValue</value>
 
 				<value>com.homeninja.entities.ContactUs</value>
 				<value>com.homeninja.entities.ContactPurpose</value>
