@@ -8,9 +8,12 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
 import javax.persistence.OneToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "site_users")
@@ -29,7 +32,7 @@ public class SiteUsers {
 	private String gender;
 	private String loginViaFB;
 	private String isActive;
-	private String profilPic;
+	private byte [] profilPic;
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="addressId")
 	private Address address;
@@ -105,13 +108,14 @@ public class SiteUsers {
 	public void setIsActive(String isActive) {
 		this.isActive = isActive;
 	}
-	public String getProfilPic() {
+	public byte[] getProfilPic() {
 		return profilPic;
 	}
-	public void setProfilPic(String profilPic) {
+	@Lob
+	@Type(type = "binary")
+	public void setProfilPic(byte[] profilPic) {
 		this.profilPic = profilPic;
 	}
-
 	public Address getAddress() {
 		return address;
 	}

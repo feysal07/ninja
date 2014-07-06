@@ -8,11 +8,14 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.homeninja.dao.SiteUserDAO;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.vo.UploadedFile;
 
 @Service
 @Transactional
@@ -84,4 +87,25 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 			return false;
 		}
 	}
+	
+	@Override
+	public SiteUsers findbyExample(SiteUsers siteUsers) {
+		try {
+
+			List<SiteUsers> results = (List<SiteUsers>) sessionFactory
+					.getCurrentSession()
+					.createCriteria(
+							"com.homeninja.entities.SiteUsers")
+					.add(Example.create(siteUsers)).list();
+			if (results.size() > 0) {
+				return results.get(0);
+			}
+			return null;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+	
 }
