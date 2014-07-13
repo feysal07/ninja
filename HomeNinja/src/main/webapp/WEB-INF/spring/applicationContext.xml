@@ -33,6 +33,11 @@
 				<value>com.homeninja.entities.ContactUs</value>
 				<value>com.homeninja.entities.ContactPurpose</value>
 
+				<value>com.homeninja.entities.AdvanceSetting</value>
+				<value>com.homeninja.entities.AdvanceSettingUserMap</value>
+
+
+
 			</list>
 		</property>
 

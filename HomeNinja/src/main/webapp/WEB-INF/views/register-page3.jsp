@@ -31,43 +31,21 @@
 					value='<c:out value="${siteUser.userId}"/>'>
 <div class="container">
 	<div class="row margin-bottom-30">
-		<div class="col-md-3">
-			<!-- Google Map -->
-			<div class="headline">
-				<h2>Upload Image Form</h2>
-			</div>
-
-			<div>
-				<img alt="" src="resources/assets/img/user.jpg"
-					class="img-responsive" id="image-upload-pic" width="199"
-					height="152">
-			</div>
-			<br />
-			<p>
-				<input type="file" size="40" name="image-upload" id="image-upload">&nbsp;&nbsp;
-				<button type="submit" class="btn-u" id="image-upload1">Upload</button>
-
-
-			</p>
-
-		</div>
-		<!--/col-md-3-->
-
 		<div class="col-md-9 mb-margin-bottom-30">
 			<div>
 				<div class="headline">
 					<h2>Basic Information</h2>
 				</div>
 
-				<div class="row">
+				<div class="dropdown">
 					<div class="col-lg-4">
-						<label>First Name <span class="color-red">*</span></label> <input
+						<label>User Type <span class="color-red">*</span></label> <input
 						id="firstName"
 							value='<c:out value="${siteUser.firstName}"/>' type="text"
 							class="form-control margin-bottom-20">
 					</div>
 					<div class="col-lg-4">
-						<label>Last Name <span class="color-red">*</span></label> <input
+						<label>Company Name <span class="color-red">*</span></label> <input
 							type="text" 
 							id="lastName" value='<c:out value="${siteUser.lastName}"/>'
 							class="form-control margin-bottom-20">
@@ -75,20 +53,20 @@
 				</div>
 				<div class="row">
 					<div class="col-lg-4">
-						<label>Email <span class="color-red">*</span></label> <input
+						<label>More About your company <span class="color-red">*</span></label> <input
 							type="text" 
 							id="loginEmail"
 							value='<c:out value="${siteUser.loginEmail}"/>'
 							class="form-control margin-bottom-20">
 					</div>
 					<div class="col-lg-4">
-						<label>Contact <span class="color-red">*</span></label> <input
+						<label>Choose your service categories <span class="color-red">*</span></label> <input
 							type="text"  id="phoneNumber" value='<c:out value="${siteUser.phoneNumber}"/>'
 							class="form-control margin-bottom-20">
 					</div>
 				</div>
 
-				<label>About Me</label>
+				<label>Specialist</label>
 				<div class="row margin-bottom-20">
 					<div class="col-md-9 col-md-offset-0">
 						<textarea rows="8" class="form-control" id="aboutMe"> <c:out
@@ -156,12 +134,6 @@
 				</div>
 
 			</div>
-			<div>
-					</div>
-					<p>
-						<button type="submit" id="next-page3" class="btn-u" onclick="javascript:goToRegPage3()">Next</button>
-					</p>
-				</div>
 
 
 		</div>
