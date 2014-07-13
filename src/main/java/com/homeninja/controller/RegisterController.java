@@ -1,11 +1,13 @@
 package com.homeninja.controller;
 
 import java.io.IOException;
+import java.lang.reflect.Type;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -32,11 +34,15 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.homeninja.entities.Address;
+import com.homeninja.entities.AdvanceSettingUserMap;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.service.AdvanceSettingService;
 import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.SiteUserService;
 import com.homeninja.utils.Utils;
+import com.homeninja.vo.AdvanceSettingUserMapList;
 import com.homeninja.vo.City;
 import com.homeninja.vo.State;
 import com.homeninja.vo.UploadedFile;
@@ -53,12 +59,29 @@ public class RegisterController {
 	
 	@Resource
 	public GeoLocationService geoLocationService;
+	
+	@Resource
+	public AdvanceSettingService advanceSettingService;
+	
 
 	/*
 	 * @Autowired public SessionService sessionService;
 	 */
 	private static final Logger logger = LoggerFactory
 			.getLogger(RegisterController.class);
+	
+	@RequestMapping(value = "/getAdvanceQuestions", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody
+	Set<AdvanceSettingUserMap> getAdvanceQuestions( @RequestBody String myObject) {
+		logger.debug("getAdvanceQuestions");
+		Gson gson = new Gson();
+		SiteUsers siteusers = gson.fromJson(myObject, SiteUsers.class);
+		Set<AdvanceSettingUserMap> advanceSettingUserMapSet = new HashSet<AdvanceSettingUserMap>();
+		advanceSettingUserMapSet = advanceSettingService.findAdvanceSettingById(siteusers.getUserId());
+		return advanceSettingUserMapSet;
+	}
+	
+	
 	
 	@RequestMapping(value = "/states", method = RequestMethod.GET)
 	public @ResponseBody
@@ -71,7 +94,8 @@ public class RegisterController {
 	
 	@RequestMapping(value = "/citiesforStates", method = RequestMethod.GET)
 	public @ResponseBody
-	Set<City> getCitiesForState(@RequestParam(value = "stateOrderId", required = true) long stateOrderId
+	Set<City> getCitiesForState(@RequestParam(value = "stateOrderId", required = true) 
+	long stateOrderId
 			) {
 		logger.debug("finding all Cities For State");
 		Set<City> citySet = new HashSet<City>();
@@ -97,6 +121,16 @@ public class RegisterController {
 		mav.addObject("siteUser", registerUser);
 		
 		mav.addObject("userAddress", registerUser.getAddress());
+		return mav;
+	}
+	
+	@RequestMapping(value = "/RegisterPage3", method = RequestMethod.GET)
+	ModelAndView RegisterPage3(
+			@ModelAttribute("siteUser") SiteUsers registerUser)
+			throws IOException {
+		ModelAndView mav = new ModelAndView("register-page3");
+		mav.addObject("siteUser", registerUser);
+		
 		return mav;
 	}
 
@@ -168,6 +202,51 @@ public class RegisterController {
 		} else {
 			return "save-fail";
 		}
+
+	}
+	
+	@RequestMapping(value = "/saveSection3", method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody
+	String saveSection3(HttpServletResponse response, @RequestBody String myObject) {
+		logger.info("inside saveSection3 method");
+		Gson gson = new Gson();
+		Type listType = new TypeToken<List<AdvanceSettingUserMap>>(){}.getType();
+		List<AdvanceSettingUserMap> advanceSettingUserMapList = gson.fromJson(myObject, listType);
+
+
+		// check user exist in db or not SiteUsers user =
+/*		SiteUsers siteUsersFromDB = new SiteUsers();
+		siteUsersFromDB.setUserId(userDetail.getUserId());
+	
+		 siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
+		if(siteUsersFromDB!= null){
+			userDetail.setUserId(siteUsersFromDB.getUserId());
+		}
+		else{
+			return "save-fail";
+		}*/
+		Set<AdvanceSettingUserMap> advanceSettingUserMapSet = new HashSet<AdvanceSettingUserMap>();
+		long userId = advanceSettingUserMapList.get(0).getUserId();
+		advanceSettingUserMapSet = advanceSettingService.findAdvanceSettingById(userId);
+		for (AdvanceSettingUserMap advanceSettingUserMap : advanceSettingUserMapSet) {
+			boolean saveSection3Flag = false;
+			for (AdvanceSettingUserMap advanceSettingUserMap1 : advanceSettingUserMapList) {
+				if(advanceSettingUserMap.getAdvanceSetting().getId() == advanceSettingUserMap1.getAdvanceSetting().getId()){
+					advanceSettingUserMap.setAdvanceSettingValue(advanceSettingUserMap1.getAdvanceSettingValue());
+				}
+				saveSection3Flag = advanceSettingService.saveOrUpdateAdvanceSettingUserMap(advanceSettingUserMap);
+			}
+			
+		}
+		
+		
+
+/*		if (saveSection2Flag) {
+			return "register-success";
+		} else {
+			return "save-fail";
+		}*/
+		return "register-success";
 
 	}
 	
