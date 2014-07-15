@@ -1,6 +1,8 @@
 package com.homeninja.dao.impl;
 
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import javax.annotation.Resource;
 
@@ -15,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.homeninja.dao.SiteUserDAO;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.entities.UserType;
 import com.homeninja.vo.UploadedFile;
 
 @Service
@@ -34,7 +37,7 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 		}
 
 	}
-	
+
 	@Override
 	public boolean updateUser(SiteUsers user) {
 		try {
@@ -87,15 +90,14 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 			return false;
 		}
 	}
-	
+
 	@Override
 	public SiteUsers findbyExample(SiteUsers siteUsers) {
 		try {
 
 			List<SiteUsers> results = (List<SiteUsers>) sessionFactory
 					.getCurrentSession()
-					.createCriteria(
-							"com.homeninja.entities.SiteUsers")
+					.createCriteria("com.homeninja.entities.SiteUsers")
 					.add(Example.create(siteUsers)).list();
 			if (results.size() > 0) {
 				return results.get(0);
@@ -107,5 +109,17 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 			return null;
 		}
 	}
-	
+
+	@Override
+	public Set<UserType> getUserType() {
+		Set<UserType> userTypeSet = new HashSet<UserType>();
+		Query getUserType = sessionFactory.getCurrentSession().createQuery(
+				"from UserType");
+		List<UserType> userTypeList = getUserType.list();
+		for (UserType userType : userTypeList) {
+			userTypeSet.add(userType);
+		}
+		return userTypeSet;
+	}
+
 }

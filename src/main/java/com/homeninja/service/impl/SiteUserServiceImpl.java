@@ -1,5 +1,7 @@
 package com.homeninja.service.impl;
 
+import java.util.Set;
+
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
@@ -7,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.homeninja.dao.SiteUserDAO;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.entities.UserType;
 import com.homeninja.service.SiteUserService;
 import com.homeninja.vo.UploadedFile;
 
@@ -45,6 +48,11 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 	public SiteUsers findbyExample(SiteUsers siteUsers){
 		// TODO Auto-generated method stub
 		return siteUserDAO.findbyExample(siteUsers);
+	}
+
+	@Override
+	public Set<UserType> getUserType() {
+		return siteUserDAO.getUserType();
 	}
 
 	

@@ -37,52 +37,148 @@ import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.homeninja.entities.Address;
 import com.homeninja.entities.AdvanceSettingUserMap;
+import com.homeninja.entities.JobCategory;
+import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.entities.UserJobCategoryMap;
+import com.homeninja.entities.UserType;
 import com.homeninja.service.AdvanceSettingService;
 import com.homeninja.service.GeoLocationService;
+import com.homeninja.service.JobCategoryService;
 import com.homeninja.service.SiteUserService;
 import com.homeninja.utils.Utils;
 import com.homeninja.vo.AdvanceSettingUserMapList;
 import com.homeninja.vo.City;
+import com.homeninja.vo.RegistrationPage3;
 import com.homeninja.vo.State;
 import com.homeninja.vo.UploadedFile;
+import com.homeninja.vo.UserJobCategoryVO;
 
 @Controller
 public class RegisterController {
 
 	UploadedFile ufile;
-	
+
 	private long siteUserId;
 
 	@Resource
 	public SiteUserService siteUserService;
-	
+
 	@Resource
 	public GeoLocationService geoLocationService;
-	
+
 	@Resource
 	public AdvanceSettingService advanceSettingService;
-	
+
+	@Resource
+	public JobCategoryService jobCategoryService;
 
 	/*
 	 * @Autowired public SessionService sessionService;
 	 */
 	private static final Logger logger = LoggerFactory
 			.getLogger(RegisterController.class);
-	
+
+	@RequestMapping(value = "/doRegisterPage3", method = RequestMethod.POST)
+	public @ResponseBody
+	ModelAndView doRegisterPage3(
+			@ModelAttribute("registrationPage3") RegistrationPage3 registrationPage3) {
+		logger.debug("doRegisterPage3");
+		List<UserJobCategoryVO> userJobCategoryVOList = registrationPage3
+				.getUserJobCategoryList();
+		Set<UserJobCategoryMap> userJobCategoryMapSet = jobCategoryService
+				.getUserJobCategoryMap(registrationPage3.getUserId());
+		if (userJobCategoryMapSet == null) {
+			userJobCategoryMapSet = new HashSet<UserJobCategoryMap>();
+		}
+
+		for (int i = 1; i < userJobCategoryVOList.size(); i++) {
+			/*
+			 * boolean userJobCategoryPresent = false; if
+			 * (userJobCategoryVOList.get(i) != null &&
+			 * userJobCategoryVOList.get(i).getJobCategoryIsSet() != null &&
+			 * userJobCategoryVOList.get(i).getJobCategoryIsSet().equals("true")
+			 * ) { if(userJobCategoryMapSet != null){ for (UserJobCategoryMap
+			 * userJobCategoryMap : userJobCategoryMapSet) {
+			 * if(userJobCategoryMap.getJobCategoryID() == i){
+			 * userJobCategoryPresent = true; break; } else{
+			 * userJobCategoryPresent = false; } } }
+			 * 
+			 * 
+			 * }
+			 * 
+			 * 
+			 * if (!userJobCategoryPresent) { UserJobCategoryMap
+			 * userJobCategoryMapTemp = new UserJobCategoryMap();
+			 * userJobCategoryMapTemp.setId(0);
+			 * userJobCategoryMapTemp.setUserId(registrationPage3.getUserId());
+			 * userJobCategoryMapTemp.setJobCategoryID(i);
+			 * userJobCategoryMapSet.add(userJobCategoryMapTemp); }
+			 */
+
+			if (userJobCategoryVOList.get(i) != null
+					&& userJobCategoryVOList.get(i).getJobCategoryIsSet() != null
+					&& userJobCategoryVOList.get(i).getJobCategoryIsSet()
+							.equals("true")) {
+				UserJobCategoryMap userJobCategoryMapTemp = new UserJobCategoryMap();
+				userJobCategoryMapTemp.setId(0);
+				userJobCategoryMapTemp.setUserId(registrationPage3.getUserId());
+				userJobCategoryMapTemp.setJobCategoryID(i);
+				userJobCategoryMapSet.add(userJobCategoryMapTemp);
+			}
+
+		}
+
+		for (UserJobCategoryMap userJobCategoryMap : userJobCategoryMapSet) {
+			jobCategoryService.saveUserJobCategory(userJobCategoryMap);
+		}
+		ModelAndView mav = new ModelAndView();
+		mav.setViewName("home");
+
+		return mav;
+	}
+
+	@RequestMapping(value = "/getUserTypes", method = RequestMethod.GET)
+	public @ResponseBody
+	Set<UserType> getUserTypes() {
+		logger.debug("getUserTypes");
+		Set<UserType> userTypeSet = new HashSet<UserType>();
+		userTypeSet = siteUserService.getUserType();
+		return userTypeSet;
+	}
+
+	@RequestMapping(value = "/getJobCategories", method = RequestMethod.GET)
+	public @ResponseBody
+	Set<JobCategory> getJobCategories() {
+		logger.debug("getJobCategories");
+		Set<JobCategory> jobCategorySet = new HashSet<JobCategory>();
+		jobCategorySet = jobCategoryService.getJobCategory();
+		return jobCategorySet;
+	}
+
+	@RequestMapping(value = "/getJobSubCategories", method = RequestMethod.GET)
+	public @ResponseBody
+	Set<JobSubCategory> getJobSubCategories(@RequestBody String myObject) {
+		logger.debug("getJobCategories");
+		Gson gson = new Gson();
+		JobCategory jobCategory = gson.fromJson(myObject, JobCategory.class);
+		Set<JobSubCategory> jobSubCategorySet = new HashSet<JobSubCategory>();
+		jobSubCategorySet = jobCategoryService.getJobSubCategory(jobCategory);
+		return jobSubCategorySet;
+	}
+
 	@RequestMapping(value = "/getAdvanceQuestions", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
-	Set<AdvanceSettingUserMap> getAdvanceQuestions( @RequestBody String myObject) {
+	Set<AdvanceSettingUserMap> getAdvanceQuestions(@RequestBody String myObject) {
 		logger.debug("getAdvanceQuestions");
 		Gson gson = new Gson();
 		SiteUsers siteusers = gson.fromJson(myObject, SiteUsers.class);
 		Set<AdvanceSettingUserMap> advanceSettingUserMapSet = new HashSet<AdvanceSettingUserMap>();
-		advanceSettingUserMapSet = advanceSettingService.findAdvanceSettingById(siteusers.getUserId());
+		advanceSettingUserMapSet = advanceSettingService
+				.findAdvanceSettingById(siteusers.getUserId());
 		return advanceSettingUserMapSet;
 	}
-	
-	
-	
+
 	@RequestMapping(value = "/states", method = RequestMethod.GET)
 	public @ResponseBody
 	Set<State> findAllStates() {
@@ -91,12 +187,11 @@ public class RegisterController {
 		stateset = geoLocationService.getStates();
 		return stateset;
 	}
-	
+
 	@RequestMapping(value = "/citiesforStates", method = RequestMethod.GET)
 	public @ResponseBody
-	Set<City> getCitiesForState(@RequestParam(value = "stateOrderId", required = true) 
-	long stateOrderId
-			) {
+	Set<City> getCitiesForState(
+			@RequestParam(value = "stateOrderId", required = true) long stateOrderId) {
 		logger.debug("finding all Cities For State");
 		Set<City> citySet = new HashSet<City>();
 		citySet = geoLocationService.getCitiesForState(stateOrderId);
@@ -110,8 +205,6 @@ public class RegisterController {
 		mav.addObject("siteUser", siteUser);
 		return mav;
 	}
-	
-
 
 	@RequestMapping(value = "/RegisterPage2", method = RequestMethod.GET)
 	ModelAndView RegisterPage2(
@@ -119,18 +212,21 @@ public class RegisterController {
 			throws IOException {
 		ModelAndView mav = new ModelAndView("register-page2");
 		mav.addObject("siteUser", registerUser);
-		
+
 		mav.addObject("userAddress", registerUser.getAddress());
 		return mav;
 	}
-	
+
 	@RequestMapping(value = "/RegisterPage3", method = RequestMethod.GET)
 	ModelAndView RegisterPage3(
-			@ModelAttribute("siteUser") SiteUsers registerUser)
+			@RequestParam(value = "userId", required = true) long userId)
 			throws IOException {
 		ModelAndView mav = new ModelAndView("register-page3");
+		SiteUsers registerUser = new SiteUsers();
+		registerUser.setUserId(userId);
 		mav.addObject("siteUser", registerUser);
-		
+		mav.addObject("registrationPage3", new RegistrationPage3());
+
 		return mav;
 	}
 
@@ -148,10 +244,11 @@ public class RegisterController {
 		siteUserService.updateUser(siteusers);
 		return "home";
 	}
-	
+
 	@RequestMapping(value = "/saveSection1", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
-	String saveSection1(HttpServletResponse response, @RequestBody String myObject) {
+	String saveSection1(HttpServletResponse response,
+			@RequestBody String myObject) {
 		logger.info("inside saveSection1 method");
 		Gson gson = new Gson();
 		SiteUsers userDetail = gson.fromJson(myObject, SiteUsers.class);
@@ -159,12 +256,11 @@ public class RegisterController {
 		// check user exist in db or not SiteUsers user =
 		SiteUsers siteUsersFromDB = new SiteUsers();
 		siteUsersFromDB.setUserId(userDetail.getUserId());
-	
-		 siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
-		if(siteUsersFromDB!= null){
+
+		siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
+		if (siteUsersFromDB != null) {
 			userDetail.setUserId(siteUsersFromDB.getUserId());
-		}
-		else{
+		} else {
 			return "save-fail";
 		}
 		boolean saveSection1Flag = siteUserService.updateUser(userDetail);
@@ -176,10 +272,11 @@ public class RegisterController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/saveSection2", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
-	String saveSection2(HttpServletResponse response, @RequestBody String myObject) {
+	String saveSection2(HttpServletResponse response,
+			@RequestBody String myObject) {
 		logger.info("inside saveSection1 method");
 		Gson gson = new Gson();
 		SiteUsers userDetail = gson.fromJson(myObject, SiteUsers.class);
@@ -187,12 +284,11 @@ public class RegisterController {
 		// check user exist in db or not SiteUsers user =
 		SiteUsers siteUsersFromDB = new SiteUsers();
 		siteUsersFromDB.setUserId(userDetail.getUserId());
-	
-		 siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
-		if(siteUsersFromDB!= null){
+
+		siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
+		if (siteUsersFromDB != null) {
 			userDetail.setUserId(siteUsersFromDB.getUserId());
-		}
-		else{
+		} else {
 			return "save-fail";
 		}
 		boolean saveSection2Flag = siteUserService.updateUser(userDetail);
@@ -204,52 +300,54 @@ public class RegisterController {
 		}
 
 	}
-	
+
 	@RequestMapping(value = "/saveSection3", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
-	String saveSection3(HttpServletResponse response, @RequestBody String myObject) {
+	String saveSection3(HttpServletResponse response,
+			@RequestBody String myObject) {
 		logger.info("inside saveSection3 method");
 		Gson gson = new Gson();
-		Type listType = new TypeToken<List<AdvanceSettingUserMap>>(){}.getType();
-		List<AdvanceSettingUserMap> advanceSettingUserMapList = gson.fromJson(myObject, listType);
-
+		Type listType = new TypeToken<List<AdvanceSettingUserMap>>() {
+		}.getType();
+		List<AdvanceSettingUserMap> advanceSettingUserMapList = gson.fromJson(
+				myObject, listType);
 
 		// check user exist in db or not SiteUsers user =
-/*		SiteUsers siteUsersFromDB = new SiteUsers();
-		siteUsersFromDB.setUserId(userDetail.getUserId());
-	
-		 siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
-		if(siteUsersFromDB!= null){
-			userDetail.setUserId(siteUsersFromDB.getUserId());
-		}
-		else{
-			return "save-fail";
-		}*/
+		/*
+		 * SiteUsers siteUsersFromDB = new SiteUsers();
+		 * siteUsersFromDB.setUserId(userDetail.getUserId());
+		 * 
+		 * siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
+		 * if(siteUsersFromDB!= null){
+		 * userDetail.setUserId(siteUsersFromDB.getUserId()); } else{ return
+		 * "save-fail"; }
+		 */
 		Set<AdvanceSettingUserMap> advanceSettingUserMapSet = new HashSet<AdvanceSettingUserMap>();
 		long userId = advanceSettingUserMapList.get(0).getUserId();
-		advanceSettingUserMapSet = advanceSettingService.findAdvanceSettingById(userId);
+		advanceSettingUserMapSet = advanceSettingService
+				.findAdvanceSettingById(userId);
 		for (AdvanceSettingUserMap advanceSettingUserMap : advanceSettingUserMapSet) {
 			boolean saveSection3Flag = false;
 			for (AdvanceSettingUserMap advanceSettingUserMap1 : advanceSettingUserMapList) {
-				if(advanceSettingUserMap.getAdvanceSetting().getId() == advanceSettingUserMap1.getAdvanceSetting().getId()){
-					advanceSettingUserMap.setAdvanceSettingValue(advanceSettingUserMap1.getAdvanceSettingValue());
+				if (advanceSettingUserMap.getAdvanceSetting().getId() == advanceSettingUserMap1
+						.getAdvanceSetting().getId()) {
+					advanceSettingUserMap
+							.setAdvanceSettingValue(advanceSettingUserMap1
+									.getAdvanceSettingValue());
 				}
-				saveSection3Flag = advanceSettingService.saveOrUpdateAdvanceSettingUserMap(advanceSettingUserMap);
+				saveSection3Flag = advanceSettingService
+						.saveOrUpdateAdvanceSettingUserMap(advanceSettingUserMap);
 			}
-			
-		}
-		
-		
 
-/*		if (saveSection2Flag) {
-			return "register-success";
-		} else {
-			return "save-fail";
-		}*/
+		}
+
+		/*
+		 * if (saveSection2Flag) { return "register-success"; } else { return
+		 * "save-fail"; }
+		 */
 		return "register-success";
 
 	}
-	
 
 	@RequestMapping(value = "/doRegisterPage1", method = RequestMethod.GET)
 	public @ResponseBody
@@ -275,8 +373,6 @@ public class RegisterController {
 				.setPassword(Utils.md5Encryption(registerUser.getPassword()));
 		registerUser.setUserName(email);
 		mav.addObject("siteUser", registerUser);
-		
-		
 
 		if (!siteUserService.isEmailExists(email)) {
 			// good user
@@ -289,7 +385,7 @@ public class RegisterController {
 		} else {
 			mav.setViewName("register-page1");
 		}
-		
+
 		this.siteUserId = registerUser.getUserId();
 		return mav;
 	}
@@ -311,8 +407,6 @@ public class RegisterController {
 		SiteUsers registerUser = new SiteUsers();
 		// 1. get the files from the request object
 		Iterator<String> itr = request.getFileNames();
-
-
 
 		MultipartFile mpf = request.getFile(itr.next());
 		System.out.println(mpf.getOriginalFilename() + " uploaded!");

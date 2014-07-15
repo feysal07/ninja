@@ -1,7 +1,9 @@
 $(function() {
 	$("#next-page3").click(function() {
-		var url = './RegisterPage3';
+		var userId = $('#siteUserid').val();
+		var url = './RegisterPage3' +"?userId=" +userId;
 		$(location).attr('href', url);
+		
 	});
 });
 
