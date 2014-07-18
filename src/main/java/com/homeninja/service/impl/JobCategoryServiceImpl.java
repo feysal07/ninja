@@ -47,4 +47,12 @@ public final class JobCategoryServiceImpl implements JobCategoryService {
 		return jobCategoryDAO.getUserJobCategoryMap(userId);
 	}
 
+	@Override
+	public Set<UserJobSubCategoryMap> getUserJobSubCategoryMap(long userId) {
+		// TODO Auto-generated method stub
+		return jobCategoryDAO.getUserJobSubCategoryMap(userId);
+	}
+	
+	
+
 }

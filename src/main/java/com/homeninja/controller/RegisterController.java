@@ -41,6 +41,7 @@ import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.entities.UserJobCategoryMap;
+import com.homeninja.entities.UserJobSubCategoryMap;
 import com.homeninja.entities.UserType;
 import com.homeninja.service.AdvanceSettingService;
 import com.homeninja.service.GeoLocationService;
@@ -53,6 +54,7 @@ import com.homeninja.vo.RegistrationPage3;
 import com.homeninja.vo.State;
 import com.homeninja.vo.UploadedFile;
 import com.homeninja.vo.UserJobCategoryVO;
+import com.homeninja.vo.UserJobSubCategoryVO;
 
 @Controller
 public class RegisterController {
@@ -93,29 +95,6 @@ public class RegisterController {
 		}
 
 		for (int i = 1; i < userJobCategoryVOList.size(); i++) {
-			/*
-			 * boolean userJobCategoryPresent = false; if
-			 * (userJobCategoryVOList.get(i) != null &&
-			 * userJobCategoryVOList.get(i).getJobCategoryIsSet() != null &&
-			 * userJobCategoryVOList.get(i).getJobCategoryIsSet().equals("true")
-			 * ) { if(userJobCategoryMapSet != null){ for (UserJobCategoryMap
-			 * userJobCategoryMap : userJobCategoryMapSet) {
-			 * if(userJobCategoryMap.getJobCategoryID() == i){
-			 * userJobCategoryPresent = true; break; } else{
-			 * userJobCategoryPresent = false; } } }
-			 * 
-			 * 
-			 * }
-			 * 
-			 * 
-			 * if (!userJobCategoryPresent) { UserJobCategoryMap
-			 * userJobCategoryMapTemp = new UserJobCategoryMap();
-			 * userJobCategoryMapTemp.setId(0);
-			 * userJobCategoryMapTemp.setUserId(registrationPage3.getUserId());
-			 * userJobCategoryMapTemp.setJobCategoryID(i);
-			 * userJobCategoryMapSet.add(userJobCategoryMapTemp); }
-			 */
-
 			if (userJobCategoryVOList.get(i) != null
 					&& userJobCategoryVOList.get(i).getJobCategoryIsSet() != null
 					&& userJobCategoryVOList.get(i).getJobCategoryIsSet()
@@ -132,6 +111,35 @@ public class RegisterController {
 		for (UserJobCategoryMap userJobCategoryMap : userJobCategoryMapSet) {
 			jobCategoryService.saveUserJobCategory(userJobCategoryMap);
 		}
+		
+		Set<UserJobSubCategoryMap> userJobSubCategoryMapSet = jobCategoryService
+				.getUserJobSubCategoryMap(registrationPage3.getUserId());
+		if (userJobSubCategoryMapSet == null) {
+			userJobSubCategoryMapSet = new HashSet<UserJobSubCategoryMap>();
+		}
+		
+		List<UserJobSubCategoryVO> userJobSubCategoryVOList = registrationPage3
+				.getUserJobSubCategoryList();
+
+		for (int i = 1; i < userJobSubCategoryVOList.size(); i++) {
+			if (userJobSubCategoryVOList.get(i) != null
+					&& userJobSubCategoryVOList.get(i).getJobSubCategoryIsSet() != null
+					&& userJobSubCategoryVOList.get(i).getJobSubCategoryIsSet()
+							.equals("true")) {
+				UserJobSubCategoryMap userJobSubCategoryMapTemp = new UserJobSubCategoryMap();
+				userJobSubCategoryMapTemp.setId(0);
+				userJobSubCategoryMapTemp.setUserId(registrationPage3.getUserId());
+				userJobSubCategoryMapTemp.setJobSubCategoryId(i);
+				userJobSubCategoryMapSet.add(userJobSubCategoryMapTemp);
+			}
+
+		}
+
+		for (UserJobSubCategoryMap userJobSubCategoryMap : userJobSubCategoryMapSet) {
+			jobCategoryService.saveUserJobSubCategory(userJobSubCategoryMap);
+		}
+		
+		
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home");
 
