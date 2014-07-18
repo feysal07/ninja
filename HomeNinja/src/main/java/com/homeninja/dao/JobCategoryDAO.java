@@ -18,4 +18,6 @@ public interface JobCategoryDAO {
 			UserJobSubCategoryMap userJobSubCategoryMap);
 
 	public Set<UserJobCategoryMap> getUserJobCategoryMap(long userId);
+	
+	public Set<UserJobSubCategoryMap> getUserJobSubCategoryMap(long userId);
 }

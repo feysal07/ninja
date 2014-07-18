@@ -111,4 +111,25 @@ public class JobCategoryDAOImpl implements JobCategoryDAO {
 		}
 	}
 
+	@Override
+	public Set<UserJobSubCategoryMap> getUserJobSubCategoryMap(long userId) {
+		try {
+			Set<UserJobSubCategoryMap> jobUserJobSubCategoryMapSet = new HashSet<UserJobSubCategoryMap>();
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+			// "from JobSubCategory where jobCatId = :jobCatId");
+					"from UserJobSubCategoryMap where userId=:userId");
+			query.setParameter("userId", userId);
+			List<UserJobSubCategoryMap> userJobSubCategoryMapList = query.list();
+			for (UserJobSubCategoryMap userJobSubCategoryMap : userJobSubCategoryMapList) {
+				jobUserJobSubCategoryMapSet.add(userJobSubCategoryMap);
+			}
+			return jobUserJobSubCategoryMapSet;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
 }
