@@ -4,77 +4,8 @@
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
 
-<script type="text/javascript">
-	function doLogin() {
-		var myObject = new Object();
-		myObject.userName = $('#Username').val();
-		myObject.password = $('#Password').val();
-
-		$.ajax({
-			type : "POST",
-			url : "${pageContext.request.contextPath}/doLogin",
-			data : JSON.stringify(myObject),
-			contentType : 'application/json',
-
-			beforeSend : function() {
-
-			},
-			success : function(response) {
-				if (response == "login-fail-nouser"
-						|| response == "login-fail-usernoexist") {
-					alert("Invalid user. Please try again");
-				}
-				if (response == "login-fail-nopassword") {
-					alert("Password not entered. Please try again");
-				}
-
-				if (response == "home") {
-					location.href = "${pageContext.request.contextPath}/home";
-				} else {
-					location.href = "${pageContext.request.contextPath}/login";
-				}
-
-			},
-			complete : function() {
-
-			},
-			error : function(errorThrown) {
-				console.log(errorThrown);
-
-			}
-		});
-	}
-
-	function doLoginUsingFacebook() {
-		$.ajax({
-			type : "GET",
-			url : "${pageContext.request.contextPath}/doLoginUsingFacebook",
-			accept: "text/plain",
-			beforeSend : function() {
-
-			},
-			success : function(response) {
-				if (response == "facebook-login") {
-					location.href = "${pageContext.request.contextPath}/connect/facebook";
-				}
-				if (response == "home") {
-					location.href = "${pageContext.request.contextPath}/home";
-				}
-				if (response == "register") {
-					location.href = "${pageContext.request.contextPath}/register";
-				}
-
-			},
-			complete : function() {
-				//alert("Invalid user. Please try again");
-
-			},
-			error : function(errorThrown) {
-				//alert("Invalid user. Please try again");
-				console.log(errorThrown);
-			}
-		});
-	}
+<script type="text/javascript" src="resources/assets/js/pages/login.js">
+	
 </script>
 
 
@@ -130,11 +61,7 @@
 				<div class="col-md-6">
 					<button class="btn-u pull-right" onclick="javascript:doLogin()">Login</button>
 				</div>
-				<div class="col-md-6">
-					<button class="btn-u pull-right"
-						onclick="javascript: doLoginUsingFacebook()">Login using
-						facebook</button>
-				</div>
+
 
 			</div>
 
@@ -143,13 +70,23 @@
 
 			<h4>Forget your Password ?</h4>
 			<p>
-				no worries, <a class="color-green" href="#">click here</a> to reset
-				your password.
+				No worries, <a class="color-green" href="./forgotPassword">click
+					here</a> to reset your password.
 			</p>
 
 		</div>
 	</div>
 	<!--/row-->
+
+	<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+		<h2 align="left">OR</h2>
+		<div class="row">
+		
+			<button class="btn-u btn-u-blue  "
+				onclick="javascript: doLoginUsingFacebook()">Login using
+				Facebook</button>
+		</div>
+	</div>
 </div>
 <!--/container-->
 <!--=== End Content Part ===-->
