@@ -2,6 +2,19 @@
  * 
  */
 
+function closeErrorBox() {
+	$alertError = $("#alertError");
+	$alertError.hide();
+
+}
+
+function closeSuccessBox() {
+	$alertSuccess = $("#alertSuccess");
+	$alertSuccess.hide();
+
+}
+
+
 function doLogin() {
 		var myObject = new Object();
 		myObject.userName = $('#Username').val();
@@ -19,16 +32,20 @@ function doLogin() {
 			success : function(response) {
 				if (response == "login-fail-nouser"
 						|| response == "login-fail-usernoexist") {
-					alert("Invalid user. Please try again");
+					$alertError = $("#alertError");
+					jQuery("label[for='myalue']").html("Invalid user. Please try again");
+					$alertError.show();
 				}
 				if (response == "login-fail-nopassword") {
-					alert("Password not entered. Please try again");
+					$alertError = $("#alertError");
+					jQuery("label[for='myalue']").html("Password not entered. Please try again");
+					$alertError.show();
 				}
 
 				if (response == "home") {
-					location.href = ".home";
-				} else {
-					location.href = "./login";
+					$alertSuccess= $("#alertSuccess")
+					$alertSuccess.show();
+					location.href = "home";
 				}
 
 			},
