@@ -17,6 +17,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.homeninja.dao.SiteUserDAO;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.entities.UserJobCategoryMap;
 import com.homeninja.entities.UserType;
 import com.homeninja.vo.UploadedFile;
 
@@ -120,6 +121,25 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 			userTypeSet.add(userType);
 		}
 		return userTypeSet;
+	}
+	
+ 	@Override
+	public SiteUsers getSiteUsersById(SiteUsers siteUsers) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from SiteUsers where userId=:userId");
+			query.setParameter("userId", siteUsers.getUserId());
+			List<SiteUsers> userSiteUsersList = query.list();
+			if (userSiteUsersList.size() > 0) {
+				return userSiteUsersList.get(0);
+			}
+			return null;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
 	}
 
 }

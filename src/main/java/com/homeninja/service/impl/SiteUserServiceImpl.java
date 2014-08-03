@@ -55,6 +55,12 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 		return siteUserDAO.getUserType();
 	}
 
+	@Override
+	public SiteUsers getSiteUsersById(SiteUsers siteUsers) {
+		// TODO Auto-generated method stub
+		return siteUserDAO.getSiteUsersById(siteUsers);
+	}
+
 	
 	
 }

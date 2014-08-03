@@ -20,4 +20,8 @@ public interface JobCategoryDAO {
 	public Set<UserJobCategoryMap> getUserJobCategoryMap(long userId);
 	
 	public Set<UserJobSubCategoryMap> getUserJobSubCategoryMap(long userId);
+	
+	public boolean removeJobCategory(UserJobCategoryMap userJobCategoryMap);
+	
+	public boolean removeJobSubCategory(UserJobSubCategoryMap userJobsubCategoryMap);
 }

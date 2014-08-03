@@ -90,7 +90,15 @@ public class RegisterController {
 				.getUserJobCategoryList();
 		Set<UserJobCategoryMap> userJobCategoryMapSet = jobCategoryService
 				.getUserJobCategoryMap(registrationPage3.getUserId());
-		if (userJobCategoryMapSet == null) {
+
+		for (UserJobCategoryMap userJobCategoryMap : userJobCategoryMapSet) {
+			jobCategoryService.removeJobCategory(userJobCategoryMap);
+		}
+
+		userJobCategoryMapSet = jobCategoryService
+				.getUserJobCategoryMap(registrationPage3.getUserId());
+
+		if (userJobCategoryMapSet == null || userJobCategoryMapSet.size() == 0) {
 			userJobCategoryMapSet = new HashSet<UserJobCategoryMap>();
 		}
 
@@ -109,15 +117,32 @@ public class RegisterController {
 		}
 
 		for (UserJobCategoryMap userJobCategoryMap : userJobCategoryMapSet) {
-			jobCategoryService.saveUserJobCategory(userJobCategoryMap);
+
+			int jobCategoryId = (int) userJobCategoryMap.getJobCategoryID();
+			if (userJobCategoryVOList.get(jobCategoryId).getJobCategoryIsSet()
+					.equals("true")) {
+				jobCategoryService.saveUserJobCategory(userJobCategoryMap);
+			} else {
+				jobCategoryService.removeJobCategory(userJobCategoryMap);
+			}
+
 		}
-		
+
 		Set<UserJobSubCategoryMap> userJobSubCategoryMapSet = jobCategoryService
 				.getUserJobSubCategoryMap(registrationPage3.getUserId());
-		if (userJobSubCategoryMapSet == null) {
+
+		for (UserJobSubCategoryMap userJobSubCategoryMap : userJobSubCategoryMapSet) {
+			jobCategoryService.removeJobSubCategory(userJobSubCategoryMap);
+		}
+
+		userJobSubCategoryMapSet = jobCategoryService
+				.getUserJobSubCategoryMap(registrationPage3.getUserId());
+
+		if (userJobSubCategoryMapSet == null
+				|| userJobSubCategoryMapSet.size() == 0) {
 			userJobSubCategoryMapSet = new HashSet<UserJobSubCategoryMap>();
 		}
-		
+
 		List<UserJobSubCategoryVO> userJobSubCategoryVOList = registrationPage3
 				.getUserJobSubCategoryList();
 
@@ -128,7 +153,8 @@ public class RegisterController {
 							.equals("true")) {
 				UserJobSubCategoryMap userJobSubCategoryMapTemp = new UserJobSubCategoryMap();
 				userJobSubCategoryMapTemp.setId(0);
-				userJobSubCategoryMapTemp.setUserId(registrationPage3.getUserId());
+				userJobSubCategoryMapTemp.setUserId(registrationPage3
+						.getUserId());
 				userJobSubCategoryMapTemp.setJobSubCategoryId(i);
 				userJobSubCategoryMapSet.add(userJobSubCategoryMapTemp);
 			}
@@ -136,10 +162,17 @@ public class RegisterController {
 		}
 
 		for (UserJobSubCategoryMap userJobSubCategoryMap : userJobSubCategoryMapSet) {
+
 			jobCategoryService.saveUserJobSubCategory(userJobSubCategoryMap);
 		}
-		
-		
+
+		SiteUsers siteUsers = new SiteUsers();
+		siteUsers.setUserId(registrationPage3.getUserId());
+		siteUsers = siteUserService.getSiteUsersById(siteUsers);
+		siteUsers.setUserType(registrationPage3.getUserType().getId());
+
+		siteUserService.updateUser(siteUsers);
+
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("home");
 
@@ -293,11 +326,16 @@ public class RegisterController {
 		SiteUsers siteUsersFromDB = new SiteUsers();
 		siteUsersFromDB.setUserId(userDetail.getUserId());
 
-		siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
+		siteUsersFromDB = siteUserService.getSiteUsersById(siteUsersFromDB);
 		if (siteUsersFromDB != null) {
 			userDetail.setUserId(siteUsersFromDB.getUserId());
 		} else {
 			return "save-fail";
+		}
+		if (userDetail != null) {
+			if (userDetail.getAddress() != null) {
+				userDetail.getAddress().setUserId(userDetail.getUserId());
+			}
 		}
 		boolean saveSection2Flag = siteUserService.updateUser(userDetail);
 
@@ -320,16 +358,6 @@ public class RegisterController {
 		List<AdvanceSettingUserMap> advanceSettingUserMapList = gson.fromJson(
 				myObject, listType);
 
-		// check user exist in db or not SiteUsers user =
-		/*
-		 * SiteUsers siteUsersFromDB = new SiteUsers();
-		 * siteUsersFromDB.setUserId(userDetail.getUserId());
-		 * 
-		 * siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
-		 * if(siteUsersFromDB!= null){
-		 * userDetail.setUserId(siteUsersFromDB.getUserId()); } else{ return
-		 * "save-fail"; }
-		 */
 		Set<AdvanceSettingUserMap> advanceSettingUserMapSet = new HashSet<AdvanceSettingUserMap>();
 		long userId = advanceSettingUserMapList.get(0).getUserId();
 		advanceSettingUserMapSet = advanceSettingService

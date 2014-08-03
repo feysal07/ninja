@@ -1,0 +1,19 @@
+CREATE TABLE `user_jobcategory_map` (
+  `id` bigint(20) DEFAULT NULL,
+  `userId` bigint(20) DEFAULT NULL,
+  `jobCatageoryID` int(11) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+
+delimiter $$
+CREATE TRIGGER user_jobcategory_map_insert_trigger
+AFTER INSERT ON user_jobcategory_map
+FOR EACH ROW
+BEGIN
+update users_search SET 
+jobCategories = (select  group_concat( new.jobCategoryID)
+FROM   user_jobcategory_map 
+GROUP  BY new.userId having new.userId = userId);
+END$$
+delimiter ;

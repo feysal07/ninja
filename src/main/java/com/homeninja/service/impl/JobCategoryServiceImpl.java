@@ -52,6 +52,19 @@ public final class JobCategoryServiceImpl implements JobCategoryService {
 		// TODO Auto-generated method stub
 		return jobCategoryDAO.getUserJobSubCategoryMap(userId);
 	}
+
+	@Override
+	public boolean removeJobCategory(UserJobCategoryMap userJobCategoryMap) {
+		// TODO Auto-generated method stub
+		return jobCategoryDAO.removeJobCategory(userJobCategoryMap);
+	}
+
+	@Override
+	public boolean removeJobSubCategory(
+			UserJobSubCategoryMap userJobSubCategoryMap) {
+		// TODO Auto-generated method stub
+		return jobCategoryDAO.removeJobSubCategory(userJobSubCategoryMap);
+	}
 	
 	
 

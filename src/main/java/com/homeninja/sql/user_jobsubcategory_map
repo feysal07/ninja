@@ -1,0 +1,11 @@
+delimiter $$
+CREATE TRIGGER user_jobsubcategory_map_insert_trigger
+AFTER INSERT ON user_jobsubcategory_map
+FOR EACH ROW
+BEGIN
+update users_search SET 
+jobSubCategories = (select  group_concat( new.jobSubCategoryId)
+FROM   user_jobsubcategory_map 
+GROUP  BY new.userId having new.userId = userId);
+END$$
+delimiter ;
