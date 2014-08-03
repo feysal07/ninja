@@ -17,5 +17,6 @@ public interface SiteUserService {
 	    public boolean isEmailExists(String userName);	
 	    public SiteUsers findbyExample(SiteUsers siteUsers);
 	    public Set<UserType> getUserType();
+	    public SiteUsers getSiteUsersById(SiteUsers siteUsers);
 		
 }

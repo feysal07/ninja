@@ -42,7 +42,7 @@
 				<div class="col-lg-4">
 					<label>Upgrade As<span class="color-red">*</span></label>
 					 <form:select
-						id="userType"  path="userType.userType" class="form-control">
+						id="userType"  path="userType.id" class="form-control">
 						<option>--Select--</option>
 						<!-- 									<option>Contractor</option>
 									<option>Supplier</option>
@@ -74,7 +74,7 @@
 				<label>Choose your service categories</label>
 				<div class="checkbox" id="categoriescheckboxes">
 				</div>
-					<br /> <label>Specialities</label>
+					<br /> <label>Specialties</label>
 				<div class="checkbox" id="subcategoriescheckboxes" >
 				</div>
 

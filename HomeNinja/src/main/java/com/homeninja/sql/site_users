@@ -21,3 +21,14 @@ CREATE TABLE `site_users` (
   KEY `FK26AFFF109603CDC6` (`addressId`),
   CONSTRAINT `FK26AFFF109603CDC6` FOREIGN KEY (`addressId`) REFERENCES `address` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=183 DEFAULT CHARSET=utf8;
+
+
+delimiter $$
+CREATE TRIGGER site_users_trigger
+AFTER INSERT ON site_users
+FOR EACH ROW
+BEGIN
+INSERT INTO users_search (userId,userName,userType) 
+values(new.userId, new.username,new.userType);
+END$$
+delimiter ;

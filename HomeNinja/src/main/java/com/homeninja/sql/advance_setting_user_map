@@ -7,3 +7,4 @@ CREATE TABLE `advance_setting_user_map` (
   KEY `advanceSettingId` (`advanceSettingId`),
   CONSTRAINT `advance_setting_user_map_ibfk_1` FOREIGN KEY (`advanceSettingId`) REFERENCES `advance_setting` (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8;
+

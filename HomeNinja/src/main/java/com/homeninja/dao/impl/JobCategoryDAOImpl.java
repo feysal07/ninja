@@ -120,7 +120,8 @@ public class JobCategoryDAOImpl implements JobCategoryDAO {
 			// "from JobSubCategory where jobCatId = :jobCatId");
 					"from UserJobSubCategoryMap where userId=:userId");
 			query.setParameter("userId", userId);
-			List<UserJobSubCategoryMap> userJobSubCategoryMapList = query.list();
+			List<UserJobSubCategoryMap> userJobSubCategoryMapList = query
+					.list();
 			for (UserJobSubCategoryMap userJobSubCategoryMap : userJobSubCategoryMapList) {
 				jobUserJobSubCategoryMapSet.add(userJobSubCategoryMap);
 			}
@@ -129,6 +130,28 @@ public class JobCategoryDAOImpl implements JobCategoryDAO {
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	@Override
+	public boolean removeJobCategory(UserJobCategoryMap userJobCategoryMap) {
+		try {
+			this.sessionFactory.getCurrentSession().delete(userJobCategoryMap);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public boolean removeJobSubCategory(
+			UserJobSubCategoryMap userJobsubCategoryMap) {
+		try {
+			this.sessionFactory.getCurrentSession().delete(
+					userJobsubCategoryMap);
+			return true;
+		} catch (Exception e) {
+			return false;
 		}
 	}
 
