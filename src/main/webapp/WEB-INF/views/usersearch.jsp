@@ -4,12 +4,13 @@
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
 
-<script type="text/javascript" src="resources/assets/js/pages/login.js">
+
+<script type="text/javascript"
+	src="resources/assets/js/pages/usersearch.js"></script>
 	
-</script>
 
 
-
+<title>HomeNinja | Find Contractors/Suppliers</title>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -26,56 +27,39 @@
 
 <!--=== Content Part ===-->
 <div class="container">	
+
 <div class="panel panel-grey margin-bottom-40">
                 <div class="panel-heading">
                     <h3 class="panel-title"><i class="icon-tasks"></i>Search Contractors/Suppliers</h3>
                 </div>
+                
                 <div class="panel-body">                                                      
                     <div class="form-inline" role="form">
 					<div class="row">
 					<div class="col-lg-2">
 								<label>Looking For</label>
-								<select class="form-control">
-									<option>--Select--</option>
-									<option>Contractor</option>
-									<option>Supplier</option>
-									<option>Both</option>
-								</select>
+								<select class="form-control" id="userType">
+										</select>
 							</div>
 							<div class="col-lg-2">
 								<label>State</label>
-								<select class="form-control">
-									<option>--Select--</option>
-									<option>Uttar Pradesh</option>
-									<option>Delhi</option>
-									<option>Bihar</option>
-									<option>Karnataka</option>
+								<select class="form-control" id="states" onchange="javascript:getCitiesforState()">
 								</select>
 							</div>
 							<div class="col-lg-2">
 								<label>City</label>
-								<select class="form-control">
-									<option>--Select--</option>
-									<option>Agra</option>
-									<option>Delhi</option>
-									<option>Rachi</option>
-									<option>Bangalore</option>
+								<select class="form-control" id="citiesforstate">
+
 								</select>
 							</div>
 							<div class="col-lg-2">
 								<label>Job Category</label>
-								<select class="form-control">
-									<option>--Select--</option>
-									<option>Air Condition</option>
-									<option>Electrician</option>
+								<select class="form-control" id="categories" onchange="javascript:getSubCategoriesforJob()">
 								</select>
 							</div>
 							<div class="col-lg-2">
 								<label>Job Sub Category</label>
-								<select class="form-control">
-									<option>--Select--</option>
-									<option>Air Condition</option>
-									<option>Electrician</option>
+								<select class="form-control" id ="subcategories">
 								</select>
 							</div>
 							<div class="col-lg-2">
@@ -85,7 +69,7 @@
 						</div>
 						<br/>
                        <p>
-							<button type="submit" class="btn-u btn-u-default">Search</button>
+							<button class="btn-u pull-right" onclick="javascript:searchUsers()">Search</button>
 						 </p>
 					</div>
                 </div>
@@ -94,112 +78,14 @@
         <!-- Left Sidebar -->
     	<div class="col-md-9 md-margin-bottom-40">
             <!--Blog Post-->
-            <div class="search-blocks search-blocks-left-green">
-                <div class="row">
-                    <div class="col-md-4 search-img">
-                        <img alt="" src="assets/img/new/img1.jpg" class="img-responsive">
-                        <ul class="list-unstyled">
-                           <li><i class="icon-briefcase"></i> Dell, Google</li>
-                           <li><i class="icon-map-marker"></i> New York, US</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-8">
-                        <h2><a href="#">Green Bordered Block</a></h2>
-                        <ul class="list-unstyled search-rating">
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                        </ul>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
-                        <a class="btn-u btn-u-sea" href="#">read more</a>                            
-                    </div>
-                </div>                            
-            </div>
+            <span id="page"></span> 
             <!--End Blog Post-->        
-
             <div class="margin-bottom-20 clearfix"></div>
 
-            <!--Blog Post-->
-            <div class="search-blocks search-blocks-colored search-blocks-red">
-                <div class="row">
-                    <div class="col-md-4 search-img">
-                        <img alt="" src="assets/img/new/img1.jpg" class="img-responsive">
-                        <ul class="list-unstyled">
-                           <li><i class="icon-briefcase"></i> Dell, Google</li>
-                           <li><i class="icon-map-marker"></i> New York, US</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-8">
-                        <h2><a href="#">Red Box</a></h2>
-                        <ul class="list-unstyled search-rating">
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                        </ul>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
-                        <a class="btn-u btn-u-blue" href="#">read more</a>
-                    </div>
-                </div>                            
-            </div>
-            <!--End Blog Post-->        
+  
 
             <div class="margin-bottom-20 clearfix"></div>
-
-            <!--Blog Post-->
-            <div class="search-blocks search-blocks-left-orange">
-                <div class="row">
-                    <div class="col-md-4 search-img">
-                        <img alt="" src="assets/img/new/img1.jpg" class="img-responsive">
-                        <ul class="list-unstyled">
-                           <li><i class="icon-briefcase"></i> Dell, Google</li>
-                           <li><i class="icon-map-marker"></i> New York, US</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-8">
-                        <h2><a href="#">Orange Bordered Box</a></h2>
-                        <ul class="list-unstyled search-rating">
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                        </ul>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
-                        <a class="btn-u btn-u-yellow" href="#">read more</a>                            
-                    </div>
-                </div>                            
-            </div>
-            <!--End Blog Post-->        
-
-            <!--Blog Post-->
-            <div class="search-blocks search-blocks-colored search-blocks-blue">
-                <div class="row">
-                    <div class="col-md-4 search-img">
-                        <img alt="" src="assets/img/new/img1.jpg" class="img-responsive">
-                        <ul class="list-unstyled">
-                           <li><i class="icon-briefcase"></i> Dell, Google</li>
-                           <li><i class="icon-map-marker"></i> New York, US</li>
-                        </ul>
-                    </div>
-                    <div class="col-md-8">
-                        <h2><a href="#">Red Blue</a></h2>
-                        <ul class="list-unstyled search-rating">
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                           <li><i class="icon-star"></i></li>
-                        </ul>
-                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
-                        <a class="btn-u btn-u-red" href="#">read more</a>
-                    </div>
-                </div>                            
-            </div>
-            <!--End Blog Post-->        
+      
             
             <!--Pagination-->
             <div class="text-center">

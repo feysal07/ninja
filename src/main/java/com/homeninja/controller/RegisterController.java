@@ -1,7 +1,11 @@
 package com.homeninja.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.HashSet;
@@ -12,6 +16,7 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
@@ -29,6 +34,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
@@ -57,7 +63,7 @@ import com.homeninja.vo.UserJobCategoryVO;
 import com.homeninja.vo.UserJobSubCategoryVO;
 
 @Controller
-public class RegisterController {
+public class RegisterController implements ServletContextAware {
 
 	UploadedFile ufile;
 
@@ -74,12 +80,20 @@ public class RegisterController {
 
 	@Resource
 	public JobCategoryService jobCategoryService;
+	
+	ServletContext servletContext = null;
 
 	/*
 	 * @Autowired public SessionService sessionService;
 	 */
 	private static final Logger logger = LoggerFactory
 			.getLogger(RegisterController.class);
+	
+	@Override
+	public void setServletContext(ServletContext servletContext) {
+		this.servletContext = servletContext;
+		
+	}
 
 	@RequestMapping(value = "/doRegisterPage3", method = RequestMethod.POST)
 	public @ResponseBody
@@ -423,6 +437,40 @@ public class RegisterController {
 		}
 
 		this.siteUserId = registerUser.getUserId();
+		
+		try {
+			// just temporary save file info into ufile
+			String filePath = this.servletContext.getRealPath("./resources/assets/img/user.jpg") ;
+			File fBlob = new File (filePath);
+			FileInputStream fis = new FileInputStream ( fBlob );
+			ufile = new UploadedFile();
+			ufile.length = fBlob.length();
+			System.out.println("length:" + ufile.length);
+			ByteArrayOutputStream bos = new ByteArrayOutputStream();
+	        byte[] buf = new byte[1024];
+	        try {
+	            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+	                //Writes to this byte array output stream
+	                bos.write(buf, 0, readNum); 
+	                System.out.println("read " + readNum + " bytes,");
+	            }
+	        } catch (IOException ex) {
+	            /*Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);*/
+	        }
+	        
+			ufile.bytes = buf;
+			ufile.type = "image/jpeg";
+			ufile.name = "user";
+			registerUser.setUserId(siteUserId);
+			registerUser = siteUserService.getSiteUsersById( registerUser);
+			registerUser.setProfilPic(ufile.bytes);
+			boolean uploadImageFlag = siteUserService.updateUser(registerUser);
+
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
 		return mav;
 	}
 
@@ -456,6 +504,7 @@ public class RegisterController {
 			ufile.type = mpf.getContentType();
 			ufile.name = mpf.getOriginalFilename();
 			registerUser.setUserId(siteUserId);
+			registerUser = siteUserService.getSiteUsersById( registerUser);
 			registerUser.setProfilPic(ufile.bytes);
 			boolean uploadImageFlag = siteUserService.updateUser(registerUser);
 
@@ -468,7 +517,7 @@ public class RegisterController {
 		// we are using getTimeInMillis to avoid server cached image
 
 		return "http://localhost:18080/HomeNinja/getimage/"
-				+ Calendar.getInstance().getTimeInMillis();
+				+ registerUser.getUserId();
 
 	}
 
@@ -476,8 +525,12 @@ public class RegisterController {
 	public void get(HttpServletResponse response, @PathVariable String value) {
 		try {
 			response.setContentType("image/jpg");
-			response.setContentLength(ufile.length);
-			FileCopyUtils.copy(ufile.bytes, response.getOutputStream());
+		//	response.setContentLength(ufile.length);
+			SiteUsers siteUsers = new SiteUsers();
+			long userIdLong = Long.parseLong(value);
+			siteUsers.setUserId(userIdLong);
+			siteUsers = siteUserService.getSiteUsersById( siteUsers);
+			FileCopyUtils.copy(siteUsers.getProfilPic(), response.getOutputStream());
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
