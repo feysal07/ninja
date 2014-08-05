@@ -53,14 +53,14 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 			Criteria criteriaForUser =	sessionFactory
 					.getCurrentSession()
 					.createCriteria("com.homeninja.entities.UsersSearch");
-			if(usersSearchCriteria != null && usersSearchCriteria.getState() != null){
+			if(usersSearchCriteria != null && usersSearchCriteria.getState() != null && usersSearchCriteria.getState().trim().length() != 0){
 				criteriaForUser.add(Restrictions.like("state", usersSearchCriteria.getState()));
 			}
 			
-			if(usersSearchCriteria != null && usersSearchCriteria.getCity() != null){
+			if(usersSearchCriteria != null && usersSearchCriteria.getCity() != null && usersSearchCriteria.getCity().trim().length() != 0){
 				criteriaForUser.add(Restrictions.like("city", usersSearchCriteria.getCity(),MatchMode.START));
 			}
-			if(usersSearchCriteria != null && usersSearchCriteria.getPincode() != null){
+			if(usersSearchCriteria != null && usersSearchCriteria.getPincode() != null && usersSearchCriteria.getPincode().trim().length() != 0){
 				criteriaForUser.add(Restrictions.like("pincode", usersSearchCriteria.getPincode(),MatchMode.START));
 			}
 			if(usersSearchCriteria != null &&
@@ -84,7 +84,7 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 			}
 			
 			if(usersSearchCriteria != null && usersSearchCriteria.getUserTypeId() != 0){
-				criteriaForUser.add(Restrictions.eq("pincode", usersSearchCriteria.getUserTypeId()));
+				criteriaForUser.add(Restrictions.eq("userTypeId", usersSearchCriteria.getUserTypeId()));
 			}
 					
 			List<UsersSearch> results = criteriaForUser.list();

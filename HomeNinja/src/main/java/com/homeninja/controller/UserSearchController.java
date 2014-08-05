@@ -6,25 +6,35 @@ import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
+import javax.servlet.ServletContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
+import com.homeninja.entities.JobCategory;
+import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.vo.UsersSearchCriteria;
 import com.homeninja.entities.UsersSearch;
 import com.homeninja.service.UsersSearchService;
 
 @Controller
-public class UserSearchController {
+public class UserSearchController  {
+	
+	
+
 
 	@Resource
 	UsersSearchService usersSearchService;
@@ -32,36 +42,61 @@ public class UserSearchController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(RegisterController.class);
 
-	@RequestMapping(value = "/searchUsers", method = RequestMethod.GET)
+	@RequestMapping(value = "/searchUsers", method = RequestMethod.POST)
 	public @ResponseBody
-	String searchUsersByCriteria(@RequestBody String myObject) {
+	Set<UsersSearch> searchUsersByCriteria(@RequestBody String myObject, ModelMap model) {
 		logger.info("inside searchUsersByCriteria method");
 		Gson gson = new Gson();
 
 		UsersSearchCriteria usersSearchCriteria = gson.fromJson(myObject,
 				UsersSearchCriteria.class);
 		
-		usersSearchCriteria = new UsersSearchCriteria();
-		usersSearchCriteria.setPincode("476001");
-		List<String> jobCategories = new ArrayList<String>();
-		jobCategories.add("Air-conditioning Specialist");
-		usersSearchCriteria.setJobCategoryList(jobCategories);
-		
-		List<String> jobSubCategories = new ArrayList<String>();
-		jobSubCategories.add("Contract Maintenance");
-		usersSearchCriteria.setJobSubCategoryList(jobSubCategories);
-
 		 Set<UsersSearch> usersSearchSet = usersSearchService.searchUsersByCriteria(usersSearchCriteria);
-		return "home";
+		 model.addAttribute("usersSearchSet", usersSearchSet);
+		 return usersSearchSet;
 	}
 	
 	
 	@RequestMapping(value = "/usersearch", method = RequestMethod.GET)
-	ModelAndView Register(Model model) throws IOException {
+	ModelAndView userSearch(Model model) throws IOException {
 		ModelAndView mav = new ModelAndView("usersearch");
 		SiteUsers siteUser = new SiteUsers();
 		mav.addObject("siteUser", siteUser);
 		return mav;
 	}
+	
+	@RequestMapping(value = "/usersearchresult", method = RequestMethod.POST)
+	
+	String userSearchResult(ModelMap model, @RequestParam(value = "userTypeId") long userTypeId,
+			 @RequestParam(value = "state") String state,
+			 @RequestParam(value = "city") String city,
+			 @RequestParam(value = "pincode") String pincode,
+			 @RequestParam(value = "categories") String categories,
+			 @RequestParam(value = "subcategories") String subcategories) throws IOException {
+		logger.info("inside userSearchResult method");
+		UsersSearchCriteria usersSearchCriteria = new UsersSearchCriteria();
+		usersSearchCriteria.setUserTypeId(userTypeId);
+		usersSearchCriteria.setState(state);
+		usersSearchCriteria.setCity(city);
+		usersSearchCriteria.setPincode(pincode);
+		List<String> jobCategoryList = new ArrayList<String>();
+		List<String> jobSubCategoryList = new ArrayList<String>();
+		jobCategoryList.add(categories);
+		jobSubCategoryList.add(subcategories);
+		usersSearchCriteria.setJobCategoryList(jobCategoryList);
+		usersSearchCriteria.setJobSubCategoryList(jobSubCategoryList);
+/*		Gson gson = new Gson();
+
+		UsersSearchCriteria usersSearchCriteria = gson.fromJson(myObject,
+				UsersSearchCriteria.class);*/
+		
+		Set<UsersSearch> usersSearchSet = usersSearchService.searchUsersByCriteria(usersSearchCriteria);
+		
+		model.addAttribute("usersSearchSet", usersSearchSet);
+		return "usersearchresult";
+	}
+
+
+
 
 }
