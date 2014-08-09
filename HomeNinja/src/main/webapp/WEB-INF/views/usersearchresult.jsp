@@ -11,8 +11,8 @@
 					class="img-responsive">
 				<ul class="list-unstyled">
 					<li><i class="icon-briefcase"></i> <c:out value="${user.city}" /></li>
-					<li><i class="icon-map-marker"></i>
-					<c:out value="${user.state}" /></li>
+					<li><i class="icon-map-marker"></i> <c:out
+							value="${user.state}" /></li>
 				</ul>
 			</div>
 			<div class="col-md-8">
@@ -45,10 +45,20 @@
 <c:if test="${usersSearchSet.pageCount > 0}">
 	<div class="text-center">
 		<ul class="pagination">
-			<li id="previousPage" onclick="javascript:previousPage(${usersSearchSet.pageNumber});"><a href="#">«</a></li>
+			<li id="previousPage"
+				onclick="javascript:previousPage(${usersSearchSet.pageNumber});"><a
+				href="#">«</a></li>
 			<li id="currentPage"><a href="#">${usersSearchSet.pageNumber}</a></li>
-			<li id="currentPage+1"><a href="#">${usersSearchSet.pageNumber + 1}</a></li>
-			<li id="nextPage" onclick="javascript:nextPage(${usersSearchSet.pageNumber});"><a href="#">»</a></li>
+			<c:if test="${(usersSearchSet.pageNumber + 1) * 10  > pageCount}">
+				<li id="currentPage+1"><a href="#">${usersSearchSet.pageNumber + 1}</a></li>
+			</c:if>
+			<c:if test="${(usersSearchSet.pageNumber + 2) * 10  > pageCount}">
+				<li id="currentPage+2"><a href="#">${usersSearchSet.pageNumber + 2}</a></li>
+			</c:if>
+
+			<li id="nextPage"
+				onclick="javascript:nextPage(${usersSearchSet.pageNumber});"><a
+				href="#">»</a></li>
 		</ul>
 	</div>
 </c:if>
