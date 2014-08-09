@@ -45,15 +45,25 @@
 <c:if test="${usersSearchSet.pageCount > 0}">
 	<div class="text-center">
 		<ul class="pagination">
+
 			<li id="previousPage"
 				onclick="javascript:previousPage(${usersSearchSet.pageNumber});"><a
 				href="#">«</a></li>
-			<li id="currentPage"><a href="#">${usersSearchSet.pageNumber}</a></li>
-			<c:if test="${(usersSearchSet.pageNumber + 1) * 10  > pageCount}">
-				<li id="currentPage+1"><a href="#">${usersSearchSet.pageNumber + 1}</a></li>
+			<c:if
+				test="${(usersSearchSet.pageNumber) * 10  <= usersSearchSet.pageCount}">
+				<li id="currentPage" onclick="javascript:nextPage(${usersSearchSet.pageNumber} - 1);"><a href="#">${usersSearchSet.pageNumber}</a></li>
 			</c:if>
-			<c:if test="${(usersSearchSet.pageNumber + 2) * 10  > pageCount}">
-				<li id="currentPage+2"><a href="#">${usersSearchSet.pageNumber + 2}</a></li>
+			<c:if
+				test="${(usersSearchSet.pageNumber + 1) * 10  <= usersSearchSet.pageCount}">
+				<li id="currentPage1"
+					onclick="javascript:nextPage(${usersSearchSet.pageNumber});"><a
+					href="#">${usersSearchSet.pageNumber + 1}</a></li>
+			</c:if>
+			<c:if
+				test="${(usersSearchSet.pageNumber + 2) * 10  <= usersSearchSet.pageCount}">
+				<li id="currentPage2"
+					onclick="javascript:nextPage(${usersSearchSet.pageNumber} + 2);"><a
+					href="#">${usersSearchSet.pageNumber + 1}</a></li>
 			</c:if>
 
 			<li id="nextPage"

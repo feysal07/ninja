@@ -8,7 +8,7 @@
 <script type="text/javascript"
 	src="resources/assets/js/pages/registerPage3.js"></script>
 
-
+<title>HomeNinja | Register Page 3</title>
 
 
 <!--=== Breadcrumbs ===-->

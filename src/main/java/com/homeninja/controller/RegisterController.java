@@ -420,53 +420,58 @@ public class RegisterController implements ServletContextAware {
 				.setPassword(Utils.md5Encryption(registerUser.getPassword()));
 		registerUser.setUserName(email);
 		mav.addObject("siteUser", registerUser);
+		
 
 		if (!siteUserService.isEmailExists(email)) {
 			// good user
 			if (!siteUserService.addUser(registerUser)) {
+				mav.addObject("error", "user-add-fail");
 				mav.setViewName("register-page1");
 			} else {
 				mav.setViewName("register-page2");
+				
+				try {
+					// just temporary save file info into ufile
+					String filePath = this.servletContext.getRealPath("./resources/assets/img/user.jpg") ;
+					File fBlob = new File (filePath);
+					FileInputStream fis = new FileInputStream ( fBlob );
+					ufile = new UploadedFile();
+					ufile.length = fBlob.length();
+					System.out.println("length:" + ufile.length);
+					ByteArrayOutputStream bos = new ByteArrayOutputStream();
+			        byte[] buf = new byte[1024];
+			        try {
+			            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+			                //Writes to this byte array output stream
+			                bos.write(buf, 0, readNum); 
+			                System.out.println("read " + readNum + " bytes,");
+			            }
+			        } catch (IOException ex) {
+			            /*Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);*/
+			        }
+			        
+					ufile.bytes = bos.toByteArray();;
+					ufile.type = "image/jpg";
+					ufile.name = "user";
+					registerUser.setUserId(siteUserId);
+					registerUser = siteUserService.getSiteUsersById( registerUser);
+					registerUser.setProfilPic(ufile.bytes);
+					boolean uploadImageFlag = siteUserService.updateUser(registerUser);
+
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 
 		} else {
+			mav.addObject("error", "user-exits");
 			mav.setViewName("register-page1");
 		}
 
 		this.siteUserId = registerUser.getUserId();
 		
-		try {
-			// just temporary save file info into ufile
-			String filePath = this.servletContext.getRealPath("./resources/assets/img/user.jpg") ;
-			File fBlob = new File (filePath);
-			FileInputStream fis = new FileInputStream ( fBlob );
-			ufile = new UploadedFile();
-			ufile.length = fBlob.length();
-			System.out.println("length:" + ufile.length);
-			ByteArrayOutputStream bos = new ByteArrayOutputStream();
-	        byte[] buf = new byte[1024];
-	        try {
-	            for (int readNum; (readNum = fis.read(buf)) != -1;) {
-	                //Writes to this byte array output stream
-	                bos.write(buf, 0, readNum); 
-	                System.out.println("read " + readNum + " bytes,");
-	            }
-	        } catch (IOException ex) {
-	            /*Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);*/
-	        }
-	        
-			ufile.bytes = bos.toByteArray();;
-			ufile.type = "image/jpg";
-			ufile.name = "user";
-			registerUser.setUserId(siteUserId);
-			registerUser = siteUserService.getSiteUsersById( registerUser);
-			registerUser.setProfilPic(ufile.bytes);
-			boolean uploadImageFlag = siteUserService.updateUser(registerUser);
 
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		
 		return mav;
 	}
