@@ -4,10 +4,12 @@
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
 
+<script type="text/javascript"
+	src="resources/assets/js/pages/registerPage1.js">
+	
+</script>
 
-
-
-
+<title>HomeNinja | Register Page 1</title>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -26,7 +28,7 @@
 
 <!--=== Content Part ===-->
 
-<form:form action="./doRegisterPage1" method="POST"
+<form:form id="registerpage1" action="./doRegisterPage1" method="POST"
 	modelAttribute="siteUser">
 	<div class="container">
 		<div class="row">
@@ -38,6 +40,33 @@
 							Already Signed Up? Click <a href="./login" class="color-green">Sign
 								In</a> to login your account.
 						</p>
+					</div>
+
+					<!--  Alert messages -->
+					<c:if test="${error == 'user-exits'}">
+						<div class="alert alert-danger fade in" id="alertError1">
+							<button type="button" class="close" data-dismiss="alert"
+								onclick="javascript:closeError1Box();">&times;</button>
+							<strong>Oh!</strong> <label for="myalue"> The user name
+								already exits</label>
+						</div>
+					</c:if>
+
+					<c:if test="${error == 'user-add-fail'}">
+						<div class="alert alert-danger fade in" id="alertError2">
+							<button type="button" class="close" data-dismiss="alert"
+								onclick="javascript:closeError2Box();">&times;</button>
+							<strong>Oh!</strong> <label for="myalue"> Failed to add
+								user. Try Again!</label>
+						</div>
+					</c:if>
+
+
+					<div class="alert alert-danger fade in" id="alertError3" hidden="true">
+						<button type="button" class="close" data-dismiss="alert"
+							onclick="javascript:closeError3Box();" >&times;</button>
+						<strong>Oh!</strong> <label for="myalue"> Invalid Email
+							address!</label>
 					</div>
 
 					<label>First Name</label>
@@ -79,8 +108,8 @@
 							</label>
 						</div>
 						<div class="col-lg-6 text-right">
-							<input type="submit" value="Register" class="btn-u"
-								onclick="javascript:doRegister()">
+							<button class="btn-u pull-right"
+								onclick="javascript:doRegister()">Register</button>
 						</div>
 					</div>
 				</div>

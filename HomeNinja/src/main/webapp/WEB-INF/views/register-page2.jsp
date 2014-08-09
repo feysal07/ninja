@@ -9,7 +9,7 @@
 	src="resources/assets/js/pages/registerPage2.js"></script>
 
 
-
+<title>HomeNinja | Register Page 2</title>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">

@@ -101,7 +101,7 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 			criteriaForUser.setProjection(null);
 			
 			criteriaForUser.addOrder(Order.asc("id"));
-			criteriaForUser.setFirstResult(usersSearchCriteria.getPageNumber());
+			criteriaForUser.setFirstResult((usersSearchCriteria.getPageNumber() - 1 ) * 10);
 			criteriaForUser.setMaxResults(usersSearchCriteria.getPageSize());
 			
 			List<UsersSearch> results = criteriaForUser.list();
