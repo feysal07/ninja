@@ -10,6 +10,9 @@ public class UsersSearchCriteria {
 	private List<String> jobCategoryList;
 	private List<String> jobSubCategoryList;
 	private long userTypeId;
+	private int pageSize;
+	private int pageNumber;
+	private int countResult;
 
 	public String getState() {
 		return state;
@@ -58,5 +61,30 @@ public class UsersSearchCriteria {
 	public void setUserTypeId(long userTypeId) {
 		this.userTypeId = userTypeId;
 	}
+
+	public int getPageSize() {
+		return pageSize;
+	}
+
+	public void setPageSize(int pageSize) {
+		this.pageSize = pageSize;
+	}
+
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
+	public int getCountResult() {
+		return countResult;
+	}
+
+	public void setCountResult(int countResult) {
+		this.countResult = countResult;
+	}
+	
 
 }

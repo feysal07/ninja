@@ -113,6 +113,98 @@ function searchUsers() {
 	subcategories = $('#subcategories').val();
 	myObject.subcategories = subcategories;
 	myObject.pincode = $('#pincode').val();
+	myObject.pageNumber = 1;
+
+	$.ajax({
+		type : "POST",
+		url : "./searchUsers",
+		data : JSON.stringify(myObject),
+		contentType : 'application/json',
+
+		beforeSend : function() {
+
+		},
+		success : function(result) {
+			$("#page").load("./usersearchresult", myObject);
+
+/*			if (response == "login-fail-nouser"
+					|| response == "login-fail-usernoexist") {
+				alert("Invalid user. Please try again");
+			}
+			if (response == "login-fail-nopassword") {
+				alert("Password not entered. Please try again");
+			}*/
+
+		},
+		complete : function() {
+
+		},
+		error : function(errorThrown) {
+			console.log(errorThrown);
+
+		}
+	});
+}
+
+function previousPage( pageNumber) {
+	var myObject = new Object();
+	myObject.userTypeId = $('#userType').val();
+	myObject.state = $('#states').val();
+	myObject.city = $('#citiesforstate').val();
+	var categories = new Array();
+	categories = $('#categories').val();
+	myObject.categories = categories;
+	var subcategories = new Array();
+	subcategories = $('#subcategories').val();
+	myObject.subcategories = subcategories;
+	myObject.pincode = $('#pincode').val();
+	myObject.pageNumber = pageNumber;
+	myObject.pageNumber = pageNumber - 1 ;
+
+	$.ajax({
+		type : "POST",
+		url : "./searchUsers",
+		data : JSON.stringify(myObject),
+		contentType : 'application/json',
+
+		beforeSend : function() {
+
+		},
+		success : function(result) {
+			$("#page").load("./usersearchresult", myObject);
+
+/*			if (response == "login-fail-nouser"
+					|| response == "login-fail-usernoexist") {
+				alert("Invalid user. Please try again");
+			}
+			if (response == "login-fail-nopassword") {
+				alert("Password not entered. Please try again");
+			}*/
+
+		},
+		complete : function() {
+
+		},
+		error : function(errorThrown) {
+			console.log(errorThrown);
+
+		}
+	});
+}
+
+function nextPage(pageNumber) {
+	var myObject = new Object();
+	myObject.userTypeId = $('#userType').val();
+	myObject.state = $('#states').val();
+	myObject.city = $('#citiesforstate').val();
+	var categories = new Array();
+	categories = $('#categories').val();
+	myObject.categories = categories;
+	var subcategories = new Array();
+	subcategories = $('#subcategories').val();
+	myObject.subcategories = subcategories;
+	myObject.pincode = $('#pincode').val();
+	myObject.pageNumber = pageNumber + 1 ;
 
 	$.ajax({
 		type : "POST",

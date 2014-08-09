@@ -13,6 +13,7 @@ import com.homeninja.entities.UsersSearch;
 import com.homeninja.dao.UsersSearchDAO;
 import com.homeninja.service.UsersSearchService;
 import com.homeninja.vo.UsersSearchCriteria;
+import com.homeninja.vo.UsersSearchResult;
 
 @Service
 public class UsersSearchServiceImpl implements UsersSearchService {
@@ -21,17 +22,12 @@ public class UsersSearchServiceImpl implements UsersSearchService {
 	UsersSearchDAO usersSearchDAO;
 
 	@Override
-	public Set<UsersSearch> searchUsersByCriteria(
+	 public UsersSearchResult searchUsersByCriteria(
 			UsersSearchCriteria usersSearchCriteria) {
-		Set<UsersSearch>  usersSearchSet = new HashSet<UsersSearch>();
-		List<UsersSearch> usersSearchList = usersSearchDAO
+		UsersSearchResult usersSearchResultList = usersSearchDAO
 				.searchUsersByCriteria(usersSearchCriteria);
-		if (usersSearchList != null) {
-			for (UsersSearch usersSearch : usersSearchList) {
-				usersSearchSet.add(usersSearch);
-			}
-		}
-		return usersSearchSet;
+
+		return usersSearchResultList;
 	}
 	
 

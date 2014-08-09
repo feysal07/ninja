@@ -113,4 +113,5 @@ public class UsersSearch {
 		this.userTypeId = userTypeId;
 	}
 
+
 }
