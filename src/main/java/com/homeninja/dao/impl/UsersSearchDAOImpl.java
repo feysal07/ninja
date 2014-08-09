@@ -1,5 +1,6 @@
 package com.homeninja.dao.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -9,6 +10,8 @@ import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
+import org.hibernate.criterion.Order;
+import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -17,6 +20,7 @@ import com.homeninja.dao.UsersSearchDAO;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.entities.UsersSearch;
 import com.homeninja.vo.UsersSearchCriteria;
+import com.homeninja.vo.UsersSearchResult;
 
 @Transactional
 @Service
@@ -46,7 +50,9 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 	}
 
 	@Override
-	public List<UsersSearch> searchUsersByCriteria(UsersSearchCriteria usersSearchCriteria) {
+	public UsersSearchResult searchUsersByCriteria(UsersSearchCriteria usersSearchCriteria) {
+		UsersSearchResult  usersSearchResult = new UsersSearchResult();
+		usersSearchResult.setUsersSearchList(new ArrayList<UsersSearch>());
 		try {
 
 					
@@ -86,11 +92,23 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 			if(usersSearchCriteria != null && usersSearchCriteria.getUserTypeId() != 0){
 				criteriaForUser.add(Restrictions.eq("userTypeId", usersSearchCriteria.getUserTypeId()));
 			}
-					
+			
+			criteriaForUser.setProjection(Projections.rowCount());
+			Long count = (Long) criteriaForUser.uniqueResult();
+			usersSearchResult.setPageCount(count);	
+			usersSearchResult.setPageNumber(usersSearchCriteria.getPageNumber());
+			
+			criteriaForUser.setProjection(null);
+			
+			criteriaForUser.addOrder(Order.asc("id"));
+			criteriaForUser.setFirstResult(usersSearchCriteria.getPageNumber());
+			criteriaForUser.setMaxResults(usersSearchCriteria.getPageSize());
+			
 			List<UsersSearch> results = criteriaForUser.list();
 					
 			if (results.size() > 0) {
-				return results;
+				usersSearchResult.getUsersSearchList().addAll(results);
+				return usersSearchResult;
 			}
 			return null;
 

@@ -312,10 +312,9 @@ public class RegisterController implements ServletContextAware {
 		SiteUsers siteUsersFromDB = new SiteUsers();
 		siteUsersFromDB.setUserId(userDetail.getUserId());
 
-		siteUsersFromDB = siteUserService.findbyExample(siteUsersFromDB);
-		if (siteUsersFromDB != null) {
-			userDetail.setUserId(siteUsersFromDB.getUserId());
-		} else {
+		userDetail = siteUserService.getSiteUsersById(siteUsersFromDB);
+		
+		if (userDetail == null) {
 			return "save-fail";
 		}
 		boolean saveSection1Flag = siteUserService.updateUser(userDetail);
@@ -340,10 +339,8 @@ public class RegisterController implements ServletContextAware {
 		SiteUsers siteUsersFromDB = new SiteUsers();
 		siteUsersFromDB.setUserId(userDetail.getUserId());
 
-		siteUsersFromDB = siteUserService.getSiteUsersById(siteUsersFromDB);
-		if (siteUsersFromDB != null) {
-			userDetail.setUserId(siteUsersFromDB.getUserId());
-		} else {
+		userDetail = siteUserService.getSiteUsersById(siteUsersFromDB);
+		if (userDetail == null) {
 			return "save-fail";
 		}
 		if (userDetail != null) {
@@ -458,8 +455,8 @@ public class RegisterController implements ServletContextAware {
 	            /*Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);*/
 	        }
 	        
-			ufile.bytes = buf;
-			ufile.type = "image/jpeg";
+			ufile.bytes = bos.toByteArray();;
+			ufile.type = "image/jpg";
 			ufile.name = "user";
 			registerUser.setUserId(siteUserId);
 			registerUser = siteUserService.getSiteUsersById( registerUser);

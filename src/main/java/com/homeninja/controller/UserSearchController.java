@@ -27,6 +27,7 @@ import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.vo.UsersSearchCriteria;
+import com.homeninja.vo.UsersSearchResult;
 import com.homeninja.entities.UsersSearch;
 import com.homeninja.service.UsersSearchService;
 
@@ -46,14 +47,14 @@ public class UserSearchController  {
 	public @ResponseBody
 	Set<UsersSearch> searchUsersByCriteria(@RequestBody String myObject, ModelMap model) {
 		logger.info("inside searchUsersByCriteria method");
-		Gson gson = new Gson();
+/*		Gson gson = new Gson();
 
 		UsersSearchCriteria usersSearchCriteria = gson.fromJson(myObject,
 				UsersSearchCriteria.class);
 		
 		 Set<UsersSearch> usersSearchSet = usersSearchService.searchUsersByCriteria(usersSearchCriteria);
-		 model.addAttribute("usersSearchSet", usersSearchSet);
-		 return usersSearchSet;
+		 model.addAttribute("usersSearchSet", usersSearchSet);*/
+		 return null;
 	}
 	
 	
@@ -72,17 +73,26 @@ public class UserSearchController  {
 			 @RequestParam(value = "city") String city,
 			 @RequestParam(value = "pincode") String pincode,
 			 @RequestParam(value = "categories") String categories,
-			 @RequestParam(value = "subcategories") String subcategories) throws IOException {
+			 @RequestParam(value = "subcategories") String subcategories,
+			 @RequestParam(value = "pageNumber") int pageNumber) throws IOException {
 		logger.info("inside userSearchResult method");
 		UsersSearchCriteria usersSearchCriteria = new UsersSearchCriteria();
 		usersSearchCriteria.setUserTypeId(userTypeId);
 		usersSearchCriteria.setState(state);
 		usersSearchCriteria.setCity(city);
 		usersSearchCriteria.setPincode(pincode);
+		usersSearchCriteria.setPageNumber(pageNumber);
+		usersSearchCriteria.setPageSize(10);
 		List<String> jobCategoryList = new ArrayList<String>();
 		List<String> jobSubCategoryList = new ArrayList<String>();
-		jobCategoryList.add(categories);
-		jobSubCategoryList.add(subcategories);
+		if(categories != null && categories.length() > 0){
+			jobCategoryList.add(categories);
+		}
+		if(subcategories != null && subcategories.length() > 0){
+			jobSubCategoryList.add(subcategories);
+		}
+		
+		
 		usersSearchCriteria.setJobCategoryList(jobCategoryList);
 		usersSearchCriteria.setJobSubCategoryList(jobSubCategoryList);
 /*		Gson gson = new Gson();
@@ -90,9 +100,9 @@ public class UserSearchController  {
 		UsersSearchCriteria usersSearchCriteria = gson.fromJson(myObject,
 				UsersSearchCriteria.class);*/
 		
-		Set<UsersSearch> usersSearchSet = usersSearchService.searchUsersByCriteria(usersSearchCriteria);
+		 UsersSearchResult  usersSearchResult = usersSearchService.searchUsersByCriteria(usersSearchCriteria);
 		
-		model.addAttribute("usersSearchSet", usersSearchSet);
+		model.addAttribute("usersSearchSet", usersSearchResult);
 		return "usersearchresult";
 	}
 
