@@ -109,7 +109,7 @@
 						</div>
 						<div class="col-lg-6 text-right">
 							<button class="btn-u pull-right"
-								onclick="javascript:doRegister()">Register</button>
+								>Register</button>
 						</div>
 					</div>
 				</div>

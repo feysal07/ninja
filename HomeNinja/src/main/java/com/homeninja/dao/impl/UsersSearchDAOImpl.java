@@ -2,6 +2,7 @@ package com.homeninja.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 
@@ -13,8 +14,10 @@ import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
 import org.hibernate.criterion.Restrictions;
+import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.homeninja.dao.UsersSearchDAO;
 import com.homeninja.entities.SiteUsers;
@@ -29,6 +32,8 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 	@Resource
 	private SessionFactory sessionFactory;
 
+
+	
 	@Override
 	public boolean addUsersSearch(UsersSearch usersSearch) {
 		try {
@@ -52,7 +57,7 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 	@Override
 	public UsersSearchResult searchUsersByCriteria(UsersSearchCriteria usersSearchCriteria) {
 		UsersSearchResult  usersSearchResult = new UsersSearchResult();
-		usersSearchResult.setUsersSearchList(new ArrayList<UsersSearch>());
+		usersSearchResult.setUsersSearchList(new ArrayList<com.homeninja.vo.UsersSearch>());
 		try {
 
 					
@@ -105,9 +110,16 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 			criteriaForUser.setMaxResults(usersSearchCriteria.getPageSize());
 			
 			List<UsersSearch> results = criteriaForUser.list();
+
 					
 			if (results.size() > 0) {
-				usersSearchResult.getUsersSearchList().addAll(results);
+				for (UsersSearch usersSearch : results) {
+					com.homeninja.vo.UsersSearch userSearchVO =
+							new com.homeninja.vo.UsersSearch();
+					BeanUtils.copyProperties(usersSearch, userSearchVO);
+					usersSearchResult.getUsersSearchList().add(userSearchVO);
+				}
+				
 				return usersSearchResult;
 			}
 			return null;

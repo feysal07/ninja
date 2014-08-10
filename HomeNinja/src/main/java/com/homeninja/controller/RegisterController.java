@@ -419,7 +419,7 @@ public class RegisterController implements ServletContextAware {
 		registerUser
 				.setPassword(Utils.md5Encryption(registerUser.getPassword()));
 		registerUser.setUserName(email);
-		mav.addObject("siteUser", registerUser);
+		
 		
 
 		if (!siteUserService.isEmailExists(email)) {
@@ -453,7 +453,7 @@ public class RegisterController implements ServletContextAware {
 					ufile.bytes = bos.toByteArray();;
 					ufile.type = "image/jpg";
 					ufile.name = "user";
-					registerUser.setUserId(siteUserId);
+					//registerUser.setUserId(siteUserId);
 					registerUser = siteUserService.getSiteUsersById( registerUser);
 					registerUser.setProfilPic(ufile.bytes);
 					boolean uploadImageFlag = siteUserService.updateUser(registerUser);
@@ -472,7 +472,7 @@ public class RegisterController implements ServletContextAware {
 		this.siteUserId = registerUser.getUserId();
 		
 
-		
+		mav.addObject("siteUser", registerUser);
 		return mav;
 	}
 

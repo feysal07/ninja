@@ -24,11 +24,12 @@ function doRegister() {
 	/*validate email Id%/
 	 * 
 	 */
-	var validation = true;
+	var validateReg1 = "true";
 	var userEmailId = $("#email").val();
 	if (userEmailId == "") {
-		validation = false;
-		return validation;
+		$alertError = $("#alertError3");
+		$alertError.show();
+		validateReg1 = "false";
 	}
 
 	var atpos = userEmailId.indexOf("@");
@@ -36,10 +37,11 @@ function doRegister() {
 	if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= userEmailId.length) {
 		$alertError = $("#alertError3");
 		$alertError.show();
-		validation = false;
-		return validation;
-	}
-	if(validation = true){
+		validateReg1 = "false";
+	}	
+	
+	
+	if (validateReg1 == "true" ||  validateReg1 == true) {
 		$("#registerpage1").submit();
 	}
 

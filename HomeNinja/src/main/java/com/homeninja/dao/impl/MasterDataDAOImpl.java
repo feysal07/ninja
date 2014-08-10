@@ -76,5 +76,30 @@ public class MasterDataDAOImpl implements MasterDataDAO{
 		}
 		
 	}
+	
+	
+	@Override
+	public Set<City> getCities(){
+		try{
+			Set<City> citySet = new HashSet<City>();
+			List list =  sessionFactory.getCurrentSession().createCriteria("com.homeninja.entities.MasterDataValue").
+			 add(Restrictions.eq("mnemonic", "CITY_NAME"))
+			 .list();
+			
+			for (Object object : list) {
+				MasterDataValue masterDataValue = (MasterDataValue)object;
+				City city = new  City();
+				city.setName(masterDataValue.getValue());
+				city.setMasterDataId(masterDataValue.getMasterDataId());
+				citySet.add(city);
+				
+			}
+			return citySet;
+		}catch(HibernateException e){
+			e.printStackTrace();
+			return null;
+		}
+		
+	}
 
 }

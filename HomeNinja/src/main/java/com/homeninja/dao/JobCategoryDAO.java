@@ -11,6 +11,8 @@ public interface JobCategoryDAO {
 	public Set<JobCategory> getJobCategory();
 
 	public Set<JobSubCategory> getJobSubCategory(JobCategory jobCategory);
+	
+	public Set<JobSubCategory> getJobSubCategory();
 
 	public boolean saveUserJobCategory(UserJobCategoryMap userJobCategoryMap);
 

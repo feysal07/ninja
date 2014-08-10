@@ -22,5 +22,7 @@
     <!-- Include js -->
     <script type="text/javascript" src="resources/assets/plugins/jquery-1.11.1.js"></script>
     <script type="text/javascript" src="resources/assets/plugins/hover-dropdown.min.js"></script>
+    <script type="text/javascript" src="resources/assets/plugins/jquery.session.js"></script>
+    
     
     

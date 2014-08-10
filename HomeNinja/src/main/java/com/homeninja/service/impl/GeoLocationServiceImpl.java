@@ -28,5 +28,11 @@ public class GeoLocationServiceImpl implements GeoLocationService {
 		// TODO Auto-generated method stub
 		return masterDataDAO.getCitiesForState(stateOrderId);
 	}
+	
+	@Override
+	public Set<City> getCities() {
+		// TODO Auto-generated method stub
+		return masterDataDAO.getCities();
+	}
 
 }

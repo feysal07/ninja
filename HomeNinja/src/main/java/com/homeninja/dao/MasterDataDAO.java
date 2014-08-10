@@ -11,4 +11,6 @@ public interface MasterDataDAO {
 	public Set<State> getStates();
 
 	public Set<City> getCitiesForState(long stateOrderId);
+	
+	public Set<City> getCities();
 }
