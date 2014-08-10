@@ -5,14 +5,28 @@
 	<!--Blog Post-->
 	<div class="search-blocks search-blocks-left-green">
 		<div class="row">
+			Job Categories:
+			<c:forEach var="userJobCat" items="${user.jobCategoriesList}">
+				<c:out value="${jobCatHashMap[userJobCat]}" />
+			</c:forEach>
+
+			<br> Job Sub-Categories:
+			<c:forEach var="userSubJobCat" items="${user.jobSubCategoriesList}">
+				<c:out value="${jobSubCatHashMap[userJobCat]}" />
+			</c:forEach>
 			<div class="col-md-4 search-img">
 				<img alt="" id="image-profile-pic"
 					src="./getimage/<c:out value='${user.userId}'/>"
 					class="img-responsive">
 				<ul class="list-unstyled">
-					<li><i class="icon-briefcase"></i> <c:out value="${user.city}" /></li>
-					<li><i class="icon-map-marker"></i> <c:out
-							value="${user.state}" /></li>
+					<li><i class="icon-briefcase"></i> <c:set var="cityId"
+							value="${user.city }" /> <c:set var="cityName"
+							value="${cityHashMap[cityId]}" /> <c:out value="${cityName}" />
+					</li>
+					<li><i class="icon-map-marker"></i> <c:set var="stateId"
+							value="${user.state }" /> <c:set var="stateName"
+							value="${stateHashMap[stateId]}" /> <c:out value="${stateName}" />
+					</li>
 				</ul>
 			</div>
 			<div class="col-md-8">
@@ -50,20 +64,22 @@
 				onclick="javascript:previousPage(${usersSearchSet.pageNumber});"><a
 				href="#">«</a></li>
 			<c:if
-				test="${(usersSearchSet.pageNumber) * 10  <= usersSearchSet.pageCount}">
-				<li id="currentPage" onclick="javascript:nextPage(${usersSearchSet.pageNumber} - 1);"><a href="#">${usersSearchSet.pageNumber}</a></li>
+				test="${(usersSearchSet.pageNumber - 1) * 10  < usersSearchSet.pageCount}">
+				<li id="currentPage"
+					onclick="javascript:nextPage(${usersSearchSet.pageNumber} - 1);"><a
+					href="#">${usersSearchSet.pageNumber}</a></li>
 			</c:if>
 			<c:if
-				test="${(usersSearchSet.pageNumber + 1) * 10  <= usersSearchSet.pageCount}">
+				test="${(usersSearchSet.pageNumber ) * 10  < usersSearchSet.pageCount}">
 				<li id="currentPage1"
 					onclick="javascript:nextPage(${usersSearchSet.pageNumber});"><a
 					href="#">${usersSearchSet.pageNumber + 1}</a></li>
 			</c:if>
 			<c:if
-				test="${(usersSearchSet.pageNumber + 2) * 10  <= usersSearchSet.pageCount}">
+				test="${(usersSearchSet.pageNumber + 1) * 10  < usersSearchSet.pageCount}">
 				<li id="currentPage2"
-					onclick="javascript:nextPage(${usersSearchSet.pageNumber} + 2);"><a
-					href="#">${usersSearchSet.pageNumber + 1}</a></li>
+					onclick="javascript:nextPage(${usersSearchSet.pageNumber} + 1);"><a
+					href="#">${usersSearchSet.pageNumber + 2}</a></li>
 			</c:if>
 
 			<li id="nextPage"

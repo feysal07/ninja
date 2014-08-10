@@ -11,6 +11,8 @@ public interface JobCategoryService {
 	public Set<JobCategory> getJobCategory();
 
 	public Set<JobSubCategory> getJobSubCategory(JobCategory jobCategory);
+	
+	public Set<JobSubCategory> getJobSubCategory();
 
 	public boolean saveUserJobCategory(UserJobCategoryMap userJobCategoryMap);
 	public boolean removeJobCategory(UserJobCategoryMap userJobCategoryMap);

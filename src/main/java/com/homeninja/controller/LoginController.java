@@ -17,10 +17,12 @@ import org.springframework.social.facebook.api.impl.FacebookTemplate;
 import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
 import com.homeninja.entities.SiteUsers;
@@ -28,6 +30,7 @@ import com.homeninja.service.SiteUserService;
 import com.homeninja.utils.Utils;
 
 @Controller
+@SessionAttributes("userInfo")
 public class LoginController {
 
 	private Facebook facebook;
@@ -49,8 +52,9 @@ public class LoginController {
 
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
-	String dologin(HttpServletResponse response, @RequestBody String myObject) {
+	String dologin(HttpServletResponse response, @RequestBody String myObject, Model model) {
 		logger.info("inside dologin method");
+		model.addAttribute("userInfo", "userDetail");
 		Gson gson = new Gson();
 		SiteUsers userDetail = gson.fromJson(myObject, SiteUsers.class);
 		if (userDetail == null) {
@@ -69,6 +73,7 @@ public class LoginController {
 				Utils.md5Encryption((userDetail.getPassword())));
 
 		if (user != null) {
+			model.addAttribute("userInfo", "userDetail");
 			return "home";
 		} else {
 			return "login-fail-usernoexist";

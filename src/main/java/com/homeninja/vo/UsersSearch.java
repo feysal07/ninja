@@ -1,16 +1,15 @@
-package com.homeninja.entities;
+package com.homeninja.vo;
 
-import javax.persistence.Entity;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+import java.util.StringTokenizer;
+
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Table;
 
-@Entity
-@Table(name = "users_search")
 public class UsersSearch {
-	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private long userId;
 	private String userName;
@@ -19,7 +18,9 @@ public class UsersSearch {
 	private long city;
 	private String pincode;
 	private String jobCategories;
+	private List<Long> jobCategoriesList = new ArrayList<Long>();
 	private String jobSubCategories;
+	private List<Long> jobSubCategoriesList = new ArrayList<Long>();
 	private String aboutMe;
 	private long userTypeId;
 
@@ -93,14 +94,51 @@ public class UsersSearch {
 
 	public void setJobCategories(String jobCategories) {
 		this.jobCategories = jobCategories;
+		if (jobCategories != null) {
+			List<String> catList = Arrays.asList(jobCategories.split(","));
+			for (String category : catList) {
+				Long categoryInteger = Long.parseLong(category);
+				this.getJobCategoriesList().add(categoryInteger);
+
+			}
+		}
+
+	}
+
+	public List<Long> getJobCategoriesList() {
+		return jobCategoriesList;
+	}
+
+	public void setJobCategoriesList(List<Long> jobCategoriesList) {
+		this.jobCategoriesList = jobCategoriesList;
+		
+
 	}
 
 	public String getJobSubCategories() {
+
 		return jobSubCategories;
 	}
 
 	public void setJobSubCategories(String jobSubCategories) {
 		this.jobSubCategories = jobSubCategories;
+		if (jobSubCategories != null) {
+			List<String> subCatList = Arrays.asList(jobSubCategories.split(","));
+			for (String subCategory : subCatList) {
+				Long subCategoryInteger = Long.parseLong(subCategory);
+				this.getJobSubCategoriesList().add(subCategoryInteger);
+
+			}
+		}
+	}
+
+	
+	public List<Long> getJobSubCategoriesList() {
+		return jobSubCategoriesList;
+	}
+
+	public void setJobSubCategoriesList(List<Long> jobSubCategoriesList) {
+		this.jobSubCategoriesList = jobSubCategoriesList;
 	}
 
 	public long getUserTypeId() {
