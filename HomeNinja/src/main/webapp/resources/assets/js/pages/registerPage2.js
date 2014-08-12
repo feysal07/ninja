@@ -70,6 +70,7 @@ function getCitiesforState() {
 }
 
 function saveSection1() {
+	var validation = "valid";
 	var myObject = new Object();
 	myObject.userId = $('#siteUserid').val();
 	myObject.firstName = $('#firstName').val();
@@ -77,34 +78,65 @@ function saveSection1() {
 	myObject.loginEmail = $('#loginEmail').val();
 	myObject.phoneNumber = $('#phoneNumber').val();
 	myObject.aboutMe = $('#aboutMe').val();
+	if(myObject.firstName == ""){
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please enter your first name");
+		$alertError.show();
+		validation = "inValid";
+	}
+	
+	if(myObject.lastName == ""){
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please enter your last name");
+		$alertError.show();
+		validation = "inValid";
+	}
+	
+	if(myObject.firstName == "" && myObject.lastName == ""){
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please enter your first and last name");
+		$alertError.show();
+		validation = "inValid";
+	}
+	
+	if(myObject.loginEmail == ""){
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please enter your email id");
+		$alertError.show();
+		validation = "inValid";
+	}
+	
+	
+	
+	if(validation == "valid"){
+		$.ajax({
+			type : "POST",
+			url : "./saveSection1",
+			data : JSON.stringify(myObject),
+			contentType : 'application/json',
 
-	$.ajax({
-		type : "POST",
-		url : "./saveSection1",
-		data : JSON.stringify(myObject),
-		contentType : 'application/json',
+			beforeSend : function() {
 
-		beforeSend : function() {
+			},
+			success : function(response) {
+				if (response == "save-fail") {
+					$alertError = $("#alertError");
+					jQuery("label[for='myalue']").html("Please enter first name");
+					$alertError.show();
+				}
+				
+			},
+			complete : function() {
 
-		},
-		success : function(response) {
-			if (response == "login-fail-nouser"
-					|| response == "login-fail-usernoexist") {
-				alert("Invalid user. Please try again");
+			},
+			error : function(errorThrown) {
+				console.log(errorThrown);
+
 			}
-			if (response == "login-fail-nopassword") {
-				alert("Password not entered. Please try again");
-			}
+		});
+	}
 
-		},
-		complete : function() {
-
-		},
-		error : function(errorThrown) {
-			console.log(errorThrown);
-
-		}
-	});
+	
 }
 
 function saveSection2() {

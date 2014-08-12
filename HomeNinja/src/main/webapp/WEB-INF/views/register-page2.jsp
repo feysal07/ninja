@@ -28,7 +28,7 @@
 
 <!--=== Content Part ===-->
 <input type="hidden" id="siteUserid"
-					value='<c:out value="${siteUser.userId}"/>'>
+	value='<c:out value="${siteUser.userId}"/>'>
 <div class="container">
 	<div class="row margin-bottom-30">
 		<div class="col-md-3">
@@ -37,7 +37,7 @@
 				<h2>Upload Image Form</h2>
 			</div>
 
-			<div>
+						<div>
 				<img alt="" src="resources/assets/img/user.jpg"
 					class="img-responsive" id="image-upload-pic" width="199"
 					height="152">
@@ -54,6 +54,14 @@
 		<!--/col-md-3-->
 
 		<div class="col-md-9 mb-margin-bottom-30">
+		<!--  Alert messages -->
+			<div class="alert alert-danger fade in" id="alertError" hidden="true">
+				<button type="button" class="close" data-dismiss="alert"
+					onclick="javascript:closeErrorBox();">&times;</button>
+				<strong>Oh!</strong> <label for="myalue"></label>
+			</div>
+						<!--  alert messages end -->
+		
 			<div>
 				<div class="headline">
 					<h2>Basic Information</h2>
@@ -62,28 +70,27 @@
 				<div class="row">
 					<div class="col-lg-4">
 						<label>First Name <span class="color-red">*</span></label> <input
-						id="firstName"
-							value='<c:out value="${siteUser.firstName}"/>' type="text"
-							class="form-control margin-bottom-20">
+							id="firstName" value='<c:out value="${siteUser.firstName}"/>'
+							type="text" class="form-control margin-bottom-20">
 					</div>
 					<div class="col-lg-4">
 						<label>Last Name <span class="color-red">*</span></label> <input
-							type="text" 
-							id="lastName" value='<c:out value="${siteUser.lastName}"/>'
+							type="text" id="lastName"
+							value='<c:out value="${siteUser.lastName}"/>'
 							class="form-control margin-bottom-20">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-4">
 						<label>Email <span class="color-red">*</span></label> <input
-							type="text" 
-							id="loginEmail"
+							type="text" id="loginEmail"
 							value='<c:out value="${siteUser.loginEmail}"/>'
 							class="form-control margin-bottom-20">
 					</div>
 					<div class="col-lg-4">
 						<label>Contact <span class="color-red">*</span></label> <input
-							type="text"  id="phoneNumber" value='<c:out value="${siteUser.phoneNumber}"/>'
+							type="text" id="phoneNumber"
+							value='<c:out value="${siteUser.phoneNumber}"/>'
 							class="form-control margin-bottom-20">
 					</div>
 				</div>
@@ -98,7 +105,8 @@
 				<p>
 					<button type="submit" class="btn-u">Edit</button>
 					&nbsp;&nbsp;
-					<button type="submit" class="btn-u" id="section1-save" onclick="javascript:saveSection1()">Save</button>
+					<button type="submit" class="btn-u" id="section1-save"
+						onclick="javascript:saveSection1()">Save</button>
 				</p>
 			</div>
 			<br />
@@ -110,19 +118,20 @@
 					<label>Address</label>
 					<div class="row margin-bottom-20">
 						<div class="col-md-7 col-md-offset-0">
-							<textarea rows="8" class="form-control" id = "address"><c:out
-								value="${siteUser.address.address}" /></textarea>
+							<textarea rows="8" class="form-control" id="address"><c:out
+									value="${siteUser.address.address}" /></textarea>
 						</div>
 					</div>
 					<br />
 					<div class="row">
 						<div class="col-lg-4">
-							<label>State <span class="color-red">*</span></label>
-							<select id="states" class="form-control" onchange="javascript:getCitiesforState()"></select>
+							<label>State <span class="color-red">*</span></label> <select
+								id="states" class="form-control"
+								onchange="javascript:getCitiesforState()"></select>
 						</div>
 						<div class="col-lg-4">
 							<label>City<span class="color-red">*</span></label> <select
-								 id="citiesforstate" class="form-control">
+								id="citiesforstate" class="form-control">
 							</select>
 						</div>
 					</div>
@@ -136,7 +145,8 @@
 					<p>
 						<button type="submit" class="btn-u">Edit</button>
 						&nbsp;&nbsp;
-						<button type="submit" class="btn-u" id="section2-save" onclick="javascript:saveSection2()">Save</button>
+						<button type="submit" class="btn-u" id="section2-save"
+							onclick="javascript:saveSection2()">Save</button>
 					</p>
 				</div>
 
@@ -147,29 +157,29 @@
 					<div class="headline">
 						<h2>Advance Settings</h2>
 					</div>
-					
-					<div class="checkbox" id="advancemapcheckboxes">
-					</div>
+
+					<div class="checkbox" id="advancemapcheckboxes"></div>
 					<p>
-						<button type="submit" id="section3-save" class="btn-u" onclick="javascript:saveSection3()">Save</button>
+						<button type="submit" id="section3-save" class="btn-u"
+							onclick="javascript:saveSection3()">Save</button>
 					</p>
 				</div>
 
 			</div>
-			<div>
-					</div>
-					<p>
-						<button type="submit" id="next-page3" class="btn-u" onclick="javascript:goToRegPage3()">Next</button>
-					</p>
-				</div>
-
-
+			<div></div>
+			<p>
+				<button type="submit" id="next-page3" class="btn-u"
+					onclick="javascript:goToRegPage3()">Next</button>
+			</p>
 		</div>
-		<!--/col-md-9-->
 
 
 	</div>
-	<!--/row-->
+	<!--/col-md-9-->
+
+
+</div>
+<!--/row-->
 
 
 </div>

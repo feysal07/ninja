@@ -108,7 +108,7 @@
 							</label>
 						</div>
 						<div class="col-lg-6 text-right">
-							<button class="btn-u pull-right"
+							<button class="btn-u pull-right" type="button" onclick="javascript:doRegister();"
 								>Register</button>
 						</div>
 					</div>
