@@ -41,7 +41,7 @@ function doRegister() {
 	}	
 	
 	
-	if (validateReg1 == "true" ||  validateReg1 == true) {
+	if (validateReg1 == "true") {
 		$("#registerpage1").submit();
 	}
 
