@@ -37,7 +37,7 @@
 				<h2>Upload Image Form</h2>
 			</div>
 
-						<div>
+			<div>
 				<img alt="" src="resources/assets/img/user.jpg"
 					class="img-responsive" id="image-upload-pic" width="199"
 					height="152">
@@ -54,14 +54,20 @@
 		<!--/col-md-3-->
 
 		<div class="col-md-9 mb-margin-bottom-30">
-		<!--  Alert messages -->
-			<div class="alert alert-danger fade in" id="alertError" hidden="true">
+			<!--  Alert messages -->
+			<div class="alert alert-danger fade in" id="alertError1" hidden="true">
 				<button type="button" class="close" data-dismiss="alert"
-					onclick="javascript:closeErrorBox();">&times;</button>
+					onclick="javascript:closeErrorBox1();">&times;</button>
 				<strong>Oh!</strong> <label for="myalue"></label>
 			</div>
-						<!--  alert messages end -->
-		
+
+			<div class="alert alert-success" id="alertSuccess1" hidden="true">
+				<button type="button" class="close" data-dismiss="alert"
+					onclick="javascript:closeSuccessBox1();">&times;</button>
+				<strong>Well done!</strong> User information updated successfully!
+			</div>
+			<!--  alert messages end -->
+
 			<div>
 				<div class="headline">
 					<h2>Basic Information</h2>
@@ -111,6 +117,19 @@
 			</div>
 			<br />
 			<div>
+			<!--  Alert messages -->
+			<div class="alert alert-danger fade in" id="alertError2" hidden="true">
+				<button type="button" class="close" data-dismiss="alert"
+					onclick="javascript:closeErrorBox2();">&times;</button>
+				<strong>Oh!</strong> <label for="myalue"></label>
+			</div>
+
+			<div class="alert alert-success" id="alertSuccess2" hidden="true">
+				<button type="button" class="close" data-dismiss="alert"
+					onclick="javascript:closeSuccessBox2();">&times;</button>
+				<strong>Well done!</strong> User information updated successfully!
+			</div>
+			<!--  alert messages end -->
 				<div>
 					<div class="headline">
 						<h2>Address Information</h2>
@@ -168,8 +187,8 @@
 			</div>
 			<div></div>
 			<p>
-				<button type="submit" id="next-page3" class="btn-u"
-					onclick="javascript:goToRegPage3()">Next</button>
+				<button type="submit" id="next-page3" class="btn-u pull-right"
+					onclick="javascript:goToRegPage3()">Proceed to next page</button>
 			</p>
 		</div>
 

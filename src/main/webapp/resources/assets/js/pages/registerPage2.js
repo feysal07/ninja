@@ -1,3 +1,15 @@
+function closeErrorBox1() {
+	$alertError = $("#alertError1");
+	$alertError.hide();
+
+}
+
+function closeSuccessBox1() {
+	$alertSuccess = $("#alertSuccess1");
+	$alertSuccess.hide();
+
+}
+
 $(function() {
 	$("#next-page3").click(function() {
 		var userId = $('#siteUserid').val();
@@ -70,6 +82,8 @@ function getCitiesforState() {
 }
 
 function saveSection1() {
+	closeErrorBox1();
+	closeSuccessBox1();
 	var validation = "valid";
 	var myObject = new Object();
 	myObject.userId = $('#siteUserid').val();
@@ -78,33 +92,45 @@ function saveSection1() {
 	myObject.loginEmail = $('#loginEmail').val();
 	myObject.phoneNumber = $('#phoneNumber').val();
 	myObject.aboutMe = $('#aboutMe').val();
+	
+	if(myObject.phoneNumber == ""){
+		$alertError = $("#alertError1");
+		jQuery("label[for='myalue']").html("Please enter your phone number");
+		$alertError.show();
+		validation = "inValid";
+	}
+	
+	
+	if(myObject.loginEmail == ""){
+		$alertError = $("#alertError1");
+		jQuery("label[for='myalue']").html("Please enter your email id");
+		$alertError.show();
+		validation = "inValid";
+	}
+	
+	
 	if(myObject.firstName == ""){
-		$alertError = $("#alertError");
+		$alertError = $("#alertError1");
 		jQuery("label[for='myalue']").html("Please enter your first name");
 		$alertError.show();
 		validation = "inValid";
 	}
 	
 	if(myObject.lastName == ""){
-		$alertError = $("#alertError");
+		$alertError = $("#alertError1");
 		jQuery("label[for='myalue']").html("Please enter your last name");
 		$alertError.show();
 		validation = "inValid";
 	}
 	
 	if(myObject.firstName == "" && myObject.lastName == ""){
-		$alertError = $("#alertError");
+		$alertError = $("#alertError1");
 		jQuery("label[for='myalue']").html("Please enter your first and last name");
 		$alertError.show();
 		validation = "inValid";
 	}
 	
-	if(myObject.loginEmail == ""){
-		$alertError = $("#alertError");
-		jQuery("label[for='myalue']").html("Please enter your email id");
-		$alertError.show();
-		validation = "inValid";
-	}
+	
 	
 	
 	
@@ -120,9 +146,14 @@ function saveSection1() {
 			},
 			success : function(response) {
 				if (response == "save-fail") {
-					$alertError = $("#alertError");
+					$alertError = $("#alertError1");
 					jQuery("label[for='myalue']").html("Please enter first name");
 					$alertError.show();
+				}
+				if(response == "register-success"){
+					$alertSuccess = $("#alertSuccess1");
+					jQuery("label[for='myalue']").html("Information updated successfully");
+					$alertSuccess.show();
 				}
 				
 			},
@@ -140,6 +171,8 @@ function saveSection1() {
 }
 
 function saveSection2() {
+	var validation = "valid";
+	
 	var myObject = new Object();
 	myObject.userId = $('#siteUserid').val();
 	myObject.address = new Object();
@@ -147,25 +180,52 @@ function saveSection2() {
 	myObject.address.city = $('#citiesforstate').val();
 	myObject.address.pincode = $('#pincode').val();
 
-	$.ajax({
-		type : "POST",
-		url : "./saveSection2",
-		data : JSON.stringify(myObject),
-		contentType : 'application/json',
+	if(myObject.address.state == ""){
+		$alertError = $("#alertError2");
+		jQuery("label[for='myalue']").html("Please select your state");
+		$alertError.show();
+		validation = "inValid";
+	}
+	
+	if(myObject.address.city == ""){
+		$alertError = $("#alertError2");
+		jQuery("label[for='myalue']").html("Please select your city");
+		$alertError.show();
+		validation = "inValid";
+	}
+	
+	if(validation == "valid"){
+		$.ajax({
+			type : "POST",
+			url : "./saveSection2",
+			data : JSON.stringify(myObject),
+			contentType : 'application/json',
 
-		beforeSend : function() {
+			beforeSend : function() {
 
-		},
-		success : function(response) {
-		},
-		complete : function() {
+			},
+			success : function(response) {
+				if (response == "save-fail") {
+					$alertError = $("#alertError2");
+					jQuery("label[for='myalue']").html("Save failed");
+					$alertError.show();
+				}
+				if(response == "register-success"){
+					$alertSuccess = $("#alertSuccess2");
+					jQuery("label[for='myalue']").html("Information updated successfully");
+					$alertSuccess.show();
+				}
+			},
+			complete : function() {
 
-		},
-		error : function(errorThrown) {
-			console.log(errorThrown);
+			},
+			error : function(errorThrown) {
+				console.log(errorThrown);
 
-		}
-	});
+			}
+		});
+	}
+
 }
 
 function saveSection3() {

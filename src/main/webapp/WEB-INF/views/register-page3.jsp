@@ -27,7 +27,7 @@
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<form:form action="./doRegisterPage3" method="POST"
+<form:form action="./doRegisterPage3" method="POST" id="registerpage3"
 	modelAttribute="registrationPage3" commandname="registrationPage3">
 <form:input type="hidden" id="siteUserid" path="userId"
 	value="${siteUser.userId}"/>
@@ -39,6 +39,22 @@
 				<h2>Upgrade User</h2>
 			</div>
 			<div class="row">
+			
+			<!--  Alert messages -->
+			<div class="alert alert-danger fade in" id="alertError" hidden="true">
+				<button type="button" class="close" data-dismiss="alert"
+					onclick="javascript:closeErrorBox();">&times;</button>
+				<strong>Oh!</strong> <label for="myalue"></label>
+			</div>
+
+			<div class="alert alert-success" id="alertSuccess" hidden="true">
+				<button type="button" class="close" data-dismiss="alert"
+					onclick="javascript:closeSuccessBox();">&times;</button>
+				<strong>Well done!</strong> User information updated successfully!
+			</div>
+			<!--  alert messages end -->
+			
+			
 				<div class="col-lg-4">
 					<label>Upgrade As<span class="color-red">*</span></label>
 					 <form:select
@@ -80,7 +96,7 @@
 
 				<br />
 				<p>
-					<button type="submit" class="btn-u">Save</button>
+					<button class="btn-u pull-right" type="button" onclick="javascript:doRegister();">Save</button>
 				</p>
 			</div>
 

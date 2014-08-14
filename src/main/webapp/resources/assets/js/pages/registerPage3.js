@@ -2,6 +2,18 @@
  * 
  */
 
+function closeErrorBox() {
+	$alertError = $("#alertError");
+	$alertError.hide();
+
+}
+
+function closeSuccessBox() {
+	$alertSuccess = $("#alertSuccess");
+	$alertSuccess.hide();
+
+}
+
 $(document).ready(
 		function() {
 			$.getJSON('./getUserTypes', {
@@ -136,3 +148,23 @@ function getSubCategories(id) {
 	$subcategoriescheckboxes = $("#subcategoriescheckboxes" + id);
 	$subcategoriescheckboxes.toggle();
 };
+
+function doRegister() {
+	/*validate email Id%/
+	 * 
+	 */
+	var validateReg1 = "true";
+	var userEmailId = $("#userType").val();
+	if (userEmailId == "") {
+		$alertError = $("#alertError");
+		$alertError.show();
+		validateReg1 = "false";
+	}
+	
+	
+	if (validateReg1 == "true") {
+		$("#registerpage3").submit();
+	}
+
+	
+}
