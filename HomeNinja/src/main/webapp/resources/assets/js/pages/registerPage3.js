@@ -113,7 +113,7 @@ $(document).ready(function() {
 			str += '</label>';
 			str += '<br>';
 
-			if (strArray[typeof result.jobCatId] === 'undefined') {
+			if (typeof strArray[ result.jobCatId] === 'undefined') {
 				strArray[result.jobCatId] = str;
 			} else {
 				strArray[result.jobCatId] = strArray[result.jobCatId] + str;
@@ -157,6 +157,7 @@ function doRegister() {
 	var userEmailId = $("#userType").val();
 	if (userEmailId == "") {
 		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please select the user type");
 		$alertError.show();
 		validateReg1 = "false";
 	}
