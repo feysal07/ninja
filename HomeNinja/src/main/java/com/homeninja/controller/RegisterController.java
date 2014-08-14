@@ -331,7 +331,7 @@ public class RegisterController implements ServletContextAware {
 	public @ResponseBody
 	String saveSection2(HttpServletResponse response,
 			@RequestBody String myObject) {
-		logger.info("inside saveSection1 method");
+		logger.info("inside saveSection2 method");
 		Gson gson = new Gson();
 		SiteUsers userDetail = gson.fromJson(myObject, SiteUsers.class);
 
@@ -363,6 +363,7 @@ public class RegisterController implements ServletContextAware {
 	String saveSection3(HttpServletResponse response,
 			@RequestBody String myObject) {
 		logger.info("inside saveSection3 method");
+		boolean saveError = false;
 		Gson gson = new Gson();
 		Type listType = new TypeToken<List<AdvanceSettingUserMap>>() {
 		}.getType();
@@ -384,15 +385,18 @@ public class RegisterController implements ServletContextAware {
 				}
 				saveSection3Flag = advanceSettingService
 						.saveOrUpdateAdvanceSettingUserMap(advanceSettingUserMap);
+				if(saveSection3Flag == false){
+					saveError = true;
+					break;
+				}
 			}
 
 		}
 
-		/*
-		 * if (saveSection2Flag) { return "register-success"; } else { return
-		 * "save-fail"; }
-		 */
-		return "register-success";
+		
+		 if (!saveError) { return "register-success"; } else { return
+		 "save-fail"; }
+		 
 
 	}
 

@@ -20,6 +20,24 @@ function closeError3Box() {
 
 }
 
+function closeError4Box() {
+	$alertError = $("#alertError4");
+	$alertError.hide();
+
+}
+
+function closeError5Box() {
+	$alertError = $("#alertError5");
+	$alertError.hide();
+
+}
+
+function closeError6Box() {
+	$alertError = $("#alertError6");
+	$alertError.hide();
+
+}
+
 function doRegister() {
 	/*validate email Id%/
 	 * 
@@ -39,6 +57,26 @@ function doRegister() {
 		$alertError.show();
 		validateReg1 = "false";
 	}	
+	
+	var password =  $("#password").val();
+	var confirmPassword = $("#cnfrmPassword").val();
+	if (password == ""){
+		$alertError = $("#alertError4");
+		$alertError.show();
+		validateReg1 = "false";
+	}
+	
+	if (confirmPassword == ""){
+		$alertError = $("#alertError5");
+		$alertError.show();
+		validateReg1 = "false";
+	}
+	
+	if (password != confirmPassword){
+		$alertError = $("#alertError6");
+		$alertError.show();
+		validateReg1 = "false";
+	}
 	
 	
 	if (validateReg1 == "true") {
