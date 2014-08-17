@@ -14,6 +14,7 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import java.util.TreeSet;
 
 import javax.annotation.Resource;
 import javax.servlet.ServletContext;
@@ -208,7 +209,10 @@ public class RegisterController implements ServletContextAware {
 		logger.debug("getJobCategories");
 		Set<JobCategory> jobCategorySet = new HashSet<JobCategory>();
 		jobCategorySet = jobCategoryService.getJobCategory();
-		return jobCategorySet;
+		TreeSet<JobCategory> jobCategorySortedSet = new TreeSet<JobCategory>();
+		jobCategorySortedSet.addAll(jobCategorySet);
+
+		return jobCategorySortedSet;
 	}
 
 	@RequestMapping(value = "/getJobSubCategories", method = RequestMethod.GET)
@@ -219,7 +223,12 @@ public class RegisterController implements ServletContextAware {
 		JobCategory jobCategory = gson.fromJson(myObject, JobCategory.class);
 		Set<JobSubCategory> jobSubCategorySet = new HashSet<JobSubCategory>();
 		jobSubCategorySet = jobCategoryService.getJobSubCategory(jobCategory);
-		return jobSubCategorySet;
+		TreeSet<JobSubCategory> jobSubCategorySortedSet = new TreeSet<JobSubCategory>();
+		jobSubCategorySortedSet.addAll(jobSubCategorySet);
+		for (JobSubCategory jobSubCategory : jobSubCategorySortedSet) {
+			System.out.println(jobSubCategory.getJobSubCat());
+		}
+		return jobSubCategorySortedSet;
 	}
 
 	@RequestMapping(value = "/getAdvanceQuestions", method = RequestMethod.POST, consumes = "application/json")
@@ -272,10 +281,11 @@ public class RegisterController implements ServletContextAware {
 		return mav;
 	}
 
-	@RequestMapping(value = "/RegisterPage3", method = RequestMethod.GET)
+	@RequestMapping(value = "/RegisterPage3", method = RequestMethod.POST)
 	ModelAndView RegisterPage3(
-			@RequestParam(value = "userId", required = true) long userId)
+			@RequestParam(value = "siteUserid", required = false) long userId, @RequestBody String myObject)
 			throws IOException {
+		
 		ModelAndView mav = new ModelAndView("register-page3");
 		SiteUsers registerUser = new SiteUsers();
 		registerUser.setUserId(userId);

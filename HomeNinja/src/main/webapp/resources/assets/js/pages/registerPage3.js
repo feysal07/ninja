@@ -98,7 +98,7 @@ $(document).ready(function() {
 				str = ' ';
 			}
 
-			
+			str = ' ';
 			str += '<label> <input type="checkbox" name="userJobSubCategoryList[' + result.id + '].jobSubCategoryIsSet"';
 			str += 'value="true"'
 					+ 'id ="userJobSubCategoryList';
@@ -113,17 +113,21 @@ $(document).ready(function() {
 			str += '</label>';
 			str += '<br>';
 
-			if (typeof strArray[ result.jobCatId] === 'undefined') {
-				strArray[result.jobCatId] = str;
-			} else {
-				strArray[result.jobCatId] = strArray[result.jobCatId] + str;
+ 
+			
+			if (typeof strArray[ result.jobCatId] == 'undefined'){
+				strArray[result.jobCatId] = ' ';				
 			}
-
+			strArray[result.jobCatId] = strArray[result.jobCatId] + str;
+/*     		else if ( typeof strArray[ result.jobCatId] === 'undefined') {
+				strArray[result.jobCatId] = str;
+			}*/
+			
 		});
 
-		$.each(strArray, function(index, result) {
+ 		$.each(strArray, function(index, result) {
 			$("#subcategoriescheckboxes" + index).html(strArray[index]);
-		});
+		})
 		// now that we have our options, give them to our select
 		// $("'#subcategoriescheckboxes"+result.jobCatId +"'").html(str);
 	});

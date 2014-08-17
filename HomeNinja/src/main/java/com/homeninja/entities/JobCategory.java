@@ -8,9 +8,9 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "job_category")
-public class JobCategory {
+public class JobCategory implements Comparable<JobCategory> {
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String jobCat;
 	private String userTypeId;
@@ -37,6 +37,13 @@ public class JobCategory {
 
 	public void setUserTypeId(String userTypeId) {
 		this.userTypeId = userTypeId;
+	}
+
+	@Override
+	public int compareTo(JobCategory jobCategory) {
+		return this.id == jobCategory.id ? 0
+				: (this.id > jobCategory.id ? 1 : -1);
+
 	}
 
 }

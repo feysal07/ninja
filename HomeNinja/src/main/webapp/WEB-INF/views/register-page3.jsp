@@ -95,9 +95,11 @@
 				</div>
 
 				<br />
+				
 				<p>
 					<button class="btn-u pull-right" type="button" onclick="javascript:doRegister();">Save</button>
 				</p>
+				
 			</div>
 
 		</div>
