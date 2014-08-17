@@ -27,8 +27,7 @@
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<input type="hidden" id="siteUserid"
-	value='<c:out value="${siteUser.userId}"/>'>
+
 <div class="container">
 	<div class="row margin-bottom-30">
 		<div class="col-md-3">
@@ -55,7 +54,8 @@
 
 		<div class="col-md-9 mb-margin-bottom-30">
 			<!--  Alert messages -->
-			<div class="alert alert-danger fade in" id="alertError1" hidden="true">
+			<div class="alert alert-danger fade in" id="alertError1"
+				hidden="true">
 				<button type="button" class="close" data-dismiss="alert"
 					onclick="javascript:closeErrorBox1();">&times;</button>
 				<strong>Oh!</strong> <label for="myalue"></label>
@@ -117,19 +117,20 @@
 			</div>
 			<br />
 			<div>
-			<!--  Alert messages -->
-			<div class="alert alert-danger fade in" id="alertError2" hidden="true">
-				<button type="button" class="close" data-dismiss="alert"
-					onclick="javascript:closeErrorBox2();">&times;</button>
-				<strong>Oh!</strong> <label for="myalue"></label>
-			</div>
+				<!--  Alert messages -->
+				<div class="alert alert-danger fade in" id="alertError2"
+					hidden="true">
+					<button type="button" class="close" data-dismiss="alert"
+						onclick="javascript:closeErrorBox2();">&times;</button>
+					<strong>Oh!</strong> <label for="myalue"></label>
+				</div>
 
-			<div class="alert alert-success" id="alertSuccess2" hidden="true">
-				<button type="button" class="close" data-dismiss="alert"
-					onclick="javascript:closeSuccessBox2();">&times;</button>
-				<strong>Well done!</strong> User information updated successfully!
-			</div>
-			<!--  alert messages end -->
+				<div class="alert alert-success" id="alertSuccess2" hidden="true">
+					<button type="button" class="close" data-dismiss="alert"
+						onclick="javascript:closeSuccessBox2();">&times;</button>
+					<strong>Well done!</strong> User information updated successfully!
+				</div>
+				<!--  alert messages end -->
 				<div>
 					<div class="headline">
 						<h2>Address Information</h2>
@@ -186,10 +187,14 @@
 
 			</div>
 			<div></div>
-			<p>
-				<button type="submit" id="next-page3" class="btn-u pull-right"
-					onclick="javascript:goToRegPage3()">Proceed to next page</button>
-			</p>
+			<form id="moveToRegPage3" action="./RegisterPage3" method="POST">
+				<input type="hidden" id="siteUserid" name="siteUserid"
+					value="<c:out value='${siteUser.userId}'/>">
+				<p>
+					<button type="button" id="next-page3" class="btn-u pull-right"
+						onclick="javascript:goToRegPage3()">Proceed to next page</button>
+				</p>
+			</form>
 		</div>
 
 

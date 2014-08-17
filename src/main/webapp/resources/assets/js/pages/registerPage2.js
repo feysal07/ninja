@@ -10,14 +10,13 @@ function closeSuccessBox1() {
 
 }
 
-$(function() {
-	$("#next-page3").click(function() {
-		var userId = $('#siteUserid').val();
+function goToRegPage3() {	
+/*		var userId = $('#siteUserid').val();
 		var url = './RegisterPage3' +"?userId=" +userId;
-		$(location).attr('href', url);
-		
-	});
-});
+		$(location).attr('href', url);*/
+		var userId = $('#siteUserid').val();
+		$("#moveToRegPage3").submit();
+}
 
 $(document).ready(function() {
 	var myObject = new Object();
