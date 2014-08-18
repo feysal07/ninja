@@ -10,8 +10,7 @@ function jobPost(){
      var jobSubCategories="";
 	 $('input:checkbox[name=jobSubCat]:checked').each(function() 
 			   {
-		         alert($('#subCat_'+this.id).val());
-		 		 jobSubCategories=jobSubCategories+"-"+this.value;
+		         jobSubCategories=jobSubCategories+"-"+$('#subCat_'+this.id).text();
 				 jobSubCatArray.push(this.id);
 			});
 	 
@@ -127,8 +126,8 @@ function getJobSubCategories(){
 		var html = '';
 		var len = data.length;
 		for (var i = 0; i < len; i++) {
-			html += '<div class="checkbox"><label id="subCat_'+data[i].id+'"><input name="jobSubCat" type="checkbox" id="' + data[i].id + '">'
-					+ data[i].jobSubCat+'</label></div>';
+			html += '<div class="checkbox"><label><input name="jobSubCat" type="checkbox" id="' + data[i].id + '">'
+					+'<label id="subCat_'+data[i].id+'">'+ data[i].jobSubCat+'</label></label></div>';
 		}
 		//html += '</label>';
 		//now that we have our options, give them to our select
