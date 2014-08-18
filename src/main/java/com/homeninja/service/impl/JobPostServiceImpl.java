@@ -1,48 +1,58 @@
 package com.homeninja.service.impl;
-/*package com.homeninja.service.impl;
+
 
 import java.util.List;
-import java.util.Map;
+import java.util.Set;
 
-import org.springframework.beans.factory.annotation.Autowired;
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
 
 import com.homeninja.dao.JobPostDAO;
-import com.homeninja.entites.JobPost;
+import com.homeninja.entities.Jobs;
+import com.homeninja.entities.JobsSubCategoryMap;
+import com.homeninja.entities.MessageLimits;
+import com.homeninja.helping.entities.JobSearchCriteria;
 import com.homeninja.service.JobPostService;
-
+@Service
 public class JobPostServiceImpl implements JobPostService {
 
-	@Autowired
-	public JobPostDAO jobPostDAO;
+	@Resource
+	private JobPostDAO jobPostDAO;
+	
+	
 	@Override
-	public Map<String, List<String>> getAllJobCategories() {
-		// TODO Auto-generated method stub
-		return jobPostDAO.getAllJobCategories();
+	public boolean saveOrUpdatePostedJob(Jobs jobPost) {
+		return jobPostDAO.saveOrUpdatePostedJob(jobPost);
 	}
 
 	@Override
-	public List<String> getAllStates() {
-		// TODO Auto-generated method stub
-		return jobPostDAO.getAllStates();
-	}
-
-	@Override
-	public List<String> getAllCities(String state) {
-		// TODO Auto-generated method stub
-		return jobPostDAO.getAllCities(state);
-	}
-
-	@Override
-	public boolean savePostedJob(JobPost jobPost) {
-		// TODO Auto-generated method stub
-		return jobPostDAO.savePostedJob(jobPost);
-	}
-
-	@Override
-	public List<JobPost> getAllPostedJobs() {
-		// TODO Auto-generated method stub
+	public List<Jobs> getAllPostedJobs() {
 		return jobPostDAO.getAllPostedJobs();
 	}
 
+	@Override
+	public boolean saveOrUpdateJobSubCatIds(JobsSubCategoryMap obj) {
+		return jobPostDAO.saveOrUpdateJobSubCatIds(obj);
+		
+		
+	}
+
+	@Override
+	public List<MessageLimits> getMessageLimits() {
+		return jobPostDAO.getMessageLimits();
+	}
+
+	@Override
+	public List<Jobs> getJobPostByCriteria(JobSearchCriteria jobSearchCriteria) {
+		return jobPostDAO.getJobPostByCriteria(jobSearchCriteria);
+	}
+
+	@Override
+	public String sendMessage(int jobId) {
+		// TODO Auto-generated method stub
+		return jobPostDAO.sendMessage(jobId);
+	}
+
+	
 }
-*/

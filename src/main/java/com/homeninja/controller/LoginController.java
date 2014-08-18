@@ -33,10 +33,10 @@ import com.homeninja.utils.Utils;
 @SessionAttributes("userInfo")
 public class LoginController {
 
-	private Facebook facebook;
+	//private Facebook facebook;
 
-	@Resource
-	private ConnectionRepository connectionRepository;
+	//@Resource
+	//private ConnectionRepository connectionRepository;
 
 	@Resource
 	public SiteUserService siteUserService;
@@ -81,7 +81,7 @@ public class LoginController {
 
 	}
 
-	@RequestMapping(value = "/doLoginUsingFacebook", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/doLoginUsingFacebook", method = RequestMethod.GET)
 	public  @ResponseBody String doLoginUsingFacebook() {
 		logger.info("inside doLoginUsingFacebook method");
 		Connection<Facebook> connection = connectionRepository
@@ -92,10 +92,10 @@ public class LoginController {
 			return "facebook-login";
 		}
 		System.out.println(facebook.userOperations().getUserProfile());
-		/*
+		
 		 * PagedList<FacebookProfile> friends = facebook.friendOperations()
 		 * .getFriendProfiles(); model.addAttribute("friends", friends);
-		 */
+		 
 
 		FacebookProfile facebookProfile = facebook.userOperations()
 				.getUserProfile();
@@ -124,5 +124,5 @@ public class LoginController {
 
 		return "home";
 
-	}
+	}*/
 }

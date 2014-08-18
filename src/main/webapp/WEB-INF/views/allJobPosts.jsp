@@ -1,145 +1,192 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page session="false" %>
-
-
-<!DOCTYPE c:import PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<c:import url="../include.jsp"></c:import> 
-<c:import url="../header.jsp"></c:import>
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
-        <h1 class="pull-left">Jobs</h1>
+        <h1 class="pull-left">Find Contractors/Suppliers</h1>
         <ul class="pull-right breadcrumb">
             <li><a href="index.html">Home</a></li>
             <li><a href="">Features</a></li>
-            <li class="active">jobs</li>
+            <li class="active">Find Contractors/Suppliersr</li>
         </ul>
     </div>
 </div><!--/breadcrumbs-->
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<div class="container">		
+<div class="container">	
+<div class="panel panel-grey margin-bottom-40">
+                <div class="panel-heading">
+                    <h3 class="panel-title"><i class="icon-tasks"></i>Search Contractors/Suppliers</h3>
+                </div>
+                <div class="panel-body">                                                      
+                    <div class="form-inline" role="form">
+					<div class="row">
+					<div class="col-lg-2">
+								<label>Looking For</label>
+								<select class="form-control">
+									<option>--Select--</option>
+									<option>Contractor</option>
+									<option>Supplier</option>
+									<option>Both</option>
+								</select>
+							</div>
+							<div class="col-lg-2">
+								<label>State</label>
+								<select class="form-control">
+									<option>--Select--</option>
+									<option>Uttar Pradesh</option>
+									<option>Delhi</option>
+									<option>Bihar</option>
+									<option>Karnataka</option>
+								</select>
+							</div>
+							<div class="col-lg-2">
+								<label>City</label>
+								<select class="form-control">
+									<option>--Select--</option>
+									<option>Agra</option>
+									<option>Delhi</option>
+									<option>Rachi</option>
+									<option>Bangalore</option>
+								</select>
+							</div>
+							<div class="col-lg-2">
+								<label>Job Category</label>
+								<select class="form-control">
+									<option>--Select--</option>
+									<option>Air Condition</option>
+									<option>Electrician</option>
+								</select>
+							</div>
+							<div class="col-lg-2">
+								<label>Job Sub Category</label>
+								<select class="form-control">
+									<option>--Select--</option>
+									<option>Air Condition</option>
+									<option>Electrician</option>
+								</select>
+							</div>
+							<div class="col-lg-2">
+                        <label> Pincode</label>
+                        <input type="text" class="form-control" id="pincode" placeholder="XXXXXX">
+                       </div>
+						</div>
+						<br/>
+                       <p>
+							<button type="submit" class="btn-u btn-u-default">Search</button>
+						 </p>
+					</div>
+                </div>
+            </div>
 	<div class="row blog-page">    
         <!-- Left Sidebar -->
     	<div class="col-md-9 md-margin-bottom-40">
-    	
-    	<c:forEach 	var="jobs" items="${jobPosts}" >
             <!--Blog Post-->
-            <div class="row blog blog-medium margin-bottom-40">
-                <div class="col-md-5">
-                    <img class="img-responsive" src="assets/img/main/11.jpg" alt="">
-                </div>    
-                <div class="col-md-7">
-                    <h2>${jobs.title}</h2>
-                    <ul class="list-unstyled list-inline blog-info">
-                        <li><i class="icon-calendar"></i> ${jobs.postdate}</li>
-                        <li><i class="icon-comments"></i> <a href="#" id="${jobs._id}">24 Comments</a></li>
-                        <li><i class="icon-tags"></i> ${jobs.jobCategories}</li>
-                        <li><i class="icon-tags"></i> ${jobs.jobSubCategories}</li>
-                        <li><i class="icon-tags"></i> ${jobs.state}</li>
-                        <li><i class="icon-tags"></i> ${jobs.city}</li>
-                    </ul>
-                    <p>${jobs.jobDetails}</p>
-                    <p><a class="btn-u btn-u-small" href="blog_item.html"><i class="icon-location-arrow"></i> Read More</a></p>
-                </div>    
+            <div class="search-blocks search-blocks-left-green">
+                <div class="row">
+                    <div class="col-md-4 search-img">
+                        <img alt="" src="assets/img/new/img1.jpg" class="img-responsive">
+                        <ul class="list-unstyled">
+                           <li><i class="icon-briefcase"></i> Dell, Google</li>
+                           <li><i class="icon-map-marker"></i> New York, US</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <h2><a href="#">Green Bordered Block</a></h2>
+                        <ul class="list-unstyled search-rating">
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                        </ul>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
+                        <a class="btn-u btn-u-sea" href="#">read more</a>                            
+                    </div>
+                </div>                            
             </div>
             <!--End Blog Post-->        
-			<hr class="margin-bottom-40">
-		</c:forEach>
+
+            <div class="margin-bottom-20 clearfix"></div>
+
             <!--Blog Post-->
-           <!--  <div class="row blog blog-medium margin-bottom-40">
-                <div class="col-md-5">
-                    <div class="blog-img">
-                        <div class="responsive-video">
-                            <iframe src="//www.youtube.com/embed/ufsrgE0BYf0" frameborder="0" allowfullscreen></iframe>
-                        </div>
+            <div class="search-blocks search-blocks-colored search-blocks-red">
+                <div class="row">
+                    <div class="col-md-4 search-img">
+                        <img alt="" src="assets/img/new/img1.jpg" class="img-responsive">
+                        <ul class="list-unstyled">
+                           <li><i class="icon-briefcase"></i> Dell, Google</li>
+                           <li><i class="icon-map-marker"></i> New York, US</li>
+                        </ul>
                     </div>
-                </div>    
-                <div class="col-md-7">
-                    <h2>Pellentesque Habitant Morbi Tristique</h2>
-                    <ul class="list-unstyled list-inline blog-info">
-                        <li><i class="icon-calendar"></i> November 02, 2013</li>
-                        <li><i class="icon-comments"></i> <a href="#">24 Comments</a></li>
-                        <li><i class="icon-tags"></i> Technology, Internet</li>
-                    </ul>
-                    <p>At vero eos et accusamus et iusto odiomolestias dignis simos ducimus qui blandit occaeca bais praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                    <p><a class="btn-u btn-u-small" href="blog_item.html"><i class="icon-location-arrow"></i> Read More</a></p>
-                </div>    
-            </div>
- -->            <!--End Blog Post-->        
-
-            <!-- <hr class="margin-bottom-40"> -->
-
-            <!--Blog Post-->
-            <!-- <div class="row blog blog-medium margin-bottom-40">
-                <div class="col-md-5">
-                    <img class="img-responsive" src="assets/img/main/12.jpg" alt="">
-                </div>    
-                <div class="col-md-7">
-                    <h2>Pellentesque Habitant Morbi Tristique</h2>
-                    <ul class="list-unstyled list-inline blog-info">
-                        <li><i class="icon-calendar"></i> November 02, 2013</li>
-                        <li><i class="icon-comments"></i> <a href="#">24 Comments</a></li>
-                        <li><i class="icon-tags"></i> Technology, Internet</li>
-                    </ul>
-                    <p>At vero eos et accusamus et iusto odiomolestias dignis simos ducimus qui blandit occaeca bais praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                    <p><a class="btn-u btn-u-small" href="blog_item.html"><i class="icon-location-arrow"></i> Read More</a></p>
-                </div>    
-            </div>
- -->            <!--End Blog Post-->        
-
-            <!-- <hr class="margin-bottom-40"> -->
-
-            <!--Blog Post-->
-            <!-- <div class="row blog blog-medium margin-bottom-40">
-                <div class="col-md-5">
-                    <div class="carousel slide carousel-v1" id="myCarousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img alt="" src="assets/img/main/3.jpg">
-                                <div class="carousel-caption">
-                                    <p>Facilisis odio, dapibus ac justo acilisis gestinas.</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="blog-img">
-                                    <div class="responsive-video">
-                                        <iframe src="http://player.vimeo.com/video/9679622" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>                         
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img alt="" src="assets/img/main/13.jpg">
-                                <div class="carousel-caption">
-                                    <p>Justo cras odio apibus ac afilisis lingestas de.</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="carousel-arrow">
-                            <a data-slide="prev" href="#myCarousel" class="left carousel-control">
-                                <i class="icon-angle-left"></i>
-                            </a>
-                            <a data-slide="next" href="#myCarousel" class="right carousel-control">
-                                <i class="icon-angle-right"></i>
-                            </a>
-                        </div>
+                    <div class="col-md-8">
+                        <h2><a href="#">Red Box</a></h2>
+                        <ul class="list-unstyled search-rating">
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                        </ul>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
+                        <a class="btn-u btn-u-blue" href="#">read more</a>
                     </div>
-                </div>    
-                <div class="col-md-7">
-                    <h2>Pellentesque Habitant Morbi Tristique</h2>
-                    <ul class="list-unstyled list-inline blog-info">
-                        <li><i class="icon-calendar"></i> November 02, 2013</li>
-                        <li><i class="icon-comments"></i> <a href="#">24 Comments</a></li>
-                        <li><i class="icon-tags"></i> Technology, Internet</li>
-                    </ul>
-                    <p>At vero eos et accusamus et iusto odiomolestias dignis simos ducimus qui blandit occaeca bais praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                    <p><a class="btn-u btn-u-small" href="blog_item.html"><i class="icon-location-arrow"></i> Read More</a></p>
-                </div>    
+                </div>                            
             </div>
- -->            <!--End Blog Post-->        
+            <!--End Blog Post-->        
+
+            <div class="margin-bottom-20 clearfix"></div>
+
+            <!--Blog Post-->
+            <div class="search-blocks search-blocks-left-orange">
+                <div class="row">
+                    <div class="col-md-4 search-img">
+                        <img alt="" src="assets/img/new/img1.jpg" class="img-responsive">
+                        <ul class="list-unstyled">
+                           <li><i class="icon-briefcase"></i> Dell, Google</li>
+                           <li><i class="icon-map-marker"></i> New York, US</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <h2><a href="#">Orange Bordered Box</a></h2>
+                        <ul class="list-unstyled search-rating">
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                        </ul>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
+                        <a class="btn-u btn-u-yellow" href="#">read more</a>                            
+                    </div>
+                </div>                            
+            </div>
+            <!--End Blog Post-->        
+
+            <!--Blog Post-->
+            <div class="search-blocks search-blocks-colored search-blocks-blue">
+                <div class="row">
+                    <div class="col-md-4 search-img">
+                        <img alt="" src="assets/img/new/img1.jpg" class="img-responsive">
+                        <ul class="list-unstyled">
+                           <li><i class="icon-briefcase"></i> Dell, Google</li>
+                           <li><i class="icon-map-marker"></i> New York, US</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-8">
+                        <h2><a href="#">Red Blue</a></h2>
+                        <ul class="list-unstyled search-rating">
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                           <li><i class="icon-star"></i></li>
+                        </ul>
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum.</p>
+                        <a class="btn-u btn-u-red" href="#">read more</a>
+                    </div>
+                </div>                            
+            </div>
+            <!--End Blog Post-->        
             
             <!--Pagination-->
             <div class="text-center">
@@ -289,5 +336,3 @@
     </div><!--/row-->        
 </div><!--/container-->		
 <!--=== End Content Part ===-->
- <!-- Footer-->
-<c:import url="../footer.jsp"></c:import>

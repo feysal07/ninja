@@ -19,10 +19,13 @@ public interface JobCategoryService {
 
 	public boolean saveUserJobSubCategory(
 			UserJobSubCategoryMap userJobSubCategoryMap);
-	
+
 	public Set<UserJobCategoryMap> getUserJobCategoryMap(long userId);
+
 	public Set<UserJobSubCategoryMap> getUserJobSubCategoryMap(long userId);
 	
 	public boolean removeJobSubCategory(UserJobSubCategoryMap userJobsubCategoryMap);
+
+	public Set<JobSubCategory> getJobSubCategoryByJobCatId(long jobCatId);
 
 }

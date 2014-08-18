@@ -1,177 +1,116 @@
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
-<%@ page session="false" %>
+<%@ page session="false"%>
 
 
 <!DOCTYPE c:import PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<c:import url="../include.jsp"></c:import> 
+<c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
-
-
-<script type="text/javascript">
-function selectJobCat(){
-
-	$('input:checkbox[name=jobCat]:checked').each(function() 
-	{
-		$('#subCategories').removeClass('hideSubcategories');
-		$('.'+this.id).removeClass('hideSubcategories');
-	});
-
-}
-
-function jobPost(){
-	 var myObject = new Object();
-
-	 var jobCatArray= [];
-	 var jobSubCatArray=[];
-	 $('input:checkbox[name=jobCat]:checked').each(function() 
-	   {
-		 jobCatArray.push(this.id);
-	});
-
-	 $('input:checkbox[name=jobSubCat]:checked').each(function() 
-			   {
-				 jobSubCatArray.push(this.id);
-			});
-	 myObject.jobCategories=jobCatArray;
-	 myObject.jobSubCategories=jobSubCatArray;
-	 myObject.title=$('#title').val();
-	 myObject.jobDetails=$('#jobDetails').val();
-	 myObject.state=$('#states :selected').text();
-	 myObject.city=$('#cities :selected').text();
-	 myObject.address=$('#address').val();
-
-	 $.ajax({
-			type : "POST",
-			url : "/app/postJob",
-			data : JSON.stringify(myObject),
-			contentType: 'application/json',
-
-			beforeSend : function() {
-				
-			},
-			success : function(response) {
-			
-			},
-			complete : function() {
-			
-			},
-			error : function(e) {
-				
-			}
-		});
-	
-}
-
-function getCities(e){
-	alert("hi");
-	
- var state=e.value;
- $.ajax({
-		type : "GET",
-		url : "/app/getCitiesByState/"+state,
-		//data : JSON.stringify(myObject),
-		contentType: 'application/json',
-
-		beforeSend : function() {
-			
-		},
-		success : function(response) {
-			//response=JSON.stringify(response);
-			var html;
-	        var $select = $('#cities');  
-	        $.each(response, function(index, value) {               
-	         html += '<option name="'+value+'" >'+value+'</option>';      
-	        });
-	        $select.append(html);
-			
-		},
-		complete : function() {
-		
-		},
-		error : function(e) {
-			
-		}
-	});
-	
-}
-
-</script>
+<script type="text/javascript"	src="resources/assets/js/pages/jobPost.js"></script>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
-    <div class="container">
-        <h1 class="pull-left">Post A Job</h1>
-        <ul class="pull-right breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">Pages</a></li>
-            <li class="active">Job Post</li>
-        </ul>
-    </div>
-</div><!--/breadcrumbs-->
+	<div class="container">
+		<h1 class="pull-left">Post Job</h1>
+		<ul class="pull-right breadcrumb">
+			<li><a href="index.html">Home</a></li>
+			<li><a href="">Pages</a></li>
+			<li class="active">Post Job</li>
+		</ul>
+	</div>
+</div>
+<!--/breadcrumbs-->
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<div class="container">     
-    <div class="row margin-bottom-30">
-        <div class="col-md-9 mb-margin-bottom-30">
-           <div>
-                <label>Title</label>
-                <div class="row margin-bottom-20">
-                    <div class="col-md-7 col-md-offset-0">
-                        <input type="text" id="title" class="form-control">
-                    </div>                
-                </div>
-               
-               <label>State</label>
-               <form:select path="states" id="states">
-					  <form:option value="NONE" label="--- Select ---" />
-					  <form:options items="${states}" onclick="javascript:getCities(this)" />
-			    </form:select> 
-			   
-			   <label>Cities</label>
-                <select id="cities">
-					  <option name="NONE" value="NONE" >--- Select ---</option>
-				</select>
-			    <label>Address</label>
-                <div class="row margin-bottom-20">
-                    <div class="col-md-7 col-md-offset-0">
-                        <input type="text" id="address" class="form-control">
-                    </div>                
-                </div>
-                                
-                <label>Select Categories <span class="color-red">*</span></label>
-                <div class="checkboxes">
-				<c:forEach var="jobCat" items="${jobCategories}">
-    				<div><input type="checkbox" name="jobCat" id="${jobCat.key}"  onclick="javascript:selectJobCat()">${jobCat.key}</input></div>
-				</c:forEach>
+<div class="container">
+	<div class="col-md-9 mb-margin-bottom-30">
+		<div>
+			<div class="headline">
+				<h2>Job Details</h2>
+			</div>
+			<div class="row">
+				<div class="col-lg-4">
+					<label>Job Category<span class="color-red">*</span></label>
+					<select id="jobCategories"
+						class="form-control" onchange="javascript:getJobSubCategories(this)">
+					</select>
 				</div>
-				<div class="hideSubcategories" id="subCategories">
-                <label >Select Sub Categories</label>
-					<div class="checkboxes">
-					<c:forEach var="jobCat" items="${jobCategories}">
-					    <c:forEach var="jobSubCat" items="${jobCat.value}">
-					       <div class="${jobCat.key} hideSubcategories"><input name="jobSubCat" id="${jobSubCat}" type="checkbox">${jobSubCat}</input></div>
-					    </c:forEach>
-					</c:forEach>
-					 </div> 
-					 </div>               
-                <label>Description</label>
-                <div class="row margin-bottom-20">
-                    <div class="col-md-11 col-md-offset-0">
-                        <textarea rows="8" id="jobDetails" class="form-control"></textarea>
-                    </div>                
-                </div>
-                
-                <p><button type="button" class="btn-u" onclick="javascript:jobPost()">Post Job</button></p>
-            </div>
-        </div>
-        
-       
-    </div>        
+			</div>
+			<br />
+			<div>
+
+				<label>Choose your required categories</label>
+				<div id="subcategoriescheckboxes">
+				</div>
+				
+			</div>
+			<div class="row">
+						<div class="col-lg-4">
+							<label>State <span class="color-red">*</span></label>
+							<select id="states" class="form-control" onchange="javascript:getCitiesforState()"></select>
+						</div>
+						
+			</div>
+			<br>
+			<div class="row">
+			<div class="col-lg-4">
+							<label>City<span class="color-red">*</span></label> <select
+								 id="citiesforstate" class="form-control">
+							</select>
+						</div>
+			</div>
+			
+			<br /> <label>Pincode</label>
+			<div class="row margin-bottom-20">
+				<div class="col-lg-4">
+					<input type="text" id="pincode" class="form-control">
+				</div>
+			</div>
+			<br /> <label>Location</label>
+			<div class="row margin-bottom-20">
+				<div class="col-lg-4">
+					<input type="text" id="location" class="form-control">
+				</div>
+			</div>
+			<div class="row">
+						<div class="col-lg-4">
+							<label>Message Ranges<span class="color-red">*</span></label>
+							<select id="messageRanges" class="form-control" ></select>
+						</div>
+						
+			</div>
+			<br /> <label>Job Title</label>
+			<div class="row margin-bottom-20">
+				<div class="col-lg-4">
+					<input type="text" class="form-control" id="title">
+				</div>
+			</div>
+			<label>Description</label>
+			<div class="row margin-bottom-20">
+				<div class="col-md-10 col-md-offset-0">
+					<textarea rows="8" class="form-control" id="jobDetails"></textarea>
+				</div>
+			</div>
 
 
-</div><!--/container-->     
+		</div>
+		<br /> <br />
+		<p>
+			<button type="submit" class="btn-u" onclick="javascript:jobPost()">Post</button>
+		</p>
+
+
+	</div>
+	<!--/col-md-9-->
+
+
+</div>
+<!--/row-->
+
+
+</div>
+<!--/container-->
 <!--=== End Content Part ===-->
- <!-- Footer-->
+<!-- Footer-->
 <c:import url="../footer.jsp"></c:import>
