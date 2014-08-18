@@ -10,7 +10,7 @@
                         <span class="icon-bar"></span>
                     </button>
                     <a class="navbar-brand" href="index.html">
-                        <img id="logo-header" src="resources/assets/img/logo1-default.png" alt="Logo">A Home Experience
+                        <img id="logo-header" src="resources/assets/img/logo1-default.png" alt="Logo">
                     </a>
                 </div>
 
