@@ -15,10 +15,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.homeninja.dao.JobCategoryDAO;
 import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.JobSubCategory;
-import com.homeninja.entities.MasterDataValue;
 import com.homeninja.entities.UserJobCategoryMap;
 import com.homeninja.entities.UserJobSubCategoryMap;
-import com.homeninja.vo.State;
 
 @Service
 @Transactional
@@ -175,4 +173,23 @@ public class JobCategoryDAOImpl implements JobCategoryDAO {
 		}
 	}
 
+	@Override
+	public Set<JobSubCategory> getJobSubCategoryByJobCatId(long jobCatId) {
+		try {
+			Set<JobSubCategory> jobSubCategorySet = new HashSet<JobSubCategory>();
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+		         "from JobSubCategory where jobCatId = :jobCatId");
+			query.setParameter("jobCatId", jobCatId);
+			List<JobSubCategory> jobSubCategoryList = query.list();
+			for (JobSubCategory jobSubCategory : jobSubCategoryList) {
+				jobSubCategorySet.add(jobSubCategory);
+			}
+			return jobSubCategorySet;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }
