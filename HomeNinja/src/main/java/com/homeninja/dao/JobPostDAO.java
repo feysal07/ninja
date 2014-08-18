@@ -1,5 +1,4 @@
-package com.homeninja.service;
-
+package com.homeninja.dao;
 
 import java.util.List;
 import java.util.Map;
@@ -10,11 +9,13 @@ import com.homeninja.entities.JobsSubCategoryMap;
 import com.homeninja.entities.MessageLimits;
 import com.homeninja.helping.entities.JobSearchCriteria;
 
-public interface JobPostService {
-	public boolean saveOrUpdatePostedJob(Jobs jobPost);
+public interface JobPostDAO {
+    public boolean saveOrUpdatePostedJob(Jobs jobPost);
 	public List<Jobs> getAllPostedJobs();
 	public boolean saveOrUpdateJobSubCatIds(JobsSubCategoryMap obj);
 	public List<MessageLimits> getMessageLimits();
 	public List<Jobs> getJobPostByCriteria(JobSearchCriteria jobSearchCriteria);
 	public String sendMessage(int jobId);
+	
+	
 }

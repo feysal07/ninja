@@ -26,4 +26,7 @@ public interface JobCategoryDAO {
 	public boolean removeJobCategory(UserJobCategoryMap userJobCategoryMap);
 	
 	public boolean removeJobSubCategory(UserJobSubCategoryMap userJobsubCategoryMap);
+
+	public Set<JobSubCategory> getJobSubCategoryByJobCatId(long jobCatId);
 }
+
