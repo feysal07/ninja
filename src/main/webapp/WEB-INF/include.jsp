@@ -1,4 +1,4 @@
- <!-- CSS Global Compulsory-->
+    <!-- CSS Global Compulsory-->
     <link rel="stylesheet" href="resources/assets/plugins/bootstrap/css/bootstrap.min.css">
     <link rel="stylesheet" href="resources/assets/css/style.css">
     <link rel="stylesheet" href="resources/assets/css/headers/header1.css">
@@ -24,5 +24,28 @@
     <script type="text/javascript" src="resources/assets/plugins/hover-dropdown.min.js"></script>
     <script type="text/javascript" src="resources/assets/plugins/jquery.session.js"></script>
     
-    
+    <!-- JS Global Compulsory -->			
+	<script type="text/javascript" src="resources/assets/plugins/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="resources/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
+	<script type="text/javascript" src="resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
+	<script type="text/javascript" src="resources/assets/plugins/hover-dropdown.min.js"></script> 
+	<script type="text/javascript" src="resources/assets/plugins/back-to-top.js"></script>
+	<!-- JS Implementing Plugins -->           
+	<script type="text/javascript" src="resources/assets/plugins/flexslider/jquery.flexslider-min.js"></script>
+	<script type="text/javascript" src="resources/assets/plugins/parallax-slider/js/modernizr.js"></script>
+	<script type="text/javascript" src="resources/assets/plugins/parallax-slider/js/jquery.cslider.js"></script> 
+	<!-- JS Page Level -->           
+	<script type="text/javascript" src="resources/assets/js/app.js"></script>
+	<script type="text/javascript" src="resources/assets/js/pages/index.js"></script>
+	<script type="text/javascript">
+	    jQuery(document).ready(function() {
+	      	App.init();
+	        App.initSliders();
+	        Index.initParallaxSlider();
+	    });
+	</script>
+	<!--[if lt IE 9]>
+	    <script src="resources/assets/plugins/respond.js"></script>
+	<![endif]-->
+	    
     

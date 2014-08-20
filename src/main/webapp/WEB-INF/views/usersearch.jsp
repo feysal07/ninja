@@ -8,7 +8,7 @@
 <script type="text/javascript"
 	src="resources/assets/js/pages/usersearch.js"></script>
 	
-<p>Don't forget: ${userInfo}</p>
+<%-- <p>Don't forget: ${userInfo}</p> --%>
 
 <title>HomeNinja | Find Contractors/Suppliers</title>
 
