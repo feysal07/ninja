@@ -1,3 +1,29 @@
+<!--=== Top ===-->    
+<div class="top">
+    <div class="container">         
+        <ul class="loginbar pull-right">
+            <!-- <li>
+                <i class="icon-globe"></i>
+                <a>Languages</a>
+                <ul class="lenguages">
+                    <li class="active">
+                        <a href="#">English <i class="icon-ok"></i></a> 
+                    </li>
+                    <li><a href="#">Spanish</a></li>
+                    <li><a href="#">Russian</a></li>
+                    <li><a href="#">German</a></li>
+                </ul>
+            </li> -->
+            <li><a href="./Register">Register</a></li>
+            <li class="devider"></li>   
+            <li><a href="./login">Login</a></li>  
+            <li class="devider"></li>   
+            <li><a href="page_faq.html">Help</a></li>   
+        </ul>
+    </div>      
+</div><!--/top-->
+<!--=== End Top ===--> 
+<!--=== Header ===-->
 <div class="header">
         <div class="navbar navbar-default" role="navigation">
             <div class="container">
@@ -17,29 +43,30 @@
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse navbar-responsive-collapse">
                     <ul class="nav navbar-nav navbar-right">
-                        <li class="dropdown">
+                        <li class="active">
                             <a href="../Home/Index" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Home
                             <i class="icon-angle-down"></i>
                             </a>
                            <ul class="dropdown-menu">
-                               <li><a href="../app/aboutUs">About Us</a></li>
+                           		<li><a href=".">Home</a></li>
+                               <li><a href="./aboutUs">About Us</a></li>
                             </ul>
                         </li>
-                      <!--  <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Pages
+                       <li class="dropdown">
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Find
                             <i class="icon-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="../app/aboutUs">About Us</a></li>
+                                <li><a href="./usersearch">Contractors & Suppliers</a></li>
                             </ul>
-                        </li> -->
+                        </li> 
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Jobs
                             <i class="icon-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                <li><a href="../app/job">Post A Job</a></li>
-                                <li><a href="../app/allJob">Search Jobs</a></li>
+                                <li><a href="./jobs">Post A Job</a></li>
+                                <li><a href="./searchJob">Search Jobs</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -47,7 +74,7 @@
                             <i class="icon-angle-down"></i>
                             </a>
                            <ul class="dropdown-menu">
-                                <li><a href="portfolio_text_blocks.html">Portfolio Text Blocks</a></li>
+                                <li><a href="#">Discussion</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -55,17 +82,17 @@
                             <i class="icon-angle-down"></i>
                             </a>
                            <ul class="dropdown-menu">
-                                <li><a href="../Review/Posts">Post Blog </a></li>
-                                <li><a href="../Review/Posts">Blogs</a></li>
+                                <li><a href="#">Post Blog </a></li>
+                                <li><a href="#">Blogs</a></li>
                             </ul>
                         </li>
-                        <li class="dropdown active">
+                        <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Contacts
                             <i class="icon-angle-down"></i>
                             </a>
                             <ul class="dropdown-menu">
-                                 <li class="active">
-                                   <a href="../app/contactUs">Contact Us</a>
+                                 <li >
+                                   <a href="./contactUs">Contact Us</a>
                                    
                                 </li>
                             </ul>
@@ -86,3 +113,4 @@
             </div>
         </div>
     </div>
+  <!--=== End Header ===-->
