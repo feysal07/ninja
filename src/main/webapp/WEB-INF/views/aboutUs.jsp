@@ -20,7 +20,7 @@
 <!--=== Content Part ===-->
 <div class="container">
     <div class="margin-bottom-50">
-        <img class="img-responsive" src="assets/img/sliders/revolution/bg8.jpg" alt="">
+        <img class="img-responsive" src="resources/assets/img/sliders/revolution/bg8.jpg" alt="">
     </div>
 
     <div class="tag-box tag-box-v2">
@@ -46,7 +46,7 @@
                         <div class="panel-body">
                             <div class="row">
                                 <div class="col-md-4">
-                                    <img alt="" src="assets/img/new/img5.jpg" class="img-responsive">
+                                    <img alt="" src="resources/assets/img/new/img5.jpg" class="img-responsive">
                                 </div>
                                 <div class="col-md-8">
                                     Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et.
@@ -76,7 +76,7 @@
                                     </ul>
                                 </div>
                                 <div class="col-md-4">
-                                    <img alt="" src="assets/img/main/6.jpg" class="img-responsive">
+                                    <img alt="" src="resources/assets/img/main/6.jpg" class="img-responsive">
                                 </div>
                             </div>
                         </div>
@@ -108,7 +108,7 @@
                     <div class="item active">
                         <p>Crasjusto ducimus qui cupiditate non provident, similique sunt in culpaid est anditiis praesentium praesentium blanditiis praesentium non provident, similique sunt in culpaid est anditiis praesentium praesentium..</p>
                         <div class="testimonial-info">
-                            <img alt="" src="assets/img/testimonials/img1.jpg">
+                            <img alt="" src="resources/assets/img/testimonials/img1.jpg">
                             <span class="testimonial-author">
                                 Jeremy Asigner 
                                 <em>Web Developer, Unify Theme.</em>
@@ -118,7 +118,7 @@
                     <div class="item">
                         <p>Crasjusto ducimus qui cupiditate non provident, similique sunt in culpaid est anditiis praesentium praesentium blanditiis praesentium non provident, similique sunt in culpaid est anditiis praesentium praesentium..</p>
                         <div class="testimonial-info">
-                            <img alt="" src="assets/img/testimonials/user.jpg">
+                            <img alt="" src="resources/assets/img/testimonials/user.jpg">
                             <span class="testimonial-author">
                                 User 
                                 <em>Java Developer, Htmlstream</em>
@@ -128,7 +128,7 @@
                     <div class="item">
                         <p>Crasjusto ducimus qui cupiditate non provident, similique sunt in culpaid est anditiis praesentium praesentium blanditiis praesentium non provident, similique sunt in culpaid est anditiis praesentium praesentium..</p>
                         <div class="testimonial-info">
-                            <img alt="" src="assets/img/testimonials/img2.jpg">
+                            <img alt="" src="resources/assets/img/testimonials/img2.jpg">
                             <span class="testimonial-author">
                                 Kate Davenport 
                                 <em>Web Designer, Google Inc.</em>
@@ -157,7 +157,7 @@
     <div class="row team">
         <div class="col-sm-3">
             <div class="thumbnail-style">
-                <img class="img-responsive" src="assets/img/team/1.jpg" alt="" />
+                <img class="img-responsive" src="resources/assets/img/team/1.jpg" alt="" />
                 <h3><a>Jack Bour</a> <small>Chief Executive Officer</small></h3>
                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
                 <ul class="list-unstyled list-inline team-socail">
@@ -169,7 +169,7 @@
         </div>
         <div class="col-sm-3">
             <div class="thumbnail-style">
-                <img class="img-responsive" src="assets/img/team/3.jpg" alt="" />
+                <img class="img-responsive" src="resources/assets/img/team/3.jpg" alt="" />
                 <h3><a>Kate Metus</a> <small>Project Manager</small></h3>
                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
                 <ul class="list-unstyled list-inline team-socail">
@@ -181,7 +181,7 @@
         </div>
         <div class="col-sm-3">
             <div class="thumbnail-style">
-                <img class="img-responsive" src="assets/img/team/2.jpg" alt="" />
+                <img class="img-responsive" src="resources/assets/img/team/2.jpg" alt="" />
                 <h3><a>Porta Gravida</a> <small>VP of Operations</small></h3>
                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
                 <ul class="list-unstyled list-inline team-socail">
@@ -193,7 +193,7 @@
         </div>
         <div class="col-sm-3">
             <div class="thumbnail-style">
-                <img class="img-responsive" src="assets/img/team/4.jpg" alt="" />
+                <img class="img-responsive" src="resources/assets/img/team/4.jpg" alt="" />
                 <h3><a>Donec Elit</a> <small>Director, R &amp; D Talent</small></h3>
                 <p>Donec id elit non mi porta gravida at eget metus. Fusce dapibus, justo sit amet risus etiam porta sem...</p>
                 <ul class="list-unstyled list-inline team-socail">
@@ -213,104 +213,104 @@
         <ul class="slides">
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/hp_grey.png" alt="" /> 
-                    <img src="assets/img/clients/hp.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/hp_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/hp.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/igneus_grey.png" alt="" /> 
-                    <img src="assets/img/clients/igneus.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/igneus_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/igneus.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/vadafone_grey.png" alt="" /> 
-                    <img src="assets/img/clients/vadafone.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/vadafone_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/vadafone.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/walmart_grey.png" alt="" /> 
-                    <img src="assets/img/clients/walmart.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/walmart_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/walmart.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/shell_grey.png" alt="" /> 
-                    <img src="assets/img/clients/shell.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/shell_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/shell.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/natural_grey.png" alt="" /> 
-                    <img src="assets/img/clients/natural.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/natural_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/natural.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/aztec_grey.png" alt="" /> 
-                    <img src="assets/img/clients/aztec.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/aztec_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/aztec.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/gamescast_grey.png" alt="" /> 
-                    <img src="assets/img/clients/gamescast.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/gamescast_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/gamescast.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/cisco_grey.png" alt="" /> 
-                    <img src="assets/img/clients/cisco.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/cisco_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/cisco.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/everyday_grey.png" alt="" /> 
-                    <img src="assets/img/clients/everyday.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/everyday_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/everyday.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/cocacola_grey.png" alt="" /> 
-                    <img src="assets/img/clients/cocacola.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/cocacola_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/cocacola.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/spinworkx_grey.png" alt="" /> 
-                    <img src="assets/img/clients/spinworkx.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/spinworkx_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/spinworkx.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/shell_grey.png" alt="" /> 
-                    <img src="assets/img/clients/shell.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/shell_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/shell.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/natural_grey.png" alt="" /> 
-                    <img src="assets/img/clients/natural.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/natural_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/natural.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/gamescast_grey.png" alt="" /> 
-                    <img src="assets/img/clients/gamescast.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/gamescast_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/gamescast.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/everyday_grey.png" alt="" /> 
-                    <img src="assets/img/clients/everyday.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/everyday_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/everyday.png" class="color-img" alt="" />
                 </a>
             </li>
             <li>
                 <a href="#">
-                    <img src="assets/img/clients/spinworkx_grey.png" alt="" /> 
-                    <img src="assets/img/clients/spinworkx.png" class="color-img" alt="" />
+                    <img src="resources/assets/img/clients/spinworkx_grey.png" alt="" /> 
+                    <img src="resources/assets/img/clients/spinworkx.png" class="color-img" alt="" />
                 </a>
             </li>
         </ul>
