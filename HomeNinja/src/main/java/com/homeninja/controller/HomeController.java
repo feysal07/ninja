@@ -41,6 +41,14 @@ public class HomeController {
 		return "aboutUs";
 	}
 	
+	@RequestMapping(value = "/help", method = RequestMethod.GET)
+	public String help(){
+		return "help";
+	}
+	@RequestMapping(value = "/comingsoon", method = RequestMethod.GET)
+	public String comingsoon(){
+		return "comingsoon";
+	}
 	
 	
 	

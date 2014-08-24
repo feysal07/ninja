@@ -18,7 +18,7 @@
             <li class="devider"></li>   
             <li><a href="./login">Login</a></li>  
             <li class="devider"></li>   
-            <li><a href="page_faq.html">Help</a></li>   
+            <li><a href="./help">Help</a></li>   
         </ul>
     </div>      
 </div><!--/top-->
@@ -74,7 +74,7 @@
                             <i class="icon-angle-down"></i>
                             </a>
                            <ul class="dropdown-menu">
-                                <li><a href="#">Discussion</a></li>
+                                <li><a href="./comingsoon">Discussion</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -82,8 +82,8 @@
                             <i class="icon-angle-down"></i>
                             </a>
                            <ul class="dropdown-menu">
-                                <li><a href="#">Post Blog </a></li>
-                                <li><a href="#">Blogs</a></li>
+                                <li><a href="./comingsoon">Post Blog </a></li>
+                                <li><a href="./comingsoon">Blogs</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
