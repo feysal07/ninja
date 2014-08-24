@@ -5,44 +5,7 @@
 <c:import url="../include.jsp"></c:import> 
 <c:import url="../header.jsp"></c:import>
 
-
-<script type="text/javascript">
-function submitQuery(){
-	var myObject = new Object();
-	myObject.name=$('#name').val();
-	myObject.email=$('#email').val();
-	myObject.message=$('#message').val();
-	myObject.subject=$('#subject').val();
-	myObject.contactPurpose=$('select#contactPurpose option:selected').val();
-	 $.ajax({
-			type : "POST",
-			url : "${pageContext.request.contextPath}/submitQuery",
-			data : JSON.stringify(myObject),
-			contentType: 'application/json',
-
-			beforeSend : function() {
-				
-			},
-			success : function(response) {
-				if("${status}"){
-			 alert("submitted");
-			 }else{
-				 alert("not-submitted");
-				 }
-			},
-			complete : function() {
-			
-			},
-			error : function(e) {
-				
-			}
-		});
-		
-}
-
-
-</script>
-
+<script type="text/javascript"	src="resources/assets/js/pages/contact.js"></script>
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
@@ -83,12 +46,7 @@ function submitQuery(){
                 <label>Contact Purpose<span class="color-red">*</span></label>
                 <div class="row margin-bottom-20">
                     <div class="col-md-7 col-md-offset-0">
-                        <!-- <input type="text" class="form-control" id="subject"> -->
-						<select name=contactPurpose id="contactPurpose">
-							<option id="0">--Select--</option>
-							<c:forEach var="item" items="${ddlContactPurpose}">
-								<option value="<c:out value="${item.id}" />"><c:out value="${item.value}" /></option>
-							</c:forEach>
+                        <select  class="form-control" id="contactPurpose">
 						</select>
 					</div>                
                 </div>
