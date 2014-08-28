@@ -175,6 +175,9 @@ public class UserSearchController {
 
 		UsersSearchResult usersSearchResult = usersSearchService
 				.searchUsersByCriteria(usersSearchCriteria);
+		if (usersSearchResult == null){
+			usersSearchResult = new UsersSearchResult();
+		}
 
 		model.addAttribute("usersSearchSet", usersSearchResult);
 		return "usersearchresult";

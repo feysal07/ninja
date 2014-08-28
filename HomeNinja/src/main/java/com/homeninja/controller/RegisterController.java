@@ -65,7 +65,7 @@ import com.homeninja.vo.UserJobCategoryVO;
 import com.homeninja.vo.UserJobSubCategoryVO;
 
 @Controller
-@SessionAttributes("userInfo")
+
 public class RegisterController implements ServletContextAware {
 
 	UploadedFile ufile;

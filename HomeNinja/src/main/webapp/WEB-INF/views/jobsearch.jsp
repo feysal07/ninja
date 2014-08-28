@@ -6,20 +6,20 @@
 
 
 <script type="text/javascript"
-	src="resources/assets/js/pages/usersearch.js"></script>
+	src="resources/assets/js/pages/jobSearch.js"></script>
 	
 <%-- <p>Don't forget: ${userInfo}</p> --%>
 
-<title>HomeNinja | Find Contractors/Suppliers</title>
+<title>HomeNinja | Find Jobs</title>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
-        <h1 class="pull-left">Find Contractors/Suppliers</h1>
+        <h1 class="pull-left">Find Jobs</h1>
         <ul class="pull-right breadcrumb">
             <li><a href="index.html">Home</a></li>
             <li><a href="">Features</a></li>
-            <li class="active">Find Contractors/Suppliers</li>
+            <li class="active">Find Jobs</li>
         </ul>
     </div>
 </div><!--/breadcrumbs-->
@@ -36,11 +36,6 @@
                 <div class="panel-body">                                                      
                     <div class="form-inline" role="form">
 					<div class="row">
-					<div class="col-lg-2">
-								<label>Looking For</label>
-								<select class="form-control" id="userType">
-										</select>
-							</div>
 							<div class="col-lg-2">
 								<label>State</label>
 								<select class="form-control" id="states" onchange="javascript:getCitiesforState()">
@@ -59,17 +54,16 @@
 							</div>
 							<div class="col-lg-2">
 								<label>Job Sub Category</label>
-								<select class="form-control" id ="subcategories">
-								</select>
-							</div>
-							<div class="col-lg-2">
-                        <label> Pincode</label>
-                        <input type="text" class="form-control" id="pincode" placeholder="XXXXXX">
-                       </div>
+								<div  id ="subcategories"></div>
+							</div>	
+							<!-- <div class="col-lg-2">
+                      			<label> Pincode</label>
+                        		<input type="text" class="form-control" id="pincode" placeholder="XXXXXX">
+                    	    </div>	 -->					
 						</div>
 						<br/>
                        <p>
-							<button class="btn-u pull-right" onclick="javascript:searchUsers()">Search</button>
+							<button class="btn-u pull-right" onclick="javascript:jobSearch()">Search</button>
 						 </p>
 					</div>
                 </div>
