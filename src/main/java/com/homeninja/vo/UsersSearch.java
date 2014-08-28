@@ -14,15 +14,15 @@ public class UsersSearch {
 	private long userId;
 	private String userName;
 	private String description;
-	private long state;
-	private long city;
+	private Long state;
+	private Long city;
 	private String pincode;
 	private String jobCategories;
-	private List<Long> jobCategoriesList = new ArrayList<Long>();
+	private List<String> jobCategoriesList = new ArrayList<String>();
 	private String jobSubCategories;
-	private List<Long> jobSubCategoriesList = new ArrayList<Long>();
+	private List<String> jobSubCategoriesList = new ArrayList<String>();
 	private String aboutMe;
-	private long userTypeId;
+	private Long userTypeId;
 
 	public String getAboutMe() {
 		return aboutMe;
@@ -64,22 +64,6 @@ public class UsersSearch {
 		this.description = description;
 	}
 
-	public long getState() {
-		return state;
-	}
-
-	public void setState(long state) {
-		this.state = state;
-	}
-
-	public long getCity() {
-		return city;
-	}
-
-	public void setCity(long city) {
-		this.city = city;
-	}
-
 	public String getPincode() {
 		return pincode;
 	}
@@ -92,28 +76,35 @@ public class UsersSearch {
 		return jobCategories;
 	}
 
+	public List<String> getJobCategoriesList() {
+		return jobCategoriesList;
+	}
+
+	public void setJobCategoriesList(List<String> jobCategoriesList) {
+		this.jobCategoriesList = jobCategoriesList;
+	}
+
+	public List<String> getJobSubCategoriesList() {
+		return jobSubCategoriesList;
+	}
+
+	public void setJobSubCategoriesList(List<String> jobSubCategoriesList) {
+		this.jobSubCategoriesList = jobSubCategoriesList;
+	}
+
 	public void setJobCategories(String jobCategories) {
 		this.jobCategories = jobCategories;
 		if (jobCategories != null) {
 			List<String> catList = Arrays.asList(jobCategories.split(","));
 			for (String category : catList) {
-				Long categoryInteger = Long.parseLong(category);
-				this.getJobCategoriesList().add(categoryInteger);
+				this.getJobCategoriesList().add(category);
 
 			}
 		}
 
 	}
 
-	public List<Long> getJobCategoriesList() {
-		return jobCategoriesList;
-	}
 
-	public void setJobCategoriesList(List<Long> jobCategoriesList) {
-		this.jobCategoriesList = jobCategoriesList;
-		
-
-	}
 
 	public String getJobSubCategories() {
 
@@ -123,29 +114,38 @@ public class UsersSearch {
 	public void setJobSubCategories(String jobSubCategories) {
 		this.jobSubCategories = jobSubCategories;
 		if (jobSubCategories != null) {
-			List<String> subCatList = Arrays.asList(jobSubCategories.split(","));
+			List<String> subCatList = Arrays
+					.asList(jobSubCategories.split(","));
 			for (String subCategory : subCatList) {
-				Long subCategoryInteger = Long.parseLong(subCategory);
-				this.getJobSubCategoriesList().add(subCategoryInteger);
+				this.getJobSubCategoriesList().add(subCategory);
 
 			}
 		}
 	}
 
-	
-	public List<Long> getJobSubCategoriesList() {
-		return jobSubCategoriesList;
+
+
+	public Long getState() {
+		return state;
 	}
 
-	public void setJobSubCategoriesList(List<Long> jobSubCategoriesList) {
-		this.jobSubCategoriesList = jobSubCategoriesList;
+	public void setState(Long state) {
+		this.state = state;
 	}
 
-	public long getUserTypeId() {
+	public Long getCity() {
+		return city;
+	}
+
+	public void setCity(Long city) {
+		this.city = city;
+	}
+
+	public Long getUserTypeId() {
 		return userTypeId;
 	}
 
-	public void setUserTypeId(long userTypeId) {
+	public void setUserTypeId(Long userTypeId) {
 		this.userTypeId = userTypeId;
 	}
 

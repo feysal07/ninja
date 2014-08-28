@@ -107,10 +107,10 @@ function searchUsers() {
 	myObject.state = $('#states').val();
 	myObject.city = $('#citiesforstate').val();
 	var categories = new Array();
-	categories = $('#categories').val();
+	categories = $('#categories option:selected').text();
 	myObject.categories = categories;
 	var subcategories = new Array();
-	subcategories = $('#subcategories').val();
+	subcategories = $('#subcategories option:selected').text();
 	myObject.subcategories = subcategories;
 	myObject.pincode = $('#pincode').val();
 	myObject.pageNumber = 1;

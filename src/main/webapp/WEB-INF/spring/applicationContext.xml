@@ -63,7 +63,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3307/jobportal" />
 		<property name="username" value="root" />
-		<!--  <property name="password" value="admin" />-->
+		<property name="password" value="admin" />
 	</bean>
 
 	<bean id="transactionManager"

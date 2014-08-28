@@ -15,13 +15,13 @@ public class UsersSearch {
 	private long userId;
 	private String userName;
 	private String description;
-	private long state;
-	private long city;
+	private Long state;
+	private Long city;
 	private String pincode;
 	private String jobCategories;
 	private String jobSubCategories;
 	private String aboutMe;
-	private long userTypeId;
+	private Long userTypeId;
 
 	public String getAboutMe() {
 		return aboutMe;
@@ -63,22 +63,6 @@ public class UsersSearch {
 		this.description = description;
 	}
 
-	public long getState() {
-		return state;
-	}
-
-	public void setState(long state) {
-		this.state = state;
-	}
-
-	public long getCity() {
-		return city;
-	}
-
-	public void setCity(long city) {
-		this.city = city;
-	}
-
 	public String getPincode() {
 		return pincode;
 	}
@@ -103,11 +87,27 @@ public class UsersSearch {
 		this.jobSubCategories = jobSubCategories;
 	}
 
-	public long getUserTypeId() {
+	public Long getState() {
+		return state;
+	}
+
+	public void setState(Long state) {
+		this.state = state;
+	}
+
+	public Long getCity() {
+		return city;
+	}
+
+	public void setCity(Long city) {
+		this.city = city;
+	}
+
+	public Long getUserTypeId() {
 		return userTypeId;
 	}
 
-	public void setUserTypeId(long userTypeId) {
+	public void setUserTypeId(Long userTypeId) {
 		this.userTypeId = userTypeId;
 	}
 

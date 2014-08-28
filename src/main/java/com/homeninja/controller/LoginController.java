@@ -28,6 +28,7 @@ import com.google.gson.Gson;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.service.SiteUserService;
 import com.homeninja.utils.Utils;
+import com.homeninja.vo.UserInfo;
 
 @Controller
 @SessionAttributes("userInfo")
@@ -73,7 +74,12 @@ public class LoginController {
 				Utils.md5Encryption((userDetail.getPassword())));
 
 		if (user != null) {
-			model.addAttribute("userInfo", "userDetail");
+			UserInfo userInfo = new UserInfo();
+			userInfo.setUserEmailId(user.getLoginEmail());
+			userInfo.setUserName(user.getFirstName() + " " + user.getLastName());
+			userInfo.setUserEmailId(user.getLoginEmail());
+			userInfo.setLoggedIn("true");
+			model.addAttribute("userInfo",userInfo);
 			return "home";
 		} else {
 			return "login-fail-usernoexist";

@@ -3,18 +3,7 @@
 
 <c:import url="../include.jsp"></c:import> 
 
-<!--=== Top ===-->    
-<div class="top">
-    <div class="container">         
-        <ul class="loginbar pull-right">
-             <li><a href="./Register">Register</a></li>
-            <li class="devider"></li>   
-            <li><a href="page_faq.html">Help</a></li>  
-            <li class="devider"></li>   
-            <li><a href="./login">Login</a></li>   
-        </ul>
-    </div>      
-</div><!--/top-->
+
 
 <c:import url="../header.jsp"></c:import>
 <!--=== Content Part ===-->
