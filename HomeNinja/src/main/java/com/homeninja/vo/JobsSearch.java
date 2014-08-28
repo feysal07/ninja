@@ -18,8 +18,12 @@ public class JobsSearch {
 	private String location;
 	private int state;
 	private int city;
+	
+	private Long stateL;
+	private Long cityL;
 	private long postBy;
 	private int jobCategoryId;
+	private Long jobCategory;
 	private int requestCount;
 	private int requestLimit;
 	private boolean maxRequestReached;
@@ -66,13 +70,17 @@ public class JobsSearch {
 		this.location = location;
 	}
 
+
 	public int getState() {
 		return state;
 	}
 
 	public void setState(int state) {
 		this.state = state;
+		this.stateL = state * 1L;
 	}
+	
+	
 
 	public int getCity() {
 		return city;
@@ -80,6 +88,25 @@ public class JobsSearch {
 
 	public void setCity(int city) {
 		this.city = city;
+		this.cityL = city * 1L;
+	}
+	
+	
+
+	public Long getStateL() {
+		return stateL;
+	}
+
+	public void setStateL(Long stateL) {
+		this.stateL = stateL;
+	}
+
+	public Long getCityL() {
+		return cityL;
+	}
+
+	public void setCityL(Long cityL) {
+		this.cityL = cityL;
 	}
 
 	public long getPostBy() {
@@ -96,6 +123,7 @@ public class JobsSearch {
 
 	public void setJobCategoryId(int jobCategoryId) {
 		this.jobCategoryId = jobCategoryId;
+		setJobCategory(jobCategoryId * 1L);
 	}
 
 	public int getRequestCount() {
@@ -117,6 +145,7 @@ public class JobsSearch {
 	public boolean isMaxRequestReached() {
 		return maxRequestReached;
 	}
+
 
 	public void setMaxRequestReached(boolean maxRequestReached) {
 		this.maxRequestReached = maxRequestReached;
@@ -141,6 +170,14 @@ public class JobsSearch {
 		
 	}
 
+	public Long getJobCategory() {
+		return jobCategory;
+	}
+
+	public void setJobCategory(Long jobCategory) {
+		this.jobCategory = jobCategory;
+	}
+
 	public List<String> getJobSubCategoriesList() {
 		return jobSubCategoriesList;
 	}
@@ -148,6 +185,7 @@ public class JobsSearch {
 	public void setJobSubCategoriesList(List<String> jobSubCategoriesList) {
 		this.jobSubCategoriesList = jobSubCategoriesList;
 	}
-	
+
+
 
 }
