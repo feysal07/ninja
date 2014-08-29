@@ -120,3 +120,96 @@ $(document).ready(
 
 			});
 		});
+
+
+
+function previousPage( pageNumber) {
+	 var myObject = new Object();
+     var jobSubCatArray=[];
+	 $('input:checkbox[name=jobSubCat]:checked').each(function() 
+			   {
+				 jobSubCatArray.push(this.value);
+			});
+	 
+	 myObject.jobCategoryId=$('#categories :selected').val();
+	 myObject.jobSubCatIds=jobSubCatArray;
+	 myObject.state=$('#states :selected').val();
+	 myObject.city=$('#citiesforstate :selected').val();
+	myObject.pageNumber = pageNumber;
+	myObject.pageNumber = pageNumber - 1 ;
+
+	$.ajax({
+		type : "POST",
+		url : "./doSearchJob",
+		data : JSON.stringify(myObject),
+		contentType : 'application/json',
+
+		beforeSend : function() {
+
+		},
+		success : function(result) {
+			$("#page").load("./jobsearchresult", myObject);
+
+/*			if (response == "login-fail-nouser"
+					|| response == "login-fail-usernoexist") {
+				alert("Invalid user. Please try again");
+			}
+			if (response == "login-fail-nopassword") {
+				alert("Password not entered. Please try again");
+			}*/
+
+		},
+		complete : function() {
+
+		},
+		error : function(errorThrown) {
+			console.log(errorThrown);
+
+		}
+	});
+}
+
+function nextPage(pageNumber) {
+	 var myObject = new Object();
+     var jobSubCatArray=[];
+	 $('input:checkbox[name=jobSubCat]:checked').each(function() 
+			   {
+				 jobSubCatArray.push(this.value);
+			});
+	 
+	 myObject.jobCategoryId=$('#categories :selected').val();
+	 myObject.jobSubCatIds=jobSubCatArray;
+	 myObject.state=$('#states :selected').val();
+	 myObject.city=$('#citiesforstate :selected').val();
+	myObject.pageNumber = pageNumber + 1 ;
+
+	$.ajax({
+		type : "POST",
+		url : "./doSearchJob",
+		data : JSON.stringify(myObject),
+		contentType : 'application/json',
+
+		beforeSend : function() {
+
+		},
+		success : function(result) {
+			$("#page").load("./jobsearchresult", myObject);
+
+/*			if (response == "login-fail-nouser"
+					|| response == "login-fail-usernoexist") {
+				alert("Invalid user. Please try again");
+			}
+			if (response == "login-fail-nopassword") {
+				alert("Password not entered. Please try again");
+			}*/
+
+		},
+		complete : function() {
+
+		},
+		error : function(errorThrown) {
+			console.log(errorThrown);
+
+		}
+	});
+}
