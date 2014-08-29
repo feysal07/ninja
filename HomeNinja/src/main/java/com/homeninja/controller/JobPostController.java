@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -19,6 +20,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
 import com.homeninja.entities.JobSubCategory;
@@ -29,8 +31,10 @@ import com.homeninja.helping.entities.JobSearchCriteria;
 import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.JobCategoryService;
 import com.homeninja.service.JobPostService;
+import com.homeninja.vo.UserInfo;
 
 @Controller
+@SessionAttributes("userInfo")
 public class JobPostController {
 	@Resource
 	public JobPostService jobPostService;
@@ -48,6 +52,22 @@ public class JobPostController {
 	@RequestMapping(value = "/jobs", method = RequestMethod.GET)
 	public String jobPost(Model model) throws IOException {
 		logger.debug("inside Register Method");
+		
+		Map modelMap = model.asMap();
+		
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			UserInfo userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
+			}
+		}
 		return "jobPost";
 	}
 
