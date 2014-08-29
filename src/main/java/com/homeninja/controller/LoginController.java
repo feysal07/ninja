@@ -1,5 +1,7 @@
 package com.homeninja.controller;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
@@ -48,6 +50,17 @@ public class LoginController {
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
 	public String login() {
 		logger.info("inside login method");
+		return "login";
+	}
+	
+	@RequestMapping(value = "/logout", method = RequestMethod.GET)
+	public String logiogout(Model model) {
+		logger.info("inside login method");
+		Map modelMap = model.asMap();
+		if(modelMap.containsKey("userInfo")){
+			modelMap.remove("userInfo");
+			
+		}
 		return "login";
 	}
 

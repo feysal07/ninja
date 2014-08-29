@@ -32,6 +32,7 @@ import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.vo.City;
 import com.homeninja.vo.State;
+import com.homeninja.vo.UserInfo;
 import com.homeninja.vo.UsersSearchCriteria;
 import com.homeninja.vo.UsersSearchResult;
 import com.homeninja.entities.UsersSearch;
@@ -40,7 +41,7 @@ import com.homeninja.service.UsersSearchService;
 import com.homeninja.service.JobCategoryService;
 
 @Controller
-@SessionAttributes("userInfo, stateHashMap")
+@SessionAttributes("userInfo")
 public class UserSearchController {
 
 	@Resource
@@ -134,6 +135,22 @@ public class UserSearchController {
 		ModelAndView mav = new ModelAndView("usersearch");
 		SiteUsers siteUser = new SiteUsers();
 		mav.addObject("siteUser", siteUser);
+		
+		Map modelMap = model.asMap();
+		
+		if(!modelMap.containsKey("userInfo")){
+			mav.setViewName("login");
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			UserInfo userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				mav.setViewName("login");
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				mav.setViewName("login");
+			}
+		}
 		return mav;
 	}
 
