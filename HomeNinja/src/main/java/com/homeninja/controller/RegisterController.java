@@ -191,7 +191,7 @@ public class RegisterController implements ServletContextAware {
 		siteUserService.updateUser(siteUsers);
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("home");
+		mav.setViewName("login");
 
 		return mav;
 	}

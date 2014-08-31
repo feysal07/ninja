@@ -15,12 +15,17 @@
                     <li><a href="#">German</a></li>
                 </ul>
             </li> -->
-			<c:if test="${userInfo.loggedIn == 'true'}">
-				<li><a>Welcome. ${userInfo.userName}</a></li>
-				<li class="devider"></li>
-				<li><a href="./logout">Logout</a></li>
-				<li class="devider"></li>
-				<li><a href="./help">Help</a></li>
+        
+ 
+			<c:if test="${userInfo != null}">
+			
+				<c:if test="${userInfo['class'] == 'class com.homeninja.vo.UserInfo' && userInfo.loggedIn != null && userInfo.loggedIn == 'true'}">
+					<li><a>Welcome. ${userInfo.userName}</a></li>
+					<li class="devider"></li>
+					<li><a href="./logout">Logout</a></li>
+					<li class="devider"></li>
+					<li><a href="./help">Help</a></li>
+				</c:if>
 			</c:if>
 			<c:if test="${userInfo == null}">
 				<li><a href="./Register">Register</a></li>
