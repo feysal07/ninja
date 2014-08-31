@@ -25,6 +25,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.homeninja.entities.SiteUsers;
@@ -36,10 +37,10 @@ import com.homeninja.vo.UserInfo;
 @SessionAttributes("userInfo")
 public class LoginController {
 
-	//private Facebook facebook;
+	private Facebook facebook;
 
-	//@Resource
-	//private ConnectionRepository connectionRepository;
+	@Resource
+	private ConnectionRepository connectionRepository;
 
 	@Resource
 	public SiteUserService siteUserService;
@@ -54,14 +55,19 @@ public class LoginController {
 	}
 	
 	@RequestMapping(value = "/logout", method = RequestMethod.GET)
-	public String logiogout(Model model) {
+	public ModelAndView logout(Model model) {
+		ModelAndView mav = new ModelAndView();
 		logger.info("inside login method");
 		Map modelMap = model.asMap();
 		if(modelMap.containsKey("userInfo")){
-			modelMap.remove("userInfo");
+		 UserInfo userInfo = (UserInfo)modelMap.get("userInfo");
+		 userInfo.setLoggedIn("false");
 			
 		}
-		return "login";
+	
+		mav.setViewName("login");
+		mav.addObject(model);
+		return mav;
 	}
 
 	@RequestMapping(value = "/doLogin", method = RequestMethod.POST, consumes = "application/json")
@@ -100,8 +106,8 @@ public class LoginController {
 
 	}
 
-	/*@RequestMapping(value = "/doLoginUsingFacebook", method = RequestMethod.GET)
-	public  @ResponseBody String doLoginUsingFacebook() {
+	@RequestMapping(value = "/doLoginUsingFacebook", method = RequestMethod.GET)
+	public  String doLoginUsingFacebook( Model model) {
 		logger.info("inside doLoginUsingFacebook method");
 		Connection<Facebook> connection = connectionRepository
 				.findPrimaryConnection(Facebook.class);
@@ -112,18 +118,21 @@ public class LoginController {
 		}
 		System.out.println(facebook.userOperations().getUserProfile());
 		
-		 * PagedList<FacebookProfile> friends = facebook.friendOperations()
-		 * .getFriendProfiles(); model.addAttribute("friends", friends);
+		/* * PagedList<FacebookProfile> friends = facebook.friendOperations()
+		 * .getFriendProfiles(); model.addAttribute("friends", friends);*/
 		 
 
 		FacebookProfile facebookProfile = facebook.userOperations()
 				.getUserProfile();
-		String userName = facebookProfile.getFirstName() + " "
-				+ facebookProfile.getLastName();
+		String userFirstName = facebookProfile.getFirstName() ;
+		String userLastName =  facebookProfile.getLastName();
+		
 		String userEmail = facebookProfile.getEmail();
 		String userId = facebookProfile.getId();
 		SiteUsers userDetail = new SiteUsers();
-		userDetail.setUserName(userName);
+		//userDetail.setUserName(userName);
+		userDetail.setFirstName(userFirstName);
+		userDetail.setLastName(userLastName);
 		userDetail.setLoginViaFB("Y");
 		if (userEmail != null) {
 			userDetail.setLoginEmail(userEmail);
@@ -132,7 +141,10 @@ public class LoginController {
 			userDetail.setLoginEmail(userId);
 			userDetail.setUserName(userId);
 		}
-
+		byte [] facebookProfileImage = facebook.userOperations().getUserProfileImage();
+		userDetail.setProfilPic(facebookProfileImage);
+		
+		
 		if (!siteUserService.isEmailExists(userDetail.getUserName())) {
 			// good user
 			if (!siteUserService.addUser(userDetail)) {
@@ -140,8 +152,18 @@ public class LoginController {
 			}
 
 		}
+		
+		UserInfo userInfo = new UserInfo();
+		userInfo.setUserEmailId(userDetail.getLoginEmail());
+		userInfo.setUserName(userDetail.getFirstName() + " " + userDetail.getLastName());
+		userInfo.setUserEmailId(userDetail.getLoginEmail());
+		userInfo.setLoggedIn("true");
+		model.addAttribute("userInfo",userInfo);
 
 		return "home";
 
-	}*/
+	}
+	
+	
+
 }

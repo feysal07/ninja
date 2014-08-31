@@ -44,49 +44,62 @@
 
 					<!--  Alert messages -->
 					<c:if test="${error == 'user-exits'}">
-						<div class="alert alert-danger fade in" id="alertError1">
+						<script type="text/javascript">
+							showErrorUserExitsBox();
+						</script>
+						<!-- 						<div class="alert alert-danger fade in" id="alertError">
 							<button type="button" class="close" data-dismiss="alert"
-								onclick="javascript:closeError1Box();">&times;</button>
+								onclick="javascript:closeErrorBox();">&times;</button>
 							<strong>Oh!</strong> <label for="myalue"> The user name
 								already exits</label>
-						</div>
+						</div> -->
 					</c:if>
 
 					<c:if test="${error == 'user-add-fail'}">
-						<div class="alert alert-danger fade in" id="alertError2">
+											<script type="text/javascript">
+							showErrorFailAddUserBox();
+						</script>
+						<!-- <div class="alert alert-danger fade in" id="alertError">
 							<button type="button" class="close" data-dismiss="alert"
-								onclick="javascript:closeError2Box();">&times;</button>
+								onclick="javascript:closeErrorBox();">&times;</button>
 							<strong>Oh!</strong> <label for="myalue"> Failed to add
 								user. Try Again!</label>
-						</div>
+						</div> -->
 					</c:if>
 
 
-					<div class="alert alert-danger fade in" id="alertError3" hidden="true">
+					<div class="alert alert-danger fade in" id="alertError"
+						hidden="true">
 						<button type="button" class="close" data-dismiss="alert"
-							onclick="javascript:closeError3Box();" >&times;</button>
-						<strong>Oh!</strong> <label for="myalue"> Invalid Email
+							onclick="javascript:closeErrorBox();">&times;</button>
+						<label for="myalue"> Invalid Email
 							address!</label>
 					</div>
-					
-					<div class="alert alert-danger fade in" id="alertError4" hidden="true">
+
+					<div class="alert alert-danger fade in" id="alertError4"
+						hidden="true">
 						<button type="button" class="close" data-dismiss="alert"
-							onclick="javascript:closeError4Box();" >&times;</button>
-						<strong>Oh!</strong> <label for="myalue"> Please enter password!</label>
+							onclick="javascript:closeError4Box();">&times;</button>
+						<strong>Oh!</strong> <label for="myalue"> Please enter
+							password!</label>
 					</div>
-					
-					<div class="alert alert-danger fade in" id="alertError5" hidden="true">
+
+					<div class="alert alert-danger fade in" id="alertError5"
+						hidden="true">
 						<button type="button" class="close" data-dismiss="alert"
-							onclick="javascript:closeError5Box();" >&times;</button>
-						<strong>Oh!</strong> <label for="myalue"> Please enter confirm password!</label>
+							onclick="javascript:closeError5Box();">&times;</button>
+						<strong>Oh!</strong> <label for="myalue"> Please enter
+							confirm password!</label>
 					</div>
-	
-					<div class="alert alert-danger fade in" id="alertError6" hidden="true">
+
+					<div class="alert alert-danger fade in" id="alertError6"
+						hidden="true">
 						<button type="button" class="close" data-dismiss="alert"
-							onclick="javascript:closeError6Box();" >&times;</button>
-						<strong>Oh!</strong> <label for="myalue">Confirm password does not match the entered password!</label>
+							onclick="javascript:closeError6Box();">&times;</button>
+						<strong>Oh!</strong> <label for="myalue">Confirm password
+							does not match the entered password!</label>
 					</div>
-					
+
 					<label>First Name</label>
 					<form:input type="text" id="fname"
 						class="form-control margin-bottom-20" path="firstName" />
@@ -126,8 +139,8 @@
 							</label>
 						</div>
 						<div class="col-lg-6 text-right">
-							<button class="btn-u pull-right" type="button" onclick="javascript:doRegister();"
-								>Register</button>
+							<button class="btn-u pull-right" type="button"
+								onclick="javascript:doRegister();">Register</button>
 						</div>
 					</div>
 				</div>

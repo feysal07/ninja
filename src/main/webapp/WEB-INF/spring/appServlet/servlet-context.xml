@@ -44,8 +44,8 @@
 	
 	<beans:bean id="facebook"
 		class="org.springframework.social.facebook.connect.FacebookConnectionFactory">
-		<beans:constructor-arg value="266386026803426" />
-		<beans:constructor-arg value="d1b241e2b9f0854ba2bdcfc64ce93f69" />
+		<beans:constructor-arg value="863181843711256" />
+		<beans:constructor-arg value="d8725aa24d535ad03bb0cecbae7ab733" />
 	</beans:bean> 
 
 	<beans:bean id="connectionFactoryLocator"
