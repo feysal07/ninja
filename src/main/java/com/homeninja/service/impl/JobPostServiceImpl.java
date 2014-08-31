@@ -49,9 +49,9 @@ public class JobPostServiceImpl implements JobPostService {
 	}
 
 	@Override
-	public String sendMessage(int jobId) {
+	public boolean availableToSendMessage(int jobId) {
 		// TODO Auto-generated method stub
-		return jobPostDAO.sendMessage(jobId);
+		return jobPostDAO.availableToSendMessage(jobId);
 	}
 
 	

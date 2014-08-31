@@ -26,7 +26,7 @@ function submitQuery(){
 	myObject.name=$('#name').val();
 	myObject.email=$('#email').val();
 	myObject.message=$('#message').val();
-	myObject.subject=$('#subject').val();
+	myObject.subject=$('#subject').val() +":"+$('select#contactPurpose option:selected').text();
 	myObject.contactPurpose=$('select#contactPurpose option:selected').val();
 	 $.ajax({
 			type : "POST",
