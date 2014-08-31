@@ -29,7 +29,18 @@
             <!-- End Google Map -->
 
             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas feugiat. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit landitiis.</p><br />
-            <form>
+            <!--  Alert messages -->
+			<div class="alert alert-danger fade in" id="alertError" hidden="true">
+				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button>
+				<strong>Oh!</strong> <label for="myalue" ></label>
+			</div>
+			<div class="alert alert-success" id="alertSuccess" hidden="true">
+				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeSuccessBox();">&times;</button>
+				<strong>done!</strong> Your request has been sent. we will reply you soon !
+			</div>
+
+			<!--  alert messages end -->
+            <div>
                 <label>Name</label>
                 <div class="row margin-bottom-20">
                     <div class="col-md-7 col-md-offset-0">
@@ -64,7 +75,7 @@
                 </div>
                 
                 <p><button type="submit" class="btn-u" onclick="javascript:submitQuery()" >Send Message</button></p>
-            </form>
+            </div>
         </div><!--/col-md-9-->
         
         <div class="col-md-3">
