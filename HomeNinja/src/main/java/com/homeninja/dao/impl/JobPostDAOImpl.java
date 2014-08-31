@@ -113,7 +113,7 @@ public class JobPostDAOImpl implements JobPostDAO {
 	}
 
 	@Override
-	public String sendMessage(int jobId) {
+	public boolean availableToSendMessage(int jobId) {
 	try {
 			Jobs job = (Jobs) this.sessionFactory.getCurrentSession().get(
 					Jobs.class, jobId);
@@ -122,13 +122,13 @@ public class JobPostDAOImpl implements JobPostDAO {
 					|| job.getRequestLimit()==0) {
 				job.setRequestCount(job.getRequestCount() + 1);
 				this.sessionFactory.getCurrentSession().saveOrUpdate(job);
-				return "message-send";
+				return true;
 			}else{
-				return "max-limit";
+				return false;
 			}
 			
 		} catch (HibernateException e) {
-			return "not-sent";
+			return false;
 		}
 		
 	}

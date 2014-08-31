@@ -9,7 +9,6 @@ import java.util.Map;
 import java.util.Set;
 
 import javax.annotation.Resource;
-import javax.servlet.ServletContext;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,22 +22,20 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.google.gson.Gson;
 import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.entities.UsersSearch;
+import com.homeninja.service.GeoLocationService;
+import com.homeninja.service.JobCategoryService;
+import com.homeninja.service.UsersSearchService;
 import com.homeninja.vo.City;
 import com.homeninja.vo.State;
 import com.homeninja.vo.UserInfo;
 import com.homeninja.vo.UsersSearchCriteria;
 import com.homeninja.vo.UsersSearchResult;
-import com.homeninja.entities.UsersSearch;
-import com.homeninja.service.GeoLocationService;
-import com.homeninja.service.UsersSearchService;
-import com.homeninja.service.JobCategoryService;
 
 @Controller
 @SessionAttributes("userInfo")

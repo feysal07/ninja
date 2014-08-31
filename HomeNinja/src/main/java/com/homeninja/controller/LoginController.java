@@ -3,22 +3,11 @@ package com.homeninja.controller;
 import java.util.Map;
 
 import javax.annotation.Resource;
-import javax.inject.Inject;
 import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Qualifier;
-import org.springframework.social.connect.Connection;
-import org.springframework.social.connect.ConnectionRepository;
-import org.springframework.social.facebook.api.Facebook;
-import org.springframework.social.facebook.api.FacebookProfile;
-import org.springframework.social.facebook.api.PagedList;
-import org.springframework.social.facebook.api.impl.FacebookTemplate;
-import org.springframework.social.facebook.connect.FacebookConnectionFactory;
 import org.springframework.stereotype.Controller;
-import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -37,10 +26,10 @@ import com.homeninja.vo.UserInfo;
 @SessionAttributes("userInfo")
 public class LoginController {
 
-	private Facebook facebook;
+	//private Facebook facebook;
 
-	@Resource
-	private ConnectionRepository connectionRepository;
+	/*@Resource
+	private ConnectionRepository connectionRepository*/;
 
 	@Resource
 	public SiteUserService siteUserService;
@@ -106,7 +95,7 @@ public class LoginController {
 
 	}
 
-	@RequestMapping(value = "/doLoginUsingFacebook", method = RequestMethod.GET)
+	/*@RequestMapping(value = "/doLoginUsingFacebook", method = RequestMethod.GET)
 	public  String doLoginUsingFacebook( Model model) {
 		logger.info("inside doLoginUsingFacebook method");
 		Connection<Facebook> connection = connectionRepository
@@ -118,8 +107,8 @@ public class LoginController {
 		}
 		System.out.println(facebook.userOperations().getUserProfile());
 		
-		/* * PagedList<FacebookProfile> friends = facebook.friendOperations()
-		 * .getFriendProfiles(); model.addAttribute("friends", friends);*/
+		 * PagedList<FacebookProfile> friends = facebook.friendOperations()
+		 * .getFriendProfiles(); model.addAttribute("friends", friends);
 		 
 
 		FacebookProfile facebookProfile = facebook.userOperations()
@@ -162,7 +151,7 @@ public class LoginController {
 
 		return "home";
 
-	}
+	}*/
 	
 	
 

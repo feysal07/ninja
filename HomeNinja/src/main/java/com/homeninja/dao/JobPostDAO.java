@@ -15,7 +15,7 @@ public interface JobPostDAO {
 	public boolean saveOrUpdateJobSubCatIds(JobsSubCategoryMap obj);
 	public List<MessageLimits> getMessageLimits();
 	public List<Jobs> getJobPostByCriteria(JobSearchCriteria jobSearchCriteria);
-	public String sendMessage(int jobId);
+	public boolean availableToSendMessage(int jobId);
 	
 	
 }

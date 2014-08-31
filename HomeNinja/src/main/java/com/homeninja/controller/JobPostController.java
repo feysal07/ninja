@@ -139,7 +139,13 @@ public class JobPostController {
 		int jobId=Integer.parseInt(myObject);
 		//TODO:Need to implement Message Gateway.
 		//add a message count to job
-		return  jobPostService.sendMessage(jobId);
+		 if(jobPostService.availableToSendMessage(jobId)){
+		  	 
+		 }else{
+			 
+		 }
+		 return "not-sent";
+	
 	}
 	
 	
