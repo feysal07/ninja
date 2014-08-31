@@ -1,6 +1,49 @@
-var Contact = function () {
 
-    return {
+function closeErrorBox() {
+	$alertError = $("#alertError");
+	$alertError.hide();
+
+}
+
+function closeSuccessBox() {
+	$alertSuccess = $("#alertSuccess");
+	$alertSuccess.hide();
+
+}
+
+function isValid(myObject){
+	var validation="true";
+	if (myObject.name == "") {
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please enter name");
+		$alertError.show();
+		validation = "false";
+	}
+
+	else if (myObject.email == "") {
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please enter email");
+		$alertError.show();
+		validation = "false";
+	}
+	
+	else if (myObject.subject == "") {
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please enter subject");
+		$alertError.show();
+		validation = "false";
+	}
+	else if (myObject.message == "") {
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please enter message");
+		$alertError.show();
+		validation = "false";
+	}
+	return validation;
+}
+
+/*var Contact = function () {
+ return {
         
         //Map
         initMap: function () {
@@ -21,16 +64,28 @@ var Contact = function () {
 
     };
 }();
+*/
 function submitQuery(){
+	closeErrorBox();
+	closeSuccessBox();
 	var myObject = new Object();
 	myObject.name=$('#name').val();
 	myObject.email=$('#email').val();
 	myObject.message=$('#message').val();
-	myObject.subject=$('#subject').val() +":"+$('select#contactPurpose option:selected').text();
+	myObject.subject=$('#subject').val();
 	myObject.contactPurpose=$('select#contactPurpose option:selected').val();
-	 $.ajax({
+	var flag=isValid(myObject);
+	
+	if(flag== "true"){
+		if(myObject.contactPurpose=="0"){
+			myObject.subject=myObject.subject+":"+"other";
+		}else{
+			myObject.subject=$('#subject').val()+":"+$('select#contactPurpose option:selected').text();
+		}
+		
+	$.ajax({
 			type : "POST",
-			url : "${pageContext.request.contextPath}/submitQuery",
+			url : "./submitQuery",
 			data : JSON.stringify(myObject),
 			contentType: 'application/json',
 
@@ -39,7 +94,9 @@ function submitQuery(){
 			},
 			success : function(response) {
 				if("${status}"){
-			 alert("submitted");
+			  //alert("submitted");
+					$alertSuccess = $("#alertSuccess");
+					$alertSuccess.show();
 			 }else{
 				 alert("not-submitted");
 				 }
@@ -51,6 +108,7 @@ function submitQuery(){
 				
 			}
 		});
+	}
 		
 }
 
@@ -59,7 +117,7 @@ $(document).ready(
 			$.getJSON('./getContactPurpose', {
 				ajax : 'true'
 			}, function(data) {
-				var html = '<option value="">--Select--</option>';
+				var html = '<option value="0">--Select--</option>';
 				var len = data.length;
 				for (var i = 0; i < len; i++) {
 					html += '<option value="' + data[i].id + '">'

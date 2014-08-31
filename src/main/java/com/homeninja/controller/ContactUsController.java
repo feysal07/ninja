@@ -48,7 +48,7 @@ public class ContactUsController {
 	@ResponseBody
 	public String submitContactUs(@RequestBody String myObject,Model model) throws Exception{
 		
-		String supporMail="";//propertyFileReader.getPropertyValue("SUPPORT_MAIL_ID","mail.properties");
+		String supporMail="support@homeninja.in";//propertyFileReader.getPropertyValue("SUPPORT_MAIL_ID","mail.properties");
 		Date date = new Date();
 		Gson gson=new Gson();
 		ContactUs contactUsForm=gson.fromJson(myObject,ContactUs.class);
