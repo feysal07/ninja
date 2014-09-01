@@ -61,6 +61,12 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 		return siteUserDAO.getSiteUsersById(siteUsers);
 	}
 
+	@Override
+	public boolean resetPassword(String email,String newPassword) {
+		// TODO Auto-generated method stub
+		return siteUserDAO.resetPassword(email,newPassword);
+	}
+
 	
 	
 }

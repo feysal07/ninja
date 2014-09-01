@@ -142,4 +142,20 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 		}
 	}
 
+	@Override
+	public boolean resetPassword(String email,String newPassword) {
+		String hql = "UPDATE SiteUsers set password = :password "
+				+ "WHERE loginEmail = :loginEmail";
+		Query query = sessionFactory.getCurrentSession().createQuery(hql);
+		query.setParameter("loginEmail", email);
+		query.setParameter("password", newPassword);
+		int result = query.executeUpdate();
+		System.out.println("Rows affected: " + result);
+		if(result>0){
+		return true;
+		}else{
+			return false;
+		}
+	}
+
 }

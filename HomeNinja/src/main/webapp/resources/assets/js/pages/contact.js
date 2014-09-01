@@ -94,9 +94,8 @@ function submitQuery(){
 			},
 			success : function(response) {
 				if("${status}"){
-			  //alert("submitted");
-					$alertSuccess = $("#alertSuccess");
-					$alertSuccess.show();
+			  	$alertSuccess = $("#alertSuccess");
+				$alertSuccess.show();
 			 }else{
 				 alert("not-submitted");
 				 }
