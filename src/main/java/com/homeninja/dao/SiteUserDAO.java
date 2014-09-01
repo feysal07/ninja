@@ -20,4 +20,5 @@ public interface SiteUserDAO {
 	    public SiteUsers findbyExample(SiteUsers siteUsers);
 	    public Set<UserType> getUserType();
 	    public SiteUsers getSiteUsersById(SiteUsers siteUsers);
+		public boolean resetPassword(String email,String newPassword);
 }

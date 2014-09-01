@@ -1,15 +1,38 @@
-/**
- * 
- */
+
+function closeErrorBox() {
+	$alertError = $("#alertError");
+	$alertError.hide();
+
+}
+
+function closeSuccessBox() {
+	$alertSuccess = $("#alertSuccess");
+	$alertSuccess.hide();
+
+}
+
+function isValid(myObject){
+	var validation="true";
+	if (myObject == "") {
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please enter email");
+		$alertError.show();
+		validation = "false";
+	}
+	return validation;
+}
 
 function doValidateAndSendEmail() {
-		var myObject = new Object();
-		myObject.userName = $('#Username').val();
-
+		closeErrorBox();
+		closeSuccessBox();
+		var myObject =$('#Username').val();
+		var flag=isValid(myObject);
+		
+		if(flag== "true"){
 		$.ajax({
 			type : "POST",
 			url : "./sendForgotPassword",
-			data : JSON.stringify(myObject),
+			data : myObject,
 			contentType : 'application/json',
 
 			beforeSend : function() {
@@ -17,11 +40,16 @@ function doValidateAndSendEmail() {
 			},
 			success : function(response) {
 				if (response == "user-doesnot-exist") {
-					alert("Invalid user. Please try again");
+					$alertError = $("#alertError");
+					jQuery("label[for='myalue']").html("Invalid user!");
+					$alertError.show();
+					
 				}
 
-				if (response == "home") {
-					location.href = "${pageContext.request.contextPath}/home";
+				if (response == "password-reset") {
+					$alertSuccess = $("#alertSuccess");
+					$alertSuccess.show();
+				
 				} 
 
 			},
@@ -33,4 +61,5 @@ function doValidateAndSendEmail() {
 
 			}
 		});
+	}
 	}
