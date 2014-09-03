@@ -53,7 +53,7 @@ public class JobPostController {
 	public String jobPost(Model model) throws IOException {
 		logger.debug("inside Register Method");
 		
-		Map modelMap = model.asMap();
+		/*Map modelMap = model.asMap();
 		
 		if(!modelMap.containsKey("userInfo")){
 			return "login";
@@ -67,13 +67,13 @@ public class JobPostController {
 			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
 				return "login";
 			}
-		}
+		}*/
 		return "jobPost";
 	}
 
 	@RequestMapping(value = "/postJob", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
-	String doJobPost(HttpServletRequest req, @RequestBody String myObject)
+	String doJobPost(HttpServletRequest req, @RequestBody String myObject,Model model)
 			throws IOException {
 		logger.debug("inside doRegister Method");
 		Gson gson = new Gson();
@@ -92,11 +92,8 @@ public class JobPostController {
 
 		boolean flag = jobPostService.saveOrUpdatePostedJob(jobPost);
 
-		if (flag) {
-			return "allJobPost";
-		} else {
-			return "jobPost";
-		}
+		model.addAttribute("status", flag);
+		return "jobPost";
 	}
 
 	@RequestMapping(value = "/getJobSubCatByJobCatId", method = RequestMethod.GET)
