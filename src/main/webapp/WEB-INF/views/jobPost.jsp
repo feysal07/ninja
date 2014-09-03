@@ -27,6 +27,17 @@
 <div class="row blog-page">
 	<div class="col-md-9 mb-margin-bottom-40">
 		<div>
+		 <!--  Alert messages -->
+			<div class="alert alert-danger fade in" id="alertError" hidden="true">
+				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button>
+				<label for="myalue" ></label>
+			</div>
+			<div class="alert alert-success" id="alertSuccess" hidden="true">
+				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeSuccessBox();">&times;</button>
+				<i class="icon-ok "></i>&nbsp; your job has been post successfully !
+			</div>
+
+			<!--  alert messages end -->
 			<div class="headline">
 				<h2>Job Details</h2>
 			</div>
@@ -101,6 +112,7 @@
 		<br /> <br />
 		<p>
 			<button type="submit" class="btn-u" onclick="javascript:jobPost()">Post</button>
+			<img id="loader-img" src="resources/assets/img/loader.gif" hidden="hidden" height="30" width="30" class="color-img" alt="">
 		</p>
 
 
@@ -234,9 +246,6 @@
 </div>
 </div>
 <!--/row-->
-
-
-</div>
 <!--/container-->
 <!--=== End Content Part ===-->
 <!-- Footer-->

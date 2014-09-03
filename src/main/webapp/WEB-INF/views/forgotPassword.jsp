@@ -32,11 +32,11 @@
 		  <!--  Alert messages -->
 			<div class="alert alert-danger fade in" id="alertError" hidden="true">
 				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button>
-				<strong>Oh!</strong> <label for="myalue" ></label>
+				<i class="icon-warning-sign"></i>&nbsp; <label for="myalue" ></label>
 			</div>
 			<div class="alert alert-success" id="alertSuccess" hidden="true">
 				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeSuccessBox();">&times;</button>
-				<strong>done!</strong> Your password has been reset successfully. check your mail !
+				<i class="icon-ok"></i>&nbsp; Your password has been reset successfully. check your mail !
 			</div>
 
 			<!--  alert messages end -->
@@ -55,11 +55,10 @@
 			<div class="row">
 				<div class="col-md-6">
 					<button class="btn-u pull-right" onclick="javascript:doValidateAndSendEmail()">Reset Password</button>
+				<img id="loader-img" src="resources/assets/img/loader.gif" hidden="hidden" height="30" width="30" class="color-img" alt="">
 				</div>
 				<br>
-
-
-			</div>
+</div>
 
 
 			<hr>

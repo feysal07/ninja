@@ -13,31 +13,33 @@ function closeSuccessBox() {
 
 function isValid(myObject){
 	var validation="true";
+	var errorMessage = '';
 	if (myObject.name == "") {
 		$alertError = $("#alertError");
-		jQuery("label[for='myalue']").html("Please enter name");
-		$alertError.show();
+		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter name <br>';
 		validation = "false";
 	}
 
-	else if (myObject.email == "") {
+	if (myObject.email == "") {
 		$alertError = $("#alertError");
-		jQuery("label[for='myalue']").html("Please enter email");
-		$alertError.show();
+		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter email <br>';
 		validation = "false";
 	}
 	
-	else if (myObject.subject == "") {
+	if (myObject.subject == "") {
 		$alertError = $("#alertError");
-		jQuery("label[for='myalue']").html("Please enter subject");
-		$alertError.show();
+		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter subject <br>';
 		validation = "false";
 	}
-	else if (myObject.message == "") {
+	if (myObject.message == "") {
 		$alertError = $("#alertError");
-		jQuery("label[for='myalue']").html("Please enter message");
-		$alertError.show();
+		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter message <br>';
 		validation = "false";
+	}
+	if (validation == "false") {
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html(errorMessage);
+		$alertError.show();
 	}
 	return validation;
 }
@@ -90,18 +92,23 @@ function submitQuery(){
 			contentType: 'application/json',
 
 			beforeSend : function() {
-				
+               $('#loader-img').removeAttr('hidden');				
 			},
 			success : function(response) {
 				if("${status}"){
 			  	$alertSuccess = $("#alertSuccess");
 				$alertSuccess.show();
 			 }else{
-				 alert("not-submitted");
+				 $alertError = $("#alertError");
+					jQuery("label[for='myalue']").html('<i class="icon-warning-sign"></i>&nbsp; Something went wrong try again!');
+					$alertError.show();
+				 
 				 }
 			},
 			complete : function() {
-			
+				$('#loader-img').attr('hidden','hidden');
+				$('#topcontrol').click();
+				
 			},
 			error : function(e) {
 				
