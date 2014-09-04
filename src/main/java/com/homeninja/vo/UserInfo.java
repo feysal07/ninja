@@ -1,11 +1,13 @@
 package com.homeninja.vo;
 
 public class UserInfo {
-	String userName;
+	private long userId;
+	
+	private String userName;
 
-	String userEmailId;
+	private String userEmailId;
 
-	String loggedIn;
+	private String loggedIn;
 
 	public String getUserName() {
 		return userName;
@@ -29,6 +31,14 @@ public class UserInfo {
 
 	public void setLoggedIn(String loggedIn) {
 		this.loggedIn = loggedIn;
+	}
+
+	public long getUserId() {
+		return userId;
+	}
+
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 }

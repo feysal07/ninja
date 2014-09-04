@@ -293,7 +293,7 @@ public class RegisterController implements ServletContextAware {
 	String doRegisterPage2(HttpServletRequest req, @RequestBody String myObject)
 			throws IOException {
 
-		logger.info("inside dologin method");
+		logger.info("inside doRegisterPage2 method");
 		Gson gson = new Gson();
 
 		SiteUsers siteusers = gson.fromJson(myObject, SiteUsers.class);

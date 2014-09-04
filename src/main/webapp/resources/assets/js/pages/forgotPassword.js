@@ -12,20 +12,34 @@ function closeSuccessBox() {
 }
 
 function isValid(myObject){
+	closeErrorBox();
+	closeSuccessBox();
+	var atpos = myObject.indexOf("@");
+	var dotpos = myObject.lastIndexOf(".");
 	var validation="true";
+	var errorMessage='';
 	if (myObject == "") {
-		$alertError = $("#alertError");
-		jQuery("label[for='myalue']").html('<i class="icon-warning-sign"></i>&nbsp; Please enter email');
-		$alertError.show();
+		errorMessage ='<i class="icon-warning-sign"></i>&nbsp; Please enter email';
 		validation = "false";
+	}else{
+		if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= myObject.length) {
+			errorMessage = '<i class="icon-warning-sign"></i>&nbsp; Invalid Email address';
+			validation = "false";
+		}
 	}
+	
+	if(validation=='false'){
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html(errorMessage);
+		$alertError.show();
+	}
+	
 	return validation;
 }
 
 function doValidateAndSendEmail() {
-		closeErrorBox();
-		closeSuccessBox();
-		var myObject =$('#Username').val();
+	
+	    var myObject =$('#userName').val();
 		var flag=isValid(myObject);
 		
 		if(flag== "true"){
@@ -36,7 +50,7 @@ function doValidateAndSendEmail() {
 			contentType : 'application/json',
 
 			beforeSend : function() {
-
+				$('#loader-img').removeAttr('hidden');
 			},
 			success : function(response) {
 				if (response == "user-doesnot-exist") {
@@ -53,7 +67,7 @@ function doValidateAndSendEmail() {
 
 			},
 			complete : function() {
-
+				$('#loader-img').attr('hidden','hidden');
 			},
 			error : function(errorThrown) {
 				console.log(errorThrown);
