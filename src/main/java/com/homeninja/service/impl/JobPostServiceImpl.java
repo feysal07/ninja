@@ -54,5 +54,10 @@ public class JobPostServiceImpl implements JobPostService {
 		return jobPostDAO.availableToSendMessage(jobId);
 	}
 
+	@Override
+	public List<Jobs> getAllPostedJobsByMe(long userId) {
+		return jobPostDAO.getAllPostedJobsByMe(userId);
+	}
+
 	
 }

@@ -119,7 +119,7 @@ public class JobSearchController {
 	@RequestMapping(value = "/jobSearch", method = RequestMethod.GET)
 	public String jobSearch(Model model) throws IOException {
 		logger.debug("inside Register Method");
-		Map modelMap = model.asMap();
+		/*Map modelMap = model.asMap();
 		
 		if(!modelMap.containsKey("userInfo")){
 			return "login";
@@ -133,7 +133,7 @@ public class JobSearchController {
 			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
 				return "login";
 			}
-		}
+		}*/
 		return "jobsearch";
 	}
 

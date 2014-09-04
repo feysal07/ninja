@@ -133,4 +133,17 @@ public class JobPostDAOImpl implements JobPostDAO {
 		
 	}
 
+	@Override
+	public List<Jobs> getAllPostedJobsByMe(long userId) {
+		try{
+		Query query = sessionFactory.getCurrentSession().createQuery(
+				"from Jobs where postBy = :userId ");
+		query.setParameter("userId", userId);
+		return query.list();
+	} catch (Exception e) {
+		return null;
+	}
+	
+	}
+
 }
