@@ -1,6 +1,8 @@
 package com.homeninja.controller;
 
 import java.io.IOException;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
@@ -28,6 +30,7 @@ import com.homeninja.entities.Jobs;
 import com.homeninja.entities.JobsSubCategoryMap;
 import com.homeninja.entities.MessageLimits;
 import com.homeninja.helping.entities.JobSearchCriteria;
+import com.homeninja.helping.entities.MyJobs;
 import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.JobCategoryService;
 import com.homeninja.service.JobPostService;
@@ -108,12 +111,54 @@ public class JobPostController {
 		return jobSubCategory;
 	}
 
-	@RequestMapping(value = "/allJob", method = RequestMethod.GET)
+	@RequestMapping(value = "/myJob", method = RequestMethod.GET)
 	public String getAllPostedJobs(Model model) throws IOException {
-		// jobPostDao=new JobPostDAO();
-		List<Jobs> jobPosts = jobPostService.getAllPostedJobs();
-		model.addAttribute("jobPosts", jobPosts);
-		return "allJobPost";
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
+			}
+		}
+		List<Jobs> jobPosts = jobPostService.getAllPostedJobsByMe(userInfo.getUserId());
+		List<MyJobs> myJobs=new  ArrayList<MyJobs>();
+		int count=1;
+		for (Jobs jobs : jobPosts) {
+			MyJobs mjob=new MyJobs();
+			
+			mjob.setsNo(count);
+			mjob.setJobId(Double.toString(jobs.getId()));
+			mjob.setJobTitle(jobs.getJobDetails());
+			mjob.setJobDetails(jobs.getJobDetails());
+			mjob.setJobCategory(jobs.getJobCategory().getJobCat());
+			String maxLimitReach="No";
+			String jobSubCategories=jobs.getJobSubCategories();
+			jobSubCategories=jobSubCategories.substring(1, jobSubCategories.length());
+			jobSubCategories=jobSubCategories.replace("-", ",");
+			if(jobs.isMaxRequestReached()){
+				maxLimitReach="Yes";
+			}
+			mjob.setJobSubCategory(jobSubCategories);
+			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+			String dateString = dateFormat.format(jobs.getPostDate());
+			mjob.setMaxLimitReached(maxLimitReach);
+			mjob.setPostDate(dateString);
+			myJobs.add(mjob);
+			count++;
+		}
+		
+		
+		
+		model.addAttribute("jobPosts", myJobs);
+		return "myJobs";
 	}
 	@RequestMapping(value = "/searchJob", method = RequestMethod.GET)
 	@ResponseBody
