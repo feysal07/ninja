@@ -5,43 +5,35 @@ function isValid(myObject){
 	var errorMessage = '';
 	
 	if (myObject.jobCategoryId == "") {
-		$alertError = $("#alertError");
 		errorMessage='<i class="icon-warning-sign"></i>&nbsp;  Please enter job category <br>';
 		validation = "false";
 	}
 	if (myObject.state == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter state <br>';
 		validation = "false";
 	}
 	if (myObject.city == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter city <br>';
 		validation = "false";
 	}
 	if (myObject.pincode == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter pincode <br>';
 		validation = "false";
 	}
 	if (myObject.location == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter location <br>';
 		validation = "false";
 	}
 	
 	if (myObject.requestLimit == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter response limit <br>';
 		validation = "false";
 	}
 	if (myObject.title == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter job title <br>';
 		validation = "false";
 	}
 	if (myObject.jobDetails == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter job details <br>';
 		validation = "false";
 	}

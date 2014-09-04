@@ -68,6 +68,21 @@
 							<li><a href=".">Home</a></li>
 							<li><a href="./aboutUs">About Us</a></li>
 						</ul></li>
+						
+					<c:if test="${userInfo != null}">
+					<c:if test="${userInfo['class'] == 'class com.homeninja.vo.UserInfo' && userInfo.loggedIn != null && userInfo.loggedIn == 'true'}">			
+					<li class="dropdown"><a href="#"
+						class="dropdown-toggle" data-toggle="dropdown"
+						data-hover="dropdown" data-delay="0" data-close-others="false">My Account
+							<i class="icon-angle-down"></i>
+					</a>
+						<ul class="dropdown-menu">
+							<li><a href="./doRegisterPage1">Manage Account</a></li>
+							<li><a href="#">Public Profile</a></li>
+							<li><a href="#">Posted Jobs</a></li>
+						</ul></li>
+						</c:if>	
+					</c:if>	
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-hover="dropdown" data-delay="0"
 						data-close-others="false">Find <i class="icon-angle-down"></i>

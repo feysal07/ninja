@@ -87,6 +87,7 @@ public class LoginController {
 			userInfo.setUserName(user.getFirstName() + " " + user.getLastName());
 			userInfo.setUserEmailId(user.getLoginEmail());
 			userInfo.setLoggedIn("true");
+			userInfo.setUserId(user.getUserId());
 			model.addAttribute("userInfo",userInfo);
 			return "home";
 		} else {

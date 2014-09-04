@@ -14,25 +14,29 @@ function closeSuccessBox() {
 function isValid(myObject){
 	var validation="true";
 	var errorMessage = '';
+	var userEmailId=myObject.email;
+	var atpos = userEmailId.indexOf("@");
+	var dotpos = userEmailId.lastIndexOf(".");
 	if (myObject.name == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter name <br>';
 		validation = "false";
 	}
 
-	if (myObject.email == "") {
-		$alertError = $("#alertError");
+	if (userEmailId == "") {
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter email <br>';
 		validation = "false";
+	}else{
+		if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= userEmailId.length) {
+			errorMessage += '<i class="icon-warning-sign"></i>&nbsp; Invalid Email address <br>';
+			validation = "false";
+		}
 	}
 	
 	if (myObject.subject == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter subject <br>';
 		validation = "false";
 	}
 	if (myObject.message == "") {
-		$alertError = $("#alertError");
 		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter message <br>';
 		validation = "false";
 	}
