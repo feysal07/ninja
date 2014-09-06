@@ -135,7 +135,7 @@ public class UserSearchController {
 		
 		Map modelMap = model.asMap();
 		
-		if(!modelMap.containsKey("userInfo")){
+		/*if(!modelMap.containsKey("userInfo")){
 			mav.setViewName("login");
 		}
 		
@@ -147,20 +147,26 @@ public class UserSearchController {
 			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
 				mav.setViewName("login");
 			}
-		}
+		}*/
 		return mav;
 	}
 
 	@RequestMapping(value = "/usersearchresult", method = RequestMethod.POST)
 	String userSearchResult(ModelMap model,
-			@RequestParam(value = "userTypeId") long userTypeId,
-			@RequestParam(value = "state") String state,
-			@RequestParam(value = "city") String city,
-			@RequestParam(value = "pincode") String pincode,
-			@RequestParam(value = "categories") String categories,
-			@RequestParam(value = "subcategories") String subcategories,
-			@RequestParam(value = "pageNumber") int pageNumber)
+			@RequestParam(value = "userTypeId",required=false) String userTypeIdString,
+			@RequestParam(value = "state",required=false) String state,
+			@RequestParam(value = "city",required=false) String city,
+			@RequestParam(value = "pincode",required=false) String pincode,
+			@RequestParam(value = "categories",required=false) String categories,
+			@RequestParam(value = "subcategories",required=false) String subcategories,
+			@RequestParam(value = "pageNumber",required=false) int pageNumber)
 			throws IOException {
+		Long userTypeId = 0L;
+		if(userTypeIdString != null && userTypeIdString != ""){
+			userTypeId = Long.parseLong(userTypeIdString);
+		}
+
+		
 		logger.info("inside userSearchResult method");
 		UsersSearchCriteria usersSearchCriteria = new UsersSearchCriteria();
 		usersSearchCriteria.setUserTypeId(userTypeId);
@@ -171,10 +177,10 @@ public class UserSearchController {
 		usersSearchCriteria.setPageSize(10);
 		List<String> jobCategoryList = new ArrayList<String>();
 		List<String> jobSubCategoryList = new ArrayList<String>();
-		if (categories != null && categories.length() > 0) {
+		if (!categories.equals("Select") && categories != null && categories.length() > 0) {
 			jobCategoryList.add(categories);
 		}
-		if (subcategories != null && subcategories.length() > 0) {
+		if (!subcategories.equals("Select") && subcategories != null && subcategories.length() > 0) {
 			jobSubCategoryList.add(subcategories);
 		}
 

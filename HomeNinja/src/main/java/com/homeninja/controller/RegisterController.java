@@ -538,7 +538,10 @@ public class RegisterController implements ServletContextAware {
 			long userIdLong = Long.parseLong(value);
 			siteUsers.setUserId(userIdLong);
 			siteUsers = siteUserService.getSiteUsersById( siteUsers);
-			FileCopyUtils.copy(siteUsers.getProfilPic(), response.getOutputStream());
+			if(siteUsers.getProfilPic() != null){
+				FileCopyUtils.copy(siteUsers.getProfilPic(), response.getOutputStream());
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
