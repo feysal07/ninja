@@ -154,22 +154,21 @@ public class UserSearchController {
 	@RequestMapping(value = "/usersearchresult", method = RequestMethod.POST)
 	String userSearchResult(ModelMap model,
 			@RequestParam(value = "userTypeId",required=false) String userTypeIdString,
-			@RequestParam(value = "state",required=false) String state,
-			@RequestParam(value = "city",required=false) String city,
+			@RequestParam(value = "state",required=false) Long state,
+			@RequestParam(value = "city",required=false) Long city,
 			@RequestParam(value = "pincode",required=false) String pincode,
 			@RequestParam(value = "categories",required=false) String categories,
 			@RequestParam(value = "subcategories",required=false) String subcategories,
 			@RequestParam(value = "pageNumber",required=false) int pageNumber)
 			throws IOException {
+		logger.info("inside userSearchResult method");
 		Long userTypeId = 0L;
 		if(userTypeIdString != null && userTypeIdString != ""){
 			userTypeId = Long.parseLong(userTypeIdString);
-		}
-
+		}	
 		
-		logger.info("inside userSearchResult method");
 		UsersSearchCriteria usersSearchCriteria = new UsersSearchCriteria();
-		usersSearchCriteria.setUserTypeId(userTypeId);
+		usersSearchCriteria.setUserTypeId(userTypeId);	
 		usersSearchCriteria.setState(state);
 		usersSearchCriteria.setCity(city);
 		usersSearchCriteria.setPincode(pincode);
