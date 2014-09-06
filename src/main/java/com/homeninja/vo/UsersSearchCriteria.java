@@ -4,8 +4,8 @@ import java.util.List;
 
 public class UsersSearchCriteria {
 
-	private String state;
-	private String city;
+	private Long state;
+	private Long city;
 	private String pincode;
 	private List<String> jobCategoryList;
 	private List<String> jobSubCategoryList;
@@ -14,19 +14,19 @@ public class UsersSearchCriteria {
 	private int pageNumber;
 	private int countResult;
 
-	public String getState() {
+	public Long getState() {
 		return state;
 	}
 
-	public void setState(String state) {
+	public void setState(Long state) {
 		this.state = state;
 	}
 
-	public String getCity() {
+	public Long getCity() {
 		return city;
 	}
 
-	public void setCity(String city) {
+	public void setCity(Long city) {
 		this.city = city;
 	}
 
@@ -85,6 +85,5 @@ public class UsersSearchCriteria {
 	public void setCountResult(int countResult) {
 		this.countResult = countResult;
 	}
-	
 
 }
