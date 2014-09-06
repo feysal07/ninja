@@ -64,12 +64,12 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 			Criteria criteriaForUser =	sessionFactory
 					.getCurrentSession()
 					.createCriteria("com.homeninja.entities.UsersSearch");
-			if(usersSearchCriteria != null && usersSearchCriteria.getState() != null && usersSearchCriteria.getState().trim().length() != 0){
-				criteriaForUser.add(Restrictions.like("state", usersSearchCriteria.getState()));
+			if(usersSearchCriteria != null && usersSearchCriteria.getState() != null && usersSearchCriteria.getState() != 0){
+				criteriaForUser.add(Restrictions.eq("state", usersSearchCriteria.getState()));
 			}
 			
-			if(usersSearchCriteria != null && usersSearchCriteria.getCity() != null && usersSearchCriteria.getCity().trim().length() != 0){
-				criteriaForUser.add(Restrictions.like("city", usersSearchCriteria.getCity(),MatchMode.START));
+			if(usersSearchCriteria != null && usersSearchCriteria.getCity() != null && usersSearchCriteria.getCity() != 0){
+				criteriaForUser.add(Restrictions.eq("city", usersSearchCriteria.getCity()));
 			}
 			if(usersSearchCriteria != null && usersSearchCriteria.getPincode() != null && usersSearchCriteria.getPincode().trim().length() != 0){
 				criteriaForUser.add(Restrictions.like("pincode", usersSearchCriteria.getPincode(),MatchMode.START));
