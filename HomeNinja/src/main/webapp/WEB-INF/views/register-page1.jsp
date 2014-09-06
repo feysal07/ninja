@@ -100,11 +100,11 @@
 							does not match the entered password!</label>
 					</div>
 
-					<label>First Name</label>
+					<label>First Name<span class="color-red">*</span></label>
 					<form:input type="text" id="fname"
 						class="form-control margin-bottom-20" path="firstName" />
 
-					<label>Last Name</label>
+					<label>Last Name<span class="color-red">*</span></label>
 					<form:input type="text" id="lname"
 						class="form-control margin-bottom-20" path="lastName" />
 
