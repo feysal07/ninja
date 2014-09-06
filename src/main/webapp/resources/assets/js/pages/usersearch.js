@@ -1,6 +1,17 @@
 /**
  * 
  */
+function closeErrorBox() {
+	$alertError = $("#alertError");
+	$alertError.hide();
+
+}
+
+function closeSuccessBox() {
+	$alertSuccess = $("#alertSuccess");
+	$alertSuccess.hide();
+
+}
 
 $(document).ready(
 		function() {
@@ -100,13 +111,20 @@ function getSubCategoriesforJob() {
 
 }
 
-$(document).ready(
-		searchUsers()
-);
+$(document).ready(searchUsers());
 
 function searchUsers() {
+	var validateReg1 = "true";
+
 	var myObject = new Object();
 	myObject.userTypeId = $('#userType').val();
+	if (myObject.userTypeId == "" || myObject.userTypeId == "Select") {
+		$alertError = $("#alertError");
+		jQuery("label[for='myalue']").html("Please select the user type");
+		$alertError.show();
+		validateReg1 = "false";
+	}
+
 	myObject.state = $('#states').val();
 	myObject.city = $('#citiesforstate').val();
 	var categories = new Array();
@@ -117,39 +135,32 @@ function searchUsers() {
 	myObject.subcategories = subcategories;
 	myObject.pincode = $('#pincode').val();
 	myObject.pageNumber = 1;
+	if (validateReg1 == "true") {
+		$.ajax({
+			type : "POST",
+			url : "./searchUsers",
+			data : JSON.stringify(myObject),
+			contentType : 'application/json',
 
-	$.ajax({
-		type : "POST",
-		url : "./searchUsers",
-		data : JSON.stringify(myObject),
-		contentType : 'application/json',
+			beforeSend : function() {
 
-		beforeSend : function() {
+			},
+			success : function(result) {
+				$("#page").load("./usersearchresult", myObject);
 
-		},
-		success : function(result) {
-			$("#page").load("./usersearchresult", myObject);
+			},
+			complete : function() {
 
-/*			if (response == "login-fail-nouser"
-					|| response == "login-fail-usernoexist") {
-				alert("Invalid user. Please try again");
+			},
+			error : function(errorThrown) {
+				console.log(errorThrown);
+
 			}
-			if (response == "login-fail-nopassword") {
-				alert("Password not entered. Please try again");
-			}*/
-
-		},
-		complete : function() {
-
-		},
-		error : function(errorThrown) {
-			console.log(errorThrown);
-
-		}
-	});
+		});
+	}
 }
 
-function previousPage( pageNumber) {
+function previousPage(pageNumber) {
 	var myObject = new Object();
 	myObject.userTypeId = $('#userType').val();
 	myObject.state = $('#states').val();
@@ -162,7 +173,7 @@ function previousPage( pageNumber) {
 	myObject.subcategories = subcategories;
 	myObject.pincode = $('#pincode').val();
 	myObject.pageNumber = pageNumber;
-	myObject.pageNumber = pageNumber - 1 ;
+	myObject.pageNumber = pageNumber - 1;
 
 	$.ajax({
 		type : "POST",
@@ -176,13 +187,12 @@ function previousPage( pageNumber) {
 		success : function(result) {
 			$("#page").load("./usersearchresult", myObject);
 
-/*			if (response == "login-fail-nouser"
-					|| response == "login-fail-usernoexist") {
-				alert("Invalid user. Please try again");
-			}
-			if (response == "login-fail-nopassword") {
-				alert("Password not entered. Please try again");
-			}*/
+			/*
+			 * if (response == "login-fail-nouser" || response ==
+			 * "login-fail-usernoexist") { alert("Invalid user. Please try
+			 * again"); } if (response == "login-fail-nopassword") {
+			 * alert("Password not entered. Please try again"); }
+			 */
 
 		},
 		complete : function() {
@@ -207,7 +217,7 @@ function nextPage(pageNumber) {
 	subcategories = $('#subcategories').val();
 	myObject.subcategories = subcategories;
 	myObject.pincode = $('#pincode').val();
-	myObject.pageNumber = pageNumber + 1 ;
+	myObject.pageNumber = pageNumber + 1;
 
 	$.ajax({
 		type : "POST",
@@ -221,13 +231,12 @@ function nextPage(pageNumber) {
 		success : function(result) {
 			$("#page").load("./usersearchresult", myObject);
 
-/*			if (response == "login-fail-nouser"
-					|| response == "login-fail-usernoexist") {
-				alert("Invalid user. Please try again");
-			}
-			if (response == "login-fail-nopassword") {
-				alert("Password not entered. Please try again");
-			}*/
+			/*
+			 * if (response == "login-fail-nouser" || response ==
+			 * "login-fail-usernoexist") { alert("Invalid user. Please try
+			 * again"); } if (response == "login-fail-nopassword") {
+			 * alert("Password not entered. Please try again"); }
+			 */
 
 		},
 		complete : function() {
