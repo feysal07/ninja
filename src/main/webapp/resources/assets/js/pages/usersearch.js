@@ -100,6 +100,9 @@ function getSubCategoriesforJob() {
 
 }
 
+$(document).ready(
+		searchUsers()
+);
 
 function searchUsers() {
 	var myObject = new Object();
