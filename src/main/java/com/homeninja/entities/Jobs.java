@@ -28,6 +28,7 @@ public class Jobs {
 	private int state;
 	private int city;
 	private long postBy;
+	@Transient
 	private int jobCategoryId;
 	private int requestCount;
 	private int requestLimit;
@@ -35,7 +36,7 @@ public class Jobs {
 	private String jobSubCategories;
 	
 	@OneToOne
-	@JoinColumn(name="id")
+	@JoinColumn(name="jobCategoryID")
 	private JobCategory jobCategory;
 	 
 	@OneToMany(cascade=CascadeType.ALL)
