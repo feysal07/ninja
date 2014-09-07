@@ -7,7 +7,7 @@ public class JobsSearchCriteria {
 	private Integer state;
 	private Integer city;
 	private List<Integer> jobCategoryList;
-	private List<Integer> jobSubCategoryList;
+	private List<String> jobSubCategoryList;
 	private int pageSize;
 	private int pageNumber;
 	private int countResult;
@@ -36,11 +36,11 @@ public class JobsSearchCriteria {
 		this.jobCategoryList = jobCategoryList;
 	}
 
-	public List<Integer> getJobSubCategoryList() {
+	public List<String> getJobSubCategoryList() {
 		return jobSubCategoryList;
 	}
 
-	public void setJobSubCategoryList(List<Integer> jobSubCategoryList) {
+	public void setJobSubCategoryList(List<String> jobSubCategoryList) {
 		this.jobSubCategoryList = jobSubCategoryList;
 	}
 
