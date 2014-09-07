@@ -9,7 +9,10 @@ import javax.annotation.Resource;
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
+import org.hibernate.criterion.Disjunction;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.LogicalExpression;
 import org.hibernate.criterion.MatchMode;
 import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Projections;
@@ -20,6 +23,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.ModelAttribute;
 
 import com.homeninja.dao.JobsSearchDAO;
+import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.Jobs;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.entities.UsersSearch;
@@ -61,20 +65,35 @@ public class JobsSearchDAOImpl implements JobsSearchDAO {
 			{
 				List<Integer> jobCategoryList = jobsSearchCriteria.getJobCategoryList();
 				for (Integer jobCategory : jobCategoryList) {
-					criteriaForUser.add(Restrictions.eq("jobCategoryId", jobCategory));
+					criteriaForUser.add(Restrictions.eq("jobCategory.id", jobCategory * 1L));
+					 
 				}
 			}
-			
+ 			/*Criteria criteriaSubCat =	sessionFactory
+					.getCurrentSession()
+					.createCriteria("com.homeninja.entities.JobsSubCategoryMap");
+			List<Criterion> subCatCriterionList = new ArrayList<Criterion>();*/
+			Disjunction dis = Restrictions.disjunction();
 			if(jobsSearchCriteria != null &&
 					jobsSearchCriteria.getJobSubCategoryList() != null
 					&& jobsSearchCriteria.getJobSubCategoryList().size() != 0)
 			{
-				List<Integer> jobSubCategoryList = jobsSearchCriteria.getJobSubCategoryList();
-				for (Integer jobSubCategory : jobSubCategoryList) {
-					criteriaForUser.add(Restrictions.like("jobSubCategories", jobSubCategory.toString()));
+				List<String> jobSubCategoryList = jobsSearchCriteria.getJobSubCategoryList();
+				//criteriaForUser.add(Restrictions.in("JobsSubCategoryMap", jobSubCategoryList));
+				for (String jobSubCategory : jobSubCategoryList) {
+					//criteriaForUser.add(Restrictions.like("jobSubCategories", jobSubCategory));
+					dis.add(Restrictions.like("jobSubCategories", jobSubCategory,MatchMode.ANYWHERE));
+					//Criterion criterionSubCat = Restrictions.like("JobsSubCategoryMap.id", jobSubCategory.toString());
+					
+					/*dis.add(criterionSubCat);*/
 				}
 			}
-			
+			criteriaForUser.add(dis);
+			/*LogicalExpression orExp = null;
+			for ( int i = 0; i < subCatCriterionList.size() ; i++) {
+				 orExp = Restrictions.or(orExp, subCatCriterionList.get(i));
+			}
+			criteriaForUser.add(orExp);*/
 			
 			criteriaForUser.setProjection(Projections.rowCount());
 			Long count = (Long) criteriaForUser.uniqueResult();
@@ -87,14 +106,14 @@ public class JobsSearchDAOImpl implements JobsSearchDAO {
 			criteriaForUser.setFirstResult((jobsSearchCriteria.getPageNumber() - 1 ) * 10);
 			criteriaForUser.setMaxResults(jobsSearchCriteria.getPageSize());
 			
-			List<Jobs> results = criteriaForUser.list();
+			List<Object[]> results = criteriaForUser.list();
 
 					
 			if (results.size() > 0) {
-				for (Jobs jobs : results) {
+				for (int i = 0; i < results.size(); i++) {
 					com.homeninja.vo.JobsSearch SearchVO =
 							new com.homeninja.vo.JobsSearch();
-					BeanUtils.copyProperties(jobs, SearchVO);
+					BeanUtils.copyProperties(results.get(i)[1], SearchVO);
 					jobsSearchResult.getJobsSearchList().add(SearchVO);
 				}
 				
