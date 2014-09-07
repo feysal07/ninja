@@ -148,7 +148,7 @@ public class JobSearchController {
 			@RequestParam(value = "state", required=false) Integer state,
 			@RequestParam(value = "city", required=false) Integer city,
 			@RequestParam(value = "jobCategoryId" , required=false) Integer categories,
-			@RequestParam(value = "jobSubCatIds[]", required=false) Integer[] subcategories,
+			@RequestParam(value = "jobSubCatIds[]", required=false) String[] subcategories,
 			@RequestParam(value = "pageNumber", required=false) int pageNumber)
 			throws IOException {
 		logger.info("inside jobSearchResult method");
@@ -159,7 +159,7 @@ public class JobSearchController {
 		jobsSearchCriteria.setPageNumber(pageNumber);
 		jobsSearchCriteria.setPageSize(10);
 		List<Integer> jobCategoryList = new ArrayList<Integer>();
-		List<Integer> jobSubCategoryList = new ArrayList<Integer>();
+		List<String> jobSubCategoryList = new ArrayList<String>();
 		if(categories != null){
 			jobCategoryList.add(categories);
 		}
