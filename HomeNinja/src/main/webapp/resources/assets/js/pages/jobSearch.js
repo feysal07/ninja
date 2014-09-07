@@ -1,3 +1,5 @@
+$(document).ready(jobSearch());
+
 function jobSearch(){
 	 var myObject = new Object();
      var jobSubCatArray=[];
@@ -50,7 +52,7 @@ function getSubCategoriesforJob() {
 		for (var i = 0; i < len; i++) {
 			if (data[i].jobCatId == jobCategory) {
 				str += '<input type="checkbox" name="jobSubCat"';
-				str += 'value ="' + data[i].id + '" '
+				str += 'value ="' + data[i].jobSubCat + '" '
 						+ 'id ="userJobSubCategoryList';
 				str += data[i].id;
 				str += '.jobSubCategoryIsSet';
