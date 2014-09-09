@@ -1,6 +1,6 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
-
+<title>HomeNinja | Forget Password</title>
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
 

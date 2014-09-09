@@ -77,8 +77,8 @@
 							<i class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="./doRegisterPage1">Manage Account</a></li>
-							<li><a href="#">Public Profile</a></li>
+							<li><a href="./manageProfile">Manage Account</a></li>
+							<li><a href="./myProfile">Public Profile</a></li>
 							<li><a href="./myJob">Posted Jobs</a></li>
 						</ul></li>
 						</c:if>	

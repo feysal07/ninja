@@ -8,17 +8,17 @@
 <script type="text/javascript"
 	src="resources/assets/js/pages/registerPage3.js"></script>
 
-<title>HomeNinja | Register Page 3</title>
+<title>HomeNinja | Upgrade Account</title>
 
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
 	<div class="container">
-		<h1 class="pull-left">Registration</h1>
+		<h1 class="pull-left">Upgrade Account</h1>
 		<ul class="pull-right breadcrumb">
 			<li><a href="index.html">Home</a></li>
-			<li><a href="">Pages</a></li>
-			<li class="active">Registration</li>
+			<!-- <li><a href="">Pages</a></li> -->
+			<li class="active">Upgrade Account</li>
 		</ul>
 	</div>
 	<!--/container-->

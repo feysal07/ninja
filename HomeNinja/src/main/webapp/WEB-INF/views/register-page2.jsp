@@ -7,18 +7,21 @@
 
 <script type="text/javascript"
 	src="resources/assets/js/pages/registerPage2.js"></script>
+<script type="text/javascript">
+var stateVal=${siteUserAddress.state} 
+var cityVal=${siteUserAddress.city}
+</script>
 
-
-<title>HomeNinja | Register Page 2</title>
+<title>HomeNinja | Manage Account</title>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
 	<div class="container">
-		<h1 class="pull-left">Registration</h1>
+		<h1 class="pull-left">Manage Account</h1>
 		<ul class="pull-right breadcrumb">
 			<li><a href="index.html">Home</a></li>
-			<li><a href="">Pages</a></li>
-			<li class="active">Registration</li>
+			<!-- <li><a href="">Pages</a></li> -->
+			<li class="active">Manage Account</li>
 		</ul>
 	</div>
 	<!--/container-->
@@ -33,7 +36,7 @@
 		<div class="col-md-3">
 			<!-- Google Map -->
 			<div class="headline">
-				<h2>Upload Image Form</h2>
+				<h2>Upload Image</h2>
 			</div>
 
 			<div>
@@ -139,7 +142,7 @@
 					<div class="row margin-bottom-20">
 						<div class="col-md-7 col-md-offset-0">
 							<textarea rows="8" class="form-control" id="address"><c:out
-									value="${siteUser.address.address}" /></textarea>
+									value="${siteUserAddress.address}" /></textarea>
 						</div>
 					</div>
 					<br />
@@ -158,7 +161,7 @@
 					<br /> <label>Pincode</label>
 					<div class="row margin-bottom-20">
 						<div class="col-lg-4">
-							<input type="text" id="pincode" class="form-control">
+							<input type="text" id="pincode" class="form-control" value="${siteUserAddress.pincode}">
 						</div>
 					</div>
 
@@ -192,7 +195,7 @@
 					value="<c:out value='${siteUser.userId}'/>">
 				<p>
 					<button type="button" id="next-page3" class="btn-u pull-right"
-						onclick="javascript:goToRegPage3()">Proceed to next page</button>
+						onclick="javascript:goToRegPage3()">Upgrade Account</button>
 				</p>
 			</form>
 		</div>
@@ -204,9 +207,6 @@
 
 </div>
 <!--/row-->
-
-
-</div>
 <!--/container-->
 <!--=== End Content Part ===-->
 <!-- Footer-->
