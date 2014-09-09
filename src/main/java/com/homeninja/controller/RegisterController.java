@@ -5,9 +5,12 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
+import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -28,6 +31,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.context.ServletContextAware;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
@@ -35,6 +39,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import com.homeninja.entities.Address;
 import com.homeninja.entities.AdvanceSettingUserMap;
 import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.JobSubCategory;
@@ -42,20 +47,23 @@ import com.homeninja.entities.SiteUsers;
 import com.homeninja.entities.UserJobCategoryMap;
 import com.homeninja.entities.UserJobSubCategoryMap;
 import com.homeninja.entities.UserType;
+import com.homeninja.entities.UsersSearch;
 import com.homeninja.service.AdvanceSettingService;
 import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.JobCategoryService;
 import com.homeninja.service.SiteUserService;
+import com.homeninja.service.UsersSearchService;
 import com.homeninja.utils.Utils;
 import com.homeninja.vo.City;
 import com.homeninja.vo.RegistrationPage3;
 import com.homeninja.vo.State;
 import com.homeninja.vo.UploadedFile;
+import com.homeninja.vo.UserInfo;
 import com.homeninja.vo.UserJobCategoryVO;
 import com.homeninja.vo.UserJobSubCategoryVO;
 
 @Controller
-
+@SessionAttributes("userInfo")
 public class RegisterController implements ServletContextAware {
 
 	UploadedFile ufile;
@@ -63,16 +71,19 @@ public class RegisterController implements ServletContextAware {
 	private long siteUserId;
 
 	@Resource
-	public SiteUserService siteUserService;
+	private SiteUserService siteUserService;
 
 	@Resource
-	public GeoLocationService geoLocationService;
+	private GeoLocationService geoLocationService;
 
 	@Resource
-	public AdvanceSettingService advanceSettingService;
+	private AdvanceSettingService advanceSettingService;
 
 	@Resource
-	public JobCategoryService jobCategoryService;
+	private JobCategoryService jobCategoryService;
+	
+	@Resource
+	private UsersSearchService usersSearchService;
 	
 	ServletContext servletContext = null;
 
@@ -305,23 +316,50 @@ public class RegisterController implements ServletContextAware {
 	@RequestMapping(value = "/saveSection1", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
 	String saveSection1(HttpServletResponse response,
-			@RequestBody String myObject) {
+			@RequestBody String myObject,Model model) {
 		logger.info("inside saveSection1 method");
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
+			}
+		}
 		Gson gson = new Gson();
 		SiteUsers userDetail = gson.fromJson(myObject, SiteUsers.class);
 
-		// check user exist in db or not SiteUsers user =
-		SiteUsers siteUsersFromDB = new SiteUsers();
-		siteUsersFromDB.setUserId(userDetail.getUserId());
-
-		userDetail = siteUserService.getSiteUsersById(siteUsersFromDB);
 		
-		if (userDetail == null) {
-			return "save-fail";
-		}
-		boolean saveSection1Flag = siteUserService.updateUser(userDetail);
 
-		if (saveSection1Flag) {
+		SiteUsers	userDetailFromDB = siteUserService.getSiteUsersById(userInfo.getUserId());
+		userDetailFromDB.setFirstName(userDetail.getFirstName());
+		userDetailFromDB.setLastName(userDetail.getLastName());
+		userDetailFromDB.setAboutMe(userDetail.getAboutMe());
+		userDetailFromDB.setModifiedDate(new Date());
+		userDetailFromDB.setLoginEmail(userDetail.getLoginEmail());
+		//need to put in UI
+		//userDetailFromDB.setUserName(userDetail.getUserName());
+		
+		/*if (userDetail == null) {
+			return "save-fail";
+		}*/
+		
+		//update user search table
+		UsersSearch userSearch =usersSearchService.getUserSearchRecordById(userInfo.getUserId());
+		userSearch.setUserName(userDetailFromDB.getFirstName() +" "+userDetailFromDB.getLastName());
+		userSearch.setAboutMe(userDetailFromDB.getAboutMe());
+		
+		boolean saveSection1Flag = siteUserService.updateUser(userDetailFromDB);
+		boolean saveDataInUserSearch=usersSearchService.updateUsersSearch(userSearch);
+		
+		if (saveSection1Flag && saveDataInUserSearch) {
 			return "register-success";
 		} else {
 			return "save-fail";
@@ -330,34 +368,65 @@ public class RegisterController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/saveSection2", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody
-	String saveSection2(HttpServletResponse response,
-			@RequestBody String myObject) {
+	public 
+	String saveSection2(Model model,@RequestBody String myObject) {
 		logger.info("inside saveSection2 method");
-		Gson gson = new Gson();
-		SiteUsers userDetail = gson.fromJson(myObject, SiteUsers.class);
-
-		// check user exist in db or not SiteUsers user =
-		SiteUsers siteUsersFromDB = new SiteUsers();
-		siteUsersFromDB.setUserId(userDetail.getUserId());
-
-		userDetail = siteUserService.getSiteUsersById(siteUsersFromDB);
-		if (userDetail == null) {
-			return "save-fail";
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
 		}
-		if (userDetail != null) {
-			if (userDetail.getAddress() != null) {
-				userDetail.getAddress().setUserId(userDetail.getUserId());
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
 			}
 		}
-		boolean saveSection2Flag = siteUserService.updateUser(userDetail);
-
-		if (saveSection2Flag) {
+		Gson gson = new Gson();
+		//SiteUsers userDetail = gson.fromJson(myObject, SiteUsers.class);
+		Address addressObj=gson.fromJson(myObject, Address.class);
+		
+		SiteUsers siteUsers=siteUserService.getSiteUsersById(userInfo.getUserId());
+		List<Address> addresses=siteUsers.getAddress();
+		boolean userDetailSave=false;
+		if(addresses.isEmpty() ){
+			addresses =new ArrayList<Address>();
+			//set user id in address
+			addressObj.setUserId(userInfo.getUserId());
+			addresses.add(addressObj);
+			//siteUsers.setAddress(addresses);
+			 userDetailSave = siteUserService.saveUserAddress(addressObj);
+		}else{
+			
+			siteUsers.getAddress().get(0).setAddress(addressObj.getAddress());
+			siteUsers.getAddress().get(0).setCity(addressObj.getCity());
+			siteUsers.getAddress().get(0).setState(addressObj.getState());
+			siteUsers.getAddress().get(0).setPincode(addressObj.getPincode());
+			userDetailSave=siteUserService.updateUser(siteUsers);
+		}
+		
+	    
+	
+		// check user exist in db or not SiteUsers 
+		//boolean userDetailSave = siteUserService.saveUserAddress(addressObj);
+		
+		//save data into user search table
+		UsersSearch usersSearch=usersSearchService.getUserSearchRecordById(userInfo.getUserId());
+		usersSearch.setCity(addressObj.getCity());
+		usersSearch.setState(addressObj.getState());
+		usersSearch.setPincode(addressObj.getPincode());
+		
+		boolean  userSearch= usersSearchService.updateUsersSearch(usersSearch);
+		if (userDetailSave && userSearch) {
 			return "register-success";
-		} else {
+		}else{
 			return "save-fail";
 		}
-
+	
 	}
 
 	@RequestMapping(value = "/saveSection3", method = RequestMethod.POST, consumes = "application/json")
@@ -396,22 +465,97 @@ public class RegisterController implements ServletContextAware {
 		}
 
 		
-		 if (!saveError) { return "register-success"; } else { return
-		 "save-fail"; }
-		 
+		if (!saveError) {
+			return "register-success";
+		} else {
+			return "save-fail";
+		}
 
 	}
 
-	@RequestMapping(value = "/doRegisterPage1", method = RequestMethod.GET)
+	@RequestMapping(value = "/manageProfile", method = RequestMethod.GET)
+	public 	String manageProfile(HttpServletRequest req,Model model)									
+			throws IOException {
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
+			}
+		}
+		SiteUsers siteUser=siteUserService.getSiteUsersById(userInfo.getUserId());
+		Address siteUserAddress=null;
+		if(null !=siteUser.getAddress() && !siteUser.getAddress().isEmpty()){
+		 siteUserAddress=siteUser.getAddress().get(0);
+		}else{
+		  siteUserAddress=new Address();
+		}
+		model.addAttribute("siteUser",siteUser);
+		model.addAttribute("siteUserAddress",siteUserAddress);
+		return "register-page2";
+	}
+	
+	
+	@RequestMapping(value = "/doRegisterPage1", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelAndView doRegister1(HttpServletRequest req, // @RequestBody String
 														// myObject,
 			@ModelAttribute("siteUser") SiteUsers registerUser)
 			throws IOException {
-		return doRegisterPage1(req, registerUser);
+		//return doRegisterPage1(req, registerUser);
+		
+		ModelAndView mav = new ModelAndView();
+
+		String email=registerUser.getLoginEmail();
+		String userName = registerUser.getFirstName()+" "+registerUser.getLastName();
+		
+		registerUser.setPassword(Utils.md5Encryption(registerUser.getPassword()));
+		registerUser.setUserName(email);
+		registerUser.setPhoneNumber(registerUser.getPhoneNumber());
+		registerUser.setCreatedDate(new Date());
+		//default user type visitor
+		registerUser.setUserType(1);
+
+		if (!siteUserService.isEmailExists(email)) {
+			// good user
+			long userId=siteUserService.addUser(registerUser);
+			if (userId<0) {
+				mav.addObject("error", "user-add-fail");
+				mav.setViewName("register-page1");
+			}else{
+				//save data in user search table
+				UsersSearch usersSearch=new UsersSearch();
+				usersSearch.setUserName(userName);
+				usersSearch.setUserTypeId(1);
+				usersSearch.setUserId(userId);
+				boolean flag=usersSearchService.addUsersSearch(usersSearch);
+				if(flag){
+					    UserInfo userInfo = new UserInfo();
+						userInfo.setUserEmailId(email);
+						userInfo.setUserName(email);
+						userInfo.setLoggedIn("true");
+						userInfo.setUserId(userId);
+						mav.addObject("userInfo",userInfo);
+						mav.setViewName("index");		
+					}
+				else{
+					mav.setViewName("register-page1");
+				}
+			}
+		}
+		
+		return mav;
 	}
 
-	@RequestMapping(value = "/doRegisterPage1", method = RequestMethod.POST)
+	/*@RequestMapping(value = "/doRegisterPage1", method = RequestMethod.POST)
 	public @ResponseBody
 	ModelAndView doRegisterPage1(HttpServletRequest req,
 			@ModelAttribute("siteUser") SiteUsers registerUser)
@@ -421,12 +565,15 @@ public class RegisterController implements ServletContextAware {
 
 		ModelAndView mav = new ModelAndView();
 
-		String email = registerUser.getLoginEmail();
-		registerUser
-				.setPassword(Utils.md5Encryption(registerUser.getPassword()));
-		registerUser.setUserName(email);
+		String email=registerUser.getLoginEmail();
+		String userName = registerUser.getFirstName()+" "+registerUser.getLastName();
+		registerUser.setPassword(Utils.md5Encryption(registerUser.getPassword()));
+		registerUser.setUserName(userName);
+		registerUser.setPhoneNumber(registerUser.getPhoneNumber());
+		registerUser.setCreatedDate(new Date());
 		
-		
+		//default user type visitor
+		registerUser.setUserType(1);
 
 		if (!siteUserService.isEmailExists(email)) {
 			// good user
@@ -453,7 +600,7 @@ public class RegisterController implements ServletContextAware {
 			                System.out.println("read " + readNum + " bytes,");
 			            }
 			        } catch (IOException ex) {
-			            /*Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);*/
+			            Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);
 			        }
 			        
 					ufile.bytes = bos.toByteArray();;
@@ -481,7 +628,7 @@ public class RegisterController implements ServletContextAware {
 		mav.addObject("siteUser", registerUser);
 		return mav;
 	}
-
+*/
 	@RequestMapping(value = "/uploadprofilepicture", method = RequestMethod.GET)
 	public @ResponseBody
 	String upload1(MultipartHttpServletRequest request,
@@ -547,4 +694,5 @@ public class RegisterController implements ServletContextAware {
 			e.printStackTrace();
 		}
 	}
+	
 }

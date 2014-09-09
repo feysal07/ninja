@@ -5,13 +5,12 @@ import java.util.Set;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
-import org.springframework.transaction.annotation.Transactional;
 
 import com.homeninja.dao.SiteUserDAO;
+import com.homeninja.entities.Address;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.entities.UserType;
 import com.homeninja.service.SiteUserService;
-import com.homeninja.vo.UploadedFile;
 
 
 
@@ -21,7 +20,7 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 	@Resource SiteUserDAO siteUserDAO;
 	
 	@Override
-	public boolean addUser(SiteUsers registerUser) {
+	public long addUser(SiteUsers registerUser) {
 		// TODO Auto-generated method stub
 		return siteUserDAO.addUser(registerUser);
 	}
@@ -65,6 +64,17 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 	public boolean resetPassword(String email,String newPassword) {
 		// TODO Auto-generated method stub
 		return siteUserDAO.resetPassword(email,newPassword);
+	}
+
+	@Override
+	public SiteUsers getSiteUsersById(long userId) {
+		// TODO Auto-generated method stub
+		return siteUserDAO.getSiteUsersById(userId);
+	}
+
+	@Override
+	public boolean saveUserAddress(Address address) {
+		return siteUserDAO.saveUserAddress(address);
 	}
 
 	

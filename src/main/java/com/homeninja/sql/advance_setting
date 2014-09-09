@@ -1,5 +1,0 @@
-CREATE TABLE `advance_setting` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `fieldName` varchar(50) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;

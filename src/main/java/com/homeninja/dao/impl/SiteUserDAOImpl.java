@@ -9,17 +9,14 @@ import javax.annotation.Resource;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
-import org.hibernate.Transaction;
-import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.homeninja.dao.SiteUserDAO;
+import com.homeninja.entities.Address;
 import com.homeninja.entities.SiteUsers;
-import com.homeninja.entities.UserJobCategoryMap;
 import com.homeninja.entities.UserType;
-import com.homeninja.vo.UploadedFile;
 
 @Service
 @Transactional
@@ -29,12 +26,12 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public boolean addUser(SiteUsers user) {
+	public long addUser(SiteUsers user) {
 		try {
-			this.sessionFactory.getCurrentSession().save(user);
-			return true;
+			this.sessionFactory.getCurrentSession().persist(user);
+			return user.getUserId();
 		} catch (Exception e) {
-			return false;
+			return 0;
 		}
 
 	}
@@ -157,5 +154,36 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 			return false;
 		}
 	}
+
+	@Override
+	public SiteUsers getSiteUsersById(long userId) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from SiteUsers where userId=:userId");
+			query.setParameter("userId", userId);
+			List<SiteUsers> userSiteUsersList = query.list();
+			if (userSiteUsersList.size() > 0) {
+				return userSiteUsersList.get(0);
+			}
+			return null;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public boolean saveUserAddress(Address address) {
+		try {
+			this.sessionFactory.getCurrentSession().saveOrUpdate(address);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+	
+	
 
 }

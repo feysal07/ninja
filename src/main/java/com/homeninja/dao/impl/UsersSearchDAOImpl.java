@@ -8,6 +8,7 @@ import javax.annotation.Resource;
 
 import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
+import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
 import org.hibernate.criterion.MatchMode;
@@ -121,6 +122,25 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 				}
 				
 				return usersSearchResult;
+			}
+			return null;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public UsersSearch getUserSearchRecordById(long userId) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from UsersSearch where userId=:userId");
+			query.setParameter("userId", userId);
+			List<UsersSearch> userSiteUsersList = query.list();
+			if (userSiteUsersList.size() > 0) {
+				return userSiteUsersList.get(0);
 			}
 			return null;
 
