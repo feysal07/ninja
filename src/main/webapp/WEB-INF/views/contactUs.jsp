@@ -1,7 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false" %>
-
+<title>HomeNinja | Contact Us</title>
 <c:import url="../include.jsp"></c:import> 
 <c:import url="../header.jsp"></c:import>
 

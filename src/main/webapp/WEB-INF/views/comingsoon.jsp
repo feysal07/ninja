@@ -26,7 +26,7 @@
     <link rel="stylesheet" href="resources/assets/css/themes/default.css" id="style_color">
     <link rel="stylesheet" href="resources/assets/css/themes/headers/default.css" id="style_color-header-1">    
 </head> 
-
+<title>HomeNinja | Coming Soon</title>
 <body class="coming-soon-page">
 <div class="coming-soon-border"></div>
 

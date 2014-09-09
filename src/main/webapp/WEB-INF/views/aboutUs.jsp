@@ -4,6 +4,7 @@
 
 <c:import url="../include.jsp"></c:import> 
 <c:import url="../header.jsp"></c:import>
+<title>HomeNinja | About Us</title>
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-20">
 	<div class="container">
