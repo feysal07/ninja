@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -14,14 +16,9 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private long id;
 	private String address;
-	private String location;
-	private String city;
-	private String state;
-	private String contactNo;
+	private long city;
+	private long state;
 	private String pincode;
-	private String isPrimary;
-	private String createdDate;
-	private String modifiedDate;
 	private long userId;
 
 	public long getId() {
@@ -40,37 +37,14 @@ public class Address {
 		this.address = address;
 	}
 
-	public String getLocation() {
-		return location;
-	}
 
-	public void setLocation(String location) {
-		this.location = location;
-	}
-
-	public String getCity() {
-		return city;
-	}
-
-	public void setCity(String city) {
-		this.city = city;
-	}
-
-	public String getState() {
-		return state;
-	}
-
-	public void setState(String state) {
-		this.state = state;
-	}
-
-	public String getContactNo() {
+	/*public String getContactNo() {
 		return contactNo;
 	}
 
 	public void setContactNo(String contactNo) {
 		this.contactNo = contactNo;
-	}
+	}*/
 
 	public String getPincode() {
 		return pincode;
@@ -80,7 +54,7 @@ public class Address {
 		this.pincode = pincode;
 	}
 
-	public String getIsPrimary() {
+	/*public String getIsPrimary() {
 		return isPrimary;
 	}
 
@@ -102,7 +76,7 @@ public class Address {
 
 	public void setModifiedDate(String modifiedDate) {
 		this.modifiedDate = modifiedDate;
-	}
+	}*/
 
 	public long getUserId() {
 		return userId;
@@ -110,6 +84,22 @@ public class Address {
 
 	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+
+	public long getCity() {
+		return city;
+	}
+
+	public void setCity(long city) {
+		this.city = city;
+	}
+
+	public long getState() {
+		return state;
+	}
+
+	public void setState(long state) {
+		this.state = state;
 	}
 
 }

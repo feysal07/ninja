@@ -1,16 +1,18 @@
 package com.homeninja.entities;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.Lob;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
-import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Type;
@@ -29,18 +31,26 @@ public class SiteUsers {
 	private String loginEmail;
 	private String phoneNumber;
 	private String password;
-	private String gender;
 	private String loginViaFB;
 	private String isActive;
 	private byte [] profilPic;
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name="addressId")
-	private Address address;
 	private String aboutMe;
-	private String nextProject;
-	private String myFavoriteStyle;
+	/*private String nextProject;
+	private String myFavoriteStyle;*/
 	private Date createdDate;
 	private Date modifiedDate;
+	private long companyId;
+	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="userId")
+	private List<Address> address;
+	
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="userId")
+	private List<UserJobCategoryMap> userJobCategoryMap;
+	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="userId")
+	private List<UserJobSubCategoryMap> userJobSubCategoryMap;
+	
 	public long getUserId() {
 		return userId;
 	}
@@ -90,12 +100,6 @@ public class SiteUsers {
 	public void setPassword(String password) {
 		this.password = password;
 	}
-	public String getGender() {
-		return gender;
-	}
-	public void setGender(String gender) {
-		this.gender = gender;
-	}
 	public String getLoginViaFB() {
 		return loginViaFB;
 	}
@@ -116,19 +120,14 @@ public class SiteUsers {
 	public void setProfilPic(byte[] profilPic) {
 		this.profilPic = profilPic;
 	}
-	public Address getAddress() {
-		return address;
-	}
-	public void setAddress(Address address) {
-		this.address = address;
-	}
+	
 	public String getAboutMe() {
 		return aboutMe;
 	}
 	public void setAboutMe(String aboutMe) {
 		this.aboutMe = aboutMe;
 	}
-	public String getNextProject() {
+	/*public String getNextProject() {
 		return nextProject;
 	}
 	public void setNextProject(String nextProject) {
@@ -139,7 +138,7 @@ public class SiteUsers {
 	}
 	public void setMyFavoriteStyle(String myFavoriteStyle) {
 		this.myFavoriteStyle = myFavoriteStyle;
-	}
+	}*/
 	public Date getCreatedDate() {
 		return createdDate;
 	}
@@ -151,6 +150,31 @@ public class SiteUsers {
 	}
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+	public List<UserJobCategoryMap> getUserJobCategoryMap() {
+		return userJobCategoryMap;
+	}
+	public void setUserJobCategoryMap(List<UserJobCategoryMap> userJobCategoryMap) {
+		this.userJobCategoryMap = userJobCategoryMap;
+	}
+	public List<UserJobSubCategoryMap> getUserJobSubCategoryMap() {
+		return userJobSubCategoryMap;
+	}
+	public void setUserJobSubCategoryMap(
+			List<UserJobSubCategoryMap> userJobSubCategoryMap) {
+		this.userJobSubCategoryMap = userJobSubCategoryMap;
+	}
+	public List<Address> getAddress() {
+		return address;
+	}
+	public void setAddress(List<Address> address) {
+		this.address = address;
+	}
+	public long getCompanyId() {
+		return companyId;
+	}
+	public void setCompanyId(long companyId) {
+		this.companyId = companyId;
 	}
 	
 	

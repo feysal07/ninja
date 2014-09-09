@@ -1,16 +1,11 @@
 package com.homeninja.service.impl;
 
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
-
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
-import com.homeninja.entities.SiteUsers;
-import com.homeninja.entities.UsersSearch;
 import com.homeninja.dao.UsersSearchDAO;
+import com.homeninja.entities.UsersSearch;
 import com.homeninja.service.UsersSearchService;
 import com.homeninja.vo.UsersSearchCriteria;
 import com.homeninja.vo.UsersSearchResult;
@@ -28,6 +23,24 @@ public class UsersSearchServiceImpl implements UsersSearchService {
 				.searchUsersByCriteria(usersSearchCriteria);
 
 		return usersSearchResultList;
+	}
+
+	@Override
+	public UsersSearch getUserSearchRecordById(long userId) {
+		// TODO Auto-generated method stub
+		return usersSearchDAO.getUserSearchRecordById(userId);
+	}
+
+	@Override
+	public boolean updateUsersSearch(UsersSearch usersSearch) {
+		// TODO Auto-generated method stub
+		return usersSearchDAO.updateUsersSearch(usersSearch);
+	}
+
+	@Override
+	public boolean addUsersSearch(UsersSearch usersSearch) {
+		// TODO Auto-generated method stub
+		return usersSearchDAO.addUsersSearch(usersSearch);
 	}
 	
 

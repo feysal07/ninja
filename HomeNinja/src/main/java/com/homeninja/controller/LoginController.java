@@ -84,7 +84,7 @@ public class LoginController {
 		if (user != null) {
 			UserInfo userInfo = new UserInfo();
 			userInfo.setUserEmailId(user.getLoginEmail());
-			userInfo.setUserName(user.getFirstName() + " " + user.getLastName());
+			userInfo.setUserName(user.getUserName());
 			userInfo.setUserEmailId(user.getLoginEmail());
 			userInfo.setLoggedIn("true");
 			userInfo.setUserId(user.getUserId());

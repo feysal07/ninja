@@ -1,9 +1,13 @@
 package com.homeninja.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -15,7 +19,11 @@ public class UserJobCategoryMap {
 	private long id;
 	private long userId;
 	private long jobCategoryID;
-
+	
+	/*@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@JoinColumn(name="jobCategoryID" ,referencedColumnName="id" , insertable = false, updatable = false)
+	private JobCategory jobCategory;
+	*/
 	public long getId() {
 		return id;
 	}
@@ -40,9 +48,13 @@ public class UserJobCategoryMap {
 		this.jobCategoryID = jobCategoryID;
 	}
 
+/*	public JobCategory getJobCategory() {
+		return jobCategory;
+	}
 
+	public void setJobCategory(JobCategory jobCategory) {
+		this.jobCategory = jobCategory;
+	}*/
 
-
-	
 
 }

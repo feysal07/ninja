@@ -9,8 +9,10 @@ import com.homeninja.vo.UsersSearchResult;
 
 public interface UsersSearchDAO {
 	
-	 public boolean addUsersSearch(UsersSearch usersSearch );
+	    public boolean addUsersSearch(UsersSearch usersSearch );
 	    public boolean updateUsersSearch(UsersSearch usersSearch );
 	    public UsersSearchResult searchUsersByCriteria(UsersSearchCriteria usersSearchCriteria);
+		public UsersSearch getUserSearchRecordById(long userId);
+		//public boolean saveUserSearch(UsersSearch usersSearch);
 
 }

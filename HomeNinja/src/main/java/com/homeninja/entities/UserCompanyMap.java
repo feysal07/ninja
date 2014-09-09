@@ -7,13 +7,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 @Entity
-@Table(name ="user_company_map")
+@Table(name ="user_company")
 public class UserCompanyMap {
 	
 	@Id
 	@GeneratedValue(strategy=GenerationType.AUTO)
 	private long id;
-	private long userId;
 	private String companyName;
 	private String aboutCompany;
 	public long getId() {
@@ -21,12 +20,6 @@ public class UserCompanyMap {
 	}
 	public void setId(long id) {
 		this.id = id;
-	}
-	public long getUserId() {
-		return userId;
-	}
-	public void setUserId(long userId) {
-		this.userId = userId;
 	}
 	public String getCompanyName() {
 		return companyName;
