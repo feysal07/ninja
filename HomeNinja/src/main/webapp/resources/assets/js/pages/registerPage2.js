@@ -60,8 +60,14 @@ $(document).ready(
 				html += '</option>';
 				//now that we have our options, give them to our select
 				$('#states').html(html);
+				
+				if(stateVal !=null){
+					$('#states').val(stateVal);
+					getCitiesforState();
+				}
+				
 			});
-		});
+	});
 
 function getCitiesforState() {
 	$.getJSON('./citiesforStates', {
@@ -77,7 +83,13 @@ function getCitiesforState() {
 		html += '</option>';
 		//now that we have our options, give them to our select
 		$('#citiesforstate').html(html);
+	     if(cityVal!=null){
+	    	 $('#citiesforstate').val(cityVal);
+	     }
+		
 	});
+	
+	
 }
 
 function saveSection1() {
@@ -174,19 +186,19 @@ function saveSection2() {
 	
 	var myObject = new Object();
 	myObject.userId = $('#siteUserid').val();
-	myObject.address = new Object();
-	myObject.address.state = $("#states").val();
-	myObject.address.city = $('#citiesforstate').val();
-	myObject.address.pincode = $('#pincode').val();
+	myObject.address = $('#address').val();
+	myObject.state = $("#states").val();
+	myObject.city = $('#citiesforstate').val();
+	myObject.pincode = $('#pincode').val();
 
-	if(myObject.address.state == ""){
+	if(myObject.address == ""){
 		$alertError = $("#alertError2");
 		jQuery("label[for='myalue']").html("Please select your state");
 		$alertError.show();
 		validation = "inValid";
 	}
 	
-	if(myObject.address.city == ""){
+	if(myObject.city == ""){
 		$alertError = $("#alertError2");
 		jQuery("label[for='myalue']").html("Please select your city");
 		$alertError.show();
