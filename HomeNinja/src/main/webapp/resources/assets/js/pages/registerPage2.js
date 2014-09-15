@@ -10,12 +10,12 @@ function closeSuccessBox1() {
 
 }
 
-function goToRegPage3() {	
-/*		var userId = $('#siteUserid').val();
-		var url = './RegisterPage3' +"?userId=" +userId;
-		$(location).attr('href', url);*/
-		var userId = $('#siteUserid').val();
-		$("#moveToRegPage3").submit();
+function goToRegPage3() {
+	/*		var userId = $('#siteUserid').val();
+	 var url = './RegisterPage3' +"?userId=" +userId;
+	 $(location).attr('href', url);*/
+	var userId = $('#siteUserid').val();
+	$("#moveToRegPage3").submit();
 }
 
 $(document).ready(function() {
@@ -32,7 +32,7 @@ $(document).ready(function() {
 				str += '<label> <input type="checkbox"';
 				str += ' id ="';
 				str += result.advanceSetting.id;
-				str += '"';
+				str += '" name="advSetting" ';
 				if (result.advanceSettingValue == 1) {
 					str += 'checked';
 				}
@@ -60,14 +60,14 @@ $(document).ready(
 				html += '</option>';
 				//now that we have our options, give them to our select
 				$('#states').html(html);
-				
-				if(stateVal !=null){
+
+				if (stateVal != null) {
 					$('#states').val(stateVal);
 					getCitiesforState();
 				}
-				
+
 			});
-	});
+		});
 
 function getCitiesforState() {
 	$.getJSON('./citiesforStates', {
@@ -83,13 +83,12 @@ function getCitiesforState() {
 		html += '</option>';
 		//now that we have our options, give them to our select
 		$('#citiesforstate').html(html);
-	     if(cityVal!=null){
-	    	 $('#citiesforstate').val(cityVal);
-	     }
-		
+		if (cityVal != null) {
+			$('#citiesforstate').val(cityVal);
+		}
+
 	});
-	
-	
+
 }
 
 function saveSection1() {
@@ -103,49 +102,44 @@ function saveSection1() {
 	myObject.loginEmail = $('#loginEmail').val();
 	myObject.phoneNumber = $('#phoneNumber').val();
 	myObject.aboutMe = $('#aboutMe').val();
-	
-	if(myObject.phoneNumber == ""){
+
+	if (myObject.phoneNumber == "") {
 		$alertError = $("#alertError1");
 		jQuery("label[for='myalue']").html("Please enter your phone number");
 		$alertError.show();
 		validation = "inValid";
 	}
-	
-	
-	if(myObject.loginEmail == ""){
+
+	if (myObject.loginEmail == "") {
 		$alertError = $("#alertError1");
 		jQuery("label[for='myalue']").html("Please enter your email id");
 		$alertError.show();
 		validation = "inValid";
 	}
-	
-	
-	if(myObject.firstName == ""){
+
+	if (myObject.firstName == "") {
 		$alertError = $("#alertError1");
 		jQuery("label[for='myalue']").html("Please enter your first name");
 		$alertError.show();
 		validation = "inValid";
 	}
-	
-	if(myObject.lastName == ""){
+
+	if (myObject.lastName == "") {
 		$alertError = $("#alertError1");
 		jQuery("label[for='myalue']").html("Please enter your last name");
 		$alertError.show();
 		validation = "inValid";
 	}
-	
-	if(myObject.firstName == "" && myObject.lastName == ""){
+
+	if (myObject.firstName == "" && myObject.lastName == "") {
 		$alertError = $("#alertError1");
-		jQuery("label[for='myalue']").html("Please enter your first and last name");
+		jQuery("label[for='myalue']").html(
+				"Please enter your first and last name");
 		$alertError.show();
 		validation = "inValid";
 	}
-	
-	
-	
-	
-	
-	if(validation == "valid"){
+
+	if (validation == "valid") {
 		$.ajax({
 			type : "POST",
 			url : "./saveSection1",
@@ -158,15 +152,17 @@ function saveSection1() {
 			success : function(response) {
 				if (response == "save-fail") {
 					$alertError = $("#alertError1");
-					jQuery("label[for='myalue']").html("Please enter first name");
+					jQuery("label[for='myalue']").html(
+							"Please enter first name");
 					$alertError.show();
 				}
-				if(response == "register-success"){
+				if (response == "register-success") {
 					$alertSuccess = $("#alertSuccess1");
-					jQuery("label[for='myalue']").html("Information updated successfully");
+					jQuery("label[for='myalue']").html(
+							"Information updated successfully");
 					$alertSuccess.show();
 				}
-				
+
 			},
 			complete : function() {
 
@@ -178,12 +174,11 @@ function saveSection1() {
 		});
 	}
 
-	
 }
 
 function saveSection2() {
 	var validation = "valid";
-	
+
 	var myObject = new Object();
 	myObject.userId = $('#siteUserid').val();
 	myObject.address = $('#address').val();
@@ -191,21 +186,21 @@ function saveSection2() {
 	myObject.city = $('#citiesforstate').val();
 	myObject.pincode = $('#pincode').val();
 
-	if(myObject.address == ""){
+	if (myObject.address == "") {
 		$alertError = $("#alertError2");
 		jQuery("label[for='myalue']").html("Please select your state");
 		$alertError.show();
 		validation = "inValid";
 	}
-	
-	if(myObject.city == ""){
+
+	if (myObject.city == "") {
 		$alertError = $("#alertError2");
 		jQuery("label[for='myalue']").html("Please select your city");
 		$alertError.show();
 		validation = "inValid";
 	}
-	
-	if(validation == "valid"){
+
+	if (validation == "valid") {
 		$.ajax({
 			type : "POST",
 			url : "./saveSection2",
@@ -221,9 +216,10 @@ function saveSection2() {
 					jQuery("label[for='myalue']").html("Save failed");
 					$alertError.show();
 				}
-				if(response == "register-success"){
+				if (response == "register-success") {
 					$alertSuccess = $("#alertSuccess2");
-					jQuery("label[for='myalue']").html("Information updated successfully");
+					jQuery("label[for='myalue']").html(
+							"Information updated successfully");
 					$alertSuccess.show();
 				}
 			},
@@ -241,41 +237,43 @@ function saveSection2() {
 
 function saveSection3() {
 	var myObject = new Array();
-	var myObject1 = new Object();
-	if ($('#1').attr('checked')) {
-		alert($('#1').attr('checked'));
-		myObject1.advanceSettingValue = 1;
-	} else {
-		myObject1.advanceSettingValue = 0;
-	}
-	myObject1.userId = $('#siteUserid').val();
-	myObject1.advanceSetting = new Object();
-	myObject1.advanceSetting.id = 1;
-	myObject[0] = myObject1;
 
-	var myObject2 = new Object();
-	if ($('#2').attr('checked')) {
-		alert($('#2').attr('checked'));
-		myObject2.advanceSettingValue = 1;
-	} else {
-		myObject2.advanceSettingValue = 0;
-	}
-	myObject2.userId = $('#siteUserid').val();
-	myObject2.advanceSetting = new Object();
-	myObject2.advanceSetting.id = 1;
-	myObject[1] = myObject2;
+	$('input:checkbox[name=advSetting]').each(function() {
+		var myObjectTemp = new Object();
+		if (this.checked) {
+			myObjectTemp.advanceSettingValue = 1;
+		} else {
+			myObjectTemp.advanceSettingValue = 0;
+		}
+		myObjectTemp.userId = $('#siteUserid').val();
+		myObjectTemp.advanceSetting = new Object();
+		myObjectTemp.advanceSetting.id = this.id;
+		myObject[this.id - 1] = myObjectTemp;
+	});
 
-	var myObject3 = new Object();
-	if ($('#3').attr('checked')) {
-		alert($('#3').attr('id'));
-		myObject3.advanceSettingValue = 1;
-	} else {
-		myObject3.advanceSettingValue = 0;
-	}
-	myObject3.userId = $('#siteUserid').val();
-	myObject3.advanceSetting = new Object();
-	myObject3.advanceSetting.id = 1;
-	myObject[2] = myObject3;
+	/*	var myObject2 = new Object();
+	 if ($('#2').attr('checked')) {
+	 alert($('#2').attr('checked'));
+	 myObject2.advanceSettingValue = 1;
+	 } else {
+	 myObject2.advanceSettingValue = 0;
+	 }
+	 myObject2.userId = $('#siteUserid').val();
+	 myObject2.advanceSetting = new Object();
+	 myObject2.advanceSetting.id = 1;
+	 myObject[1] = myObject2;
+
+	 var myObject3 = new Object();
+	 if ($('#3').attr('checked')) {
+	 alert($('#3').attr('id'));
+	 myObject3.advanceSettingValue = 1;
+	 } else {
+	 myObject3.advanceSettingValue = 0;
+	 }
+	 myObject3.userId = $('#siteUserid').val();
+	 myObject3.advanceSetting = new Object();
+	 myObject3.advanceSetting.id = 1;
+	 myObject[2] = myObject3;*/
 
 	$.ajax({
 		type : "POST",
