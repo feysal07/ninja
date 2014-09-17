@@ -197,6 +197,7 @@ function getJobSubCategories(){
 		//html += '</label>';
 		//now that we have our options, give them to our select
 		$('#subcategoriescheckboxes').html(html);
+		$('#subCatLabel').text("Choose your required categories");
 	});
 	
 }

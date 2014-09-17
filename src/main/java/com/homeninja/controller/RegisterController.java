@@ -189,7 +189,7 @@ public class RegisterController implements ServletContextAware {
 		siteUserService.updateUser(siteUsers);
 
 		ModelAndView mav = new ModelAndView();
-		mav.setViewName("login");
+		mav.setViewName("register-page3");
 
 		return mav;
 	}
@@ -304,7 +304,7 @@ public class RegisterController implements ServletContextAware {
 		SiteUsers registerUser = new SiteUsers();
 		registerUser.setUserId(userInfo.getUserId());
 		model.addAttribute("siteUser", registerUser);
-		//model.addAttribute("registrationPage3", new RegistrationPage3());
+		model.addAttribute("registrationPage3", new RegistrationPage3());
 
 		return "register-page3";
 	}

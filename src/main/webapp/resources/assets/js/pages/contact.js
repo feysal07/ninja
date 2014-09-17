@@ -127,7 +127,7 @@ $(document).ready(
 			$.getJSON('./getContactPurpose', {
 				ajax : 'true'
 			}, function(data) {
-				var html = '<option value="0">--Select--</option>';
+				var html = '<option value="0">Select</option>';
 				var len = data.length;
 				for (var i = 0; i < len; i++) {
 					html += '<option value="' + data[i].id + '">'

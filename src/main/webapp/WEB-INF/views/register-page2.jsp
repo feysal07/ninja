@@ -19,7 +19,7 @@ var cityVal=${siteUserAddress.city}
 	<div class="container">
 		<h1 class="pull-left">Manage Account</h1>
 		<ul class="pull-right breadcrumb">
-			<li><a href="index.html">Home</a></li>
+			<li><a href=".">Home</a></li>
 			<!-- <li><a href="">Pages</a></li> -->
 			<li class="active">Manage Account</li>
 		</ul>
@@ -190,14 +190,14 @@ var cityVal=${siteUserAddress.city}
 
 			</div>
 			<div></div>
-			<form id="moveToRegPage3" action="./RegisterPage3" method="POST">
+			<%-- <form id="moveToRegPage3" action="./RegisterPage3" method="POST">
 				<input type="hidden" id="siteUserid" name="siteUserid"
 					value="<c:out value='${siteUser.userId}'/>">
 				<p>
 					<button type="button" id="next-page3" class="btn-u pull-right"
 						onclick="javascript:goToRegPage3()">Upgrade Account</button>
 				</p>
-			</form>
+			</form> --%>
 		</div>
 
 

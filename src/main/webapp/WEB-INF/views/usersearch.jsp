@@ -10,7 +10,7 @@
 
 <%-- <p>Don't forget: ${userInfo}</p> --%>
 
-<title>HomeNinja | Find Contractors/Suppliers</title>
+<title>HomeNinja | Contractors & Suppliers</title>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -18,8 +18,8 @@
 		<h1 class="pull-left">Find Contractors/Suppliers</h1>
 		<ul class="pull-right breadcrumb">
 			<li><a href="index.html">Home</a></li>
-			<li><a href="">Features</a></li>
-			<li class="active">Find Contractors/Suppliers</li>
+			<!-- <li><a href="">Features</a></li> -->
+			<li class="active">Contractors & Suppliers</li>
 		</ul>
 	</div>
 </div>
@@ -64,7 +64,7 @@
 					<div class="col-lg-2">
 						<label>City</label> <select class="form-control"
 							id="citiesforstate">
-
+							<option value="">Select</option>
 						</select>
 					</div>
 					<div class="col-lg-2">
@@ -75,6 +75,7 @@
 					<div class="col-lg-2">
 						<label>Job Sub Category</label> <select class="form-control"
 							id="subcategories">
+							<option value="">Select</option>
 						</select>
 					</div>
 					<div class="col-lg-2">

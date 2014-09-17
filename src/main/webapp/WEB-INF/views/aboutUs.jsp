@@ -10,8 +10,8 @@
 	<div class="container">
         <h1 class="pull-left">About Us</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">Pages</a></li>
+            <li><a href=".">Home</a></li>
+            <!-- <li><a href="">Pages</a></li> -->
             <li class="active">About Us</li>
         </ul>
     </div><!--/container-->
@@ -25,7 +25,7 @@
     </div>
 
     <div class="tag-box tag-box-v2">
-        <h2>About Our Company</h2>
+        <h2>About Us</h2>
         <p>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat.</p>
     </div>
 
@@ -33,7 +33,7 @@
 
     <div class="row">
         <!--Accordion--> 
-        <div class="col-md-7 md-margin-bottom-40">
+        <!-- <div class="col-md-7 md-margin-bottom-40">
             <div id="accordion-1" class="panel-group acc-v1">
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -99,11 +99,11 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> -->
         <!--End Accordion--> 
 
         <!--Testimonials--> 
-        <div class="col-md-5">
+        <!-- <div class="col-md-5">
             <div class="carousel slide testimonials testimonials-v1" id="testimonials-1">
                 <div class="carousel-inner">
                     <div class="item active">
@@ -147,14 +147,14 @@
                     </a>
                 </div>
             </div>            
-        </div>
+        </div> -->
         <!--End Testimonials--> 
     </div>
 
     <div class="margin-bottom-50"></div>
 
     <!--Our Team-->
-    <div class="headline"><h2>Meet Our Team</h2></div>    
+   <!--  <div class="headline"><h2>Meet Our Team</h2></div>    
     <div class="row team">
         <div class="col-sm-3">
             <div class="thumbnail-style">
@@ -204,12 +204,12 @@
                 </ul>
             </div>
         </div>
-    </div><!--/team-->
+    </div> --><!--/team-->
     <!--End Our Team-->
 
 
     <!-- Our Clients -->
-    <div id="clients-flexslider" class="flexslider home clients">
+   <!--  <div id="clients-flexslider" class="flexslider home clients">
         <div class="headline"><h2>Our Clients</h2></div>    
         <ul class="slides">
             <li>
@@ -315,7 +315,7 @@
                 </a>
             </li>
         </ul>
-    </div><!--/flexslider-->
+    </div> --><!--/flexslider-->
     <!-- End Our Clients -->
 </div><!--/container-->		
 <!--=== End Content Part ===-->

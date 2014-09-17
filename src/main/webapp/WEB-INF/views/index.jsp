@@ -242,7 +242,7 @@
 	<!-- End Info Blokcs -->
 
 	<!-- Our Clients -->
-	<div id="clients-flexslider" class="flexslider home clients">
+	<!-- <div id="clients-flexslider" class="flexslider home clients">
         <div class="headline"><h2>Our Clients</h2></div>	
 		<ul class="slides">
 			<li>
@@ -348,7 +348,7 @@
                 </a>
             </li>
 		</ul>
-	</div><!--/flexslider-->
+	</div> --><!--/flexslider-->
 	<!-- End Our Clients -->
 </div><!--/container-->		
 <!-- End Content Part -->
@@ -359,7 +359,7 @@
 <!--=== End Footer ===-->
 
 <!--=== Copyright ===-->
-<div class="copyright">
+<!-- <div class="copyright">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">						
@@ -373,9 +373,9 @@
                     <img id="logo-footer" src="resources/assets/img/logo2-default.png" class="pull-right" alt="" />
                 </a>
 			</div>
-		</div><!--/row-->
-	</div><!--/container-->	
-</div><!--/copyright-->	
+		</div>/row
+	</div>/container	
+</div> --><!--/copyright-->	
 <!--=== End Copyright ===-->
 
 

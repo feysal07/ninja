@@ -13,8 +13,8 @@
 	<div class="container">
 		<h1 class="pull-left">Post Job</h1>
 		<ul class="pull-right breadcrumb">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="">Pages</a></li>
+			<li><a href=".">Home</a></li>
+			<!-- <li><a href="">Pages</a></li> -->
 			<li class="active">Post Job</li>
 		</ul>
 	</div>
@@ -54,7 +54,7 @@
 			<br />
 			<div>
 
-				<label>Choose your required categories</label>
+				<label id="subCatLabel"></label>
 				<div id="subcategoriescheckboxes">
 				</div>
 				
@@ -71,6 +71,7 @@
 			<div class="col-lg-4">
 							<label>City<span class="color-red">*</span></label> <select
 								 id="citiesforstate" class="form-control">
+								 <option value="">Select</option>
 							</select>
 						</div>
 			</div>

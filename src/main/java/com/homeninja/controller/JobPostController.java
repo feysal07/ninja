@@ -55,22 +55,6 @@ public class JobPostController {
 	@RequestMapping(value = "/jobs", method = RequestMethod.GET)
 	public String jobPost(Model model) throws IOException {
 		logger.debug("inside Register Method");
-		
-		/*Map modelMap = model.asMap();
-		
-		if(!modelMap.containsKey("userInfo")){
-			return "login";
-		}
-		
-		if(modelMap.containsKey("userInfo")){
-			UserInfo userInfo = (UserInfo)modelMap.get("userInfo");
-			if(userInfo.getLoggedIn() == null){
-				return "login";
-			}
-			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
-				return "login";
-			}
-		}*/
 		return "jobPost";
 	}
 
@@ -79,10 +63,28 @@ public class JobPostController {
 	String doJobPost(HttpServletRequest req, @RequestBody String myObject,Model model)
 			throws IOException {
 		logger.debug("inside doRegister Method");
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
+			}
+		}
+
+		
+		
 		Gson gson = new Gson();
 		Date currentDate = new Date();
 		Jobs jobPost = gson.fromJson(myObject, Jobs.class);
-		jobPost.setPostBy(1);// TODO: take id from session
+		jobPost.setPostBy(userInfo.getUserId());
 		jobPost.setPostDate(currentDate);
 		jobPost.setMaxRequestReached(false); 
 		List<JobsSubCategoryMap> objList = new ArrayList<JobsSubCategoryMap>();
