@@ -51,7 +51,6 @@ public class LoginController {
 		if(modelMap.containsKey("userInfo")){
 		 UserInfo userInfo = (UserInfo)modelMap.get("userInfo");
 		 userInfo.setLoggedIn("false");
-			
 		}
 	
 		mav.setViewName("login");

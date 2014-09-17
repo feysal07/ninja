@@ -26,6 +26,13 @@
 					<li class="devider"></li>
 					<li><a href="./help">Help</a></li>
 				</c:if>
+				<c:if test="${userInfo['class'] == 'class com.homeninja.vo.UserInfo' && userInfo.loggedIn != null && userInfo.loggedIn == 'false'}">
+				<li><a href="./Register">Register</a></li>
+				<li class="devider"></li>
+				<li><a href="./login">Login</a></li>
+				<li class="devider"></li>
+				<li><a href="./help">Help</a></li>
+			</c:if>
 			</c:if>
 			<c:if test="${userInfo == null}">
 				<li><a href="./Register">Register</a></li>
@@ -51,8 +58,8 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html"> <img id="logo-header"
-					src="resources/assets/img/logo1-default.png" alt="Logo">
+				<a class="navbar-brand" href="index.html"> <img id="logo-header" src="resources/assets/img/logo.png" 
+				height="45px" width="200px" alt="Logo" style="margin-top: -13px;">
 				</a>
 			</div>
 
@@ -78,6 +85,7 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="./manageProfile">Manage Account</a></li>
+							<li><a href="./upgradeAccount">Upgrade Account</a></li>
 							<li><a href="./myProfile">Public Profile</a></li>
 							<li><a href="./myJob">Posted Jobs</a></li>
 						</ul></li>

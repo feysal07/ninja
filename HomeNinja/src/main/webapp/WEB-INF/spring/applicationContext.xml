@@ -51,6 +51,7 @@
 				<value>com.homeninja.entities.JobsSubCategoryMap</value>
 				<value>com.homeninja.entities.Jobs</value>
 				<value>com.homeninja.entities.MessageLimits</value>
+				<value>com.homeninja.entities.UserCompanyMap</value>
 
 
 			</list>
@@ -63,7 +64,7 @@
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<property name="url" value="jdbc:mysql://localhost:3307/jobportal" />
 		<property name="username" value="root" />
-		<property name="password" value="admin" />
+		<!-- <property name="password" value="homeninja123" /> -->
 	</bean>
 
 	<bean id="transactionManager"

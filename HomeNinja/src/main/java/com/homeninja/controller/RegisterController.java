@@ -1,8 +1,5 @@
 package com.homeninja.controller;
 
-import java.io.ByteArrayOutputStream;
-import java.io.File;
-import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -284,6 +281,34 @@ public class RegisterController implements ServletContextAware {
 		return mav;
 	}
 
+	
+	@RequestMapping(value = "/upgradeAccount", method = RequestMethod.GET)
+	String upgradeAccount(Model model)
+			throws IOException {
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
+		}
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
+			}
+		}
+
+		//ModelAndView mav = new ModelAndView("register-page3");
+		SiteUsers registerUser = new SiteUsers();
+		registerUser.setUserId(userInfo.getUserId());
+		model.addAttribute("siteUser", registerUser);
+		//model.addAttribute("registrationPage3", new RegistrationPage3());
+
+		return "register-page3";
+	}
+	
 	@RequestMapping(value = "/RegisterPage3", method = RequestMethod.POST)
 	ModelAndView RegisterPage3(
 			@RequestParam(value = "siteUserid", required = false) long userId, @RequestBody String myObject)
