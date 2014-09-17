@@ -15,6 +15,8 @@ import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -39,7 +41,12 @@ public class SiteUsers {
 	private String myFavoriteStyle;*/
 	private Date createdDate;
 	private Date modifiedDate;
-	private long companyId;
+	
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name="userId")
+    private UserCompanyMap company;
+	
+	
 	@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
 	@JoinColumn(name="userId")
 	private List<Address> address;
@@ -170,11 +177,11 @@ public class SiteUsers {
 	public void setAddress(List<Address> address) {
 		this.address = address;
 	}
-	public long getCompanyId() {
-		return companyId;
+	public UserCompanyMap getCompany() {
+		return company;
 	}
-	public void setCompanyId(long companyId) {
-		this.companyId = companyId;
+	public void setCompany(UserCompanyMap company) {
+		this.company = company;
 	}
 	
 	

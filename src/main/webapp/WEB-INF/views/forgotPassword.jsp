@@ -14,7 +14,7 @@
 	<div class="container">
 		<h1 class="pull-left">Login</h1>
 		<ul class="pull-right breadcrumb">
-			<li><a href=".">Home</a></li>
+			<li><a href=".">Forget Password</a></li>
 			<!-- <li><a href="">Pages</a></li> -->
 			<li class="active">Forget Password</li>
 		</ul>

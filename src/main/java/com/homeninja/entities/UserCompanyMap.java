@@ -15,6 +15,7 @@ public class UserCompanyMap {
 	private long id;
 	private String companyName;
 	private String aboutCompany;
+	private long userId;
 	public long getId() {
 		return id;
 	}
@@ -32,6 +33,12 @@ public class UserCompanyMap {
 	}
 	public void setAboutCompany(String aboutCompany) {
 		this.aboutCompany = aboutCompany;
+	}
+	public long getUserId() {
+		return userId;
+	}
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 	
 
