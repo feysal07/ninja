@@ -16,8 +16,8 @@
 	<div class="container">
 		<h1 class="pull-left">Login</h1>
 		<ul class="pull-right breadcrumb">
-			<li><a href="index.html">Home</a></li>
-			<li><a href="">Pages</a></li>
+			<li><a href=".">Home</a></li>
+			<!-- <li><a href="">Pages</a></li> -->
 			<li class="active">Login</li>
 		</ul>
 	</div>
@@ -93,7 +93,7 @@
 	</div>
 	<!--/row-->
 
-	<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
+	<!-- <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3">
 		<h2 align="left">OR</h2>
 		<div class="row">
 
@@ -101,7 +101,7 @@
 				onclick="javascript: doLoginUsingFacebook()">Login using
 				Facebook</button>
 		</div>
-	</div>
+	</div> -->
 </div>
 <!--/container-->
 <!--=== End Content Part ===-->

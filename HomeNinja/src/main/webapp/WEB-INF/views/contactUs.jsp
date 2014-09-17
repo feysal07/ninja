@@ -9,10 +9,10 @@
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
-        <h1 class="pull-left">Our Contacts</h1>
+        <h1 class="pull-left">Contacts</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="index.html">Home</a></li>
-            <li><a href="">Pages</a></li>
+            <li><a href=".">Home</a></li>
+            <!-- <li><a href="">Pages</a></li> -->
             <li class="active">Contacts</li>
         </ul>
     </div>
@@ -24,8 +24,8 @@
     <div class="row margin-bottom-30">
         <div class="col-md-9 mb-margin-bottom-30">
             <!-- Google Map -->
-            <div id="map" class="map map-box map-box-space margin-bottom-40">
-            </div><!---/map-->
+           <!--  <div id="map" class="map map-box map-box-space margin-bottom-40">
+            </div> --><!---/map-->
             <!-- End Google Map -->
 
             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas feugiat. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit landitiis.</p><br />
@@ -110,7 +110,7 @@
     </div><!--/row-->        
 
     <!-- Our Clients -->
-    <div id="clients-flexslider" class="flexslider home clients">
+    <!-- <div id="clients-flexslider" class="flexslider home clients">
         <div class="headline"><h2>Our Clients</h2></div>    
         <ul class="slides">
             <li>
@@ -216,7 +216,7 @@
                 </a>
             </li>
         </ul>
-    </div><!--/flexslider-->
+    </div> --><!--/flexslider-->
     <!-- End Our Clients -->
 </div><!--/container-->     
 <!--=== End Content Part ===-->

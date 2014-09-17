@@ -17,8 +17,7 @@ public class RegistrationPage3 {
 	private UserCompanyMap userCompanyMap;
 	private List<UserJobCategoryVO> userJobCategoryList = new ArrayList<UserJobCategoryVO>() ;
 	private List<UserJobSubCategoryVO> userJobSubCategoryList = new ArrayList<UserJobSubCategoryVO>();
-
-
+	
 	public long getUserId() {
 		return userId;
 	}
@@ -60,5 +59,5 @@ public class RegistrationPage3 {
 		this.userJobSubCategoryList = userJobSubCategoryList;
 	}
 
-
+	
 }

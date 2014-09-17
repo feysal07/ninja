@@ -91,7 +91,7 @@ function getCitiesforState() {
 		ajax : 'true',
 		stateOrderId : $('#states').val(),
 	}, function(data) {
-		var html = '<option value="">Select</option>';
+		var html = '';
 		var len = data.length;
 		for (var i = 0; i < len; i++) {
 			html += '<option value="' + data[i].masterDataId + '">'

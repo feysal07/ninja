@@ -4,6 +4,20 @@
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
 
+<!--=== Breadcrumbs ===-->
+<div class="breadcrumbs margin-bottom-40">
+	<div class="container">
+		<h1 class="pull-left">Help</h1>
+		<ul class="pull-right breadcrumb">
+			<li><a href=".">Home</a></li>
+			<!-- <li><a href="">Pages</a></li> -->
+			<li class="active">Help</li>
+		</ul>
+	</div>
+	<!--/container-->
+</div>
+<!--/breadcrumbs-->
+<!--=== End Breadcrumbs ===-->
 <!--=== Content Part ===-->
 <div class="container">		
 	<div class="row">            

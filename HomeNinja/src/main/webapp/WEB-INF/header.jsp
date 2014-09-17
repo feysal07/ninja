@@ -59,7 +59,7 @@
 						class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="index.html"> <img id="logo-header" src="resources/assets/img/logo.png" 
-				height="45px" width="200px" alt="Logo" style="margin-top: -13px;">
+				height="45px" width="225px" alt="Logo" style="margin-top: -13px;">
 				</a>
 			</div>
 
@@ -86,6 +86,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="./manageProfile">Manage Account</a></li>
 							<li><a href="./upgradeAccount">Upgrade Account</a></li>
+							<li><a href="">Change Password</a></li>
 							<li><a href="./myProfile">Public Profile</a></li>
 							<li><a href="./myJob">Posted Jobs</a></li>
 						</ul></li>
@@ -106,14 +107,14 @@
 							<li><a href="./jobs">Post A Job</a></li>
 							<li><a href="./jobSearch">Search Jobs</a></li>
 						</ul></li>
-					<li class="dropdown"><a href="#" class="dropdown-toggle"
+					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-hover="dropdown" data-delay="0"
 						data-close-others="false">Discussion <i
 							class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="./comingsoon">Discussion</a></li>
-						</ul></li>
+						</ul></li> -->
 					<li class="dropdown"><a href="../Review/Posts"
 						class="dropdown-toggle" data-toggle="dropdown"
 						data-hover="dropdown" data-delay="0" data-close-others="false">Blog

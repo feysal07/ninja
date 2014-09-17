@@ -28,6 +28,7 @@ public class Jobs {
 	private int state;
 	private int city;
 	private long postBy;
+	private String pincode;
 	@Transient
 	private int jobCategoryId;
 	private int requestCount;
@@ -174,6 +175,14 @@ public class Jobs {
 
 	public void setJobCategory(JobCategory jobCategory) {
 		this.jobCategory = jobCategory;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
 	}
 
 	
