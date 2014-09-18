@@ -48,4 +48,5 @@
 	    <script src="resources/assets/plugins/respond.js"></script>
 	<![endif]-->
 	    
-    
+<link rel="shortcut icon" href="resources/assets/img/favicon.ico" type="image/x-icon">
+<link rel="icon" href="resources/assets/img/favicon.ico" type="image/x-icon">    

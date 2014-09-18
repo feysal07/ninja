@@ -8,14 +8,21 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.google.gson.Gson;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.entities.UserJobCategoryMap;
 import com.homeninja.entities.UserJobSubCategoryMap;
 import com.homeninja.service.SiteUserService;
+import com.homeninja.utils.Utils;
+import com.homeninja.vo.ChangePasswordVO;
 import com.homeninja.vo.UserInfo;
 import com.homeninja.vo.UserProfile;
 
@@ -78,4 +85,72 @@ public class SiteUserController {
 		return "myProfile";
 	}
 
+	
+	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+	public String changePassword(Model model){
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
+		}
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
+			}
+		}
+		model.addAttribute("changePass", new ChangePasswordVO());
+		return "changePassword";
+	}
+	
+	
+	
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	@ResponseBody
+	public ModelAndView changePassword(@ModelAttribute("changePass") ChangePasswordVO newPassword,Model model) throws Exception{
+		ModelAndView mav = new ModelAndView();
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			//return "login";
+			 mav.setViewName("login");
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				 mav.setViewName("login");
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				 mav.setViewName("login");
+			}
+		}
+		
+		
+		//Gson gson=new Gson();
+		//ChangePasswordVO newPassword=gson.fromJson(myObject,ChangePasswordVO.class);
+		
+		SiteUsers user= siteUserService.getSiteUsersById(userInfo.getUserId());
+		
+		if(user.getPassword().equalsIgnoreCase(Utils.md5Encryption(newPassword.getOldPassword()))){
+			user.setPassword(Utils.md5Encryption(newPassword.getNewPassword()));
+		}
+		
+		boolean flag=siteUserService.updateUser(user);
+		
+		if (flag) {
+			mav.addObject("status", "change");
+			mav.setViewName("changePassword");
+		} else {
+			mav.addObject("status", "fail");
+			mav.setViewName("changePassword");
+		}
+		
+		return mav;
+		
+	}
+	
 }
