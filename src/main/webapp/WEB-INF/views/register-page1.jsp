@@ -9,7 +9,7 @@
 	
 </script>
 
-<title>HomeNinja | Register Page 1</title>
+<title>HomeNinja | Register</title>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">

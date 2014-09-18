@@ -86,7 +86,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="./manageProfile">Manage Account</a></li>
 							<li><a href="./upgradeAccount">Upgrade Account</a></li>
-							<li><a href="">Change Password</a></li>
+							<li><a href="./changePassword">Change Password</a></li>
 							<li><a href="./myProfile">Public Profile</a></li>
 							<li><a href="./myJob">Posted Jobs</a></li>
 						</ul></li>
