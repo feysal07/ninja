@@ -28,7 +28,8 @@
             </div> --><!---/map-->
             <!-- End Google Map -->
 
-            <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas feugiat. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit landitiis.</p><br />
+            <p>Please complete the form below. We'll do everything we can to respond to you as quickly as possible. Our goal is to reply to every email within <strong>two business days</strong>. Items marked with an asterisk are required.</p><br />
+            <p>Please be assured, we will never sell or distribute the personal information you provide to us.</p><br>
             <!--  Alert messages -->
 			<div class="alert alert-danger fade in" id="alertError" hidden="true">
 				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button>
@@ -41,7 +42,7 @@
 
 			<!--  alert messages end -->
             <div>
-                <label>Name</label>
+                <label>Name<span class="color-red">*</span></label>
                 <div class="row margin-bottom-20">
                     <div class="col-md-7 col-md-offset-0">
                         <input type="text" class="form-control" id="name">
@@ -81,8 +82,9 @@
         </div><!--/col-md-9-->
         
         <div class="col-md-3">
+          <c:import url="../facebook-like-box.jsp"></c:import>
             <!-- Contacts -->
-            <div class="headline"><h2>Contacts</h2></div>
+            <!-- <div class="headline"><h2>Contacts</h2></div>
             <ul class="list-unstyled who margin-bottom-30">
                 <li><a href="#"><i class="icon-home"></i>5B Streat, City 50987 New Town US</a></li>
                 <li><a href="#"><i class="icon-envelope-alt"></i>info@example.com</a></li>
@@ -90,7 +92,7 @@
                 <li><a href="#"><i class="icon-globe"></i>http://www.example.com</a></li>
             </ul>
 
-            <!-- Business Hours -->
+            Business Hours
             <div class="headline"><h2>Business Hours</h2></div>
             <ul class="list-unstyled margin-bottom-30">
                 <li><strong>Monday-Friday:</strong> 10am to 8pm</li>
@@ -98,7 +100,7 @@
                 <li><strong>Sunday:</strong> Closed</li>
             </ul>
 
-            <!-- Why we are? -->
+            Why we are?
             <div class="headline"><h2>Why we are?</h2></div>
             <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum.</p>
             <ul class="list-unstyled">
@@ -106,9 +108,9 @@
                 <li><i class="icon-ok color-green"></i> Blanditiis praesentium volup</li>
                 <li><i class="icon-ok color-green"></i> Eos et accusamus</li>
             </ul>
-        </div><!--/col-md-3-->
+        </div> --><!--/col-md-3-->
     </div><!--/row-->        
-
+</div>
     <!-- Our Clients -->
     <!-- <div id="clients-flexslider" class="flexslider home clients">
         <div class="headline"><h2>Our Clients</h2></div>    

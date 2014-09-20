@@ -118,8 +118,11 @@
 
 
 	</div>
-	<div class="col-md-3">
-            <!-- Social Icons -->
+<div class="col-md-3">
+<c:import url="../facebook-like-box.jsp"></c:import>
+</div>
+	<!-- <div class="col-md-3" style="display: none;">
+            Social Icons
             <div class="magazine-sb-social margin-bottom-30">
                 <div class="headline headline-md"><h2>Social Icons</h2></div>
                 <ul class="social-icons social-icons-color">
@@ -140,9 +143,9 @@
                 </ul>
                 <div class="clearfix"></div>                
             </div>
-            <!-- End Social Icons -->
+            End Social Icons
 
-            <!-- Posts -->
+            Posts
             <div class="posts margin-bottom-40">
                 <div class="headline headline-md"><h2>Recent Posts</h2></div>
                 <dl class="dl-horizontal">
@@ -163,10 +166,10 @@
                         <p><a href="#">Developer Friendly Code imperdiet condime ntumi mperdiet condim.</a></p> 
                     </dd>
                 </dl>
-            </div><!--/posts-->
-            <!-- End Posts -->
+            </div>/posts
+            End Posts
 
-        	<!-- Tabs Widget -->
+        	Tabs Widget
         	<div class="headline headline-md"><h2>Tabs Widget</h2></div>
             <div class="tab-v2 margin-bottom-40">
                 <ul class="nav nav-tabs">
@@ -199,9 +202,9 @@
                     </div>
                 </div>
             </div>            
-            <!-- End Tabs Widget -->
+            End Tabs Widget
 
-        	<!-- Photo Stream -->
+        	Photo Stream
         	<div class="headline headline-md"><h2>Photo Stream</h2></div>
             <ul class="list-unstyled blog-photos margin-bottom-30">
                 <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/5.jpg"></a></li>
@@ -213,9 +216,9 @@
                 <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/2.jpg"></a></li>
                 <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/7.jpg"></a></li>
             </ul>
-            <!-- End Photo Stream -->
+            End Photo Stream
 
-        	<!-- Blog Latest Tweets -->
+        	Blog Latest Tweets
             <div class="blog-twitter">
                 <div class="headline headline-md"><h2>Latest Tweets</h2></div>
                 <div class="blog-twitter-inner">
@@ -240,9 +243,9 @@
                     <span>5 hours ago</span>
                 </div>
             </div>
-            <!-- End Blog Latest Tweets -->
+            End Blog Latest Tweets
         </div>
-	
+	 -->
 	<!--/col-md-9-->
 </div>
 </div>

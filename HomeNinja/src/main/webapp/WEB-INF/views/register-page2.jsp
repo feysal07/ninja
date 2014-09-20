@@ -46,8 +46,13 @@ var cityVal=${siteUserAddress.city}
 			</div>
 			<br />
 			<p>
-				<input type="file" size="40" name="image-upload" id="image-upload">&nbsp;&nbsp;
-				<button type="submit" class="btn-u" id="image-upload1">Upload</button>
+						<button type="submit" class="btn-u" id="choose" onclick="javascript:uploadImage()">Choose</button>
+						&nbsp;&nbsp;
+						<button type="submit" class="btn-u" id="image-upload1">Upload</button>
+					</p>
+			<p>
+				<input type="file" size="40" style="visibility:hidden;" name="image-upload" id="image-upload">&nbsp;&nbsp;
+				<!-- <button type="submit" class="btn-u" id="image-upload1">Upload</button> -->
 
 
 			</p>
@@ -150,11 +155,14 @@ var cityVal=${siteUserAddress.city}
 						<div class="col-lg-4">
 							<label>State <span class="color-red">*</span></label> <select
 								id="states" class="form-control"
-								onchange="javascript:getCitiesforState()"></select>
+								onchange="javascript:getCitiesforState()">
+								<option value="">Select</option>
+								</select>
 						</div>
 						<div class="col-lg-4">
 							<label>City<span class="color-red">*</span></label> <select
 								id="citiesforstate" class="form-control">
+								<option value="">Select</option>
 							</select>
 						</div>
 					</div>
@@ -175,7 +183,7 @@ var cityVal=${siteUserAddress.city}
 
 			</div>
 			<br />
-			<div>
+			<!-- <div>
 				<div>
 					<div class="headline">
 						<h2>Advance Settings</h2>
@@ -189,7 +197,7 @@ var cityVal=${siteUserAddress.city}
 				</div>
 
 			</div>
-			<div></div>
+ -->			<div></div>
 			<%-- <form id="moveToRegPage3" action="./RegisterPage3" method="POST">
 				<input type="hidden" id="siteUserid" name="siteUserid"
 					value="<c:out value='${siteUser.userId}'/>">

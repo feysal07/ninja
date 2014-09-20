@@ -108,30 +108,30 @@ public class SiteUserController {
 	
 	
 	
-	@RequestMapping(value = "/changePassword", method = RequestMethod.POST)
+	@RequestMapping(value = "/changePassword", method = RequestMethod.POST,consumes = "application/json")
 	@ResponseBody
-	public ModelAndView changePassword(@ModelAttribute("changePass") ChangePasswordVO newPassword,Model model) throws Exception{
-		ModelAndView mav = new ModelAndView();
+	public String changePassword(@RequestBody String myObject,Model model) throws Exception{
+		//ModelAndView mav = new ModelAndView();
 		Map modelMap = model.asMap();
 		UserInfo userInfo=null;
 		if(!modelMap.containsKey("userInfo")){
-			//return "login";
-			 mav.setViewName("login");
+			return "login";
+			 //mav.setViewName("login");
 		}
 		
 		if(modelMap.containsKey("userInfo")){
 			userInfo = (UserInfo)modelMap.get("userInfo");
 			if(userInfo.getLoggedIn() == null){
-				 mav.setViewName("login");
+				return "login";
 			}
 			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
-				 mav.setViewName("login");
+				return "login";
 			}
 		}
 		
 		
-		//Gson gson=new Gson();
-		//ChangePasswordVO newPassword=gson.fromJson(myObject,ChangePasswordVO.class);
+		Gson gson=new Gson();
+		ChangePasswordVO newPassword=gson.fromJson(myObject,ChangePasswordVO.class);
 		
 		SiteUsers user= siteUserService.getSiteUsersById(userInfo.getUserId());
 		
@@ -142,14 +142,14 @@ public class SiteUserController {
 		boolean flag=siteUserService.updateUser(user);
 		
 		if (flag) {
-			mav.addObject("status", "change");
-			mav.setViewName("changePassword");
+			model.addAttribute("status", "true");
+			
 		} else {
-			mav.addObject("status", "fail");
-			mav.setViewName("changePassword");
+			model.addAttribute("status", "false");
+			
 		}
 		
-		return mav;
+		return "changePassword";
 		
 	}
 	

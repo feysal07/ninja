@@ -3,11 +3,11 @@ function isValid(myObject){
 	var validation = "true";
 	var errorMessage='';
 	if (myObject.userName == "") {
-		errorMessage +='<i class="icon-warning-sign"></i>&nbsp; Please enter username <br>';
+		errorMessage +='<i class="icon-warning-sign"></i>&nbsp; Please enter username! <br>';
 		validation = "false";
 	}
 	if (myObject.password == "") {
-		errorMessage +='<i class="icon-warning-sign"></i>&nbsp; Please enter password <br>';
+		errorMessage +='<i class="icon-warning-sign"></i>&nbsp; Please enter password! <br>';
 		validation = "false";
 	}
 	if(validation =="false"){

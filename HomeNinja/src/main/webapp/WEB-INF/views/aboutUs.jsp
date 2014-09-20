@@ -26,7 +26,7 @@
 
     <div class="tag-box tag-box-v2">
         <h2>About Us</h2>
-        <p>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat.</p>
+        <p style="font-size: 20px"><strong>HomeNinja</strong> is an online platform for home remodelling and improvement. At <strong>HomeNinja</strong> as a house owner you can find and collaborate with contractors, architects and material suppliers to come up with a design that best suits your remodelling needs.</p>
     </div>
 
     <div class="margin-bottom-20 clearfix"></div>
