@@ -10,6 +10,11 @@ function closeSuccessBox1() {
 
 }
 
+
+function uploadImage(){
+	$('#image-upload').click();
+}
+
 function goToRegPage3() {
 	/*		var userId = $('#siteUserid').val();
 	 var url = './RegisterPage3' +"?userId=" +userId;
@@ -18,7 +23,7 @@ function goToRegPage3() {
 	$("#moveToRegPage3").submit();
 }
 
-$(document).ready(function() {
+/*$(document).ready(function() {
 	var myObject = new Object();
 	myObject.userId = $('#siteUserid').val();
 	$.ajax({
@@ -45,7 +50,7 @@ $(document).ready(function() {
 		}
 	});
 });
-
+*/
 $(document).ready(
 		function() {
 			$.getJSON('./states', {

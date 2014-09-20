@@ -72,7 +72,7 @@
 						hidden="true">
 						<button type="button" class="close" data-dismiss="alert"
 							onclick="javascript:closeErrorBox();">&times;</button>
-						<label for="myalue"> Invalid Email
+						<label for="myalue"><i class="icon-warning-sign"></i>&nbsp; Invalid Email
 							address!</label>
 					</div>
 
@@ -112,7 +112,7 @@
 					<form:input type="email" id="email"
 						class="form-control margin-bottom-20" path="loginEmail" />
 
-					<label>Phone Number</label>
+					<label>Phone Number<span class="color-red">*</span></label>
 					<form:input type="text" id="phone"
 						class="form-control margin-bottom-20" path="phoneNumber" />
 
@@ -132,7 +132,7 @@
 					<hr>
 
 					<div class="row">
-						<div class="col-lg-6">
+						<div class="col-lg-6" style="visibility: hidden;">
 							<label class="checkbox"> <input type="checkbox">
 								I read <a href="page_terms.html" class="color-green">Terms
 									and Conditions</a>

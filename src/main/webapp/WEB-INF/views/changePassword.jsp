@@ -27,9 +27,6 @@
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-
-<form:form id="changePasswordForm" action="./changePassword" method="POST"
-	modelAttribute="changePass">
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6 col-md-offset-3 col-sm-8 col-sm-offset-2">
@@ -43,30 +40,28 @@
 					</div>
  			
  			<!--  Alert messages -->
- 			<c:if test="${status == 'change'}">
-				<div class="alert alert-success" id="alertSuccess" hidden="true">
+ 			
+			<div class="alert alert-success" id="alertSuccess" hidden="true">
 				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeSuccessBox();">&times;</button>
 				<i class="icon-ok "></i>&nbsp; your password is changed successfully!
 			</div>		
-			</c:if>
+			
 			<div class="alert alert-danger fade in" id="alertError" hidden="true">
 				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button>
 				<label for="myalue" ></label>
 			</div>
 			
-			
-
 			<!--  alert messages end -->
 
 					<label>Old Password<span class="color-red">*</span></label>
-					<form:input type="text" id="oldPassword"
-						class="form-control margin-bottom-20" path="oldPassword" />
+					<input type="text" id="oldPassword"
+						class="form-control margin-bottom-20"/>
 
 					<div class="row">
 						<div class="col-sm-6">
 							<label>New Password <span class="color-red">*</span></label>
-							<form:input type="password" id="newPassword"
-								class="form-control margin-bottom-20" path="newPassword" />
+							<input type="password" id="newPassword"
+								class="form-control margin-bottom-20"  />
 						</div>
 						<div class="col-sm-6">
 							<label>Confirm Password <span class="color-red">*</span></label>
@@ -85,7 +80,7 @@
 							</label>
 						</div> 
 						<div class="col-lg-6 text-right">&nbsp;&nbsp;
-						<img id="loader-img" src="resources/assets/img/loader.gif" style="display:none;" height="30" width="30" class="color-img" alt="">
+						<img id="loader-img" src="resources/assets/img/loader.gif" hidden="hidden" height="30" width="30" class="color-img" alt="">
 							<button class="btn-u pull-right" type="button"
 								onclick="javascript:changePassword();">Change Password</button>
 						</div>
@@ -95,7 +90,6 @@
 		</div>
 	</div>
 	<!--/container-->
-</form:form>
 <!--=== End Content Part ===-->
 
 <!-- Footer-->
