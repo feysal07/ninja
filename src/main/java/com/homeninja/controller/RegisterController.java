@@ -3,7 +3,10 @@ package com.homeninja.controller;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -18,6 +21,8 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.BeanUtils;
+import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -49,9 +54,11 @@ import com.homeninja.service.AdvanceSettingService;
 import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.JobCategoryService;
 import com.homeninja.service.SiteUserService;
+import com.homeninja.service.UserCompanyService;
 import com.homeninja.service.UsersSearchService;
 import com.homeninja.utils.Utils;
 import com.homeninja.vo.City;
+import com.homeninja.vo.JobCategoryWithSelection;
 import com.homeninja.vo.RegistrationPage3;
 import com.homeninja.vo.State;
 import com.homeninja.vo.UploadedFile;
@@ -82,6 +89,9 @@ public class RegisterController implements ServletContextAware {
 	@Resource
 	private UsersSearchService usersSearchService;
 	
+	@Resource
+	private UserCompanyService userCompanyService;
+	
 	ServletContext servletContext = null;
 
 	/*
@@ -101,6 +111,21 @@ public class RegisterController implements ServletContextAware {
 	ModelAndView doRegisterPage3(
 			@ModelAttribute("registrationPage3") RegistrationPage3 registrationPage3) {
 		logger.debug("doRegisterPage3");
+		Map <Long, String> jobCategoryValueHashMap = new HashMap<Long, String>();
+		Set jobCategorySet = jobCategoryService.getJobCategory();
+		Iterator jobCategorySetSetItr = jobCategorySet.iterator();
+		while (jobCategorySetSetItr.hasNext()){
+			JobCategory jobCategory = (JobCategory)jobCategorySetSetItr.next();
+			jobCategoryValueHashMap.put(jobCategory.getId(), jobCategory.getJobCat());
+		}
+		
+		Map <Long, String> jobSubCategoryValueHashMap = new HashMap<Long, String>();
+		Set jobSubCategorySet = jobCategoryService.getJobSubCategory();
+		Iterator jobSubCategorySetSetItr = jobSubCategorySet.iterator();
+		while (jobSubCategorySetSetItr.hasNext()){
+			JobSubCategory jobSubCategory = (JobSubCategory)jobSubCategorySetSetItr.next();
+			jobSubCategoryValueHashMap.put(jobSubCategory.getId(), jobSubCategory.getJobSubCat());
+		}
 		List<UserJobCategoryVO> userJobCategoryVOList = registrationPage3
 				.getUserJobCategoryList();
 		Set<UserJobCategoryMap> userJobCategoryMapSet = jobCategoryService
@@ -131,12 +156,15 @@ public class RegisterController implements ServletContextAware {
 
 		}
 
+		StringBuffer sbJobCat = new StringBuffer();
 		for (UserJobCategoryMap userJobCategoryMap : userJobCategoryMapSet) {
 
 			int jobCategoryId = (int) userJobCategoryMap.getJobCategoryID();
 			if (userJobCategoryVOList.get(jobCategoryId).getJobCategoryIsSet()
 					.equals("true")) {
 				jobCategoryService.saveUserJobCategory(userJobCategoryMap);
+				sbJobCat.append(jobCategoryValueHashMap.get(jobCategoryId * 1L));
+				sbJobCat.append("-");
 			} else {
 				jobCategoryService.removeJobCategory(userJobCategoryMap);
 			}
@@ -161,6 +189,7 @@ public class RegisterController implements ServletContextAware {
 		List<UserJobSubCategoryVO> userJobSubCategoryVOList = registrationPage3
 				.getUserJobSubCategoryList();
 
+		StringBuffer sbJobSubCat = new StringBuffer();
 		for (int i = 1; i < userJobSubCategoryVOList.size(); i++) {
 			if (userJobSubCategoryVOList.get(i) != null
 					&& userJobSubCategoryVOList.get(i).getJobSubCategoryIsSet() != null
@@ -172,6 +201,8 @@ public class RegisterController implements ServletContextAware {
 						.getUserId());
 				userJobSubCategoryMapTemp.setJobSubCategoryId(i);
 				userJobSubCategoryMapSet.add(userJobSubCategoryMapTemp);
+				sbJobSubCat.append(jobSubCategoryValueHashMap.get(i * 1L));
+				sbJobSubCat.append("-");
 			}
 
 		}
@@ -187,6 +218,12 @@ public class RegisterController implements ServletContextAware {
 		siteUsers.setUserType(registrationPage3.getUserType().getId());
 
 		siteUserService.updateUser(siteUsers);
+		
+		UsersSearch usersSearch = usersSearchService.getUserSearchRecordById(registrationPage3.getUserId());
+		usersSearch.setJobCategories(sbJobCat.toString());
+		usersSearch.setJobSubCategories(sbJobSubCat.toString());
+		usersSearchService.updateUsersSearch(usersSearch);
+		
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("register-page3");
@@ -213,6 +250,34 @@ public class RegisterController implements ServletContextAware {
 		jobCategorySortedSet.addAll(jobCategorySet);
 
 		return jobCategorySortedSet;
+	}
+	
+	@RequestMapping(value = "/getJobCategoriesWithSelection", method = RequestMethod.GET)
+	public @ResponseBody
+	Set<JobCategoryWithSelection> getJobCategoriesWithSelection(@RequestParam(value = "userId", required = false) long userId) {
+		logger.debug("getJobCategoriesWithSelection");
+		Set<JobCategory> jobCategorySet = new HashSet<JobCategory>();
+		jobCategorySet = jobCategoryService.getJobCategory();
+		List<JobCategoryWithSelection> jobCategoryWithSelectionList =
+				new ArrayList<JobCategoryWithSelection>();
+		for (JobCategory jobCategory : jobCategorySet) {
+			JobCategoryWithSelection jobCategoryWS = new JobCategoryWithSelection();
+			BeanUtils.copyProperties(jobCategory, jobCategoryWS);
+			jobCategoryWithSelectionList.add(jobCategoryWS);
+		}
+		
+		 Collections.sort(jobCategoryWithSelectionList);
+		
+		Set <UserJobCategoryMap> userJobCategorySet = 
+				jobCategoryService.getUserJobCategoryMap(userId);
+		for (UserJobCategoryMap userJobCategoryMap : userJobCategorySet) {
+			jobCategoryWithSelectionList.get((int)userJobCategoryMap.getJobCategoryID() - 1).setIsSet("true");;
+		}
+		
+		TreeSet<JobCategoryWithSelection> jobCategoryWithSelectionSortedSet = new TreeSet<JobCategoryWithSelection>();
+		jobCategoryWithSelectionSortedSet.addAll(jobCategoryWithSelectionList);
+
+		return jobCategoryWithSelectionSortedSet;
 	}
 
 	@RequestMapping(value = "/getJobSubCategories", method = RequestMethod.GET)
@@ -303,8 +368,19 @@ public class RegisterController implements ServletContextAware {
 		//ModelAndView mav = new ModelAndView("register-page3");
 		SiteUsers registerUser = new SiteUsers();
 		registerUser.setUserId(userInfo.getUserId());
+		registerUser = siteUserService. getSiteUsersById(registerUser); //new SiteUsers();
+		
 		model.addAttribute("siteUser", registerUser);
-		model.addAttribute("registrationPage3", new RegistrationPage3());
+		
+		RegistrationPage3 regPage3 = new RegistrationPage3();
+		UserType userType = siteUserService.getUserType(registerUser.getUserType());
+		regPage3.setUserType(userType);
+		
+		
+		
+		regPage3.setUserCompanyMap(userCompanyService.getUserCompanyByUserId(registerUser));
+		
+		model.addAttribute("registrationPage3", regPage3);
 
 		return "register-page3";
 	}
