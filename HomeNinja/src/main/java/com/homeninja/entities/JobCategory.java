@@ -1,9 +1,13 @@
 package com.homeninja.entities;
 
+import java.util.Set;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
@@ -14,6 +18,10 @@ public class JobCategory implements Comparable<JobCategory> {
 	private long id;
 	private String jobCat;
 	private String userTypeId;
+	
+	/*@OneToMany(cascade= {CascadeType.ALL}, mappedBy = "parent")
+	Set<JobSubCategory> jobSubCategorySet;
+	*/
 
 	public long getId() {
 		return id;
