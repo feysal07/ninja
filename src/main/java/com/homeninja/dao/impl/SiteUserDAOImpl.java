@@ -120,6 +120,19 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 		return userTypeSet;
 	}
 	
+	@Override
+	public UserType getUserType( long id) {
+		UserType userType = new UserType();
+		Query getUserType = sessionFactory.getCurrentSession().createQuery(
+				"from UserType where id = :id");
+		getUserType.setParameter("id", id);
+		List<UserType> userTypeList = getUserType.list();
+		if(userTypeList != null && userTypeList.size() > 0){
+			userType = userTypeList.get(0);
+		}
+		return userType;
+	}
+	
  	@Override
 	public SiteUsers getSiteUsersById(SiteUsers siteUsers) {
 		try {
