@@ -1,6 +1,15 @@
 package com.homeninja.vo;
 
 public class UserJobCategoryVO {
+	
+	public UserJobCategoryVO() {
+		// TODO Auto-generated constructor stub
+		super();
+	}
+	
+	public UserJobCategoryVO(String isSet){
+		this.jobCategoryIsSet = isSet;
+	}
 	private String jobCategoryIsSet;
 
 	public String getJobCategoryIsSet() {
