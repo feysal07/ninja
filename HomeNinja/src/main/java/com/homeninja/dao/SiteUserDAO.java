@@ -24,4 +24,5 @@ public interface SiteUserDAO {
 		public boolean resetPassword(String email,String newPassword);
 		public SiteUsers getSiteUsersById(long userId);
 		public boolean saveUserAddress(Address address);
+		public UserType getUserType( long id);
 }
