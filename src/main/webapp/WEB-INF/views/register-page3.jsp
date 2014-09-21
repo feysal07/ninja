@@ -31,6 +31,8 @@
 	modelAttribute="registrationPage3" commandname="registrationPage3">
 <form:input type="hidden" id="siteUserid" path="userId"
 	value="${siteUser.userId}"/>
+	<form:input id = "userTypeId" type="hidden" path="" value="${registrationPage3.userType.id}"/>
+	
 <!--=== Content Part ===-->
 <div class="container">
 	<div class="col-md-9 mb-margin-bottom-30">
@@ -58,8 +60,8 @@
 				<div class="col-lg-4">
 					<label>Upgrade As<span class="color-red">*</span></label>
 					 <form:select
-						id="userType"  path="userType.id" class="form-control">
-						<option>--Select--</option>
+						id="userType"  path="userType.id" class="form-control" >
+						<option>--Select--</option>						
 						<!-- 									<option>Contractor</option>
 									<option>Supplier</option>
 									<option>Both</option> -->
