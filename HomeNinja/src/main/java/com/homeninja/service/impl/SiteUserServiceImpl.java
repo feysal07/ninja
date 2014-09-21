@@ -53,6 +53,11 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 	public Set<UserType> getUserType() {
 		return siteUserDAO.getUserType();
 	}
+	
+	@Override
+	public UserType getUserType( long id){
+		return siteUserDAO.getUserType(id);
+	}
 
 	@Override
 	public SiteUsers getSiteUsersById(SiteUsers siteUsers) {
