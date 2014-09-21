@@ -21,9 +21,15 @@ $(document).ready(
 			}, function(data) {
 				var html = '<option value="">Select</option>';
 				var len = data.length;
+				var userType = $('#userTypeId').val();
+				
 				for (var i = 0; i < len; i++) {
-					html += '<option value="' + data[i].id + '">'
-							+ data[i].userType + '</option>';
+					
+					html += '<option value="' + data[i].id + '"';
+					if(data[i].id == userType){
+						html += 'selected = "selected"';
+					}
+						html += '>' +  data[i].userType + '</option>';
 				}
 				html += '</option>';
 				// now that we have our options, give them to our select
@@ -36,10 +42,11 @@ $(document)
 				function() {
 					$
 							.getJSON(
-									'./getJobCategories',
+									'./getJobCategoriesWithSelection',
 									{
 										ajax : 'true',
 										contentType : 'application/json',
+										userId :   $('#siteUserid').val(),
 									},
 									function(data) {
 										var str = '';
@@ -48,6 +55,9 @@ $(document)
 														data,
 														function(index, result) {
 															str += '<label> <input type="checkbox" name="userJobCategoryList[' + result.id + '].jobCategoryIsSet"';
+															if(result.isSet == "true"){
+																str += ' checked = "checked"';
+															}
 															str += 'value="true"  onclick="javascript:getSubCategories('
 																	+ result.id
 																	+ ')" id ="userJobCategoryList';
