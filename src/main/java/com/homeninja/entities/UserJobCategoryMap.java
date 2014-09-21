@@ -20,7 +20,7 @@ public class UserJobCategoryMap {
 	private long userId;
 	private long jobCategoryID;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.ALL)
+	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
 	@JoinColumn(name="jobCategoryID" ,referencedColumnName="id" , insertable = false, updatable = false)
 	private JobCategory jobCategory;
 
