@@ -1,9 +1,12 @@
 package com.homeninja.service;
 
+import java.util.List;
 import java.util.Set;
 
 import com.homeninja.entities.Address;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.entities.UserJobCategoryMap;
+import com.homeninja.entities.UserJobSubCategoryMap;
 import com.homeninja.entities.UserType;
 
 
@@ -21,6 +24,9 @@ public interface SiteUserService {
 	    public boolean resetPassword(String email,String newPassword);
 		public SiteUsers getSiteUsersById(long userId);
 		public boolean saveUserAddress(Address address);
-		public UserType getUserType( long id);
+		public UserType getUserType(long id);
+		public List<UserJobCategoryMap> getUserJobCategories(long userId);
+		public List<UserJobSubCategoryMap> getUserJobSubCategories(long userId);
+		
 		
 }

@@ -48,6 +48,12 @@ public class UserJobSubCategoryMap {
 	public void setJobSubCategory(JobSubCategory jobSubCategory) {
 		this.jobSubCategory = jobSubCategory;
 	}*/
+	public JobSubCategory getJobSubCategory() {
+		return jobSubCategory;
+	}
+	public void setJobSubCategory(JobSubCategory jobSubCategory) {
+		this.jobSubCategory = jobSubCategory;
+	}
 	
 
 }
