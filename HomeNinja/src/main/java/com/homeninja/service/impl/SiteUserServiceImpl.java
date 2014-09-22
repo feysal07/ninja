@@ -1,5 +1,6 @@
 package com.homeninja.service.impl;
 
+import java.util.List;
 import java.util.Set;
 
 import javax.annotation.Resource;
@@ -9,6 +10,8 @@ import org.springframework.stereotype.Service;
 import com.homeninja.dao.SiteUserDAO;
 import com.homeninja.entities.Address;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.entities.UserJobCategoryMap;
+import com.homeninja.entities.UserJobSubCategoryMap;
 import com.homeninja.entities.UserType;
 import com.homeninja.service.SiteUserService;
 
@@ -80,6 +83,18 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 	@Override
 	public boolean saveUserAddress(Address address) {
 		return siteUserDAO.saveUserAddress(address);
+	}
+
+	@Override
+	public List<UserJobCategoryMap> getUserJobCategories(long userId) {
+		// TODO Auto-generated method stub
+		return  siteUserDAO.getUserJobCategories(userId);
+	}
+
+	@Override
+	public List<UserJobSubCategoryMap> getUserJobSubCategories(long userId) {
+		// TODO Auto-generated method stub
+		return  siteUserDAO.getUserJobSubCategories(userId);
 	}
 
 	

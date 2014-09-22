@@ -16,6 +16,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.homeninja.dao.SiteUserDAO;
 import com.homeninja.entities.Address;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.entities.UserJobCategoryMap;
+import com.homeninja.entities.UserJobSubCategoryMap;
 import com.homeninja.entities.UserType;
 
 @Service
@@ -194,6 +196,44 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 			return true;
 		} catch (Exception e) {
 			return false;
+		}
+	}
+
+	@Override
+	public List<UserJobCategoryMap> getUserJobCategories(long userId) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from UserJobCategoryMap where userId=:userId");
+			query.setParameter("userId", userId);
+			List<UserJobCategoryMap> userJobCatList = query.list();
+			if (userJobCatList.size() > 0) {
+				return userJobCatList;
+			}
+			return null;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public List<UserJobSubCategoryMap> getUserJobSubCategories(long userId) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from UserJobSubCategoryMap where userId=:userId");
+			query.setParameter("userId", userId);
+			List<UserJobSubCategoryMap> userJobSubCatList = query.list();
+			if (userJobSubCatList.size() > 0) {
+				return userJobSubCatList;
+			}
+			return null;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 	

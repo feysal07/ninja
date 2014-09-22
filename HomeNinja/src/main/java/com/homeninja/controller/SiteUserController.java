@@ -50,8 +50,8 @@ public class SiteUserController {
 				return "login";
 			}
 		}
-		
-		SiteUsers	userDetails= siteUserService.getSiteUsersById(userInfo.getUserId());
+		long userId=userInfo.getUserId();
+		SiteUsers	userDetails= siteUserService.getSiteUsersById(userId);
 		UserProfile userProfile=new UserProfile();
 		// fill the view object
 		
@@ -62,13 +62,13 @@ public class SiteUserController {
 		String userJobCat="";
 		String userJobSubCat="";
 		
-		List<UserJobCategoryMap> userJobCatList=userDetails.getUserJobCategoryMap();
-		List<UserJobSubCategoryMap> userJobSubCatMap=userDetails.getUserJobSubCategoryMap();
+		List<UserJobCategoryMap> userJobCatList=siteUserService.getUserJobCategories(userId);
+		List<UserJobSubCategoryMap> userJobSubCatMap=siteUserService.getUserJobSubCategories(userId);
 		for (UserJobCategoryMap userJobCategoryMap : userJobCatList) {
-			//userJobCat =userJobCat+","+userJobCategoryMap.getJobCategory().getJobCat()+",";
+			userJobCat =userJobCat+","+userJobCategoryMap.getJobCategory().getJobCat()+",";
 		}
 		for(UserJobSubCategoryMap userJobSubCategoryMap:userJobSubCatMap){
-			//userJobSubCat=userJobSubCat+","+ userJobSubCategoryMap.getJobSubCategory()+",";
+			userJobSubCat=userJobSubCat+","+ userJobSubCategoryMap.getJobSubCategory()+",";
 		}
 		userJobCat=userJobCat.substring(0, userJobCat.lastIndexOf(","));
 		userJobSubCat=userJobSubCat.substring(0, userJobSubCat.lastIndexOf(","));
@@ -77,10 +77,10 @@ public class SiteUserController {
 		userProfile.setJobSubCategory(userJobSubCat);
 		userProfile.setUserType(userDetails.getUserType());
 		userProfile.setAboutMe(userDetails.getAboutMe());
-		//userProfile.setAddress(userDetails.getAddress().getAddress());
-		//userProfile.setCity(userDetails.getAddress().getCity());
-		//userProfile.setState(userDetails.getAddress().getState());
-		//userProfile.setPincode(userDetails.getAddress().getPincode());
+		userProfile.setAddress(userDetails.getAddress().get(0).getAddress());
+		userProfile.setCity("abc");//userDetails.getAddress().get(0).getCity());
+		userProfile.setState("bcd");//userDetails.getAddress().get(0).getState());
+		userProfile.setPincode(userDetails.getAddress().get(0).getPincode());
 		model.addAttribute("userDetails", userDetails);
 		return "myProfile";
 	}

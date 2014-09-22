@@ -14,9 +14,8 @@ import javax.persistence.Lob;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
 import org.hibernate.annotations.Type;
 
 @Entity
@@ -51,11 +50,14 @@ public class SiteUsers {
 	@JoinColumn(name="userId")
 	private List<Address> address;
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="userId")
+	/*@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="userId")*/
+	@Transient
 	private List<UserJobCategoryMap> userJobCategoryMap;
-	@OneToMany(cascade = CascadeType.ALL)
-	@JoinColumn(name="userId")
+	
+	/*@OneToMany(cascade = CascadeType.ALL,fetch=FetchType.EAGER)
+	@JoinColumn(name="userId")*/
+	@Transient
 	private List<UserJobSubCategoryMap> userJobSubCategoryMap;
 	
 	public long getUserId() {
