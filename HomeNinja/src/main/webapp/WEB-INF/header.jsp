@@ -115,7 +115,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="./comingsoon">Discussion</a></li>
 						</ul></li> -->
-					<li class="dropdown"><a href="../Review/Posts"
+					<!-- <li class="dropdown"><a href="../Review/Posts"
 						class="dropdown-toggle" data-toggle="dropdown"
 						data-hover="dropdown" data-delay="0" data-close-others="false">Blog
 							<i class="icon-angle-down"></i>
@@ -123,7 +123,7 @@
 						<ul class="dropdown-menu">
 							<li><a href="./comingsoon">Post Blog </a></li>
 							<li><a href="./comingsoon">Blogs</a></li>
-						</ul></li>
+						</ul></li> -->
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-hover="dropdown" data-delay="0"
 						data-close-others="false">Contacts <i class="icon-angle-down"></i>
@@ -131,8 +131,8 @@
 						<ul class="dropdown-menu">
 							<li><a href="./contactUs">Contact Us</a></li>
 						</ul></li>
-					<li class="hidden-sm"><a class="search"><i
-							class="icon-search search-btn"></i></a></li>
+				<!-- 	<li class="hidden-sm"><a class="search"><i
+							class="icon-search search-btn"></i></a></li> -->
 				</ul>
 				<div class="search-open">
 					<div class="input-group">
