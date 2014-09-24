@@ -62,9 +62,9 @@
 	<bean id="dataSource" destroy-method="close"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3307/jobportal" />
-		<property name="username" value="root" />
-		<!-- <property name="password" value="homeninja123" /> -->
+		<property name="url" value="jdbc:mysql://localhost:3306/homeninj_db" />
+		<property name="username" value="homeninj_admin" />
+		<property name="password" value="homeninja123" /> 
 	</bean>
 
 	<bean id="transactionManager"
