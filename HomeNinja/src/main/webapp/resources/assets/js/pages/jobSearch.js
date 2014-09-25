@@ -13,7 +13,7 @@ function jobSearch(){
 	 myObject.state=$('#states :selected').val();
 	 myObject.city=$('#citiesforstate :selected').val();
 	 myObject.pageNumber = 1;
-	// myObject.pincode=$('#pincode').val();
+	 myObject.pincode=$('#pincode').val();
 	 
   $.ajax({
 			type : "POST",
@@ -91,7 +91,7 @@ function getCitiesforState() {
 		ajax : 'true',
 		stateOrderId : $('#states').val(),
 	}, function(data) {
-		var html = '';
+		var html = '<option value="">Select</option>';
 		var len = data.length;
 		for (var i = 0; i < len; i++) {
 			html += '<option value="' + data[i].masterDataId + '">'

@@ -8,6 +8,7 @@ public class JobsSearchCriteria {
 	private Integer city;
 	private List<Integer> jobCategoryList;
 	private List<String> jobSubCategoryList;
+	private String pincode;
 	private int pageSize;
 	private int pageNumber;
 	private int countResult;
@@ -66,6 +67,14 @@ public class JobsSearchCriteria {
 
 	public void setCountResult(int countResult) {
 		this.countResult = countResult;
+	}
+
+	public String getPincode() {
+		return pincode;
+	}
+
+	public void setPincode(String pincode) {
+		this.pincode = pincode;
 	}
 
 }
