@@ -9,7 +9,8 @@
 <!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
 <head>
     <title>HomeNinja | Welcome</title>
-
+	<link rel="shortcut icon" href="resources/assets/img/favicon.ico" type="image/x-icon">
+	<link rel="icon" href="resources/assets/img/favicon.ico" type="image/x-icon"> 
     <!-- Meta -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
