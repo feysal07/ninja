@@ -1441,3 +1441,9 @@ ul.blog-tags a:hover i {
 .info-blocks .info-blocks-in p {
 	font-size: 12px;
 }
+
+.login-loader{
+	margin-left:40%;
+	width:20%;
+	height:5%
+}

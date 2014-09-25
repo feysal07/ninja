@@ -72,9 +72,7 @@
 				</div>
 				<div class="col-md-6">
 					<button class="btn-u pull-right" onclick="javascript:doLogin()">Login</button>
-				<img id="loader-img"
-					src="resources/assets/img/loader.gif" hidden="hidden" height="30"
-					width="30" class="color-img" alt="">
+				<img id="loader-img" src="resources/assets/img/loader.gif" hidden="hidden"  class="login-loader color-img" alt="">
 				</div>
 
 

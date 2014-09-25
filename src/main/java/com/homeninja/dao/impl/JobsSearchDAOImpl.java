@@ -59,6 +59,9 @@ public class JobsSearchDAOImpl implements JobsSearchDAO {
 			if(jobsSearchCriteria != null && jobsSearchCriteria.getCity() != null && jobsSearchCriteria.getCity() != 0){
 				criteriaForUser.add(Restrictions.eq("city", jobsSearchCriteria.getCity()));
 			}
+			if(jobsSearchCriteria != null && jobsSearchCriteria.getPincode() != null && !jobsSearchCriteria.getPincode().isEmpty()){
+				criteriaForUser.add(Restrictions.eq("pincode", jobsSearchCriteria.getPincode()));
+			}
 			if(jobsSearchCriteria != null &&
 					jobsSearchCriteria.getJobCategoryList() != null
 					&& jobsSearchCriteria.getJobCategoryList().size() != 0)

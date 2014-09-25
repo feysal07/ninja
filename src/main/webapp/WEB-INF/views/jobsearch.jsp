@@ -48,6 +48,10 @@
 								</select>
 							</div>
 							<div class="col-lg-2">
+                      			<label> Pincode</label>
+                        		<input type="text" class="form-control" id="pincode" placeholder="XXXXXX">
+                    	    </div>
+							<div class="col-lg-2">
 								<label>Job Category</label>
 								<select class="form-control" id="categories" onchange="javascript:getSubCategoriesforJob()">
 								</select>

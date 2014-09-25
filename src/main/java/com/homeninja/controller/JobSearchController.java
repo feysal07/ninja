@@ -147,6 +147,7 @@ public class JobSearchController {
 	String userSearchResult(ModelMap model,
 			@RequestParam(value = "state", required=false) Integer state,
 			@RequestParam(value = "city", required=false) Integer city,
+			@RequestParam(value = "pincode", required=false) String pincode,
 			@RequestParam(value = "jobCategoryId" , required=false) Integer categories,
 			@RequestParam(value = "jobSubCatIds[]", required=false) String[] subcategories,
 			@RequestParam(value = "pageNumber", required=false) int pageNumber)
@@ -156,6 +157,7 @@ public class JobSearchController {
 		JobsSearchCriteria jobsSearchCriteria = new JobsSearchCriteria();
 		jobsSearchCriteria.setState(state);
 		jobsSearchCriteria.setCity(city);
+		jobsSearchCriteria.setPincode(pincode);
 		jobsSearchCriteria.setPageNumber(pageNumber);
 		jobsSearchCriteria.setPageSize(10);
 		List<Integer> jobCategoryList = new ArrayList<Integer>();
