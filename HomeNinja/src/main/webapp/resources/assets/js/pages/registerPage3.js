@@ -71,6 +71,7 @@ $(document)
 															str += '].jobCategory" value="on"/>';
 															str += '</label>';
 															str += '<br>';
+															
 
 														});
 										// now that we have our options, give
@@ -93,9 +94,10 @@ $(document)
 				});
 
 $(document).ready(function() {
-	$.getJSON('./getJobSubCategories', {
+	$.getJSON('./getJobSubCategoriesWithSelection', {
 		ajax : 'true',
 		contentType : 'application/json',
+		userId :   $('#siteUserid').val(),
 	}, function(data) {
 
 		var tempPrevJobCat = '';
@@ -110,6 +112,11 @@ $(document).ready(function() {
 
 			str = ' ';
 			str += '<label> <input type="checkbox" name="userJobSubCategoryList[' + result.id + '].jobSubCategoryIsSet"';
+			if(result.isSet == "true"){
+				str += ' checked = "checked"';
+				$subcategoriescheckboxes = $("#subcategoriescheckboxes" + result.jobCatId);
+				$subcategoriescheckboxes.show();
+			}
 			str += 'value="true"'
 					+ 'id ="userJobSubCategoryList';
 			str += result.id;
