@@ -59,6 +59,7 @@ import com.homeninja.service.UsersSearchService;
 import com.homeninja.utils.Utils;
 import com.homeninja.vo.City;
 import com.homeninja.vo.JobCategoryWithSelection;
+import com.homeninja.vo.JobSubCategoryWithSelection;
 import com.homeninja.vo.RegistrationPage3;
 import com.homeninja.vo.State;
 import com.homeninja.vo.UploadedFile;
@@ -271,7 +272,7 @@ public class RegisterController implements ServletContextAware {
 		Set <UserJobCategoryMap> userJobCategorySet = 
 				jobCategoryService.getUserJobCategoryMap(userId);
 		for (UserJobCategoryMap userJobCategoryMap : userJobCategorySet) {
-			jobCategoryWithSelectionList.get((int)userJobCategoryMap.getJobCategoryID() - 1).setIsSet("true");;
+			jobCategoryWithSelectionList.get((int)userJobCategoryMap.getJobCategoryID() - 1).setIsSet("true");
 		}
 		
 		TreeSet<JobCategoryWithSelection> jobCategoryWithSelectionSortedSet = new TreeSet<JobCategoryWithSelection>();
@@ -296,6 +297,37 @@ public class RegisterController implements ServletContextAware {
 		return jobSubCategorySortedSet;
 	}
 
+	@RequestMapping(value = "/getJobSubCategoriesWithSelection", method = RequestMethod.GET)
+	public @ResponseBody
+	Set<JobSubCategoryWithSelection> getJobSubCategoriesWithSelection(@RequestParam(value = "userId", required = false) long userId) {
+		logger.debug("getJobCategories");
+		Gson gson = new Gson();
+		//JobCategory jobCategory = gson.fromJson(myObject, JobCategory.class);
+		Set<JobSubCategory> jobSubCategorySet = new HashSet<JobSubCategory>();
+		jobSubCategorySet = jobCategoryService.getJobSubCategory(null);
+		List<JobSubCategoryWithSelection> jobSubCategoryWithSelectionList =
+				new ArrayList<JobSubCategoryWithSelection>();
+		Map <Long, Long> jobSubCategoryPositionMap = new HashMap<Long, Long>();
+		for(JobSubCategory jobSubCategory : jobSubCategorySet){
+			JobSubCategoryWithSelection jobSubCategoryWithSelection = new JobSubCategoryWithSelection();
+			BeanUtils.copyProperties(jobSubCategory, jobSubCategoryWithSelection);
+			jobSubCategoryWithSelectionList.add(jobSubCategoryWithSelection);
+			jobSubCategoryPositionMap.put(jobSubCategory.getId(),(jobSubCategoryWithSelectionList.size() -1) * 1L  );
+		}
+		
+		 Set<UserJobSubCategoryMap> userSubCategoryMapSet = jobCategoryService.getUserJobSubCategoryMap(userId);
+		 for (UserJobSubCategoryMap userJobSubCategoryMap : userSubCategoryMapSet) {
+			 long index = jobSubCategoryPositionMap.get(userJobSubCategoryMap.getJobSubCategoryId());
+			 jobSubCategoryWithSelectionList.get((int)index).setIsSet("true");
+		}
+			
+		
+		 TreeSet<JobSubCategoryWithSelection> jobSubCategoryWithSelectionSortedSet = new TreeSet<JobSubCategoryWithSelection>();
+			jobSubCategoryWithSelectionSortedSet.addAll(jobSubCategoryWithSelectionList);
+
+			return jobSubCategoryWithSelectionSortedSet;
+	}
+	
 	@RequestMapping(value = "/getAdvanceQuestions", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
 	Set<AdvanceSettingUserMap> getAdvanceQuestions(@RequestBody String myObject) {
