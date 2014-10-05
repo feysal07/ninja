@@ -32,10 +32,10 @@
 	<div class="row margin-bottom-30">
 		<div class="col-md-3">
 			<!-- Google Map -->
-			<div class="headline">
+			<!-- <div class="headline">
 				<h2>Upload Image</h2>
 			</div>
-
+ -->
 			<div>
 				<img alt="" src="resources/assets/img/user.jpg"
 					class="img-responsive" id="image-upload-pic" width="199"
@@ -109,7 +109,7 @@
 
 			</div>
 			<br />
-			<div>
+			<!-- <div>
 				<div>
 					<div class="headline">
 						<h2>Advance Settings</h2>
@@ -119,7 +119,7 @@
 					
 				</div>
 
-			</div>
+			</div> -->
 			<div></div>
 		</div>
 

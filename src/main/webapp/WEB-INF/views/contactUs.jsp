@@ -55,7 +55,7 @@
                         <input type="text" class="form-control" id="email">
                     </div>                
                 </div>
-                <label>Contact Purpose<span class="color-red">*</span></label>
+                <label>Contact Purpose</label>
                 <div class="row margin-bottom-20">
                     <div class="col-md-7 col-md-offset-0">
                         <select  class="form-control" id="contactPurpose">
