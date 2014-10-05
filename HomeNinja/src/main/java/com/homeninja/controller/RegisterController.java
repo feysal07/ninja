@@ -764,17 +764,32 @@ public class RegisterController implements ServletContextAware {
 */
 	@RequestMapping(value = "/uploadprofilepicture", method = RequestMethod.GET)
 	public @ResponseBody
-	String upload1(MultipartHttpServletRequest request,
+	String upload1(MultipartHttpServletRequest request,Model model,
 			HttpServletResponse response, @RequestBody String myObject) {
-		return upload(request, response, myObject);
+		return upload(request,model, response, myObject);
 	}
 
 	@RequestMapping(value = "/uploadprofilepicture", method = RequestMethod.POST)
 	public @ResponseBody
-	String upload(MultipartHttpServletRequest request,
+	String upload(MultipartHttpServletRequest request,Model model,
 			HttpServletResponse response, @RequestBody String myObject) {
 
-		Gson gson = new Gson();
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
+			}
+		}
+		//Gson gson = new Gson();
 		// 0. notice, we have used MultipartHttpServletRequest
 		SiteUsers registerUser = new SiteUsers();
 		// 1. get the files from the request object
@@ -791,11 +806,14 @@ public class RegisterController implements ServletContextAware {
 			ufile.bytes = mpf.getBytes();
 			ufile.type = mpf.getContentType();
 			ufile.name = mpf.getOriginalFilename();
-			registerUser.setUserId(siteUserId);
-			registerUser = siteUserService.getSiteUsersById( registerUser);
+			//registerUser.setUserId(siteUserId);
+			registerUser = siteUserService.getSiteUsersById( userInfo.getUserId());
 			registerUser.setProfilPic(ufile.bytes);
 			boolean uploadImageFlag = siteUserService.updateUser(registerUser);
-
+			if(!uploadImageFlag){
+				return "false";
+			}
+			
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -804,7 +822,7 @@ public class RegisterController implements ServletContextAware {
 		// 2. send it back to the client as <img> that calls get method
 		// we are using getTimeInMillis to avoid server cached image
 
-		return "http://localhost:18080/HomeNinja/getimage/"
+		return "http://localhost:8080/HomeNinja/getimage/"
 				+ registerUser.getUserId();
 
 	}
