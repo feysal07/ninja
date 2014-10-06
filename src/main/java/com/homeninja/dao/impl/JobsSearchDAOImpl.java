@@ -111,13 +111,16 @@ public class JobsSearchDAOImpl implements JobsSearchDAO {
 			
 			List<Object[]> results = criteriaForUser.list();
 
-					
+			int index = 1;
+			
 			if (results.size() > 0) {
 				for (int i = 0; i < results.size(); i++) {
 					com.homeninja.vo.JobsSearch SearchVO =
 							new com.homeninja.vo.JobsSearch();
+					SearchVO.setIndex(index);
 					BeanUtils.copyProperties(results.get(i)[1], SearchVO);
 					jobsSearchResult.getJobsSearchList().add(SearchVO);
+					index++;
 				}
 				
 				return jobsSearchResult;
