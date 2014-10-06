@@ -3,11 +3,14 @@
 <c:forEach var="user" items="${jobsSearchSet.jobsSearchList}">
 
 	<!--Blog Post-->
-	<div class="search-blocks search-blocks-left-green">
+	<div class="search-blocks <c:if test="${user.index % 4 == 1 }">search-blocks-left-green</c:if>
+		<c:if test="${user.index % 4 == 2 }"> search-blocks-colored search-blocks-red</c:if>
+		<c:if test="${user.index % 4 == 3 }">search-blocks-left-orange</c:if>
+		<c:if test="${user.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if>">
 		<div class="row">
 
-			<div>
-				<a> Job Title: </a>
+			<p>
+				 Job Title: 
 				<c:out value="${user.title}" />
 
 				<br> Job Details:
@@ -17,9 +20,9 @@
 				Job Post Date:
 				<c:out value="${user.postDate}"/>
 			
-			</div>
+			</p>
 
-			<div>
+			<p>
 				Job Category:
 				<c:set var="jobCategoryId" value="${user.jobCategory}" />
 				<c:out value="${jobCatHashMap[jobCategoryId]}" />
@@ -29,7 +32,7 @@
 					<c:out value="${jobsubJobCat}" />
 					<%-- <c:out value="${jobSubCatHashMap[userJobCat]}" /> --%>
 				</c:forEach>
-			</div>
+			</p>
 
 
 
