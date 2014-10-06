@@ -77,7 +77,7 @@
 			<label>More about the company</label>
 			<div class="row margin-bottom-20">
 				<div class="col-md-10 col-md-offset-0">
-					<form:textarea rows="8" path = "userCompanyMap.companyName" class="form-control"></form:textarea>
+					<form:textarea rows="8" path = "userCompanyMap.aboutCompany" class="form-control"></form:textarea>
 				</div>
 			</div>
 
