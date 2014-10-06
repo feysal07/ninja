@@ -1,5 +1,8 @@
 package com.homeninja.controller;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -46,6 +49,7 @@ import com.homeninja.entities.AdvanceSettingUserMap;
 import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.SiteUsers;
+import com.homeninja.entities.UserCompanyMap;
 import com.homeninja.entities.UserJobCategoryMap;
 import com.homeninja.entities.UserJobSubCategoryMap;
 import com.homeninja.entities.UserType;
@@ -224,7 +228,10 @@ public class RegisterController implements ServletContextAware {
 		usersSearch.setJobCategories(sbJobCat.toString());
 		usersSearch.setJobSubCategories(sbJobSubCat.toString());
 		usersSearchService.updateUsersSearch(usersSearch);
-		
+		UserCompanyMap userCompanyMap = userCompanyService.getUserCompanyByUserId(siteUsers);
+		userCompanyMap.setCompanyName(registrationPage3.getUserCompanyMap().getCompanyName());
+		userCompanyMap.setAboutCompany(registrationPage3.getUserCompanyMap().getAboutCompany());
+		userCompanyService.saveOrUpdateUserCompanyMap(userCompanyMap);
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("register-page3");
@@ -822,12 +829,12 @@ public class RegisterController implements ServletContextAware {
 		// 2. send it back to the client as <img> that calls get method
 		// we are using getTimeInMillis to avoid server cached image
 
-		return "http://localhost:8080/HomeNinja/getimage/"
-				+ registerUser.getUserId();
+		return "./getimage/"
+				+ registerUser.getUserId() + "/"+Math.random();
 
 	}
 
-	@RequestMapping(value = "/getimage/{value}", method = RequestMethod.GET)
+	@RequestMapping(value = "/getimage/{value}/*", method = RequestMethod.GET)
 	public void get(HttpServletResponse response, @PathVariable String value) {
 		try {
 			response.setContentType("image/jpg");
@@ -838,6 +845,24 @@ public class RegisterController implements ServletContextAware {
 			siteUsers = siteUserService.getSiteUsersById( siteUsers);
 			if(siteUsers.getProfilPic() != null){
 				FileCopyUtils.copy(siteUsers.getProfilPic(), response.getOutputStream());
+			}
+			else{
+				String filePath = this.servletContext.getRealPath("./resources/assets/img/user.jpg") ;
+				File fBlob = new File (filePath);
+				FileInputStream fis = new FileInputStream ( fBlob );
+				ByteArrayOutputStream bos = new ByteArrayOutputStream();
+		        byte[] buf = new byte[1024];
+		        try {
+		            for (int readNum; (readNum = fis.read(buf)) != -1;) {
+		                //Writes to this byte array output stream
+		                bos.write(buf, 0, readNum); 
+		               // System.out.println("read " + readNum + " bytes,");
+		            }
+		        } catch (IOException ex) {
+		           // Logger.getLogger(ConvertImage.class.getName()).log(Level.SEVERE, null, ex);
+		        }
+		        
+				FileCopyUtils.copy(bos.toByteArray(), response.getOutputStream());
 			}
 			
 		} catch (IOException e) {
