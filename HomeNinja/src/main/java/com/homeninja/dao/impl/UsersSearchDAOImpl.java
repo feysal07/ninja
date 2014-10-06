@@ -112,13 +112,16 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 			
 			List<UsersSearch> results = criteriaForUser.list();
 
+			int index = 1;
 					
 			if (results.size() > 0) {
 				for (UsersSearch usersSearch : results) {
 					com.homeninja.vo.UsersSearch userSearchVO =
 							new com.homeninja.vo.UsersSearch();
+					userSearchVO.setIndex(index);
 					BeanUtils.copyProperties(usersSearch, userSearchVO);
 					usersSearchResult.getUsersSearchList().add(userSearchVO);
+					index++;					
 				}
 				
 				return usersSearchResult;
