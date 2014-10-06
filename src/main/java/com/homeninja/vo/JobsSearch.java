@@ -29,6 +29,7 @@ public class JobsSearch {
 	private boolean maxRequestReached;
 	private String jobSubCategories;
 	private List<String> jobSubCategoriesList = new ArrayList<String>();
+	private int index;
 
 	public long getId() {
 		return id;
@@ -184,6 +185,14 @@ public class JobsSearch {
 
 	public void setJobSubCategoriesList(List<String> jobSubCategoriesList) {
 		this.jobSubCategoriesList = jobSubCategoriesList;
+	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
 	}
 
 
