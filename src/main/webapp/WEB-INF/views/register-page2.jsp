@@ -40,7 +40,7 @@ var cityVal=${siteUserAddress.city}
 			</div>
 
 			<div>
-				<img alt="" src="resources/assets/img/user.jpg"
+				<img alt="" src="./getimage/<c:out value="${siteUser.userId}"/>/00"
 					class="img-responsive" id="image-upload-pic" width="199"
 					height="152">
 			</div>
