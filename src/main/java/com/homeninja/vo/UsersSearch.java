@@ -23,6 +23,7 @@ public class UsersSearch {
 	private List<String> jobSubCategoriesList = new ArrayList<String>();
 	private String aboutMe;
 	private Long userTypeId;
+	private int index;
 
 	public String getAboutMe() {
 		return aboutMe;
@@ -148,5 +149,15 @@ public class UsersSearch {
 	public void setUserTypeId(Long userTypeId) {
 		this.userTypeId = userTypeId;
 	}
+
+	public int getIndex() {
+		return index;
+	}
+
+	public void setIndex(int index) {
+		this.index = index;
+	}
+	
+	
 
 }

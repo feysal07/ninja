@@ -2,23 +2,25 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:forEach var="user" items="${usersSearchSet.usersSearchList}">
 
+
 	<!--Blog Post-->
-	<div class="search-blocks search-blocks-left-green">
+	<div class="search-blocks <c:if test="${user.index % 4 == 1 }">search-blocks-left-green</c:if>
+		<c:if test="${user.index % 4 == 2 }"> search-blocks-colored search-blocks-red</c:if>
+		<c:if test="${user.index % 4 == 3 }">search-blocks-left-orange</c:if>
+		<c:if test="${user.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if> ">
 		<div class="row">
-			Job Categories:
+			<p>Job Categories:
 			<c:forEach var="userJobCat" items="${user.jobCategoriesList}">
 				<c:out value="${userJobCat}" />
-				<%-- <c:out value="${jobCatHashMap[userJobCat]}" /> --%>
 			</c:forEach>
 
 			<br> Job Sub-Categories:
 			<c:forEach var="userSubJobCat" items="${user.jobSubCategoriesList}">
 				<c:out value="${userSubJobCat}" />
-				<%-- <c:out value="${jobSubCatHashMap[userJobCat]}" /> --%>
-			</c:forEach>
+			</c:forEach></p>
 			<div class="col-md-4 search-img">
 				<img alt="" id="image-profile-pic"
-					src="./getimage/<c:out value='${user.userId}'/>"
+					src="./getimage/<c:out value='${user.userId}'/>/0"
 					class="img-responsive">
 				<ul class="list-unstyled">
 					<li><i class="icon-briefcase"></i> <c:set var="cityId"
@@ -45,7 +47,7 @@
 				<p>
 					<c:out value="${user.aboutMe}" />
 				</p>
-				<a class="btn-u btn-u-sea" href="#">read more</a>
+				<a class="btn-u btn-u-sea" href="#">Details</a>
 			</div>
 		</div>
 	</div>
