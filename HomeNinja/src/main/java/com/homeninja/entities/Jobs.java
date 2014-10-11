@@ -29,7 +29,6 @@ public class Jobs {
 	private int city;
 	private long postBy;
 	private String pincode;
-	@Transient
 	private int jobCategoryId;
 	private int requestCount;
 	private int requestLimit;
