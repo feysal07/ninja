@@ -115,15 +115,15 @@
 						<ul class="dropdown-menu">
 							<li><a href="./comingsoon">Discussion</a></li>
 						</ul></li> -->
-					<!-- <li class="dropdown"><a href="../Review/Posts"
+					<li class="dropdown"><a href="../Review/Posts"
 						class="dropdown-toggle" data-toggle="dropdown"
 						data-hover="dropdown" data-delay="0" data-close-others="false">Blog
 							<i class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="./comingsoon">Post Blog </a></li>
-							<li><a href="./comingsoon">Blogs</a></li>
-						</ul></li> -->
+							<li><a href="./comingsoon">Post A Blog </a></li>
+							<li><a href="./allBlogs">Blogs</a></li>
+						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-hover="dropdown" data-delay="0"
 						data-close-others="false">Contacts <i class="icon-angle-down"></i>
