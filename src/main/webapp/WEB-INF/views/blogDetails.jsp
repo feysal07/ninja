@@ -8,11 +8,11 @@
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
-        <h1 class="pull-left">Blog Item 1</h1>
+        <h1 class="pull-left">Blog Details</h1>
         <ul class="pull-right breadcrumb">
             <li><a href="index.html">Home</a></li>
-            <li><a href="">Blog</a></li>
-            <li class="active">Blog Item 1</li>
+            <!-- <li><a href="">Blog</a></li> -->
+            <li class="active">Blog Details</li>
         </ul>
     </div>
 </div><!--/breadcrumbs-->
@@ -43,7 +43,7 @@
                     </ul>                                                
                 </div>
                 <div class="blog-img">
-                    <img class="img-responsive" src="assets/img/posts/2.jpg" alt="">
+                    <img class="img-responsive" src="resources/assets/img/posts/2.jpg" alt="">
                 </div>
                 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, mollitia animi, id est laborum et dolorum fug consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna.</p><br>
                 <div class="tag-box tag-box-v2">
@@ -65,7 +65,7 @@
             <div class="media">
             	<h3>Comments</h3>
                 <a class="pull-left" href="#">
-                    <img class="media-object" src="assets/img/sliders/elastislide/2.jpg" alt="" />
+                    <img class="media-object" src="resources/assets/img/sliders/elastislide/2.jpg" alt="" />
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">Media heading <span>5 hours ago / <a href="#">Reply</a></span></h4>
@@ -75,7 +75,7 @@
 
                     <div class="media">
                         <a class="pull-left" href="#">
-                            <img class="media-object" src="assets/img/sliders/elastislide/5.jpg" alt="" />
+                            <img class="media-object" src="resources/assets/img/sliders/elastislide/5.jpg" alt="" />
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">Media heading <span>17 hours ago / <a href="#">Reply</a></span></h4>
@@ -87,7 +87,7 @@
 
                     <div class="media">
                         <a class="pull-left" href="#">
-                            <img class="media-object" src="assets/img/sliders/elastislide/11.jpg" alt="" />
+                            <img class="media-object" src="resources/assets/img/sliders/elastislide/11.jpg" alt="" />
                         </a>
                         <div class="media-body">
                             <h4 class="media-heading">Media heading <span>2 days ago / <a href="#">Reply</a></span></h4>
@@ -99,7 +99,7 @@
 
             <div class="media">
                 <a class="pull-left" href="#">
-                    <img class="media-object" src="assets/img/sliders/elastislide/9.jpg" alt="" />
+                    <img class="media-object" src="resources/assets/img/sliders/elastislide/9.jpg" alt="" />
                 </a>
                 <div class="media-body">
                     <h4 class="media-heading">Media heading <span>July 5,2013 / <a href="#">Reply</a></span></h4>
@@ -144,7 +144,10 @@
 
         <!-- Right Sidebar -->
         <div class="col-md-3 magazine-page">
-            <!-- Search Bar -->
+        <c:import url="../facebook-like-box.jsp"></c:import>
+        </div>
+        <!-- <div class="col-md-3 magazine-page">
+            Search Bar
             <div class="headline headline-md"><h2>Search</h2></div>            
             <div class="input-group margin-bottom-40">
                 <input type="text" class="form-control" placeholder="Search">
@@ -152,33 +155,33 @@
                     <button class="btn-u" type="button">Go</button>
                 </span>
             </div>
-            <!-- End Search Bar -->
+            End Search Bar
 
-            <!-- Posts -->
+            Posts
             <div class="posts margin-bottom-40">
                 <div class="headline headline-md"><h2>Recent Posts</h2></div>
                 <dl class="dl-horizontal">
-                    <dt><a href="#"><img src="assets/img/sliders/elastislide/6.jpg" alt="" /></a></dt>
+                    <dt><a href="#"><img src="resources/assets/img/sliders/elastislide/6.jpg" alt="" /></a></dt>
                     <dd>
                         <p><a href="#">Responsive Bootstrap 3 Template placerat idelo alac eratamet.</a></p> 
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt><a href="#"><img src="assets/img/sliders/elastislide/10.jpg" alt="" /></a></dt>
+                    <dt><a href="#"><img src="resources/assets/img/sliders/elastislide/10.jpg" alt="" /></a></dt>
                     <dd>
                         <p><a href="#">100+ Amazing Features Layer Slider, Layer Slider, Icons, 60+ Pages etc.</a></p> 
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
-                    <dt><a href="#"><img src="assets/img/sliders/elastislide/11.jpg" alt="" /></a></dt>
+                    <dt><a href="#"><img src="resources/assets/img/sliders/elastislide/11.jpg" alt="" /></a></dt>
                     <dd>
                         <p><a href="#">Developer Friendly Code imperdiet condime ntumi mperdiet condim.</a></p> 
                     </dd>
                 </dl>
-            </div><!--/posts-->
-            <!-- End Posts -->
+            </div>/posts
+            End Posts
 
-            <!-- Tabs Widget -->
+            Tabs Widget
             <div class="headline headline-md"><h2>Tabs Widget</h2></div>
             <div class="tab-v2 margin-bottom-40">
                 <ul class="nav nav-tabs">
@@ -211,23 +214,23 @@
                     </div>
                 </div>
             </div>            
-            <!-- End Tabs Widget -->
+            End Tabs Widget
 
-            <!-- Photo Stream -->
+            Photo Stream
             <div class="headline headline-md"><h2>Photo Stream</h2></div>
             <ul class="list-unstyled blog-photos margin-bottom-30">
-                <li><a href="#"><img class="hover-effect" alt="" src="assets/img/sliders/elastislide/5.jpg"></a></li>
-                <li><a href="#"><img class="hover-effect" alt="" src="assets/img/sliders/elastislide/6.jpg"></a></li>
-                <li><a href="#"><img class="hover-effect" alt="" src="assets/img/sliders/elastislide/8.jpg"></a></li>
-                <li><a href="#"><img class="hover-effect" alt="" src="assets/img/sliders/elastislide/10.jpg"></a></li>
-                <li><a href="#"><img class="hover-effect" alt="" src="assets/img/sliders/elastislide/11.jpg"></a></li>
-                <li><a href="#"><img class="hover-effect" alt="" src="assets/img/sliders/elastislide/1.jpg"></a></li>
-                <li><a href="#"><img class="hover-effect" alt="" src="assets/img/sliders/elastislide/2.jpg"></a></li>
-                <li><a href="#"><img class="hover-effect" alt="" src="assets/img/sliders/elastislide/7.jpg"></a></li>
+                <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/5.jpg"></a></li>
+                <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/6.jpg"></a></li>
+                <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/8.jpg"></a></li>
+                <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/10.jpg"></a></li>
+                <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/11.jpg"></a></li>
+                <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/1.jpg"></a></li>
+                <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/2.jpg"></a></li>
+                <li><a href="#"><img class="hover-effect" alt="" src="resources/assets/img/sliders/elastislide/7.jpg"></a></li>
             </ul>
-            <!-- End Photo Stream -->
+            End Photo Stream
 
-            <!-- Blog Tags -->
+            Blog Tags
             <div class="headline headline-md"><h2>Blog Tags</h2></div>
             <ul class="list-unstyled blog-tags margin-bottom-30">
                 <li><a href="#"><i class="icon-tags"></i> Business</a></li>
@@ -245,9 +248,9 @@
                 <li><a href="#"><i class="icon-tags"></i> Apple</a></li>
                 <li><a href="#"><i class="icon-tags"></i> Canada</a></li>
             </ul>
-            <!-- End Blog Tags -->
+            End Blog Tags
 
-            <!-- Blog Latest Tweets -->
+            Blog Latest Tweets
             <div class="blog-twitter margin-bottom-30">
                 <div class="headline headline-md"><h2>Latest Tweets</h2></div>
                 <div class="blog-twitter-inner">
@@ -279,8 +282,8 @@
                     <span>5 hours ago</span>
                 </div>
             </div>
-            <!-- End Blog Latest Tweets -->
-        </div>
+            End Blog Latest Tweets
+        </div> -->
         <!-- End Right Sidebar -->
     </div><!--/row-->        
 </div><!--/container-->		
