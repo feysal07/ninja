@@ -9,6 +9,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -97,5 +98,15 @@ public class BlogPost {
 
 	public void setTags(BlogTags tags) {
 		this.tags = tags;
+	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.id.equals(((BlogPost)obj).id);
+	}
+	
+	@Override
+	public int hashCode() {
+		return id.hashCode();
 	}
 }

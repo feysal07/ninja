@@ -54,5 +54,15 @@ public class BlogTags {
 	public void setBlogPost(BlogPost blogPost) {
 		this.blogPost = blogPost;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		return this.id.equals(((BlogTags)obj).id);
+	}
+	
+	@Override
+	public int hashCode() {
+		return id.hashCode();
+	}
 
 }
