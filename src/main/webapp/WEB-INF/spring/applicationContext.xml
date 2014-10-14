@@ -52,8 +52,9 @@
 				<value>com.homeninja.entities.Jobs</value>
 				<value>com.homeninja.entities.MessageLimits</value>
 				<value>com.homeninja.entities.UserCompanyMap</value>
-
-
+				
+				<value>com.homeninja.entities.BlogPost</value>
+				<value>com.homeninja.entities.BlogTags</value>
 			</list>
 		</property>
 
