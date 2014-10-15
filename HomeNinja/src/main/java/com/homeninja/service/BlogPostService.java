@@ -1,30 +1,14 @@
-/*
- * Copyright (c) 2008 - 2013 10gen, Inc. <http://10gen.com>
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- * 
- *   http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- *
- */
-
 package com.homeninja.service;
 
 import java.util.List;
 
+import com.homeninja.entities.BlogPost;
 
-/*public interface BlogPostService {
-  
-    public DBObject findByPermalink(String permalink) ;
-    public List<DBObject> findByDateDescending(int limit);
-    public List<DBObject> findByTagDateDescending(final String tag);
-    public void addBlog(BlogPost blogPost);    
-    public void addPostComment(final String name, final String email, final String body, final String permalink);
-}*/
+
+public interface BlogPostService{
+	void addBlog(BlogPost blogPost);
+	void updateBlog(BlogPost blogPost);
+	void removeBlog(BlogPost blogPost);
+	List<BlogPost> findAllBlogs();
+	BlogPost findBlogById(Long id);
+}
