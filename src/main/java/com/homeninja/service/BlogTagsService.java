@@ -13,7 +13,7 @@ public interface BlogTagsService {
 	void addBlogTags(BlogTags blogTags);
 	void updateBlogTags(BlogTags blogTags);
 	void removeBlogTags(BlogTags blogTags);
-	List<BlogTags> findAllBlogs();
+	List<BlogTags> findAllTags();
 	BlogTags findBlogById(Long id);
 
 }

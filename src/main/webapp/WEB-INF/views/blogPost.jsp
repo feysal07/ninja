@@ -2,11 +2,12 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
 <%@ page session="false"%>
 
-<title>HomeNinja | Job Post</title>
+<title>HomeNinja | Blog Post</title>
 <!DOCTYPE c:import PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
-<script type="text/javascript"	src="resources/assets/js/pages/jobPost.js"></script>
+<script type="text/javascript"
+	src="resources/assets/js/pages/blogPost.js"></script>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -15,7 +16,7 @@
 		<ul class="pull-right breadcrumb">
 			<li><a href=".">Home</a></li>
 			<!-- <li><a href="">Pages</a></li> -->
-			<li class="active">Post Job</li>
+			<li class="active">Post Blog</li>
 		</ul>
 	</div>
 </div>
@@ -24,104 +25,63 @@
 
 <!--=== Content Part ===-->
 <div class="container">
-<div class="row blog-page">
-	<div class="col-md-9 mb-margin-bottom-40">
-		<div>
-		 <!--  Alert messages -->
-			<div class="alert alert-danger fade in" id="alertError" hidden="true">
-				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button>
-				<label for="myalue" ></label>
-			</div>
-			<div class="alert alert-success" id="alertSuccess" hidden="true">
-				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeSuccessBox();">&times;</button>
-				<i class="icon-ok "></i>&nbsp; your job has been post successfully !
-			</div>
-
-			<!--  alert messages end -->
-			<div class="headline">
-				<h2>Job Details</h2>
-			</div>
-			<div class="row">
-				<div class="col-lg-4">
-					<label>Job Category<span class="color-red">*</span></label>
-					<select id="jobCategories"
-						class="form-control" onchange="javascript:getJobSubCategories(this)">
-					</select>
-				</div>
-			
-			</div>
-
-			<br />
+	<div class="row blog-page">
+		<div class="col-md-9 mb-margin-bottom-40">
 			<div>
+				<!--  Alert messages -->
+				<div class="alert alert-danger fade in" id="alertError"
+					hidden="true">
+					<button type="button" class="close" data-dismiss="alert"
+						onclick="javascript:closeErrorBox();">&times;</button>
+					<label for="myalue"></label>
+				</div>
+				<div class="alert alert-success" id="alertSuccess" hidden="true">
+					<button type="button" class="close" data-dismiss="alert"
+						onclick="javascript:closeSuccessBox();">&times;</button>
+					<i class="icon-ok "></i>&nbsp; your blog has been post successfully
+					!
+				</div>
 
-				<label id="subCatLabel"></label>
-				<div id="subcategoriescheckboxes">
+				<!--  alert messages end -->
+				<div class="headline">
+					<h2>Blog Details</h2>
 				</div>
 				
-			</div>
-			<div class="row">
-						<div class="col-lg-4">
-							<label>State <span class="color-red">*</span></label>
-							<select id="states" class="form-control" onchange="javascript:getCitiesforState()"></select>
-						</div>
-						
-			</div>
-			<br>
-			<div class="row">
-			<div class="col-lg-4">
-							<label>City<span class="color-red">*</span></label> <select
-								 id="citiesforstate" class="form-control">
-								 <option value="">Select</option>
-							</select>
-						</div>
-			</div>
-			
-			<br /> <label>Pincode</label>
-			<div class="row margin-bottom-20">
-				<div class="col-lg-4">
-					<input type="text" id="pincode" class="form-control">
+				<label>Title<span class="color-red">*</span></label>
+				<div class="row margin-bottom-20">
+					<div class="col-lg-4">
+						<input type="text" id="title" class="form-control">
+					</div>
 				</div>
-			</div>
-			<br /> <label>Location</label>
-			<div class="row margin-bottom-20">
-				<div class="col-lg-4">
-					<input type="text" id="location" class="form-control">
+
+				<label>Blog Content<span class="color-red">*</span></label>
+				<div class="row margin-bottom-20">
+					<div class="col-md-8 col-md-offset-0">
+						<textarea rows="8" class="form-control" id="blogContent"></textarea>
+					</div>
 				</div>
-			</div>
-			<div class="row">
-						<div class="col-lg-4">
-							<label>Message Ranges<span class="color-red">*</span></label>
-							<select id="messageRanges" class="form-control" ></select>
-						</div>
-						
-			</div>
-			<br /> <label>Job Title</label>
-			<div class="row margin-bottom-20">
-				<div class="col-lg-4">
-					<input type="text" class="form-control" id="title">
+				<div class="row">
+					<div class="col-lg-4">
+						<label>Tags</label> <select id="tags" class="form-control"></select>
+					</div>
+
 				</div>
+
+
 			</div>
-			<label>Description</label>
-			<div class="row margin-bottom-20">
-				<div class="col-md-8 col-md-offset-0">
-					<textarea rows="8" class="form-control" id="jobDetails"></textarea>
-				</div>
-			</div>
+			<br /> <br />
+			<p>
+				<button type="submit" class="btn-u" onclick="javascript:jobPost()">Post</button>
+				<img id="loader-img" src="resources/assets/img/loader.gif"
+					hidden="hidden" height="30" width="30" class="color-img" alt="">
+			</p>
 
 
 		</div>
-		<br /> <br />
-		<p>
-			<button type="submit" class="btn-u" onclick="javascript:jobPost()">Post</button>
-			<img id="loader-img" src="resources/assets/img/loader.gif" hidden="hidden" height="30" width="30" class="color-img" alt="">
-		</p>
-
-
-	</div>
-<div class="col-md-3">
-<c:import url="../facebook-like-box.jsp"></c:import>
-</div>
-	<!-- <div class="col-md-3" style="display: none;">
+		<div class="col-md-3">
+			<c:import url="../facebook-like-box.jsp"></c:import>
+		</div>
+		<!-- <div class="col-md-3" style="display: none;">
             Social Icons
             <div class="magazine-sb-social margin-bottom-30">
                 <div class="headline headline-md"><h2>Social Icons</h2></div>
@@ -246,8 +206,8 @@
             End Blog Latest Tweets
         </div>
 	 -->
-	<!--/col-md-9-->
-</div>
+		<!--/col-md-9-->
+	</div>
 </div>
 <!--/row-->
 <!--/container-->
