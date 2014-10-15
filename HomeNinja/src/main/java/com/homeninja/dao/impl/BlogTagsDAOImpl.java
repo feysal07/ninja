@@ -41,7 +41,7 @@ public class BlogTagsDAOImpl implements BlogTagsDAO {
 	@Override
 	public List<BlogTags> getAllBlogs() {
 		Query query = this.sessionFactory.getCurrentSession().createQuery(
-				"from BlogTags");
+				"select id, tags from BlogTags");
 		List<BlogTags> posts = query.list();
 		return posts;
 	}

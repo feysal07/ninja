@@ -35,7 +35,7 @@ public class BlogTagsServiceImpl implements BlogTagsService {
 	}
 
 	@Override
-	public List<BlogTags> findAllBlogs() {
+	public List<BlogTags> findAllTags() {
 		return dao.getAllBlogs();
 	}
 

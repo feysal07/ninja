@@ -121,7 +121,7 @@
 							<i class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="./comingsoon">Post A Blog </a></li>
+							<li><a href="./blogPost">Post A Blog </a></li>
 							<li><a href="./allBlogs">Blogs</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
