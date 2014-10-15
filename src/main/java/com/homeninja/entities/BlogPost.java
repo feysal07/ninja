@@ -18,7 +18,7 @@ public class BlogPost {
 
 	private Long id;
 	private String title;
-	private String author;
+	private Long author;
 	private String content;
 	private Integer commentCount;
 	private Date createdDate;
@@ -35,11 +35,11 @@ public class BlogPost {
 	}
 
 	@Column(name = "author")
-	public String getAuthor() {
+	public Long getAuthor() {
 		return author;
 	}
 
-	public void setAuthor(String author) {
+	public void setAuthor(Long author) {
 		this.author = author;
 	}
 

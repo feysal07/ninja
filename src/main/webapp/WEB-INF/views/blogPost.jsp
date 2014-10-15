@@ -7,6 +7,8 @@
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
 <script type="text/javascript"
+	src="resources/assets/plugins/jquery-1.11.1.js"></script>
+<script type="text/javascript"
 	src="resources/assets/js/pages/blogPost.js"></script>
 
 <!--=== Breadcrumbs ===-->
@@ -71,7 +73,7 @@
 			</div>
 			<br /> <br />
 			<p>
-				<button type="submit" class="btn-u" onclick="javascript:jobPost()">Post</button>
+				<button type="submit" class="btn-u" onclick="javascript:blogPost()">Post</button>
 				<img id="loader-img" src="resources/assets/img/loader.gif"
 					hidden="hidden" height="30" width="30" class="color-img" alt="">
 			</p>

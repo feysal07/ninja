@@ -45,7 +45,7 @@ public class BlogTags {
 		this.tags = tags;
 	}
 
-	@OneToOne(fetch = FetchType.EAGER)
+	@OneToOne(fetch = FetchType.LAZY)
 	@PrimaryKeyJoinColumn
 	public BlogPost getBlogPost() {
 		return blogPost;
