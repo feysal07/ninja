@@ -2,15 +2,10 @@ package com.homeninja.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
 
 /**
  * @author Eugene Ustimenko
@@ -22,11 +17,10 @@ public class BlogTags {
 
 	private Long id;
 	private String tags;
-	private BlogPost blogPost;
+//	private BlogPost blogPost;
 
-	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "blogPost"))
 	@Id
-	@GeneratedValue(generator = "generator")
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	@Column(name = "id")
 	public Long getId() {
 		return id;
@@ -45,15 +39,14 @@ public class BlogTags {
 		this.tags = tags;
 	}
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	public BlogPost getBlogPost() {
-		return blogPost;
-	}
-
-	public void setBlogPost(BlogPost blogPost) {
-		this.blogPost = blogPost;
-	}
+//	@OneToOne(fetch = FetchType.LAZY, mappedBy = "tags", cascade = CascadeType.ALL)
+//	public BlogPost getBlogPost() {
+//		return blogPost;
+//	}
+//
+//	public void setBlogPost(BlogPost blogPost) {
+//		this.blogPost = blogPost;
+//	}
 	
 	@Override
 	public boolean equals(Object obj) {

@@ -6,8 +6,8 @@
 <!DOCTYPE c:import PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
-<script type="text/javascript"
-	src="resources/assets/plugins/jquery-1.11.1.js"></script>
+<script type="text/javascript" src="resources/assets/js/lib/jquery-2.1.1.js"></script>
+<script type="text/javascript" src="resources/assets/js/lib/jquery.json-2.4.js"></script>
 <script type="text/javascript"
 	src="resources/assets/js/pages/blogPost.js"></script>
 

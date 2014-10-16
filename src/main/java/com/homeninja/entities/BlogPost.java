@@ -2,15 +2,14 @@ package com.homeninja.entities;
 
 import java.util.Date;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.homeninja.vo.UserInfo;
 
 @Entity
 @Table(name = "blogs")
@@ -23,7 +22,8 @@ public class BlogPost {
 	private Integer commentCount;
 	private Date createdDate;
 	private Date modifiedDate;
-	private BlogTags tags;
+//	private BlogTags tags;
+	private Long tagId;
 
 	@Column(name = "title")
 	public String getTitle() {
@@ -89,23 +89,49 @@ public class BlogPost {
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-	
-	@OneToOne(fetch=FetchType.EAGER, mappedBy="blogPost", cascade=CascadeType.ALL)
-	public BlogTags getTags() {
-		return tags;
-	}
 
-	public void setTags(BlogTags tags) {
-		this.tags = tags;
-	}
-	
+//	@OneToOne(fetch = FetchType.LAZY)
+//	@PrimaryKeyJoinColumn
+//	public BlogTags getTags() {
+//		return tags;
+//	}
+//
+//	public void setTags(BlogTags tags) {
+//		this.tags = tags;
+//	}
+
 	@Override
 	public boolean equals(Object obj) {
-		return this.id.equals(((BlogPost)obj).id);
+		return this.id.equals(((BlogPost) obj).id);
 	}
-	
+
 	@Override
 	public int hashCode() {
 		return id.hashCode();
+	}
+//
+//	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "tags"))
+//	@Id
+//	@GeneratedValue(generator = "generator")
+	@Column(name = "tagId")
+	public Long getTagId() {
+		return tagId;
+	}
+
+	public void setTagId(Long tagId) {
+		this.tagId = tagId;
+	}
+	
+	public static BlogPost create(com.homeninja.gson.bean.BlogPost bean, UserInfo info){
+	    BlogPost post = new BlogPost();
+        post.setAuthor(info.getUserId());
+        post.setCommentCount(0);
+        Date currentDate = new Date();
+        post.setCreatedDate(currentDate);
+        post.setModifiedDate(currentDate);
+        post.setTitle(bean.title);
+        post.setContent(bean.content);
+        post.setTagId(!bean.tags.isEmpty() ? Long.valueOf(bean.tags) : null);
+        return post;
 	}
 }
