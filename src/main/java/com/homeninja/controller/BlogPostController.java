@@ -1,30 +1,20 @@
 package com.homeninja.controller;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
-import javax.annotation.Resource;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
-
-import com.google.gson.Gson;
 import com.homeninja.entities.BlogPost;
 import com.homeninja.entities.BlogTags;
 import com.homeninja.service.BlogPostService;
 import com.homeninja.service.BlogTagsService;
 import com.homeninja.vo.UserInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
+import java.util.List;
+import java.util.Map;
 
 @Controller
 @SessionAttributes("userInfo")
@@ -63,24 +53,27 @@ public class BlogPostController {
         return mv;
     }
 
-    @RequestMapping(value = "/postBlog", method = RequestMethod.POST,
-            consumes = MediaType.APPLICATION_JSON_VALUE)
-    public String postBlog(@RequestBody String myObject, Model model) {
+    @RequestMapping(value = "/postBlog", method = RequestMethod.POST)
+    public ModelAndView postBlog(@RequestParam(value="title", 
+            required = true) String title, @RequestParam(value="blogContent",
+            required = true) String content, @RequestParam(value="tags",
+            required = true) String tags, Model model) {
+        ModelAndView mv = new ModelAndView();
         Map modelMap = model.asMap();
         UserInfo userInfo = null;
         if (!modelMap.containsKey("userInfo")) {
-            return "redirect:login";
+            mv.setViewName("login");
         }else{
             userInfo = (UserInfo) modelMap.get("userInfo");
             if (userInfo.getLoggedIn() == null || !userInfo.getLoggedIn().equalsIgnoreCase("true")) {
-                return "redirect:login";
+                mv.setViewName("login");
             }
-            Gson gson = new Gson();
-            com.homeninja.gson.bean.BlogPost bean = gson.fromJson(myObject,
-                    com.homeninja.gson.bean.BlogPost.class);
-            boolean added = blogPostService.addBlog(BlogPost.create(bean, userInfo));
-            return "redirect:blogPost?status="+added;
+            boolean added = blogPostService.addBlog(BlogPost.createNewBlog
+                    (title, userInfo.getUserId(), content, tags));
+            mv.setViewName("blogPost");
+            mv.addObject("status", added);
         }
+        return mv;
 
     }
 
