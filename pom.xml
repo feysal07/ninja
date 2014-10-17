@@ -25,9 +25,9 @@
 		<org.springframework.security.version>3.2.4.RELEASE</org.springframework.security.version>
 		<org.slf4j.version>1.5.10</org.slf4j.version>
 		<org.log4j.version>1.2.16</org.log4j.version>
-		<hibernate.version> 3.6.3.Final</hibernate.version>
+		<hibernate.version>3.6.10.Final</hibernate.version>
 		<hibernate.validator.version>4.1.0.Final</hibernate.validator.version>
-		<war-name>jobportal</war-name>
+		<war-name>homeninja</war-name>
 	</properties>
 	<!-- <parent> <groupId>org.springframework.boot</groupId> <artifactId>spring-boot-starter-parent</artifactId> 
 		<version>1.0.2.RELEASE</version> </parent> -->
@@ -103,13 +103,13 @@
 			<artifactId>hibernate-core</artifactId>
 			<version>${hibernate.version}</version>
 		</dependency>
-		<dependency>
-			<groupId>org.hibernate</groupId>
-			<artifactId>hibernate-annotations</artifactId>
-			<version>3.5.6-Final</version>
-		</dependency>
+        <dependency>
+            <groupId>org.hibernate</groupId>
+            <artifactId>hibernate-entitymanager</artifactId>
+            <version>${hibernate.version}</version>
+        </dependency>
 
-		<!-- Servlet -->
+        <!-- Servlet -->
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>servlet-api</artifactId>
@@ -143,10 +143,16 @@
 		</dependency>
 
 		<!-- Log4j -->
-		<dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.7</version>
+        </dependency>
+
+        <dependency>
 			<groupId>log4j</groupId>
 			<artifactId>log4j</artifactId>
-			<version>1.2.9</version>
+			<version>1.2.17</version>
 		</dependency>
 
 		<dependency>
