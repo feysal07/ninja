@@ -1,15 +1,9 @@
 package com.homeninja.entities;
 
-import java.util.Date;
-
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
 import com.homeninja.vo.UserInfo;
+
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 @Table(name = "blogs")
@@ -134,4 +128,19 @@ public class BlogPost {
         post.setTagId(!bean.tags.isEmpty() ? Long.valueOf(bean.tags) : null);
         return post;
 	}
+
+    public static BlogPost createNewBlog(String title, long author,
+                                         String content, String tags){
+        BlogPost post = new BlogPost();
+        post.setAuthor(author);
+        post.setCommentCount(0);
+        Date currentDate = new Date();
+        post.setCreatedDate(currentDate);
+        post.setModifiedDate(currentDate);
+        post.setTitle(title);
+        post.setContent(content);
+        post.setTagId(!tags.isEmpty() ? Long.valueOf(tags) : null);
+        return post;
+
+    }
 }
