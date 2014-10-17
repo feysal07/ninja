@@ -16,8 +16,8 @@ public class BlogPostServiceImpl implements BlogPostService {
 	public BlogPostDAO dao;
 
 	@Override
-	public void addBlog(BlogPost blogPost) {
-		dao.save(blogPost);
+	public boolean addBlog(BlogPost blogPost) {
+		return dao.save(blogPost);
 	}
 
 	@Override

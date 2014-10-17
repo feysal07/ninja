@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page session="false" %>
 
 <c:import url="../include.jsp"></c:import> 
@@ -25,37 +27,25 @@
     	<div class="col-md-9 md-margin-bottom-60">
             <!--Blog Post-->        
             <div class="blog margin-bottom-40">
-                <h2><a href="blog_item_option1.html">Unify is an incredibly beautiful and fully responsive Bootstrap 3 Template</a></h2>
+                <h2><a href="blog_item_option1.html">${blog.title}</a></h2>
                 <div class="blog-post-tags">
                     <ul class="list-unstyled list-inline blog-info">
-                        <li><i class="icon-calendar"></i> February 02, 2013</li>
-                        <li><i class="icon-pencil"></i> Diana Anderson</li>
-                        <li><i class="icon-comments"></i> <a href="#">24 Comments</a></li>
+                    	<c:set var="createdDate" value="${blog.createdDate}"/>
+                        <li><i class="icon-calendar"></i>${fn:substring(createdDate,0,10)}</li>
+                        <li><i class="icon-pencil"></i>${blog.author}</li>
+                        <li><i class="icon-comments"></i> <a href="#">${blog.commentCount} Comments</a></li>
                     </ul>
                     <ul class="list-unstyled list-inline blog-tags">
                         <li>
                             <i class="icon-tags"></i> 
-                            <a href="#">Technology</a> 
-                            <a href="#">Education</a>
-                            <a href="#">Internet</a>
-                            <a href="#">Media</a>
+                            <a href="#">${blog.tagId}</a> 
                         </li>
                     </ul>                                                
                 </div>
                 <div class="blog-img">
                     <img class="img-responsive" src="resources/assets/img/posts/2.jpg" alt="">
                 </div>
-                <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, mollitia animi, id est laborum et dolorum fug consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna.</p><br>
-                <div class="tag-box tag-box-v2">
-                    <p>Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet consectetur adipiscing elit. Fusce condimentum eleifend enim a feugiatt non libero consectetur adipiscing elit magna. Sed et quam lacus. Condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat.</p>
-                </div>
-                <p>Officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, mollitia animi, id est laborum et dolorum fug consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum eleifend.</p>
-                <p>Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus. Fusce condimentum</p><br>
-                <blockquote>
-                    <p>Award winning digital agency. We bring a personal and effective approach to every project we work on, which is why.</p>
-                    <small>CEO Jack Bour</small>
-                </blockquote>                
-                <p>Deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio lorem ipsum dolor sit amet, mollitia animi, id est laborum et dolorum fug consectetur adipiscing elit. Ut non libero consectetur adipiscing elit magna. Sed et quam lacus. Fusce condimentum eleifend enim a feugiat. Pellentesque viverra vehicula sem ut volutpat. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut non libero magna. Sed et quam lacus.</p>                
+                <p>${blog.content}</p><br>                                
             </div>
             <!--End Blog Post-->        
 

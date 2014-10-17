@@ -20,8 +20,8 @@ public class BlogPostDAOImpl implements BlogPostDAO {
 	private SessionFactory sessionFactory;
 
 	@Override
-	public void save(BlogPost blogPost) {
-		this.sessionFactory.getCurrentSession().save(blogPost);
+	public boolean save(BlogPost blogPost) {
+		return null!=this.sessionFactory.getCurrentSession().save(blogPost);
 	}
 
 	@Override

@@ -6,7 +6,7 @@ import com.homeninja.entities.BlogPost;
 
 
 public interface BlogPostService{
-	void addBlog(BlogPost blogPost);
+	boolean addBlog(BlogPost blogPost);
 	void updateBlog(BlogPost blogPost);
 	void removeBlog(BlogPost blogPost);
 	List<BlogPost> findAllBlogs();

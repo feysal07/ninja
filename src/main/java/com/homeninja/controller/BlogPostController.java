@@ -14,8 +14,10 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.homeninja.entities.BlogPost;
@@ -38,18 +40,27 @@ public class BlogPostController {
     private BlogTagsService blogTagsService;
 
     @RequestMapping(value = "/allBlogs", method = RequestMethod.GET)
-    public String allBlog() {
-        return "allBlogs";
-    }
+    public ModelAndView allBlog() {
+        ModelAndView mv = new ModelAndView();
+        mv.addObject("blogs", blogPostService.findAllBlogs());
+                
+        return mv;
+    }    
 
-    @RequestMapping(value = "/blogDetails", method = RequestMethod.GET)
-    public String blogDetails() {
-        return "blogDetails";
+    @RequestMapping(value = "/blogDetails", method = RequestMethod.POST)
+    public ModelAndView blogDetails(@RequestParam(value="id", required=true) Long id) {
+        ModelAndView mv = new ModelAndView("blogDetails");
+        mv.addObject("blog", blogPostService.findBlogById(id));
+        return mv;
     }
 
     @RequestMapping(value = "/blogPost", method = RequestMethod.GET)
-    public String blogPost() {
-        return "blogPost";
+    public ModelAndView blogPost(@RequestParam(value="status", required=false) Boolean status) {
+        ModelAndView mv = new ModelAndView("blogPost");
+        if(status!=null){
+            mv.addObject("status", status.booleanValue());
+        }
+        return mv;
     }
 
     @RequestMapping(value = "/postBlog", method = RequestMethod.POST,
@@ -58,30 +69,24 @@ public class BlogPostController {
         Map modelMap = model.asMap();
         UserInfo userInfo = null;
         if (!modelMap.containsKey("userInfo")) {
-            return "login";
-        }
-
-        if (modelMap.containsKey("userInfo")) {
+            return "redirect:login";
+        }else{
             userInfo = (UserInfo) modelMap.get("userInfo");
-            if (userInfo.getLoggedIn() == null) {
-                return "login";
-            } else if (!userInfo.getLoggedIn().equalsIgnoreCase("true")) {
-                return "login";
+            if (userInfo.getLoggedIn() == null || !userInfo.getLoggedIn().equalsIgnoreCase("true")) {
+                return "redirect:login";
             }
+            Gson gson = new Gson();
+            com.homeninja.gson.bean.BlogPost bean = gson.fromJson(myObject,
+                    com.homeninja.gson.bean.BlogPost.class);
+            boolean added = blogPostService.addBlog(BlogPost.create(bean, userInfo));
+            return "redirect:blogPost?status="+added;
         }
 
-        Gson gson = new Gson();
-        com.homeninja.gson.bean.BlogPost bean = gson.fromJson(myObject,
-                com.homeninja.gson.bean.BlogPost.class);
-        blogPostService.addBlog(BlogPost.create(bean, userInfo));
-        return "blogPost";
     }
 
     @RequestMapping(value = "/tags", method = RequestMethod.GET)
     public @ResponseBody List<BlogTags> findAllTags() {
-        List<BlogTags> tags = new ArrayList<BlogTags>();
-        tags = blogTagsService.findAllTags();
-        return tags;
+        return blogTagsService.findAllTags();
     }
 
 }
