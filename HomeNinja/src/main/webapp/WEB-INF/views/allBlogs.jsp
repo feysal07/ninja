@@ -1,5 +1,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <%@ page session="false" %>
 
 <title>HomeNinja | Blogs</title>
@@ -24,119 +26,34 @@
 	<div class="row blog-page">    
         <!-- Left Sidebar -->
     	<div class="col-md-9 md-margin-bottom-40">
+    		<c:forEach items="${blogs}" var="blog">
             <!--Blog Post-->
+            <form action="./blogDetails" method="post">
             <div class="row blog blog-medium margin-bottom-40">
                 <div class="col-md-5">
                     <img class="img-responsive" src="resources/assets/img/main/11.jpg" alt="">
                 </div>    
                 <div class="col-md-7">
-                    <h2>Pellentesque Habitant Morbi Tristique</h2>
+                    <h2>${blog.title}</h2>
                     <ul class="list-unstyled list-inline blog-info">
-                        <li><i class="icon-calendar"></i> November 02, 2013</li>
-                        <li><i class="icon-comments"></i> <a href="#">24 Comments</a></li>
-                        <li><i class="icon-tags"></i> Technology, Internet</li>
+                    	<c:set var="createdDate" value="${blog.createdDate}"/>
+                        <li><i class="icon-calendar"></i> ${fn:substring(createdDate,0,10)}</li>
+                        <li><i class="icon-comments"></i> <a href="#">${blog.commentCount} Comments</a></li>
+                        <li><i class="icon-tags"></i> ${blog.tagId}</li>
                     </ul>
-                    <p>At vero eos et accusamus et iusto odiomolestias dignis simos ducimus qui blandit occaeca bais praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                    <p><a class="btn-u btn-u-small" href="blog_item.html"><i class="icon-location-arrow"></i> Read More</a></p>
+                    <c:set var="content" value="${blog.content}"/>
+                    <p>${fn:substring(content,0,500)}</p>
+                    <input type="hidden" id="id" name="id" value="${blog.id}"/>
+                    <p><button type="submit" class="btn-u btn-u-small"><i class="icon-location-arrow"></i> Read More</button></p>
                 </div>    
             </div>
+            </form>
             <!--End Blog Post-->        
+    		</c:forEach>
+    	
 
             <hr class="margin-bottom-40">
-
-            <!--Blog Post-->
-            <div class="row blog blog-medium margin-bottom-40">
-                <div class="col-md-5">
-                    <div class="blog-img">
-                        <div class="responsive-video">
-                            <iframe src="//www.youtube.com/embed/ufsrgE0BYf0" frameborder="0" allowfullscreen></iframe>
-                        </div>
-                    </div>
-                </div>    
-                <div class="col-md-7">
-                    <h2>Pellentesque Habitant Morbi Tristique</h2>
-                    <ul class="list-unstyled list-inline blog-info">
-                        <li><i class="icon-calendar"></i> November 02, 2013</li>
-                        <li><i class="icon-comments"></i> <a href="#">24 Comments</a></li>
-                        <li><i class="icon-tags"></i> Technology, Internet</li>
-                    </ul>
-                    <p>At vero eos et accusamus et iusto odiomolestias dignis simos ducimus qui blandit occaeca bais praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                    <p><a class="btn-u btn-u-small" href="blog_item.html"><i class="icon-location-arrow"></i> Read More</a></p>
-                </div>    
-            </div>
-            <!--End Blog Post-->        
-
-            <hr class="margin-bottom-40">
-
-            <!--Blog Post-->
-            <div class="row blog blog-medium margin-bottom-40">
-                <div class="col-md-5">
-                    <img class="img-responsive" src="resources/assets/img/main/12.jpg" alt="">
-                </div>    
-                <div class="col-md-7">
-                    <h2>Pellentesque Habitant Morbi Tristique</h2>
-                    <ul class="list-unstyled list-inline blog-info">
-                        <li><i class="icon-calendar"></i> November 02, 2013</li>
-                        <li><i class="icon-comments"></i> <a href="#">24 Comments</a></li>
-                        <li><i class="icon-tags"></i> Technology, Internet</li>
-                    </ul>
-                    <p>At vero eos et accusamus et iusto odiomolestias dignis simos ducimus qui blandit occaeca bais praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                    <p><a class="btn-u btn-u-small" href="blog_item.html"><i class="icon-location-arrow"></i> Read More</a></p>
-                </div>    
-            </div>
-            <!--End Blog Post-->        
-
-            <hr class="margin-bottom-40">
-
-            <!--Blog Post-->
-            <div class="row blog blog-medium margin-bottom-40">
-                <div class="col-md-5">
-                    <div class="carousel slide carousel-v1" id="myCarousel">
-                        <div class="carousel-inner">
-                            <div class="item active">
-                                <img alt="" src="resources/assets/img/main/3.jpg">
-                                <div class="carousel-caption">
-                                    <p>Facilisis odio, dapibus ac justo acilisis gestinas.</p>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <div class="blog-img">
-                                    <div class="responsive-video">
-                                        <iframe src="http://player.vimeo.com/video/9679622" frameborder="0" webkitAllowFullScreen mozallowfullscreen allowFullScreen></iframe>                         
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="item">
-                                <img alt="" src="resources/assets/img/main/13.jpg">
-                                <div class="carousel-caption">
-                                    <p>Justo cras odio apibus ac afilisis lingestas de.</p>
-                                </div>
-                            </div>
-                        </div>
                         
-                        <div class="carousel-arrow">
-                            <a data-slide="prev" href="#myCarousel" class="left carousel-control">
-                                <i class="icon-angle-left"></i>
-                            </a>
-                            <a data-slide="next" href="#myCarousel" class="right carousel-control">
-                                <i class="icon-angle-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>    
-                <div class="col-md-7">
-                    <h2>Pellentesque Habitant Morbi Tristique</h2>
-                    <ul class="list-unstyled list-inline blog-info">
-                        <li><i class="icon-calendar"></i> November 02, 2013</li>
-                        <li><i class="icon-comments"></i> <a href="#">24 Comments</a></li>
-                        <li><i class="icon-tags"></i> Technology, Internet</li>
-                    </ul>
-                    <p>At vero eos et accusamus et iusto odiomolestias dignis simos ducimus qui blandit occaeca bais praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga.</p>
-                    <p><a class="btn-u btn-u-small" href="blog_item.html"><i class="icon-location-arrow"></i> Read More</a></p>
-                </div>    
-            </div>
-            <!--End Blog Post-->        
-            
             <!--Pagination-->
             <div class="text-center">
                 <ul class="pagination">

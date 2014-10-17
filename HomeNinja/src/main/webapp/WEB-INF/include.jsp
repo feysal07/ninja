@@ -20,12 +20,12 @@
     <link rel="stylesheet" href="resources/assets/css/pages/page_magazine.css">    
     
     <!-- Include js -->
-    <script type="text/javascript" src="resources/assets/plugins/jquery-1.11.1.js"></script>
+    <script type="text/javascript" src="resources/assets/js/lib/jquery-2.1.1.js"></script>
     <script type="text/javascript" src="resources/assets/plugins/hover-dropdown.min.js"></script>
     <script type="text/javascript" src="resources/assets/plugins/jquery.session.js"></script>
     
     <!-- JS Global Compulsory -->			
-	<script type="text/javascript" src="resources/assets/plugins/jquery-1.10.2.min.js"></script>
+	<script type="text/javascript" src="resources/assets/js/lib/jquery-2.1.1.js"></script>
 	<script type="text/javascript" src="resources/assets/plugins/jquery-migrate-1.2.1.min.js"></script>
 	<script type="text/javascript" src="resources/assets/plugins/bootstrap/js/bootstrap.min.js"></script> 
 	<script type="text/javascript" src="resources/assets/plugins/hover-dropdown.min.js"></script> 
