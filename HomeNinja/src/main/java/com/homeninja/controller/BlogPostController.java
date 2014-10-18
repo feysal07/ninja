@@ -2,8 +2,10 @@ package com.homeninja.controller;
 
 import com.homeninja.entities.BlogPost;
 import com.homeninja.entities.BlogTags;
+import com.homeninja.entities.SiteUsers;
 import com.homeninja.service.BlogPostService;
 import com.homeninja.service.BlogTagsService;
+import com.homeninja.service.SiteUserService;
 import com.homeninja.vo.UserInfo;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,6 +30,9 @@ public class BlogPostController {
 
     @Resource
     private BlogTagsService blogTagsService;
+
+    @Resource
+    private SiteUserService siteUserService;
 
     @RequestMapping(value = "/allBlogs", method = RequestMethod.GET)
     public ModelAndView allBlog() {
@@ -68,8 +73,10 @@ public class BlogPostController {
             if (userInfo.getLoggedIn() == null || !userInfo.getLoggedIn().equalsIgnoreCase("true")) {
                 mv.setViewName("login");
             }
+            SiteUsers author = siteUserService.getSiteUsersById(userInfo
+                    .getUserId());
             boolean added = blogPostService.addBlog(BlogPost.createNewBlog
-                    (title, userInfo.getUserId(), content, tags));
+                    (title, author.toString(), content, tags));
             mv.setViewName("blogPost");
             mv.addObject("status", added);
         }
