@@ -38,7 +38,7 @@
                     <ul class="list-unstyled list-inline blog-tags">
                         <li>
                             <i class="icon-tags"></i> 
-                            <a href="#">${blog.tagId}</a> 
+                            <a href="#">${blog.tags.tags}</a>
                         </li>
                     </ul>                                                
                 </div>

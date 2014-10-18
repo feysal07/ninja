@@ -11,72 +11,97 @@
         http://www.springframework.org/schema/mvc/spring-mvc-3.2.xsd">
 
 
-	<tx:annotation-driven />
+    <tx:annotation-driven/>
+    <mvc:annotation-driven/>
 
-	<mvc:view-controller path="/" view-name="index"/>
+    <mvc:view-controller path="/" view-name="index"/>
 
-	<!-- Root Context: defines shared resources visible to all other web components -->
-	<bean id="sessionFactory"
-		class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
-		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="com.homeninja.entities.*" />
-		<property name="hibernateProperties">
-			<props>
-				<!--<prop key="hibernate.hbm2ddl.auto">validate</prop>-->
-				<prop key="hibernate.dialect">org.hibernate.dialect.MySQLDialect</prop>
-				<prop key="hibernate.show_sql">true</prop>
-			</props>
-		</property>
+    <!-- Root Context: defines shared resources visible to all other web components -->
+    <bean id="sessionFactory"
+          class="org.springframework.orm.hibernate3.annotation.AnnotationSessionFactoryBean">
+        <property name="dataSource" ref="dataSource"/>
+        <property name="packagesToScan" value="com.homeninja.entities.*"/>
+        <property name="hibernateProperties">
+            <props>
+                <!--<prop key="hibernate.hbm2ddl.auto">validate</prop>-->
+                <prop key="hibernate.dialect">
+                    org.hibernate.dialect.MySQLDialect
+                </prop>
+                <prop key="hibernate.show_sql">true</prop>
+            </props>
+        </property>
 
-		<property name="annotatedClasses">
-			<list>
-				<value>com.homeninja.entities.SiteUsers</value>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.homeninja.entities.SiteUsers</value>
 
-				<value>com.homeninja.entities.Address</value>
-				<value>com.homeninja.entities.MasterDataValue</value>
+                <value>com.homeninja.entities.Address</value>
+                <value>com.homeninja.entities.MasterDataValue</value>
 
-				<value>com.homeninja.entities.ContactUs</value>
-				<value>com.homeninja.entities.ContactPurpose</value>
+                <value>com.homeninja.entities.ContactUs</value>
+                <value>com.homeninja.entities.ContactPurpose</value>
 
-				<value>com.homeninja.entities.AdvanceSetting</value>
-				<value>com.homeninja.entities.AdvanceSettingUserMap</value>
+                <value>com.homeninja.entities.AdvanceSetting</value>
+                <value>com.homeninja.entities.AdvanceSettingUserMap</value>
 
-				<value>com.homeninja.entities.UsersSearch</value>
-				<value>com.homeninja.entities.UserType</value>
+                <value>com.homeninja.entities.UsersSearch</value>
+                <value>com.homeninja.entities.UserType</value>
 
-				<value>com.homeninja.entities.JobCategory</value>
-				<value>com.homeninja.entities.JobSubCategory</value>
-				<value>com.homeninja.entities.UserJobCategoryMap</value>
-				<value>com.homeninja.entities.UserJobSubCategoryMap</value>
-				<value>com.homeninja.entities.JobsSubCategoryMap</value>
-				<value>com.homeninja.entities.Jobs</value>
-				<value>com.homeninja.entities.MessageLimits</value>
-				<value>com.homeninja.entities.UserCompanyMap</value>
-				
-				<value>com.homeninja.entities.BlogPost</value>
-				<value>com.homeninja.entities.BlogTags</value>
-			</list>
-		</property>
+                <value>com.homeninja.entities.JobCategory</value>
+                <value>com.homeninja.entities.JobSubCategory</value>
+                <value>com.homeninja.entities.UserJobCategoryMap</value>
+                <value>com.homeninja.entities.UserJobSubCategoryMap</value>
+                <value>com.homeninja.entities.JobsSubCategoryMap</value>
+                <value>com.homeninja.entities.Jobs</value>
+                <value>com.homeninja.entities.MessageLimits</value>
+                <value>com.homeninja.entities.UserCompanyMap</value>
 
-	</bean>
+                <value>com.homeninja.entities.BlogPost</value>
+                <value>com.homeninja.entities.BlogTags</value>
+            </list>
+        </property>
 
-	<bean id="dataSource" destroy-method="close"
-		class="org.apache.commons.dbcp.BasicDataSource">
-		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
-		<property name="url" value="jdbc:mysql://localhost:3306/homeninj_prod" />
-		<property name="username" value="homeninj_admin" />
-		<property name="password" value="homeninja123" /> 
-	</bean>
+    </bean>
 
-	<bean id="transactionManager"
-		class="org.springframework.orm.hibernate3.HibernateTransactionManager">
-		<property name="sessionFactory" ref="sessionFactory" />
-	</bean>
+    <bean id="jdbcPropertyConfigurer"
+          class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+        <property name="location">
+            <value>resources/database.properties</value>
+        </property>
+    </bean>
+
+    <bean id="dataSource"
+          class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+        <property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+    </bean>
+
+    <bean id="persistenceUnitManager"
+          class="org.springframework.orm.jpa.persistenceunit.DefaultPersistenceUnitManager">
+        <property name="persistenceXmlLocations">
+            <list>
+                <value>META-INF/persistence.xml</value>
+            </list>
+        </property>
+        <property name="defaultDataSource" ref="dataSource"/>
+    </bean>
+
+    <bean id="entityManagerFactory"
+          class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="persistenceUnitManager" ref="persistenceUnitManager"/>
+        <property name="persistenceUnitName" value="entityManager"/>
+    </bean>
+
+    <bean id="transactionManager"
+          class="org.springframework.orm.hibernate3.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactory"/>
+    </bean>
 
 
-	<!-- <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" 
-		/> -->
-
+    <!-- <bean id="persistenceExceptionTranslationPostProcessor" class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor"
+        /> -->
 
 
 </beans>

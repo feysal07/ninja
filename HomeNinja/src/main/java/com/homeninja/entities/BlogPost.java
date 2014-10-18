@@ -86,7 +86,7 @@ public class BlogPost implements Serializable{
         this.modifiedDate = modifiedDate;
     }
 
-	@OneToOne(fetch = FetchType.LAZY)
+	@OneToOne(fetch = FetchType.EAGER)
 	@PrimaryKeyJoinColumn
 	public BlogTags getTags() {
 		return tags;
@@ -117,8 +117,10 @@ public class BlogPost implements Serializable{
         this.tagId = tagId;
     }
 
+
+
     public static BlogPost createNewBlog(String title, String author,
-                                         String content, String tags) {
+                                         String content, BlogTags tags) {
         BlogPost post = new BlogPost();
         post.setAuthor(author);
         post.setCommentCount(0);
@@ -127,7 +129,7 @@ public class BlogPost implements Serializable{
         post.setModifiedDate(currentDate);
         post.setTitle(title);
         post.setContent(content);
-        post.setTagId(!tags.isEmpty() ? Long.valueOf(tags) : null);
+        post.setTagId(tags.getId());
         return post;
 
     }
