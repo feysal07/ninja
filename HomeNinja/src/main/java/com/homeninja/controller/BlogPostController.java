@@ -36,13 +36,26 @@ public class BlogPostController {
 
     @RequestMapping(value = "/allBlogs", method = RequestMethod.GET)
     public ModelAndView allBlog(@RequestParam(value="pageNumber",
-            required = true, defaultValue = "1") int pageNumber) {
-        ModelAndView mv = new ModelAndView();
-        mv.addObject("blogs", blogPostService.findAllBlogs(pageNumber));
+            required = true, defaultValue = "1") String pageNumber) {
+        ModelAndView mv = new ModelAndView("allBlogs");
+        mv.addObject("blogs", blogPostService.findAllBlogs(Integer
+                .valueOf(pageNumber)));
         mv.addObject("pageNumber", blogPostService.getPageCount());
                 
         return mv;
     }
+
+    @RequestMapping(value = "/pageChanged", method = RequestMethod.GET)
+    public ModelAndView blogList(@RequestParam(value="pageNumber",
+            required = true, defaultValue = "1") String pageNumber){
+        ModelAndView mv =new ModelAndView("blogList");
+        mv.addObject("blogs", blogPostService.findAllBlogs(Integer
+                .valueOf(pageNumber)));
+        mv.addObject("pageNumber", blogPostService.getPageCount());
+
+        return mv;
+    }
+
 
     @RequestMapping(value = "/blogDetails", method = RequestMethod.POST)
     public ModelAndView blogDetails(@RequestParam(value="id", required=true) Long id) {
