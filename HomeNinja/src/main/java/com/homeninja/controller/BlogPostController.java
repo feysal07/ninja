@@ -47,10 +47,9 @@ public class BlogPostController {
 
     @RequestMapping(value = "/pageChanged", method = RequestMethod.GET)
     public ModelAndView blogList(@RequestParam(value="pageNumber",
-            required = true, defaultValue = "1") String pageNumber){
+            required = true, defaultValue = "1") int pageNumber){
         ModelAndView mv =new ModelAndView("blogList");
-        mv.addObject("blogs", blogPostService.findAllBlogs(Integer
-                .valueOf(pageNumber)));
+        mv.addObject("blogs", blogPostService.findAllBlogs(pageNumber));
         mv.addObject("pageNumber", blogPostService.getPageCount());
 
         return mv;

@@ -32,18 +32,21 @@
             <!--Pagination-->
             <div class="text-center">
                 <ul class="pagination">
-                    <li><a href="#">Previous</a></li>
+                    <li><a href="#" onclick="javascript:prev()">Previous
+                    </a></li>
+
                     <c:forEach var="i" begin="1" end="${pageNumber}">
                         <li id="page${i}"><a
                                 href="#"
                                 onclick="javascript:pageChanged(${i})"><c:out
                                 value="${i}"/></a></li>
-                        <%--<li class="active"><a href="#">3</a></li>--%>
                     </c:forEach>
 
-                    <li><a href="#">Next</a></li>
+                    <li><a href="#"
+                           onclick="javascript:next()">Next</a></li>
                 </ul>
             </div>
+            <input type="hidden" id="selectedPage" value="1"/>
             <!--End Pagination-->
         </div>
         <!-- End Left Sidebar -->
