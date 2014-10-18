@@ -1,22 +1,10 @@
 package com.homeninja.entities;
 
+import org.hibernate.annotations.Type;
+
+import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-
-import javax.persistence.CascadeType;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.Lob;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
-import javax.persistence.Transient;
-
-import org.hibernate.annotations.Type;
 
 @Entity
 @Table(name = "site_users")
@@ -185,6 +173,9 @@ public class SiteUsers {
 	public void setCompany(UserCompanyMap company) {
 		this.company = company;
 	}
-	
-	
+
+    @Override
+    public String toString() {
+        return firstName + " " + lastName;
+    }
 }

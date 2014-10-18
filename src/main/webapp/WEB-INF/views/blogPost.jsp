@@ -16,7 +16,7 @@
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
     <div class="container">
-        <h1 class="pull-left">Post Job</h1>
+        <h1 class="pull-left">Post Blog</h1>
         <ul class="pull-right breadcrumb">
             <li><a href=".">Home</a></li>
             <!-- <li><a href="">Pages</a></li> -->
@@ -48,7 +48,7 @@
                         successfully
                         !
                     </div>
-
+                    <h2>Blog Details</h2>
                     <!--  alert messages end -->
                     <div class="headline">
 
@@ -83,7 +83,7 @@
 
 
                     </div>
-                    <h2>Blog Details</h2>
+
                 </div>
                 <br/> <br/>
 

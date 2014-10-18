@@ -39,7 +39,7 @@
                     	<c:set var="createdDate" value="${blog.createdDate}"/>
                         <li><i class="icon-calendar"></i> ${fn:substring(createdDate,0,10)}</li>
                         <li><i class="icon-comments"></i> <a href="#">${blog.commentCount} Comments</a></li>
-                        <li><i class="icon-tags"></i> ${blog.tagId}</li>
+                        <li><i class="icon-tags"></i> ${blog.tags.tags}</li>
                     </ul>
                     <c:set var="content" value="${blog.content}"/>
                     <p>${fn:substring(content,0,500)}</p>
@@ -57,7 +57,7 @@
             <!--Pagination-->
             <div class="text-center">
                 <ul class="pagination">
-                    <li><a href="#">«</a></li>
+                    <li><a href="#">ï¿½</a></li>
                     <li><a href="#">1</a></li>
                     <li><a href="#">2</a></li>
                     <li class="active"><a href="#">3</a></li>
@@ -66,7 +66,7 @@
                     <li><a href="#">6</a></li>
                     <li><a href="#">7</a></li>
                     <li><a href="#">8</a></li>
-                    <li><a href="#">»</a></li>
+                    <li><a href="#">ï¿½</a></li>
                 </ul>                                                            
             </div>
             <!--End Pagination-->
