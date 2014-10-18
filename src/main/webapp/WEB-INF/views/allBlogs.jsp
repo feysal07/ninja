@@ -22,48 +22,26 @@
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<div class="container">		
-	<div class="row blog-page">    
+<div class="container">
+	<div class="row blog-page">
         <!-- Left Sidebar -->
     	<div class="col-md-9 md-margin-bottom-40">
-    		<c:forEach items="${blogs}" var="blog">
-            <!--Blog Post-->
-            <form action="./blogDetails" method="post">
-            <div class="row blog blog-medium margin-bottom-40">
-                <div class="col-md-5">
-                    <img class="img-responsive" src="resources/assets/img/main/11.jpg" alt="">
-                </div>    
-                <div class="col-md-7">
-                    <h2>${blog.title}</h2>
-                    <ul class="list-unstyled list-inline blog-info">
-                    	<c:set var="createdDate" value="${blog.createdDate}"/>
-                        <li><i class="icon-calendar"></i> ${fn:substring(createdDate,0,10)}</li>
-                        <li><i class="icon-comments"></i> <a href="#">${blog.commentCount} Comments</a></li>
-                        <li><i class="icon-tags"></i> ${blog.tags.tags}</li>
-                    </ul>
-                    <c:set var="content" value="${blog.content}"/>
-                    <p>${fn:substring(content,0,500)}</p>
-                    <input type="hidden" id="id" name="id" value="${blog.id}"/>
-                    <p><button type="submit" class="btn-u btn-u-small"><i class="icon-location-arrow"></i> Read More</button></p>
-                </div>    
-            </div>
-            </form>
-            <!--End Blog Post-->        
-    		</c:forEach>
-    	
-
+            <div id="blogList"><jsp:include page="blogList.jsp"/></div>
             <hr class="margin-bottom-40">
-                        
+
             <!--Pagination-->
             <div class="text-center">
                 <ul class="pagination">
-                    <li><a href="#"></a></li>
+                    <li><a href="#">Previous</a></li>
                     <c:forEach var="i" begin="1" end="${pageNumber}">
-                        <li><a href="#"><c:out value="${i}"/></a></li>
+                        <li id="page${i}"><a
+                                href="#"
+                                onclick="javascript:pageChanged(${i})"><c:out
+                                value="${i}"/></a></li>
                         <%--<li class="active"><a href="#">3</a></li>--%>
                     </c:forEach>
 
-                    <li><a href="#"></a></li>
+                    <li><a href="#">Next</a></li>
                 </ul>
             </div>
             <!--End Pagination-->
@@ -94,7 +72,7 @@
                     <li><a class="social_github" data-original-title="Github" href="#"></a></li>
                     <li><a class="social_xing" data-original-title="Xing" href="#"></a></li>
                 </ul>
-                <div class="clearfix"></div>                
+                <div class="clearfix"></div>
             </div>
             End Social Icons
 
@@ -104,19 +82,19 @@
                 <dl class="dl-horizontal">
                     <dt><a href="#"><img src="resources/assets/img/sliders/elastislide/6.jpg" alt="" /></a></dt>
                     <dd>
-                        <p><a href="#">Responsive Bootstrap 3 Template placerat idelo alac eratamet.</a></p> 
+                        <p><a href="#">Responsive Bootstrap 3 Template placerat idelo alac eratamet.</a></p>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt><a href="#"><img src="resources/assets/img/sliders/elastislide/10.jpg" alt="" /></a></dt>
                     <dd>
-                        <p><a href="#">100+ Amazing Features Layer Slider, Layer Slider, Icons, 60+ Pages etc.</a></p> 
+                        <p><a href="#">100+ Amazing Features Layer Slider, Layer Slider, Icons, 60+ Pages etc.</a></p>
                     </dd>
                 </dl>
                 <dl class="dl-horizontal">
                     <dt><a href="#"><img src="resources/assets/img/sliders/elastislide/11.jpg" alt="" /></a></dt>
                     <dd>
-                        <p><a href="#">Developer Friendly Code imperdiet condime ntumi mperdiet condim.</a></p> 
+                        <p><a href="#">Developer Friendly Code imperdiet condime ntumi mperdiet condim.</a></p>
                     </dd>
                 </dl>
             </div>/posts
@@ -128,10 +106,10 @@
                 <ul class="nav nav-tabs">
                     <li class="active"><a data-toggle="tab" href="#home-1">About Us</a></li>
                     <li><a data-toggle="tab" href="#home-2">Quick Links</a></li>
-                </ul>                
+                </ul>
                 <div class="tab-content">
                     <div id="home-1" class="tab-pane active">
-                        <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac ac adipiscing nunc.</p> <p>Pellentesque fermentum, ante ac felis consectetur id. Donec eget orci metusvivamus imperdiet.</p>                        
+                        <p>Vivamus imperdiet condimentum diam, eget placerat felis consectetur id. Donec eget orci metus, ac ac adipiscing nunc.</p> <p>Pellentesque fermentum, ante ac felis consectetur id. Donec eget orci metusvivamus imperdiet.</p>
                     </div>
                     <div id="home-2" class="tab-pane magazine-sb-categories">
                         <div class="row">
@@ -142,7 +120,7 @@
                                 <li><a href="#">Parralax Slider</a></li>
                                 <li><a href="#">Responsive</a></li>
                                 <li><a href="#">800+ Icons</a></li>
-                            </ul>                        
+                            </ul>
                             <ul class="list-unstyled col-xs-6">
                                 <li><a href="#">60+ Pages</a></li>
                                 <li><a href="#">Layer Slider</a></li>
@@ -150,11 +128,11 @@
                                 <li><a href="#">Fixed Header</a></li>
                                 <li><a href="#">Best Template</a></li>
                                 <li><a href="#">And Many More</a></li>
-                            </ul>                        
+                            </ul>
                         </div>
                     </div>
                 </div>
-            </div>            
+            </div>
             End Tabs Widget
 
         	Photo Stream
@@ -176,31 +154,31 @@
                 <div class="headline headline-md"><h2>Latest Tweets</h2></div>
                 <div class="blog-twitter-inner">
                     <i class="icon-twitter"></i>
-                    <a href="#">@htmlstream</a> 
-                    At vero eos et accusamus et iusto odio dignissimos. 
-                    <a href="#">http://t.co/sBav7dm</a> 
+                    <a href="#">@htmlstream</a>
+                    At vero eos et accusamus et iusto odio dignissimos.
+                    <a href="#">http://t.co/sBav7dm</a>
                     <span>5 hours ago</span>
                 </div>
                 <div class="blog-twitter-inner">
                     <i class="icon-twitter"></i>
-                    <a href="#">@htmlstream</a> 
-                    At vero eos et accusamus et iusto odio dignissimos. 
-                    <a href="#">http://t.co/sBav7dm</a> 
+                    <a href="#">@htmlstream</a>
+                    At vero eos et accusamus et iusto odio dignissimos.
+                    <a href="#">http://t.co/sBav7dm</a>
                     <span>5 hours ago</span>
                 </div>
                 <div class="blog-twitter-inner">
                     <i class="icon-twitter"></i>
-                    <a href="#">@htmlstream</a> 
-                    At vero eos et accusamus et iusto odio dignissimos. 
-                    <a href="#">http://t.co/sBav7dm</a> 
+                    <a href="#">@htmlstream</a>
+                    At vero eos et accusamus et iusto odio dignissimos.
+                    <a href="#">http://t.co/sBav7dm</a>
                     <span>5 hours ago</span>
                 </div>
             </div>
             End Blog Latest Tweets
         </div> -->
         <!-- End Right Sidebar -->
-    </div><!--/row-->        
-</div><!--/container-->		
+    </div><!--/row-->
+</div><!--/container-->
 <!--=== End Content Part ===-->
  <!-- Footer-->
 <c:import url="../footer.jsp"></c:import>
