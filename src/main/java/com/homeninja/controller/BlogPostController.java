@@ -35,12 +35,14 @@ public class BlogPostController {
     private SiteUserService siteUserService;
 
     @RequestMapping(value = "/allBlogs", method = RequestMethod.GET)
-    public ModelAndView allBlog() {
+    public ModelAndView allBlog(@RequestParam(value="pageNumber",
+            required = true, defaultValue = "1") int pageNumber) {
         ModelAndView mv = new ModelAndView();
-        mv.addObject("blogs", blogPostService.findAllBlogs());
+        mv.addObject("blogs", blogPostService.findAllBlogs(pageNumber));
+        mv.addObject("pageNumber", blogPostService.getPageCount());
                 
         return mv;
-    }    
+    }
 
     @RequestMapping(value = "/blogDetails", method = RequestMethod.POST)
     public ModelAndView blogDetails(@RequestParam(value="id", required=true) Long id) {
@@ -75,8 +77,12 @@ public class BlogPostController {
             }
             SiteUsers author = siteUserService.getSiteUsersById(userInfo
                     .getUserId());
+            BlogTags blogTags = null;
+            if(!tags.isEmpty()){
+                blogTags = blogTagsService.findBlogById(Long.valueOf(tags));
+            }
             boolean added = blogPostService.addBlog(BlogPost.createNewBlog
-                    (title, author.toString(), content, tags));
+                    (title, author.toString(), content, blogTags));
             mv.setViewName("blogPost");
             mv.addObject("status", added);
         }

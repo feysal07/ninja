@@ -1,16 +1,17 @@
 package com.homeninja.dao.impl;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
+import com.homeninja.dao.BlogPostDAO;
+import com.homeninja.entities.BlogPost;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.homeninja.dao.BlogPostDAO;
-import com.homeninja.entities.BlogPost;
+import javax.annotation.Resource;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+import javax.persistence.TypedQuery;
+import java.util.List;
 
 @Service
 @Transactional
@@ -18,6 +19,9 @@ public class BlogPostDAOImpl implements BlogPostDAO {
 
 	@Resource
 	private SessionFactory sessionFactory;
+
+    @PersistenceContext(unitName = "entityManager")
+    private EntityManager entityManager;
 
 	@Override
 	public boolean save(BlogPost blogPost) {
@@ -35,11 +39,12 @@ public class BlogPostDAOImpl implements BlogPostDAO {
 	}
 
 	@Override
-	public List<BlogPost> getAllBlogs() {
-		Query query = this.sessionFactory.getCurrentSession().createQuery(
-				"from BlogPost");
-		List<BlogPost> posts = query.list();
-		return posts;
+	public List<BlogPost> getAllBlogs(int from, int till) {
+        TypedQuery<BlogPost> query = entityManager.createQuery("from " +
+                "BlogPost", BlogPost.class);
+        query.setMaxResults(till);
+        query.setFirstResult(from*till);
+        return query.getResultList();
 	}
 
 	@Override
@@ -50,5 +55,12 @@ public class BlogPostDAOImpl implements BlogPostDAO {
 		List<BlogPost> list = query.list();
 		return !list.isEmpty() ? list.get(0) : null;
 	}
+
+    @Override
+    public long getBlogsNumber() {
+        TypedQuery<Long> query = entityManager.createQuery("select count" +
+                "(*) from BlogPost", Long.class);
+        return query.getSingleResult();
+    }
 
 }
