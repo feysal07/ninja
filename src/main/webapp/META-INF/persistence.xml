@@ -27,6 +27,7 @@
 
         <class>com.homeninja.entities.BlogPost</class>
         <class>com.homeninja.entities.BlogTags</class>
+        <class>com.homeninja.entities.Comment</class>
         <exclude-unlisted-classes>true</exclude-unlisted-classes>
         <validation-mode>NONE</validation-mode>
         <properties>
