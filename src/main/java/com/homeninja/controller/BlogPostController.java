@@ -106,14 +106,14 @@ public class BlogPostController {
                     .equalsIgnoreCase("true") || 5!=userInfo.getUserType()) {
                 mv.setViewName("login");
             }else{
-                SiteUsers author = siteUserService.getSiteUsersById(userInfo
-                        .getUserId());
+                /*SiteUsers author = siteUserService.getSiteUsersById(userInfo
+                        .getUserId());*/
                 BlogTags blogTags = null;
                 if (!tags.isEmpty()) {
                     blogTags = blogTagsService.findBlogById(Long.valueOf(tags));
                 }
                 boolean added = blogPostService.addBlog(BlogPost.createNewBlog
-                        (title, author.toString(), content, blogTags));
+                        (title, userInfo.getUserId(), content, blogTags));
                 mv.setViewName("blogPost");
                 mv.addObject("status", added);
             }
