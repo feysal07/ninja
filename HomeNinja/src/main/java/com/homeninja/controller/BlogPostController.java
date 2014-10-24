@@ -65,7 +65,8 @@ public class BlogPostController {
     public ModelAndView blogDetails(@RequestParam(value = "id",
             required = true) Long id, Model model) {
         ModelAndView mv = new ModelAndView("blogDetails");
-        mv.addObject("blog", blogPostService.findBlogById(id));
+        BlogPost blogPost = blogPostService.findBlogById(id);
+        mv.addObject("blog", blogPost);
         Map modelMap = model.asMap();
         if (!modelMap.containsKey("userInfo")) {
             mv.addObject("logged", false);
@@ -75,7 +76,7 @@ public class BlogPostController {
                 mv.addObject("logged", false);
             }
             mv.addObject("logged", true);
-            mv.addObject("username", userInfo.getUserName());
+            mv.addObject("username", blogPost.getAuthor());
             mv.addObject("email", userInfo.getUserEmailId());
         }
         return mv;

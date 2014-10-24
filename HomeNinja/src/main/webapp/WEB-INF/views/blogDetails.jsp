@@ -42,9 +42,9 @@
                         </li>
                     </ul>                                                
                 </div>
-                <div class="blog-img">
-                    <img class="img-responsive" src="resources/assets/img/posts/2.jpg" alt="">
-                </div>
+                <%--<div class="blog-img">--%>
+                    <%--<img class="img-responsive" src="resources/assets/img/posts/2.jpg" alt="">--%>
+                <%--</div>--%>
                 <p>${blog.content}</p><br>                                
             </div>
             <!--End Blog Post-->        

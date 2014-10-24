@@ -29,6 +29,7 @@
             <div id="blogList"><jsp:include page="blogList.jsp"/></div>
             <hr class="margin-bottom-40">
 
+            <c:if test="${pageNumber>1}">
             <!--Pagination-->
             <div class="text-center">
                 <ul class="pagination">
@@ -48,6 +49,7 @@
             </div>
             <input type="hidden" id="selectedPage" value="1"/>
             <!--End Pagination-->
+            </c:if>
         </div>
         <!-- End Left Sidebar -->
 

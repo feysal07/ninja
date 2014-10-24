@@ -6,9 +6,9 @@
     <!--Blog Post-->
     <form action="./blogDetails" method="post">
         <div class="row blog blog-medium margin-bottom-40">
-            <div class="col-md-5">
-                <img class="img-responsive" src="resources/assets/img/main/11.jpg" alt="">
-            </div>
+            <%--<div class="col-md-5">--%>
+                <%--<img class="img-responsive" src="resources/assets/img/main/11.jpg" alt="">--%>
+            <%--</div>--%>
             <div class="col-md-7">
                 <h2>${blog.title}</h2>
                 <ul class="list-unstyled list-inline blog-info">
