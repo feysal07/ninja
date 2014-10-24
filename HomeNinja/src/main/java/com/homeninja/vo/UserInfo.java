@@ -8,6 +8,7 @@ public class UserInfo {
 	private String userEmailId;
 
 	private String loggedIn;
+    private long userType;
 
 	public String getUserName() {
 		return userName;
@@ -41,4 +42,11 @@ public class UserInfo {
 		this.userId = userId;
 	}
 
+    public long getUserType() {
+        return userType;
+    }
+
+    public void setUserType(long userType) {
+        this.userType = userType;
+    }
 }
