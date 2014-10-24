@@ -10,12 +10,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Table(name = "blogs")
+@Table(name = "blog")
 public class BlogPost implements Serializable{
 
     private Long id;
     private String title;
-    private String author;
+    private Long author;
     private String content;
     private Integer commentCount;
     private Date createdDate;
@@ -42,14 +42,8 @@ public class BlogPost implements Serializable{
         this.title = title;
     }
 
-    @Column(name = "author")
-    public String getAuthor() {
-        return author;
-    }
-
-    public void setAuthor(String author) {
-        this.author = author;
-    }
+   
+   
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
@@ -131,7 +125,7 @@ public class BlogPost implements Serializable{
 
 
 
-    public static BlogPost createNewBlog(String title, String author,
+    public static BlogPost createNewBlog(String title, Long author,
                                          String content, BlogTags tags) {
         BlogPost post = new BlogPost();
         post.setAuthor(author);
@@ -145,4 +139,12 @@ public class BlogPost implements Serializable{
         return post;
 
     }
+
+	public Long getAuthor() {
+		return author;
+	}
+
+	public void setAuthor(Long author) {
+		this.author = author;
+	}
 }

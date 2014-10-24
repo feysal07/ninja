@@ -31,7 +31,7 @@
 <div class="container">
     <div class="row blog-page">
         <div class="col-md-9 mb-margin-bottom-40">
-            <form action="/postBlog" method="POST">
+            <form action="./postBlog" method="POST">
                 <div>
                     <!--  Alert messages -->
                     <div class="alert alert-danger fade in" id="alertError"
