@@ -1,26 +1,20 @@
 package com.homeninja.controller;
 
-import java.util.Map;
-
-import javax.annotation.Resource;
-import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
-
 import com.google.gson.Gson;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.service.SiteUserService;
 import com.homeninja.utils.Utils;
 import com.homeninja.vo.UserInfo;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+
+import javax.annotation.Resource;
+import javax.servlet.http.HttpServletResponse;
+import java.util.Map;
 
 @Controller
 @SessionAttributes("userInfo")
@@ -87,6 +81,7 @@ public class LoginController {
 			userInfo.setUserEmailId(user.getLoginEmail());
 			userInfo.setLoggedIn("true");
 			userInfo.setUserId(user.getUserId());
+            userInfo.setUserType(user.getUserType());
 			model.addAttribute("userInfo",userInfo);
 			return "home";
 		} else {

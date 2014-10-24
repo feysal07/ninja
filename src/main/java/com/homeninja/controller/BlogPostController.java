@@ -102,19 +102,21 @@ public class BlogPostController {
             mv.setViewName("login");
         } else {
             userInfo = (UserInfo) modelMap.get("userInfo");
-            if (userInfo.getLoggedIn() == null || !userInfo.getLoggedIn().equalsIgnoreCase("true")) {
+            if (userInfo.getLoggedIn() == null || !userInfo.getLoggedIn()
+                    .equalsIgnoreCase("true") || 5!=userInfo.getUserType()) {
                 mv.setViewName("login");
+            }else{
+                SiteUsers author = siteUserService.getSiteUsersById(userInfo
+                        .getUserId());
+                BlogTags blogTags = null;
+                if (!tags.isEmpty()) {
+                    blogTags = blogTagsService.findBlogById(Long.valueOf(tags));
+                }
+                boolean added = blogPostService.addBlog(BlogPost.createNewBlog
+                        (title, author.toString(), content, blogTags));
+                mv.setViewName("blogPost");
+                mv.addObject("status", added);
             }
-            SiteUsers author = siteUserService.getSiteUsersById(userInfo
-                    .getUserId());
-            BlogTags blogTags = null;
-            if (!tags.isEmpty()) {
-                blogTags = blogTagsService.findBlogById(Long.valueOf(tags));
-            }
-            boolean added = blogPostService.addBlog(BlogPost.createNewBlog
-                    (title, author.toString(), content, blogTags));
-            mv.setViewName("blogPost");
-            mv.addObject("status", added);
         }
         return mv;
 
