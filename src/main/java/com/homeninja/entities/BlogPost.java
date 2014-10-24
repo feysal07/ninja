@@ -5,7 +5,9 @@ import org.hibernate.annotations.Parameter;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Table(name = "blogs")
@@ -20,6 +22,16 @@ public class BlogPost implements Serializable{
     private Date modifiedDate;
    	private BlogTags tags;
     private Long tagId;
+    private List<Comment> comments = new ArrayList<Comment>();
+
+    @OneToMany(fetch = FetchType.EAGER, mappedBy = "blog")
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
 
     @Column(name = "title")
     public String getTitle() {
