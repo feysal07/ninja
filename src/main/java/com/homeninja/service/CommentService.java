@@ -1,5 +1,6 @@
 package com.homeninja.service;
 
+import com.homeninja.entities.BlogPost;
 import com.homeninja.entities.Comment;
 
 import java.util.List;
@@ -10,10 +11,10 @@ import java.util.List;
  */
 public interface CommentService {
 
-    boolean save(Comment comment);
+    boolean save(Comment comment, BlogPost post);
     void update(Comment comment);
     void remove(Comment comment);
-    List<Comment> getAllComments(int from, int till);
+    List<Comment> getAllComments(Long blogId);
     Comment getCommentById(Long id);
     Long getCommentsNumber(int blogId);
 }

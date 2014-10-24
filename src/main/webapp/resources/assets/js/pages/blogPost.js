@@ -62,6 +62,14 @@ function blogPost(){
 	}
 }
 
+function postComment(){
+    $.post("./postComment", {message: $('#message').val(), blog: $('#blog').val()})
+        .done(function(data){
+            $('#comments').html(data);
+        });
+
+}
+
 $(document).ready(
 		function() {
 			$.getJSON('./tags', {
