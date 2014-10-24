@@ -2,9 +2,11 @@ package com.homeninja.controller;
 
 import com.homeninja.entities.BlogPost;
 import com.homeninja.entities.BlogTags;
+import com.homeninja.entities.Comment;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.service.BlogPostService;
 import com.homeninja.service.BlogTagsService;
+import com.homeninja.service.CommentService;
 import com.homeninja.service.SiteUserService;
 import com.homeninja.vo.UserInfo;
 import org.slf4j.Logger;
@@ -34,6 +36,9 @@ public class BlogPostController {
     @Resource
     private SiteUserService siteUserService;
 
+    @Resource
+    private CommentService commentService;
+
     @RequestMapping(value = "/allBlogs", method = RequestMethod.GET)
     public ModelAndView allBlog(@RequestParam(value="pageNumber",
             required = true, defaultValue = "1") String pageNumber) {
@@ -57,9 +62,22 @@ public class BlogPostController {
 
 
     @RequestMapping(value = "/blogDetails", method = RequestMethod.POST)
-    public ModelAndView blogDetails(@RequestParam(value="id", required=true) Long id) {
+    public ModelAndView blogDetails(@RequestParam(value="id",
+            required=true) Long id, Model model) {
         ModelAndView mv = new ModelAndView("blogDetails");
         mv.addObject("blog", blogPostService.findBlogById(id));
+        Map modelMap = model.asMap();
+        if (!modelMap.containsKey("userInfo")) {
+            mv.addObject("logged", false);
+        }else{
+            UserInfo userInfo = (UserInfo) modelMap.get("userInfo");
+            if (userInfo.getLoggedIn() == null || !userInfo.getLoggedIn().equalsIgnoreCase("true")) {
+                mv.addObject("logged", false);
+            }
+            mv.addObject("logged", true);
+            mv.addObject("username", userInfo.getUserName());
+            mv.addObject("email", userInfo.getUserEmailId());
+        }
         return mv;
     }
 
@@ -105,6 +123,34 @@ public class BlogPostController {
     @RequestMapping(value = "/tags", method = RequestMethod.GET)
     public @ResponseBody List<BlogTags> findAllTags() {
         return blogTagsService.findAllTags();
+    }
+
+    @RequestMapping(value="/postComment", method = RequestMethod.POST)
+    public ModelAndView postComment(Model model,
+                                    @RequestParam(value="message",
+                                            required = true) String message,
+                                    @RequestParam(value="blog",
+                                            required = true) long id){
+        ModelAndView mv = new ModelAndView();
+        Map modelMap = model.asMap();
+        UserInfo userInfo = null;
+        if (!modelMap.containsKey("userInfo")) {
+            mv.setViewName("login");
+        }else{
+            userInfo = (UserInfo) modelMap.get("userInfo");
+            if (userInfo.getLoggedIn() == null || !userInfo.getLoggedIn().equalsIgnoreCase("true")) {
+                mv.setViewName("login");
+            }
+
+            SiteUsers user = siteUserService.getSiteUsersById(userInfo
+                    .getUserId());
+            BlogPost blog = blogPostService.findBlogById(id);
+            Comment comment = Comment.create(message, user, blog);
+            boolean saved = commentService.save(comment);
+            mv.addObject("saved", saved);
+        }
+
+        return mv;
     }
 
 }

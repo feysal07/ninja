@@ -8,7 +8,7 @@ import java.util.Date;
  * @date Oct 23, 2014
  */
 @Entity
-@Table(name="blog_comments")
+@Table(name = "blog_comments")
 public class Comment {
 
     private long id;
@@ -18,9 +18,19 @@ public class Comment {
     private Date modified;
     private BlogPost blog;
 
+    private Comment(){}
+
+    private Comment(String text, SiteUsers user, BlogPost blog) {
+        this.text = text;
+        this.user = user;
+        this.blog = blog;
+        this.created = new Date();
+        this.modified = this.created;
+    }
+
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name="id")
+    @Column(name = "id")
     public long getId() {
         return id;
     }
@@ -29,7 +39,7 @@ public class Comment {
         this.id = id;
     }
 
-    @Column(name="comment")
+    @Column(name = "comment")
     public String getText() {
         return text;
     }
@@ -38,6 +48,8 @@ public class Comment {
         this.text = text;
     }
 
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "createdBy")
     public SiteUsers getUser() {
         return user;
     }
@@ -46,7 +58,7 @@ public class Comment {
         this.user = user;
     }
 
-    @Column(name="createdDate")
+    @Column(name = "createdDate")
     public Date getCreated() {
         return created;
     }
@@ -55,7 +67,7 @@ public class Comment {
         this.created = created;
     }
 
-    @Column(name="modifiedDate")
+    @Column(name = "modifiedDate")
     public Date getModified() {
         return modified;
     }
@@ -64,13 +76,34 @@ public class Comment {
         this.modified = modified;
     }
 
-    @ManyToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name="blogId")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "blogId")
     public BlogPost getBlog() {
         return blog;
     }
 
     public void setBlog(BlogPost blog) {
         this.blog = blog;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+
+        Comment comment = (Comment) o;
+
+        if (id != comment.id) return false;
+
+        return true;
+    }
+
+    @Override
+    public int hashCode() {
+        return (int) (id ^ (id >>> 32));
+    }
+
+    public static Comment create(String text, SiteUsers user, BlogPost blog) {
+        return new Comment(text, user, blog);
     }
 }

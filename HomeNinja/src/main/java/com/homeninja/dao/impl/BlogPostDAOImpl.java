@@ -25,7 +25,12 @@ public class BlogPostDAOImpl implements BlogPostDAO {
 
 	@Override
 	public boolean save(BlogPost blogPost) {
-		return null!=this.sessionFactory.getCurrentSession().save(blogPost);
+        try {
+            return null!=this.sessionFactory.getCurrentSession().save(blogPost);
+        }catch (Exception e){
+            e.printStackTrace();
+            return false;
+        }
 	}
 
 	@Override
@@ -43,7 +48,7 @@ public class BlogPostDAOImpl implements BlogPostDAO {
         TypedQuery<BlogPost> query = entityManager.createQuery("from " +
                 "BlogPost", BlogPost.class);
         query.setMaxResults(till);
-        query.setFirstResult(from*till);
+        query.setFirstResult(from>1?from*till:0);
         return query.getResultList();
 	}
 

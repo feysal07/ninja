@@ -100,35 +100,49 @@
 
             <hr>
 
-            <!-- Comment Form -->
-            <div class="post-comment">
-            	<h3>Leave a Comment</h3>
-                <form>
-                    <label>Name</label>
-                    <div class="row margin-bottom-20">
-                        <div class="col-md-7 col-md-offset-0">
-                            <input type="text" class="form-control">
-                        </div>                
+            <c:choose>
+                <c:when test="${logged=='true'}">
+                    <!-- Comment Form -->
+                    <div class="post-comment">
+                        <h3>Leave a Comment</h3>
+                        <form action="./postComment" method="post">
+                            <label>Name</label>
+                            <div class="row margin-bottom-20">
+                                <div class="col-md-7 col-md-offset-0">
+                                    <input type="text" class="form-control"
+                                           disabled value="${username}">
+                                </div>
+                            </div>
+
+                            <label>Email</label>
+                            <div class="row margin-bottom-20">
+                                <div class="col-md-7 col-md-offset-0">
+                                    <input type="text" class="form-control"
+                                           disabled value="${email}">
+                                </div>
+                            </div>
+
+                            <label>Message<span class="color-red">*</span></label>
+                            <div class="row margin-bottom-20">
+                                <div class="col-md-11 col-md-offset-0">
+                                    <textarea class="form-control" rows="8"
+                                              id="message" name="message"></textarea>
+                                </div>
+                            </div>
+                            <input type="hidden" value="${blog.id}" id="blog"
+                                   name="blog">
+
+                            <p><button class="btn-u" type="submit">Send Message</button></p>
+                        </form>
                     </div>
-                    
-                    <label>Email <span class="color-red">*</span></label>
-                    <div class="row margin-bottom-20">
-                        <div class="col-md-7 col-md-offset-0">
-                            <input type="text" class="form-control">
-                        </div>                
-                    </div>
-                    
-                    <label>Message</label>
-                    <div class="row margin-bottom-20">
-                        <div class="col-md-11 col-md-offset-0">
-                            <textarea class="form-control" rows="8"></textarea>
-                        </div>                
-                    </div>
-                    
-                    <p><button class="btn-u" type="submit">Send Message</button></p>
-                </form>
-            </div>
-            <!-- End Comment Form -->
+                    <!-- End Comment Form -->
+                </c:when>
+                <c:otherwise>
+                    <h3>To comment you should be logged in</h3>
+                </c:otherwise>
+            </c:choose>
+
+
         </div>
         <!-- End Left Sidebar -->
 

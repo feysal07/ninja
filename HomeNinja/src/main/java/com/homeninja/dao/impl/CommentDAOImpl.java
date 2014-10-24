@@ -2,6 +2,8 @@ package com.homeninja.dao.impl;
 
 import com.homeninja.dao.CommentDAO;
 import com.homeninja.entities.Comment;
+import org.hibernate.SessionFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -22,12 +24,15 @@ public class CommentDAOImpl implements CommentDAO {
     @PersistenceContext(unitName = "entityManager")
     private EntityManager entityManager;
 
+    @Autowired
+    private SessionFactory sessionFactory;
+
     @Override
     public boolean save(Comment comment) {
         try {
-            entityManager.persist(comment);
-            return true;
+            return null!=sessionFactory.getCurrentSession().save(comment);
         } catch (Exception e) {
+            e.printStackTrace();
             return false;
         }
     }
