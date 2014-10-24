@@ -48,7 +48,7 @@ public class Comment {
         this.text = text;
     }
 
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "createdBy")
     public SiteUsers getUser() {
         return user;

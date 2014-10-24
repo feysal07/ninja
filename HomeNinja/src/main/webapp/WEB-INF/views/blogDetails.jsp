@@ -54,48 +54,10 @@
             <!-- Recent Comments -->
             <div class="media">
             	<h3>Comments</h3>
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="resources/assets/img/sliders/elastislide/2.jpg" alt="" />
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Media heading <span>5 hours ago / <a href="#">Reply</a></span></h4>
-                    <p>Donec id elit non mi portas sats eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna..</p>
-
-                    <hr>
-
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="resources/assets/img/sliders/elastislide/5.jpg" alt="" />
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">Media heading <span>17 hours ago / <a href="#">Reply</a></span></h4>
-                            <p>Donec id elit non mi portas sats eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum anibhut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna..</p>
-                        </div>
-                    </div>
-
-                    <hr>
-
-                    <div class="media">
-                        <a class="pull-left" href="#">
-                            <img class="media-object" src="resources/assets/img/sliders/elastislide/11.jpg" alt="" />
-                        </a>
-                        <div class="media-body">
-                            <h4 class="media-heading">Media heading <span>2 days ago / <a href="#">Reply</a></span></h4>
-                            <p>Donec id elit non mi portas sats eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum anibhut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna..</p>
-                        </div>
-                    </div>
+                <div id="comments">
+                    <jsp:include page="comments.jsp"/>
                 </div>
-            </div><!--/media-->
-
-            <div class="media">
-                <a class="pull-left" href="#">
-                    <img class="media-object" src="resources/assets/img/sliders/elastislide/9.jpg" alt="" />
-                </a>
-                <div class="media-body">
-                    <h4 class="media-heading">Media heading <span>July 5,2013 / <a href="#">Reply</a></span></h4>
-                    <p>Donec id elit non mi portas sats eget metus. Fusce dapibus, tellus ac cursus commodo, tortor mauris condimentum nibh, ut fermentum massa justo sit amet risus. Etiam porta sem malesuada magna..</p>
-                </div>
-            </div><!--/media-->
+            </div>
             <!-- End Recent Comments -->
 
             <hr>
@@ -105,7 +67,6 @@
                     <!-- Comment Form -->
                     <div class="post-comment">
                         <h3>Leave a Comment</h3>
-                        <form action="./postComment" method="post">
                             <label>Name</label>
                             <div class="row margin-bottom-20">
                                 <div class="col-md-7 col-md-offset-0">
@@ -132,8 +93,9 @@
                             <input type="hidden" value="${blog.id}" id="blog"
                                    name="blog">
 
-                            <p><button class="btn-u" type="submit">Send Message</button></p>
-                        </form>
+                            <p><button class="btn-u" type="button"
+                                       onclick="javascript:postComment()">Send
+                                Message</button></p>
                     </div>
                     <!-- End Comment Form -->
                 </c:when>

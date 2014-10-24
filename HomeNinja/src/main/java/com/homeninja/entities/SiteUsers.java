@@ -28,8 +28,8 @@ public class SiteUsers {
 	private String myFavoriteStyle;*/
 	private Date createdDate;
 	private Date modifiedDate;
-	
-	@OneToOne(cascade = CascadeType.ALL)
+
+    @OneToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name="userId")
     private UserCompanyMap company;
 	

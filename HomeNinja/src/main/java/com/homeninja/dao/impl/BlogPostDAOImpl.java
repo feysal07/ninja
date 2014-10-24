@@ -35,7 +35,11 @@ public class BlogPostDAOImpl implements BlogPostDAO {
 
 	@Override
 	public void update(BlogPost blogPost) {
-		this.sessionFactory.getCurrentSession().update(blogPost);
+        try {
+            this.sessionFactory.getCurrentSession().update(blogPost);
+        }catch (Exception e){
+            e.printStackTrace();
+        }
 	}
 
 	@Override

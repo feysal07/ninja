@@ -13,7 +13,7 @@ public interface CommentDAO {
     boolean save(Comment comment);
     void update(Comment comment);
     void remove(Comment comment);
-    List<Comment> getAllComments(int from, int till);
+    List<Comment> getAllComments(Long blogId);
     Comment getCommentById(Long id);
     Long getCommentsNumber(int blogId);
 }

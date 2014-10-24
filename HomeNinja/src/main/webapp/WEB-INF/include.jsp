@@ -46,6 +46,8 @@
 	</script>
     <script type="text/javascript"
             src="resources/assets/js/pages/allBlogs.js"></script>
+    <script type="text/javascript"
+            src="resources/assets/js/pages/blogPost.js"></script>
 	<!--[if lt IE 9]>
 	    <script src="resources/assets/plugins/respond.js"></script>
 	<![endif]-->

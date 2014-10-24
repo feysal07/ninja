@@ -1,6 +1,8 @@
 package com.homeninja.service.impl;
 
+import com.homeninja.dao.BlogPostDAO;
 import com.homeninja.dao.CommentDAO;
+import com.homeninja.entities.BlogPost;
 import com.homeninja.entities.Comment;
 import com.homeninja.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,18 @@ public class CommentServiceImpl implements CommentService{
     @Autowired
     private CommentDAO dao;
 
+    @Autowired
+    private BlogPostDAO blogPostDAO;
+
     @Override
-    public boolean save(Comment comment) {
-        return dao.save(comment);
+    public boolean save(Comment comment, BlogPost post) {
+        boolean saved = dao.save(comment);
+        if(saved){
+            post.setCommentCount(post.getCommentCount()+1);
+            blogPostDAO.update(post);
+        }
+
+        return saved;
     }
 
     @Override
@@ -34,8 +45,8 @@ public class CommentServiceImpl implements CommentService{
     }
 
     @Override
-    public List<Comment> getAllComments(int from, int till) {
-        return dao.getAllComments(from, till);
+    public List<Comment> getAllComments(Long blogId) {
+        return dao.getAllComments(blogId);
     }
 
     @Override

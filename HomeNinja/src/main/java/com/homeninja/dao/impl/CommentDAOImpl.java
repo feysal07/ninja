@@ -49,11 +49,10 @@ public class CommentDAOImpl implements CommentDAO {
     }
 
     @Override
-    public List<Comment> getAllComments(int from, int till) {
+    public List<Comment> getAllComments(Long blogId) {
         TypedQuery<Comment> query = entityManager.createQuery("from " +
-                "Comment", Comment.class);
-        query.setMaxResults(till);
-        query.setFirstResult(from * till);
+                "Comment c where c.id=:id", Comment.class);
+        query.setParameter("id", blogId);
         return query.getResultList();
     }
 
