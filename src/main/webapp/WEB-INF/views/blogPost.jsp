@@ -6,12 +6,6 @@
 <!DOCTYPE c:import PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
-<script type="text/javascript"
-        src="resources/assets/js/lib/jquery-2.1.1.js"></script>
-<script type="text/javascript"
-        src="resources/assets/js/lib/jquery.json-2.4.js"></script>
-<script type="text/javascript"
-        src="resources/assets/js/pages/blogPost.js"></script>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
@@ -31,7 +25,6 @@
 <div class="container">
     <div class="row blog-page">
         <div class="col-md-9 mb-margin-bottom-40">
-            <form action="./postBlog" method="POST">
                 <div>
                     <!--  Alert messages -->
                     <div class="alert alert-danger fade in" id="alertError"
@@ -48,8 +41,8 @@
                         successfully
                         !
                     </div>
-                    <h2>Blog Details</h2>
                     <!--  alert messages end -->
+                    <h2>Blog Details</h2>
                     <div class="headline">
 
                         <label>Title<span class="color-red">*</span></label>
@@ -88,9 +81,10 @@
                 <br/> <br/>
 
                 <p>
-                    <button type="submit" class="btn-u">Post</button>
-            </form>
-            <img id="loader-img" src="resources/assets/img/loader.gif"
+                    <button type="button" class="btn-u"
+                            onclick="javascript:blogPost()">Post</button>
+
+                    <img id="loader-img" src="resources/assets/img/loader.gif"
                  hidden="hidden" height="30" width="30" class="color-img"
                  alt="">
             </p>

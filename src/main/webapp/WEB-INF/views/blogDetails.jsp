@@ -98,6 +98,21 @@
                                 Message</button></p>
                     </div>
                     <!-- End Comment Form -->
+                    <!--  Alert messages -->
+                    <div class="alert alert-danger fade in" id="alertError"
+                         hidden="true">
+                        <button type="button" class="close" data-dismiss="alert"
+                                onclick="javascript:closeErrorBox();">&times;</button>
+                        <label for="myalue"></label>
+                    </div>
+                    <div class="alert alert-success" id="alertSuccess"
+                         hidden="true">
+                        <button type="button" class="close" data-dismiss="alert"
+                                onclick="javascript:closeSuccessBox();">&times;</button>
+                        <i class="icon-ok "></i>&nbsp; your comment has been
+                        post successfully!
+                    </div>
+                    <!--  alert messages end -->
                 </c:when>
                 <c:otherwise>
                     <h3>To comment you should be logged in</h3>

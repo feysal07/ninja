@@ -92,20 +92,18 @@ public class BlogPostController {
     }
 
     @RequestMapping(value = "/postBlog", method = RequestMethod.POST)
-    public ModelAndView postBlog(@RequestParam(value = "title",
+    public @ResponseBody String postBlog(@RequestParam(value = "title",
             required = true) String title, @RequestParam(value = "blogContent",
             required = true) String content, @RequestParam(value = "tags",
             required = true) String tags, Model model) {
-        ModelAndView mv = new ModelAndView();
         Map modelMap = model.asMap();
-        UserInfo userInfo = null;
         if (!modelMap.containsKey("userInfo")) {
-            mv.setViewName("login");
+            return  "login";
         } else {
-            userInfo = (UserInfo) modelMap.get("userInfo");
+            UserInfo userInfo = (UserInfo) modelMap.get("userInfo");
             if (userInfo.getLoggedIn() == null || !userInfo.getLoggedIn()
                     .equalsIgnoreCase("true") || 5!=userInfo.getUserType()) {
-                mv.setViewName("login");
+                return  "login";
             }else{
                 SiteUsers author = siteUserService.getSiteUsersById(userInfo
                         .getUserId());
@@ -113,14 +111,11 @@ public class BlogPostController {
                 if (!tags.isEmpty()) {
                     blogTags = blogTagsService.findBlogById(Long.valueOf(tags));
                 }
-                boolean added = blogPostService.addBlog(BlogPost.createNewBlog
+                blogPostService.addBlog(BlogPost.createNewBlog
                         (title, author.toString(), content, blogTags));
-                mv.setViewName("blogPost");
-                mv.addObject("status", added);
+                return "blogPost";
             }
         }
-        return mv;
-
     }
 
     @RequestMapping(value = "/tags", method = RequestMethod.GET)

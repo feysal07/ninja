@@ -1,15 +1,15 @@
-function isValid(myObject){
+function isBlogValid(myObject){
 	closeErrorBox();
 	closeSuccessBox();
 	var validation="true";
 	var errorMessage = '';
 	
 	if (myObject.title == "") {
-		errorMessage='<i class="icon-warning-sign"></i>&nbsp;  Please enter blog title <br>';
+		errorMessage='<i class="icon-warning-sign"></i>&nbsp;  Please enter Title <br>';
 		validation = "false";
 	}
-	if (myObject.blogContent == "") {
-		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter content <br>';
+	if (myObject.content == "") {
+		errorMessage+='<i class="icon-warning-sign"></i>&nbsp;  Please enter Blog Content <br>';
 		validation = "false";
 	}
 	if (validation == "false") {
@@ -19,6 +19,25 @@ function isValid(myObject){
 	}
 	
 	return validation;
+}
+
+function isCommentValid(myObject){
+    closeErrorBox();
+    closeSuccessBox();
+    var validation="true";
+    var errorMessage = '';
+
+    if (myObject.message == "") {
+        errorMessage='<i class="icon-warning-sign"></i>&nbsp;  Please enter Message <br>';
+        validation = "false";
+    }
+    if (validation == "false") {
+        $alertError = $("#alertError");
+        jQuery("label[for='myalue']").html(errorMessage);
+        $alertError.show();
+    }
+
+    return validation;
 }
 
 
@@ -41,32 +60,47 @@ function blogPost(){
 	 myObject.content=$('#blogContent').val();
 	 myObject.tags=$('#tags :selected').val();
 	 
-	var flag=isValid(myObject);
+	var flag=isBlogValid(myObject);
 	if(flag== "true"){
-	 $.ajax({
-			type : "POST",
-			url : "./postBlog",
-			dataType: "json",
-            data: JSON.stringify(myObject),
-            contentType: "application/json",
-            mimeType: "application/json",
-            
-            success: function(data){
-            	console.log("success")
-            },
-            
-            error: function(data){
-            	console.log("error")
+	 $.post("./postBlog", {title: $('#title').val(), blogContent: $('#blogContent').val(),
+         tags: $('#tags :selected').val()}).done(
+         function(data){
+            switch(data){
+                case 'login':
+                    post("./login")
+                    break;
+                case 'blogPost':
+                    post('./blogPost');
+                    break;
             }
-		});
+         });
 	}
 }
 
+function post(path, method) {
+    method = method || "get"; // Set method to get by default if not specified.
+
+    // The rest of this code assumes you are not using a library.
+    // It can be made less wordy if you use one.
+    var form = document.createElement("form");
+    form.setAttribute("method", method);
+    form.setAttribute("action", path);
+
+    document.body.appendChild(form);
+    form.submit();
+}
+
 function postComment(){
+    var myObject = new Object();
+
+    myObject.message=$('#message').val();
+    var flag=isCommentValid(myObject);
+
+    if(flag== "true"){
     $.post("./postComment", {message: $('#message').val(), blog: $('#blog').val()})
         .done(function(data){
             $('#comments').html(data);
-        });
+        });}
 
 }
 
