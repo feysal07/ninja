@@ -5,12 +5,15 @@
 <c:forEach items="${blog.comments}" var="comment">
     <div class="media">
         <a class="pull-left" href="#">
-            <img class="media-object" src="resources/assets/img/sliders/elastislide/9.jpg" alt="" />
+            <img class="media-object" src="resources/assets/img/user.jpg" alt="
+            " />
         </a>
         <div class="media-body">
-            <h4 class="media-heading">${comment.user.userName}
-                <span>${fn:substring(comment.modified,0,
-                10)} / <a href="#">Reply</a></span></h4>
+            <h4 class="media-heading">${comment.user.firstName}&nbsp;${comment.user.lastName}
+                <span>${fn:substring(comment.modified,0, 10)}
+                    <c:if test="${userInfo.loggedIn == true && userInfo.userType == 5}">
+                    / <a href="#">Reply</a></c:if>
+                </span></h4>
             <p>${comment.text}</p>
         </div>
     </div>

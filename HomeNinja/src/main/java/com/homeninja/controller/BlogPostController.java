@@ -107,14 +107,14 @@ public class BlogPostController {
                     .equalsIgnoreCase("true") || 5!=userInfo.getUserType()) {
                 mv.setViewName("login");
             }else{
-                /*SiteUsers author = siteUserService.getSiteUsersById(userInfo
-                        .getUserId());*/
+                SiteUsers author = siteUserService.getSiteUsersById(userInfo
+                        .getUserId());
                 BlogTags blogTags = null;
                 if (!tags.isEmpty()) {
                     blogTags = blogTagsService.findBlogById(Long.valueOf(tags));
                 }
                 boolean added = blogPostService.addBlog(BlogPost.createNewBlog
-                        (title, userInfo.getUserId(), content, blogTags));
+                        (title, author.toString(), content, blogTags));
                 mv.setViewName("blogPost");
                 mv.addObject("status", added);
             }
@@ -154,6 +154,7 @@ public class BlogPostController {
             boolean saved = commentService.save(comment, blog);
             model.addAttribute("saved", saved);
             model.addAttribute("blog", blogPostService.findBlogById(id));
+            model.addAttribute("userInfo", userInfo);
             mv.setViewName("comments");
         }
 
