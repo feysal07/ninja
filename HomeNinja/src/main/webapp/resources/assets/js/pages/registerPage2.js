@@ -190,6 +190,8 @@ function saveSection2() {
 	myObject.state = $("#states").val();
 	myObject.city = $('#citiesforstate').val();
 	myObject.pincode = $('#pincode').val();
+	myObject.fullAddress=$('#address').val()+" "+$('#pincode').val()+
+						" "+$('#citiesforstate :selected').text()+" "+$("#states :selected").text();
 
 	if (myObject.address == "") {
 		$alertError = $("#alertError2");
