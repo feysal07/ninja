@@ -81,9 +81,12 @@ function jobPost(){
 	 myObject.location=$('#location').val();
 	 myObject.jobSubCategories=jobSubCategories;
 	 
+	 
 	var flag=isValid(myObject);
 	if(flag== "true"){
-	 $.ajax({
+		myObject.address=myObject.location+" "+myObject.pincode+" "+$('#citiesforstate :selected').text()
+					+" "+$('#states :selected').text();
+	$.ajax({
 			type : "POST",
 			url : "./postJob",
 			data : JSON.stringify(myObject),
