@@ -2,13 +2,13 @@ package com.homeninja.service.impl;
 
 
 import java.util.List;
-import java.util.Set;
 
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Service;
 
 import com.homeninja.dao.JobPostDAO;
+import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.Jobs;
 import com.homeninja.entities.JobsSubCategoryMap;
 import com.homeninja.entities.MessageLimits;
@@ -57,6 +57,11 @@ public class JobPostServiceImpl implements JobPostService {
 	@Override
 	public List<Jobs> getAllPostedJobsByMe(long userId) {
 		return jobPostDAO.getAllPostedJobsByMe(userId);
+	}
+
+	@Override
+	public JobCategory getJobCategoryById(long jobCatId) {
+		return jobPostDAO.getJobCategoryById(jobCatId);
 	}
 
 	

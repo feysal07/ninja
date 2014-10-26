@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.homeninja.dao.JobPostDAO;
+import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.Jobs;
 import com.homeninja.entities.JobsSubCategoryMap;
 import com.homeninja.entities.MessageLimits;
@@ -135,15 +136,29 @@ public class JobPostDAOImpl implements JobPostDAO {
 
 	@Override
 	public List<Jobs> getAllPostedJobsByMe(long userId) {
-		try{
-		Query query = sessionFactory.getCurrentSession().createQuery(
-				"from Jobs where postBy = :userId ");
-		query.setParameter("userId", userId);
-		return query.list();
-	} catch (Exception e) {
-		return null;
-	}
+		
+		try {
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from Jobs where postBy = :userId ");
+			query.setParameter("userId", userId);
+			return query.list();
+		} catch (HibernateException e) {
+			throw e;
+		}
 	
+	
+	}
+
+	@Override
+	public JobCategory getJobCategoryById(long jobCatId) {
+		try{
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from JobCategory where id = :id ");
+			query.setParameter("id", jobCatId);
+			return (JobCategory) query.list().get(0);
+		} catch (Exception e) {
+			return null;
+		}
 	}
 
 }

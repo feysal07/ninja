@@ -1,5 +1,7 @@
 package com.homeninja.entities;
 
+import java.util.Date;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -7,6 +9,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name = "address_details")
@@ -20,6 +23,13 @@ public class Address {
 	private long state;
 	private String pincode;
 	private long userId;
+	private double longitude;
+	private double latitude;
+	private Date createdDate;
+	private Date modifiedDate;
+	
+	@Transient
+	private String fullAddress;
 
 	public long getId() {
 		return id;
@@ -37,15 +47,6 @@ public class Address {
 		this.address = address;
 	}
 
-
-	/*public String getContactNo() {
-		return contactNo;
-	}
-
-	public void setContactNo(String contactNo) {
-		this.contactNo = contactNo;
-	}*/
-
 	public String getPincode() {
 		return pincode;
 	}
@@ -53,31 +54,6 @@ public class Address {
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
 	}
-
-	/*public String getIsPrimary() {
-		return isPrimary;
-	}
-
-	public void setIsPrimary(String isPrimary) {
-		this.isPrimary = isPrimary;
-	}
-
-	public String getCreatedDate() {
-		return createdDate;
-	}
-
-	public void setCreatedDate(String createdDate) {
-		this.createdDate = createdDate;
-	}
-
-	public String getModifiedDate() {
-		return modifiedDate;
-	}
-
-	public void setModifiedDate(String modifiedDate) {
-		this.modifiedDate = modifiedDate;
-	}*/
-
 	public long getUserId() {
 		return userId;
 	}
@@ -100,6 +76,46 @@ public class Address {
 
 	public void setState(long state) {
 		this.state = state;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getFullAddress() {
+		return fullAddress;
+	}
+
+	public void setFullAddress(String fullAddress) {
+		this.fullAddress = fullAddress;
+	}
+
+	public Date getCreatedDate() {
+		return createdDate;
+	}
+
+	public void setCreatedDate(Date createdDate) {
+		this.createdDate = createdDate;
+	}
+
+	public Date getModifiedDate() {
+		return modifiedDate;
+	}
+
+	public void setModifiedDate(Date modifiedDate) {
+		this.modifiedDate = modifiedDate;
 	}
 
 }
