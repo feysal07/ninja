@@ -21,6 +21,10 @@ public class UsersSearch {
 	private String jobSubCategories;
 	private String aboutMe;
 	private long userTypeId;
+	private double longitude;
+	private double latitude;
+	
+	
 
 	public String getAboutMe() {
 		return aboutMe;
@@ -100,6 +104,22 @@ public class UsersSearch {
 
 	public void setUserTypeId(long userTypeId) {
 		this.userTypeId = userTypeId;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
 	

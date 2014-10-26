@@ -54,6 +54,7 @@ import com.homeninja.entities.UserJobCategoryMap;
 import com.homeninja.entities.UserJobSubCategoryMap;
 import com.homeninja.entities.UserType;
 import com.homeninja.entities.UsersSearch;
+import com.homeninja.helping.entities.GeoLocation;
 import com.homeninja.service.AdvanceSettingService;
 import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.JobCategoryService;
@@ -77,7 +78,7 @@ public class RegisterController implements ServletContextAware {
 
 	UploadedFile ufile;
 
-	private long siteUserId;
+	//private long siteUserId;
 
 	@Resource
 	private SiteUserService siteUserService;
@@ -530,6 +531,11 @@ public class RegisterController implements ServletContextAware {
 		//SiteUsers userDetail = gson.fromJson(myObject, SiteUsers.class);
 		Address addressObj=gson.fromJson(myObject, Address.class);
 		
+		//get geolocation from address
+		GeoLocation geoLocation=geoLocationService.getGeoLocation(addressObj.getFullAddress());
+		addressObj.setLatitude(geoLocation.getLat());
+		addressObj.setLongitude(geoLocation.getLng());
+		addressObj.setCreatedDate(new Date());
 		SiteUsers siteUsers=siteUserService.getSiteUsersById(userInfo.getUserId());
 		List<Address> addresses=siteUsers.getAddress();
 		boolean userDetailSave=false;
@@ -538,14 +544,16 @@ public class RegisterController implements ServletContextAware {
 			//set user id in address
 			addressObj.setUserId(userInfo.getUserId());
 			addresses.add(addressObj);
-			//siteUsers.setAddress(addresses);
-			 userDetailSave = siteUserService.saveUserAddress(addressObj);
+			userDetailSave = siteUserService.saveUserAddress(addressObj);
 		}else{
 			
 			siteUsers.getAddress().get(0).setAddress(addressObj.getAddress());
 			siteUsers.getAddress().get(0).setCity(addressObj.getCity());
 			siteUsers.getAddress().get(0).setState(addressObj.getState());
 			siteUsers.getAddress().get(0).setPincode(addressObj.getPincode());
+			siteUsers.getAddress().get(0).setModifiedDate(new Date());
+			siteUsers.getAddress().get(0).setLongitude(geoLocation.getLng());
+			siteUsers.getAddress().get(0).setLatitude(geoLocation.getLat());
 			userDetailSave=siteUserService.updateUser(siteUsers);
 		}
 		
@@ -559,6 +567,8 @@ public class RegisterController implements ServletContextAware {
 		usersSearch.setCity(addressObj.getCity());
 		usersSearch.setState(addressObj.getState());
 		usersSearch.setPincode(addressObj.getPincode());
+		usersSearch.setLatitude(geoLocation.getLat());
+		usersSearch.setLongitude(geoLocation.getLng());
 		
 		boolean  userSearch= usersSearchService.updateUsersSearch(usersSearch);
 		if (userDetailSave && userSearch) {

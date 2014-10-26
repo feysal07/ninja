@@ -1,10 +1,18 @@
 package com.homeninja.utils;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.math.BigInteger;
+import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.URL;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.security.SecureRandom;
 import java.util.Random;
+
+import org.apache.commons.httpclient.util.URIUtil;
 
 public class Utils {
 	 public static String getRandomId() {
@@ -56,4 +64,39 @@ public class Utils {
 	        }
 	        return md5Password;
 	    }
+	 
+	 public static void main(String[] args) {
+		 try {
+		        URL url = new URL(
+		                "http://maps.googleapis.com/maps/api/geocode/json?address="
+		                        + URIUtil.encodeQuery("Sayaji Hotel, Near balewadi stadium, pune") + "&sensor=true");
+		        
+			 
+			    //URL url =new URL("http://maps.googleapis.com/maps/api/geocode/json?address=jiwaji+ganj+morena&sensor=true ");
+			    HttpURLConnection conn = (HttpURLConnection) url.openConnection();
+		        conn.setRequestMethod("GET");
+		        conn.setRequestProperty("Accept", "application/json");
+
+		        if (conn.getResponseCode() != 200) {
+		            throw new RuntimeException("Failed : HTTP error code : " + conn.getResponseCode());
+		        }
+		        BufferedReader br = new BufferedReader(new InputStreamReader((conn.getInputStream())));
+
+		        String output = "", full = "";
+		        while ((output = br.readLine()) != null) {
+		            System.out.println(output);
+		            if(output.contains("formatted_address")){
+		            	
+		            }
+		            
+		            
+		            full += output;
+		        }
+		        conn.disconnect();
+		    } catch (MalformedURLException e) {
+		        e.printStackTrace();
+		    } catch (IOException e) {
+		        e.printStackTrace();
+		    }
+	}
 }

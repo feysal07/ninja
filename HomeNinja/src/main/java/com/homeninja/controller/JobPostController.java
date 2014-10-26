@@ -25,10 +25,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 
 import com.google.gson.Gson;
+import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.Jobs;
 import com.homeninja.entities.JobsSubCategoryMap;
 import com.homeninja.entities.MessageLimits;
+import com.homeninja.helping.entities.GeoLocation;
 import com.homeninja.helping.entities.JobSearchCriteria;
 import com.homeninja.helping.entities.MyJobs;
 import com.homeninja.service.GeoLocationService;
@@ -87,6 +89,14 @@ public class JobPostController {
 		jobPost.setPostBy(userInfo.getUserId());
 		jobPost.setPostDate(currentDate);
 		jobPost.setMaxRequestReached(false); 
+		
+		
+		//get geolocation by address
+		GeoLocation geoLocation=geoLocationService.getGeoLocation(jobPost.getAddress());
+		if (null != geoLocation) {
+			jobPost.setLatitude(geoLocation.getLat());
+			jobPost.setLongitude(geoLocation.getLng());
+		}
 		List<JobsSubCategoryMap> objList = new ArrayList<JobsSubCategoryMap>();
 		for (int jobSubCatId : jobPost.getJobSubCatIds()) {
 			JobsSubCategoryMap obj = new JobsSubCategoryMap(jobSubCatId);
@@ -138,9 +148,12 @@ public class JobPostController {
 			
 			mjob.setsNo(count);
 			mjob.setJobId(Double.toString(jobs.getId()));
-			mjob.setJobTitle(jobs.getJobDetails());
+			mjob.setJobTitle(jobs.getTitle());
 			mjob.setJobDetails(jobs.getJobDetails());
-			mjob.setJobCategory(jobs.getJobCategory().getJobCat());
+			JobCategory jobCat=jobPostService.getJobCategoryById(jobs.getJobCategoryId());
+			if(null !=jobCat){
+			mjob.setJobCategory(jobCat.getJobCat());
+			}
 			String maxLimitReach="No";
 			String jobSubCategories=jobs.getJobSubCategories();
 			jobSubCategories=jobSubCategories.substring(1, jobSubCategories.length());

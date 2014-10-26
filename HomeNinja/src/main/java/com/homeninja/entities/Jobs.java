@@ -34,10 +34,15 @@ public class Jobs {
 	private int requestLimit;
 	private boolean maxRequestReached;
 	private String jobSubCategories;
+	private double longitude;
+	private double latitude;
 	
-	@OneToOne
+	@Transient
+	private String address;
+	
+	/*@OneToOne
 	@JoinColumn(name="jobCategoryID")
-	private JobCategory jobCategory;
+	private JobCategory jobCategory;*/
 	 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="jobId")
@@ -168,13 +173,13 @@ public class Jobs {
 		this.jobSubCategories = jobSubCategories;
 	}
 
-	public JobCategory getJobCategory() {
+	/*public JobCategory getJobCategory() {
 		return jobCategory;
 	}
 
 	public void setJobCategory(JobCategory jobCategory) {
 		this.jobCategory = jobCategory;
-	}
+	}*/
 
 	public String getPincode() {
 		return pincode;
@@ -182,6 +187,30 @@ public class Jobs {
 
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
+	}
+
+	public String getAddress() {
+		return address;
+	}
+
+	public void setAddress(String address) {
+		this.address = address;
 	}
 
 	
