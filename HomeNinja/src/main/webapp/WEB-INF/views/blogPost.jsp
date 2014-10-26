@@ -53,7 +53,15 @@
                                        name="title" class="form-control">
                             </div>
                         </div>
+					    <div class="row">
+                            <div class="col-lg-4">
+                                <label>Tags</label>
+                                <select id="tags"
+                                        name="tags"
+                                        class="form-control"></select>
+                            </div>
 
+                        </div> <br/> 
                         <label>Blog Content<span
                                 class="color-red">*</span></label>
 
@@ -64,21 +72,10 @@
                                           name="blogContent"></textarea>
                             </div>
                         </div>
-                        <div class="row">
-                            <div class="col-lg-4">
-                                <label>Tags</label>
-                                <select id="tags"
-                                        name="tags"
-                                        class="form-control"></select>
-                            </div>
-
-                        </div>
-
-
-                    </div>
+                     </div>
 
                 </div>
-                <br/> <br/>
+                <br/>
 
                 <p>
                     <button type="button" class="btn-u"
