@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class UserProfile {
 
+	private long userId;
 	private String firstName;
 	private String lastName;
 	private long userType;
@@ -151,5 +152,11 @@ public class UserProfile {
 	}
 	public void setPincode(String pincode) {
 		this.pincode = pincode;
+	}
+	public long getUserId() {
+		return userId;
+	}
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 }

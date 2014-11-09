@@ -41,9 +41,9 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 	}
 
 	@Override
-	public boolean isEmailExists(String userName) {
+	public boolean isEmailExists(String loginEmail) {
 		// TODO Auto-generated method stub
-		return siteUserDAO.isEmailExists(userName);
+		return siteUserDAO.isEmailExists(loginEmail);
 	}
 
 	@Override
@@ -95,6 +95,24 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 	public List<UserJobSubCategoryMap> getUserJobSubCategories(long userId) {
 		// TODO Auto-generated method stub
 		return  siteUserDAO.getUserJobSubCategories(userId);
+	}
+
+	@Override
+	public String getCityById(long cityId) {
+		// TODO Auto-generated method stub
+		return  siteUserDAO.getCityById(cityId);
+	}
+
+	@Override
+	public String getStateById(long stateId) {
+		// TODO Auto-generated method stub
+		return  siteUserDAO.getStateById(stateId);
+	}
+
+	@Override
+	public boolean isUsernameExist(String username) {
+		// TODO Auto-generated method stub
+		return siteUserDAO.isUsernameExist(username);
 	}
 
 	

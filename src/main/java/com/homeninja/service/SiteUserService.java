@@ -17,7 +17,7 @@ public interface SiteUserService {
 	 	public long addUser(SiteUsers registerUser );
 	 	public boolean updateUser(SiteUsers registerUser );
 	    public SiteUsers validateLogin(String username, String password);
-	    public boolean isEmailExists(String userName);	
+	    public boolean isEmailExists(String loginEmail);	
 	    public SiteUsers findbyExample(SiteUsers siteUsers);
 	    public Set<UserType> getUserType();
 	    public SiteUsers getSiteUsersById(SiteUsers siteUsers);
@@ -27,6 +27,11 @@ public interface SiteUserService {
 		public UserType getUserType(long id);
 		public List<UserJobCategoryMap> getUserJobCategories(long userId);
 		public List<UserJobSubCategoryMap> getUserJobSubCategories(long userId);
+	    public String getCityById(long cityId);
+	    public String getStateById(long stateId);
+		public boolean isUsernameExist(String newUsername);
+		;
+	    
 		
 		
 }

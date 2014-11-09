@@ -94,13 +94,14 @@ public class UsersSearch {
 	}
 
 	public void setJobCategories(String jobCategories) {
-		this.jobCategories = jobCategories;
 		if (jobCategories != null) {
 			List<String> catList = Arrays.asList(jobCategories.split(","));
 			for (String category : catList) {
 				this.getJobCategoriesList().add(category);
 
 			}
+			jobCategories=jobCategories.replace("|",", ");
+			this.jobCategories = jobCategories;
 		}
 
 	}
@@ -113,7 +114,6 @@ public class UsersSearch {
 	}
 
 	public void setJobSubCategories(String jobSubCategories) {
-		this.jobSubCategories = jobSubCategories;
 		if (jobSubCategories != null) {
 			List<String> subCatList = Arrays
 					.asList(jobSubCategories.split(","));
@@ -121,6 +121,8 @@ public class UsersSearch {
 				this.getJobSubCategoriesList().add(subCategory);
 
 			}
+			jobSubCategories = jobSubCategories.replace("|", ", ");
+			this.jobSubCategories = jobSubCategories;
 		}
 	}
 

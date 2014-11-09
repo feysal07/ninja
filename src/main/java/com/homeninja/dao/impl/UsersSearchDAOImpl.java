@@ -1,3 +1,4 @@
+
 package com.homeninja.dao.impl;
 
 import java.util.ArrayList;
@@ -111,9 +112,7 @@ public class UsersSearchDAOImpl implements UsersSearchDAO {
 			criteriaForUser.setMaxResults(usersSearchCriteria.getPageSize());
 			
 			List<UsersSearch> results = criteriaForUser.list();
-
 			int index = 1;
-					
 			if (results.size() > 0) {
 				for (UsersSearch usersSearch : results) {
 					com.homeninja.vo.UsersSearch userSearchVO =

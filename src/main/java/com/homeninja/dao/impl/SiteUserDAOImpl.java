@@ -6,15 +6,20 @@ import java.util.Set;
 
 import javax.annotation.Resource;
 
+import org.hibernate.Criteria;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.LogicalExpression;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.homeninja.dao.SiteUserDAO;
 import com.homeninja.entities.Address;
+import com.homeninja.entities.MasterDataValue;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.entities.UserJobCategoryMap;
 import com.homeninja.entities.UserJobSubCategoryMap;
@@ -53,10 +58,14 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 	public SiteUsers validateLogin(String username, String password) {
 		SiteUsers user = null;
 		try {
-			Query query = sessionFactory.getCurrentSession().createQuery(
-					"from SiteUsers where username = :username ");
-			query.setParameter("username", username);
-			List list = query.list();
+			// login through username or email
+			Criteria criteria =	sessionFactory.getCurrentSession()
+					.createCriteria("com.homeninja.entities.SiteUsers");
+			Criterion crUserName=Restrictions.eq("loginEmail", username);
+			Criterion crLoginEmail=Restrictions.eq("userName", username);
+			LogicalExpression orExp = Restrictions.or(crUserName, crLoginEmail);
+			criteria.add( orExp );
+			List list = criteria.list();
 			if (list.size() > 0) {
 				user = (SiteUsers) list.get(0);
 			}
@@ -73,12 +82,12 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 	}
 
 	@Override
-	public boolean isEmailExists(String userName) {
+	public boolean isEmailExists(String loginEmail) {
 		try {
 
 			Query query = sessionFactory.getCurrentSession().createQuery(
-					"from SiteUsers where username = :username ");
-			query.setParameter("username", userName);
+					"from SiteUsers where loginEmail = :loginEmail ");
+			query.setParameter("loginEmail", loginEmail);
 			List list = query.list();
 			if (list.size() > 0) {
 				return true;
@@ -234,6 +243,57 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			return null;
+		}
+	}
+
+	@Override
+	public String getCityById(long cityId) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from MasterDataValue where masterDataId=:masterDataId");
+			query.setParameter("masterDataId", cityId);
+			MasterDataValue city=(MasterDataValue) query.list().get(0);
+			return city.getValue();
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public String getStateById(long stateId) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from MasterDataValue where masterDataId=:masterDataId");
+			query.setParameter("masterDataId", stateId);
+			MasterDataValue state=(MasterDataValue) query.list().get(0);
+			return state.getValue();
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public boolean isUsernameExist(String username) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from SiteUsers where userName = :userName ");
+			query.setParameter("userName", username);
+			List list = query.list();
+			if (list.size() > 0) {
+				return true;
+			}
+			return false;
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return false;
 		}
 	}
 	
