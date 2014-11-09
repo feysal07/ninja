@@ -20,7 +20,7 @@ public class UserJobSubCategoryMap {
 	private long userId;
 	private long jobSubCategoryId;
 	
-	@ManyToOne(fetch = FetchType.LAZY,cascade = CascadeType.MERGE)
+	@ManyToOne(fetch = FetchType.EAGER,cascade = CascadeType.MERGE)
 	@JoinColumn(name="jobSubCategoryId" ,referencedColumnName="id" , insertable = false, updatable = false)
 	private JobSubCategory jobSubCategory;
 	

@@ -8,13 +8,12 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.google.gson.Gson;
 import com.homeninja.entities.SiteUsers;
@@ -34,7 +33,7 @@ public class SiteUserController {
 	private SiteUserService siteUserService;
 	
 	@RequestMapping(value = "/myProfile", method = RequestMethod.GET)
-	public String getAllPostedJobs(Model model) throws IOException {
+	public String getMyProfile(Model model) throws IOException {
 		Map modelMap = model.asMap();
 		UserInfo userInfo=null;
 		if(!modelMap.containsKey("userInfo")){
@@ -51,10 +50,24 @@ public class SiteUserController {
 			}
 		}
 		long userId=userInfo.getUserId();
+		
+		model.addAttribute("userDetails", getUserProfileByUserId(userId));
+		return "myProfile";
+	}
+	
+	@RequestMapping(value = "/profile", method = RequestMethod.POST)
+	public String getProfile(@RequestParam(value = "userId",
+            required = true) long userId,Model model) throws IOException {
+		model.addAttribute("userDetails", getUserProfileByUserId(userId));
+		return "user-public-profile";
+	}
+	
+	
+	private UserProfile getUserProfileByUserId(long userId){
 		SiteUsers	userDetails= siteUserService.getSiteUsersById(userId);
 		UserProfile userProfile=new UserProfile();
 		// fill the view object
-		
+		userProfile.setUserId(userId);
 		userProfile.setFirstName(userDetails.getFirstName());
 		userProfile.setLastName(userDetails.getLastName());
 		userProfile.setProfilPic(userDetails.getProfilPic());
@@ -68,7 +81,7 @@ public class SiteUserController {
 			userJobCat =userJobCat+","+userJobCategoryMap.getJobCategory().getJobCat()+",";
 		}
 		for(UserJobSubCategoryMap userJobSubCategoryMap:userJobSubCatMap){
-			userJobSubCat=userJobSubCat+","+ userJobSubCategoryMap.getJobSubCategory()+",";
+			userJobSubCat=userJobSubCat+","+ userJobSubCategoryMap.getJobSubCategory().getJobSubCat()+",";
 		}
 		userJobCat=userJobCat.substring(0, userJobCat.lastIndexOf(","));
 		userJobSubCat=userJobSubCat.substring(0, userJobSubCat.lastIndexOf(","));
@@ -77,14 +90,18 @@ public class SiteUserController {
 		userProfile.setJobSubCategory(userJobSubCat);
 		userProfile.setUserType(userDetails.getUserType());
 		userProfile.setAboutMe(userDetails.getAboutMe());
+		if(userDetails.getAddress() !=null){
 		userProfile.setAddress(userDetails.getAddress().get(0).getAddress());
-		userProfile.setCity("abc");//userDetails.getAddress().get(0).getCity());
-		userProfile.setState("bcd");//userDetails.getAddress().get(0).getState());
+	    userProfile.setCity(siteUserService.getCityById(userDetails.getAddress().get(0).getState()));
+		userProfile.setState(siteUserService.getStateById(userDetails.getAddress().get(0).getState()));
+		}else{
+			userProfile.setCity("NA");
+			userProfile.setState("NA");
+		}
 		userProfile.setPincode(userDetails.getAddress().get(0).getPincode());
-		model.addAttribute("userDetails", userDetails);
-		return "myProfile";
-	}
 
+		return userProfile;
+	}
 	
 	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
 	public String changePassword(Model model){

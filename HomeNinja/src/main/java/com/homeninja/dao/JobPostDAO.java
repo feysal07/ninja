@@ -1,8 +1,6 @@
 package com.homeninja.dao;
 
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
 import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.Jobs;

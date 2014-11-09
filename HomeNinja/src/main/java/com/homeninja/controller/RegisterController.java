@@ -170,7 +170,7 @@ public class RegisterController implements ServletContextAware {
 					.equals("true")) {
 				jobCategoryService.saveUserJobCategory(userJobCategoryMap);
 				sbJobCat.append(jobCategoryValueHashMap.get(jobCategoryId * 1L));
-				sbJobCat.append("-");
+				sbJobCat.append("|");
 			} else {
 				jobCategoryService.removeJobCategory(userJobCategoryMap);
 			}
@@ -208,7 +208,7 @@ public class RegisterController implements ServletContextAware {
 				userJobSubCategoryMapTemp.setJobSubCategoryId(i);
 				userJobSubCategoryMapSet.add(userJobSubCategoryMapTemp);
 				sbJobSubCat.append(jobSubCategoryValueHashMap.get(i * 1L));
-				sbJobSubCat.append("-");
+				sbJobSubCat.append("|");
 			}
 
 		}
@@ -226,8 +226,8 @@ public class RegisterController implements ServletContextAware {
 		siteUserService.updateUser(siteUsers);
 		
 		UsersSearch usersSearch = usersSearchService.getUserSearchRecordById(registrationPage3.getUserId());
-		usersSearch.setJobCategories(sbJobCat.toString());
-		usersSearch.setJobSubCategories(sbJobSubCat.toString());
+		usersSearch.setJobCategories(sbJobCat.toString().substring(0,sbJobCat.lastIndexOf("|")));
+		usersSearch.setJobSubCategories(sbJobSubCat.toString().substring(0,sbJobSubCat.lastIndexOf("|")));
 		usersSearchService.updateUsersSearch(usersSearch);
 		UserCompanyMap userCompanyMap = userCompanyService.getUserCompanyByUserId(siteUsers);
 		userCompanyMap.setCompanyName(registrationPage3.getUserCompanyMap().getCompanyName());
@@ -480,17 +480,41 @@ public class RegisterController implements ServletContextAware {
 		
 
 		SiteUsers	userDetailFromDB = siteUserService.getSiteUsersById(userInfo.getUserId());
+		
+		String oldEmail=userDetailFromDB.getLoginEmail();
+		String oldUserName=userDetailFromDB.getUserName();
+		
+		String newEmail=userDetail.getLoginEmail();
+		String newUsername=userDetail.getUserName();
+		
+		
+		
+		
 		userDetailFromDB.setFirstName(userDetail.getFirstName());
 		userDetailFromDB.setLastName(userDetail.getLastName());
 		userDetailFromDB.setAboutMe(userDetail.getAboutMe());
 		userDetailFromDB.setModifiedDate(new Date());
-		userDetailFromDB.setLoginEmail(userDetail.getLoginEmail());
-		//need to put in UI
-		//userDetailFromDB.setUserName(userDetail.getUserName());
 		
-		/*if (userDetail == null) {
-			return "save-fail";
-		}*/
+		//chek in db that email is exist or not
+		if(!oldEmail.equalsIgnoreCase(newEmail)){
+		    if(siteUserService.isEmailExists(newEmail)){
+		    	return "email-exist";
+		    }else{
+		    	userDetailFromDB.setLoginEmail(userDetail.getLoginEmail());
+		    }
+		    
+		
+		}
+		//chek in db that username is exist or not
+		if(!oldUserName.equalsIgnoreCase(newUsername)){
+			if(siteUserService.isUsernameExist(newUsername)){
+				return "username-exist";
+			}else{
+				userDetailFromDB.setUserName(userDetail.getUserName());
+			}
+			
+		}
+		
 		
 		//update user search table
 		UsersSearch userSearch =usersSearchService.getUserSearchRecordById(userInfo.getUserId());
@@ -509,7 +533,7 @@ public class RegisterController implements ServletContextAware {
 	}
 
 	@RequestMapping(value = "/saveSection2", method = RequestMethod.POST, consumes = "application/json")
-	public 
+	public @ResponseBody
 	String saveSection2(Model model,@RequestBody String myObject) {
 		logger.info("inside saveSection2 method");
 		Map modelMap = model.asMap();

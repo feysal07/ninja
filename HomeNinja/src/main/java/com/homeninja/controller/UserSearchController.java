@@ -153,7 +153,7 @@ public class UserSearchController {
 
 	@RequestMapping(value = "/usersearchresult", method = RequestMethod.POST)
 	String userSearchResult(ModelMap model,
-			@RequestParam(value = "userTypeId",required=false) String userTypeIdString,
+			@RequestParam(value = "userTypeId",required=false,defaultValue="2") String userTypeIdString,
 			@RequestParam(value = "state",required=false) Long state,
 			@RequestParam(value = "city",required=false) Long city,
 			@RequestParam(value = "pincode",required=false) String pincode,
