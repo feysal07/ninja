@@ -13,7 +13,7 @@ function closeSuccessBox() {
 
 }
 
-$(document).ready(
+/*$(document).ready(
 		function() {
 			$.getJSON('./getUserTypes', {
 				ajax : 'true',
@@ -31,7 +31,8 @@ $(document).ready(
 				// now that we have our options, give them to our select
 				$('#userType').html(html);
 			});
-		});
+		});*/
+
 
 $(document).ready(
 		function() {

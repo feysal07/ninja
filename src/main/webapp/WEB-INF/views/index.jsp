@@ -425,7 +425,7 @@
                 <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi  vehicula sem ut volutpat. Ut non libero magna fusce condimentum eleifend enim a feugiat.</p>
             </div>            
             <div class="col-md-3">
-                <a href="#" class="btn-buy hover-effect">Purchase Now</a>            
+                <a href="./Register" class="btn-buy hover-effect">Register Now</a>            
             </div>
         </div>
     </div>

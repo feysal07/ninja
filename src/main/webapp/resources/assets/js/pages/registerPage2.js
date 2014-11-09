@@ -107,31 +107,50 @@ function saveSection1() {
 	myObject.loginEmail = $('#loginEmail').val();
 	myObject.phoneNumber = $('#phoneNumber').val();
 	myObject.aboutMe = $('#aboutMe').val();
-
+	myObject.userName=$('#userName').val();
 	if (myObject.phoneNumber == "") {
 		$alertError = $("#alertError1");
-		jQuery("label[for='myalue']").html("Please enter your phone number");
+		jQuery("label[for='myalue']").html("<i class='icon-warning-sign'></i>&nbsp;Please enter your phone number");
 		$alertError.show();
 		validation = "inValid";
 	}
 
 	if (myObject.loginEmail == "") {
 		$alertError = $("#alertError1");
-		jQuery("label[for='myalue']").html("Please enter your email id");
+		jQuery("label[for='myalue']").html("<i class='icon-warning-sign'></i>&nbsp;Please enter your email id");
 		$alertError.show();
 		validation = "inValid";
+	}else{
+		//check mail
+		/*var atpos = loginEmail.indexOf("@");
+		var dotpos = loginEmail.lastIndexOf(".");
+		if (atpos < 1 || dotpos < atpos + 2 || dotpos + 2 >= userEmailId.length) {
+			errorMessage += '<i class="icon-warning-sign"></i>&nbsp; Invalid Email address! <br>';
+			validateReg1 = "false";
+		}*/
+		
+		var emailReg = new RegExp(/^((([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+(\.([a-z]|\d|[!#\$%&'\*\+\-\/=\?\^_`{\|}~]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])+)*)|((\x22)((((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(([\x01-\x08\x0b\x0c\x0e-\x1f\x7f]|\x21|[\x23-\x5b]|[\x5d-\x7e]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(\\([\x01-\x09\x0b\x0c\x0d-\x7f]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))))*(((\x20|\x09)*(\x0d\x0a))?(\x20|\x09)+)?(\x22)))@((([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|\d|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.)+(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])|(([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])([a-z]|\d|-|\.|_|~|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])*([a-z]|[\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF])))\.?$/i);
+		var valid = emailReg.test(myObject.loginEmail);
+		
+		if(!valid) {
+			$alertError = $("#alertError1");
+			jQuery("label[for='myalue']").html("<i class='icon-warning-sign'></i>&nbsp;Invalid Email address!");
+			$alertError.show();
+			validation = "inValid";
+	    }
+		
 	}
 
 	if (myObject.firstName == "") {
 		$alertError = $("#alertError1");
-		jQuery("label[for='myalue']").html("Please enter your first name");
+		jQuery("label[for='myalue']").html("<i class='icon-warning-sign'></i>&nbsp;Please enter your first name");
 		$alertError.show();
 		validation = "inValid";
 	}
 
 	if (myObject.lastName == "") {
 		$alertError = $("#alertError1");
-		jQuery("label[for='myalue']").html("Please enter your last name");
+		jQuery("label[for='myalue']").html("<i class='icon-warning-sign'></i>&nbsp;Please enter your last name");
 		$alertError.show();
 		validation = "inValid";
 	}
@@ -139,7 +158,7 @@ function saveSection1() {
 	if (myObject.firstName == "" && myObject.lastName == "") {
 		$alertError = $("#alertError1");
 		jQuery("label[for='myalue']").html(
-				"Please enter your first and last name");
+				"<i class='icon-warning-sign'></i>&nbsp;Please enter your first and last name");
 		$alertError.show();
 		validation = "inValid";
 	}
@@ -158,15 +177,28 @@ function saveSection1() {
 				if (response == "save-fail") {
 					$alertError = $("#alertError1");
 					jQuery("label[for='myalue']").html(
-							"Please enter first name");
+							"<i class='icon-warning-sign'></i>&nbsp;Please enter first name");
 					$alertError.show();
 				}
 				if (response == "register-success") {
 					$alertSuccess = $("#alertSuccess1");
 					jQuery("label[for='myalue']").html(
-							"Information updated successfully");
+							"<i class='icon-ok'></i>&nbsp;Information updated successfully");
 					$alertSuccess.show();
 				}
+				if (response == "email-exist") {
+					$alertSuccess = $("#alertError1");
+					jQuery("label[for='myalue']").html(
+							"<i class='icon-warning-sign'></i>&nbsp;Email is already exist.");
+					$alertSuccess.show();
+				}
+				if (response == "username-exist") {
+					$alertSuccess = $("#alertError1");
+					jQuery("label[for='myalue']").html(
+							"<i class='icon-warning-sign'></i>&nbsp;Username already exist");
+					$alertSuccess.show();
+				}
+				
 
 			},
 			complete : function() {

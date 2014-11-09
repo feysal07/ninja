@@ -13,7 +13,7 @@ function pageChanged(value){
         error: function(e){
             console.log(e.message);
         }
-    })
+    });
 }
 
 function next(){
@@ -32,7 +32,7 @@ function next(){
         error: function(e){
             console.log(e.message);
         }
-    })
+    });
 }
 
 function prev(){
@@ -51,6 +51,6 @@ function prev(){
         error: function(e){
             console.log(e.message);
         }
-    })
+    });
 }
 

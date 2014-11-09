@@ -3,22 +3,22 @@
 <%@ page session="false"%>
 <c:import url="../include.jsp"></c:import>
 <c:import url="../header.jsp"></c:import>
-<c:url var="findStatesURL" value="/getStates" />
+<%-- <c:url var="findStatesURL" value="/getStates" /> --%>
 
-<script type="text/javascript"
-	src="resources/assets/js/pages/registerPage2.js"></script>
+<!-- <script type="text/javascript"
+	src="resources/assets/js/pages/registerPage2.js"></script> -->
+ 
 
-
-<title>HomeNinja | My Profile</title>
+<title>HomeNinja | Contractor Profile</title>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
 	<div class="container">
-		<h1 class="pull-left">My Profile</h1>
+		<h1 class="pull-left">Contractor Profile</h1>
 		<ul class="pull-right breadcrumb">
 			<li><a href=".">Home</a></li>
 			<!-- <li><a href="">Pages</a></li> -->
-			<li class="active">Public Profile</li>
+			<li class="active">Contractor Profile</li>
 		</ul>
 	</div>
 	<!--/container-->
