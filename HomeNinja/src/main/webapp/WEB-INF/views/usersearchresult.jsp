@@ -1,6 +1,10 @@
 <%@ page contentType="application/json; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<c:forEach var="user" items="${usersSearchSet.usersSearchList}">
+
+<c:choose>
+ <c:when test='${not empty usersSearchSet.usersSearchList}'>
+  
+  <c:forEach var="user" items="${usersSearchSet.usersSearchList}">
 
 
 	<!--Blog Post-->
@@ -9,15 +13,6 @@
 		<c:if test="${user.index % 4 == 3 }">search-blocks-left-orange</c:if>
 		<c:if test="${user.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if> ">
 		<div class="row">
-			<p>Job Categories:
-			<c:forEach var="userJobCat" items="${user.jobCategoriesList}">
-				<c:out value="${userJobCat}" />
-			</c:forEach>
-
-			<br> Job Sub-Categories:
-			<c:forEach var="userSubJobCat" items="${user.jobSubCategoriesList}">
-				<c:out value="${userSubJobCat}" />
-			</c:forEach></p>
 			<div class="col-md-4 search-img">
 				<img alt="" id="image-profile-pic"
 					src="./getimage/<c:out value='${user.userId}'/>/0"
@@ -37,17 +32,34 @@
 				<h2>
 					<a href="#"><c:out value="${user.userName}" /></a>
 				</h2>
-				<ul class="list-unstyled search-rating">
+				<!--<ul class="list-unstyled search-rating">
 					<li><i class="icon-star"></i></li>
 					<li><i class="icon-star"></i></li>
 					<li><i class="icon-star"></i></li>
 					<li><i class="icon-star"></i></li>
 					<li><i class="icon-star"></i></li>
-				</ul>
+				</ul>-->
+						<p>
+							<strong><em>Job Categories:</em></strong>&nbsp;&nbsp;&nbsp;
+							<!--<c:forEach var="userJobCat" items="${user.jobCategoriesList}">-->
+								<c:out value="${user.jobCategories}" />
+							<!--</c:forEach>-->
+
+							<br> <strong><em>Job Sub-Categories:</em></strong>&nbsp;&nbsp;&nbsp;
+							<!--<c:forEach var="userSubJobCat"
+								items="${user.jobSubCategoriesList}">-->
+								<c:out value="${user.jobSubCategories}" />
+							<!--</c:forEach>-->
+						</p>
 				<p>
-					<c:out value="${user.aboutMe}" />
+					<strong><em>About Me:</em></strong>&nbsp;&nbsp;&nbsp;<c:out value="${user.aboutMe}" />
 				</p>
-				<a class="btn-u btn-u-sea" href="#">Details</a>
+				<%-- <a class="btn-u btn-u-sea" href="./profile/${user.userId}">Details</a> --%>
+				<form action="./profile" method="post">
+				 <input type="hidden" id="userId" name="userId" value="${user.userId}"/>
+				  <%-- <a class="btn-u btn-u-sea" onclick="return getPersonProfile(${user.userId});">Details</a> --%>
+				  <p><button type="submit" class="btn-u btn-u-sea"></i>Details</button></p>
+			    </form>
 			</div>
 		</div>
 	</div>
@@ -58,9 +70,14 @@
 
 
 </c:forEach>
+ </c:when>  
+ <c:otherwise>
+   <h2 class="color-green">No records found.</h2>  
+ </c:otherwise>
+</c:choose>
 
 <!--Pagination-->
-<c:if test="${usersSearchSet.pageCount > 0}">
+<c:if test="${usersSearchSet.pageCount > 10}">
 	<div class="text-center">
 		<ul class="pagination">
 

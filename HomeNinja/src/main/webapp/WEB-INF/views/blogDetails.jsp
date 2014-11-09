@@ -12,7 +12,7 @@
     <div class="container">
         <h1 class="pull-left">Blog Details</h1>
         <ul class="pull-right breadcrumb">
-            <li><a href="index.html">Home</a></li>
+            <li><a href=".">Home</a></li>
             <!-- <li><a href="">Blog</a></li> -->
             <li class="active">Blog Details</li>
         </ul>

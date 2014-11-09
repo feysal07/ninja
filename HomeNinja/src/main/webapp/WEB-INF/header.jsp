@@ -97,7 +97,7 @@
 						data-close-others="false">Find <i class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="./usersearch">Contractors & Suppliers</a></li>
+							<li><a href="./usersearch">Contractors</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-hover="dropdown" data-delay="0"
@@ -121,7 +121,9 @@
 							<i class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
+						    <c:if test="${userInfo['class'] == 'class com.homeninja.vo.UserInfo' && userInfo.loggedIn != null && userInfo.loggedIn == 'true' && userInfo.userType==5}">
 							<li><a href="./blogPost">Post A Blog </a></li>
+							</c:if>
 							<li><a href="./allBlogs">Blogs</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"

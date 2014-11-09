@@ -66,13 +66,13 @@ var cityVal=${siteUserAddress.city}
 				hidden="true">
 				<button type="button" class="close" data-dismiss="alert"
 					onclick="javascript:closeErrorBox1();">&times;</button>
-				<strong>Oh!</strong> <label for="myalue"></label>
+				 <label for="myalue"></label>
 			</div>
 
 			<div class="alert alert-success" id="alertSuccess1" hidden="true">
 				<button type="button" class="close" data-dismiss="alert"
 					onclick="javascript:closeSuccessBox1();">&times;</button>
-				<strong>Well done!</strong> User information updated successfully!
+				   <i class="icon-ok "></i>&nbsp;Your information updated successfully!
 			</div>
 			<!--  alert messages end -->
 
@@ -80,7 +80,14 @@ var cityVal=${siteUserAddress.city}
 				<div class="headline">
 					<h2>Basic Information</h2>
 				</div>
-
+				<div class="row">
+					<div class="col-lg-4">
+						<label>UserName <span class="color-red">*</span></label> <input
+							type="text" id="userName"
+							value='<c:out value="${siteUser.userName}"/>'
+							class="form-control margin-bottom-20">
+					</div>
+				</div>
 				<div class="row">
 					<div class="col-lg-4">
 						<label>First Name <span class="color-red">*</span></label> <input
@@ -108,7 +115,7 @@ var cityVal=${siteUserAddress.city}
 							class="form-control margin-bottom-20">
 					</div>
 				</div>
-
+				
 				<label>About Me</label>
 				<div class="row margin-bottom-20">
 					<div class="col-md-9 col-md-offset-0">
@@ -130,13 +137,13 @@ var cityVal=${siteUserAddress.city}
 					hidden="true">
 					<button type="button" class="close" data-dismiss="alert"
 						onclick="javascript:closeErrorBox2();">&times;</button>
-					<strong>Oh!</strong> <label for="myalue"></label>
+					 <label for="myalue"></label>
 				</div>
 
 				<div class="alert alert-success" id="alertSuccess2" hidden="true">
 					<button type="button" class="close" data-dismiss="alert"
 						onclick="javascript:closeSuccessBox2();">&times;</button>
-					<strong>Well done!</strong> User information updated successfully!
+					 <i class="icon-ok "></i>&nbsp;Your information updated successfully!
 				</div>
 				<!--  alert messages end -->
 				<div>

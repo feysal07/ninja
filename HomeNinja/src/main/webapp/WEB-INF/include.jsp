@@ -20,8 +20,8 @@
     <link rel="stylesheet" href="resources/assets/css/pages/page_magazine.css">    
     
     <!-- Include js -->
-    <script type="text/javascript" src="resources/assets/js/lib/jquery-2.1.1.js"></script>
-    <script type="text/javascript" src="resources/assets/plugins/hover-dropdown.min.js"></script>
+    <!-- <script type="text/javascript" src="resources/assets/js/lib/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="resources/assets/plugins/hover-dropdown.min.js"></script> -->
     <script type="text/javascript" src="resources/assets/plugins/jquery.session.js"></script>
     
     <!-- JS Global Compulsory -->			
@@ -38,7 +38,7 @@
 	<script type="text/javascript" src="resources/assets/js/app.js"></script>
 	<script type="text/javascript" src="resources/assets/js/pages/index.js"></script>
 	<script type="text/javascript">
-	    jQuery(document).ready(function() {
+	    $(document).ready(function() {
 	      	App.init();
 	        App.initSliders();
 	        Index.initParallaxSlider();

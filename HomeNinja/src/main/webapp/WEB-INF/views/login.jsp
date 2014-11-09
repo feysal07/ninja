@@ -56,7 +56,7 @@
 
 			<div class="input-group margin-bottom-20">
 				<span class="input-group-addon"><i class="icon-user"></i></span> <input
-					type="text" placeholder="Username" id="Username" name="Username"
+					type="text" placeholder="Username or Email" id="Username" name="Username"
 					class="form-control">
 			</div>
 			<div class="input-group margin-bottom-20">

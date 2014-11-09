@@ -10,16 +10,16 @@
 
 <%-- <p>Don't forget: ${userInfo}</p> --%>
 
-<title>HomeNinja | Contractors & Suppliers</title>
+<title>HomeNinja | Contractors</title>
 
 <!--=== Breadcrumbs ===-->
 <div class="breadcrumbs margin-bottom-40">
 	<div class="container">
-		<h1 class="pull-left">Find Contractors/Suppliers</h1>
+		<h1 class="pull-left">Find Contractors</h1>
 		<ul class="pull-right breadcrumb">
 			<li><a href="index.html">Home</a></li>
 			<!-- <li><a href="">Features</a></li> -->
-			<li class="active">Contractors & Suppliers</li>
+			<li class="active">Contractors</li>
 		</ul>
 	</div>
 </div>
@@ -32,7 +32,7 @@
 	<div class="panel panel-grey margin-bottom-40">
 		<div class="panel-heading">
 			<h3 class="panel-title">
-				<i class="icon-tasks"></i>Search Contractors/Suppliers
+				<i class="icon-tasks"></i>Search Contractors
 			</h3>
 		</div>
 		<!--  Alert messages -->
@@ -51,9 +51,20 @@
 		<div class="panel-body">
 			<div class="form-inline" role="form">
 				<div class="row">
-					<div class="col-lg-2">
+					<!-- <div class="col-lg-2">
 						<label>Looking For</label> <select class="form-control"
 							id="userType">
+						</select>
+					</div> -->
+					<div class="col-lg-2">
+						<label>Job Category</label> <select class="form-control"
+							id="categories" onchange="javascript:getSubCategoriesforJob()">
+						</select>
+					</div>
+					<div class="col-lg-2">
+						<label>Job Sub Category</label> <select class="form-control"
+							id="subcategories">
+							<option value="">Select</option>
 						</select>
 					</div>
 					<div class="col-lg-2">
@@ -64,17 +75,6 @@
 					<div class="col-lg-2">
 						<label>City</label> <select class="form-control"
 							id="citiesforstate">
-							<option value="">Select</option>
-						</select>
-					</div>
-					<div class="col-lg-2">
-						<label>Job Category</label> <select class="form-control"
-							id="categories" onchange="javascript:getSubCategoriesforJob()">
-						</select>
-					</div>
-					<div class="col-lg-2">
-						<label>Job Sub Category</label> <select class="form-control"
-							id="subcategories">
 							<option value="">Select</option>
 						</select>
 					</div>
