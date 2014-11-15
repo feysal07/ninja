@@ -29,6 +29,8 @@ public class JobsSearch {
 	private boolean maxRequestReached;
 	private String jobSubCategories;
 	private List<String> jobSubCategoriesList = new ArrayList<String>();
+	private double longitude;
+	private double latitude;
 	private int index;
 
 	public long getId() {
@@ -193,6 +195,22 @@ public class JobsSearch {
 
 	public void setIndex(int index) {
 		this.index = index;
+	}
+
+	public double getLongitude() {
+		return longitude;
+	}
+
+	public void setLongitude(double longitude) {
+		this.longitude = longitude;
+	}
+
+	public double getLatitude() {
+		return latitude;
+	}
+
+	public void setLatitude(double latitude) {
+		this.latitude = latitude;
 	}
 
 

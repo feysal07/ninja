@@ -57,6 +57,24 @@ public class JobPostController {
 	@RequestMapping(value = "/jobs", method = RequestMethod.GET)
 	public String jobPost(Model model) throws IOException {
 		logger.debug("inside Register Method");
+		String isLogin="true";
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			isLogin= "false";
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				isLogin ="false";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				isLogin= "false";
+			}
+		}
+		
+		model.addAttribute("isLogin", isLogin);
 		return "jobPost";
 	}
 
