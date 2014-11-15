@@ -109,7 +109,7 @@ public class JobsSearchDAOImpl implements JobsSearchDAO {
 			criteriaForUser.setFirstResult((jobsSearchCriteria.getPageNumber() - 1 ) * 10);
 			criteriaForUser.setMaxResults(jobsSearchCriteria.getPageSize());
 			
-			List<Object[]> results = criteriaForUser.list();
+			List<Object> results = criteriaForUser.list();
 
 			int index = 1;
 			
@@ -118,7 +118,7 @@ public class JobsSearchDAOImpl implements JobsSearchDAO {
 					com.homeninja.vo.JobsSearch SearchVO =
 							new com.homeninja.vo.JobsSearch();
 					SearchVO.setIndex(index);
-					BeanUtils.copyProperties(results.get(i)[1], SearchVO);
+					BeanUtils.copyProperties(results.get(i), SearchVO);
 					jobsSearchResult.getJobsSearchList().add(SearchVO);
 					index++;
 				}

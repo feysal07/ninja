@@ -6,7 +6,6 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
 import java.util.HashMap;
@@ -25,7 +24,6 @@ import javax.servlet.http.HttpServletResponse;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeanUtils;
-import org.springframework.social.facebook.api.UserOperations;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
@@ -111,12 +109,11 @@ public class RegisterController implements ServletContextAware {
 		this.servletContext = servletContext;
 		
 	}
-
-	@RequestMapping(value = "/doRegisterPage3", method = RequestMethod.POST)
+	@RequestMapping(value = "/do-user-upgrade", method = RequestMethod.POST)
 	public @ResponseBody
-	ModelAndView doRegisterPage3(
+	ModelAndView doUserUpgrade(
 			@ModelAttribute("registrationPage3") RegistrationPage3 registrationPage3) {
-		logger.debug("doRegisterPage3");
+		logger.debug("doUserUpgrade");
 		Map <Long, String> jobCategoryValueHashMap = new HashMap<Long, String>();
 		Set jobCategorySet = jobCategoryService.getJobCategory();
 		Iterator jobCategorySetSetItr = jobCategorySet.iterator();
@@ -221,14 +218,18 @@ public class RegisterController implements ServletContextAware {
 		SiteUsers siteUsers = new SiteUsers();
 		siteUsers.setUserId(registrationPage3.getUserId());
 		siteUsers = siteUserService.getSiteUsersById(siteUsers);
-		siteUsers.setUserType(registrationPage3.getUserType().getId());
-
+		//siteUsers.setUserType(registrationPage3.getUserType().getId());
+		siteUsers.setUserType(2);//TODO:remove hardcording
 		siteUserService.updateUser(siteUsers);
 		
 		UsersSearch usersSearch = usersSearchService.getUserSearchRecordById(registrationPage3.getUserId());
+		if(sbJobCat.toString().contains("|"))
 		usersSearch.setJobCategories(sbJobCat.toString().substring(0,sbJobCat.lastIndexOf("|")));
+		if(sbJobSubCat.toString().contains("|"))
 		usersSearch.setJobSubCategories(sbJobSubCat.toString().substring(0,sbJobSubCat.lastIndexOf("|")));
+		
 		usersSearchService.updateUsersSearch(usersSearch);
+		
 		UserCompanyMap userCompanyMap = userCompanyService.getUserCompanyByUserId(siteUsers);
 		userCompanyMap.setCompanyName(registrationPage3.getUserCompanyMap().getCompanyName());
 		userCompanyMap.setAboutCompany(registrationPage3.getUserCompanyMap().getAboutCompany());
@@ -236,6 +237,7 @@ public class RegisterController implements ServletContextAware {
 
 		ModelAndView mav = new ModelAndView();
 		mav.setViewName("register-page3");
+		mav.addObject("upgradeDone", true);
 
 		return mav;
 	}
@@ -413,15 +415,14 @@ public class RegisterController implements ServletContextAware {
 		model.addAttribute("siteUser", registerUser);
 		
 		RegistrationPage3 regPage3 = new RegistrationPage3();
-		UserType userType = siteUserService.getUserType(registerUser.getUserType());
+		UserType userType = siteUserService.getUserType(2);//TODO:Remove hardcoding 
 		regPage3.setUserType(userType);
 		
 		
 		
 		regPage3.setUserCompanyMap(userCompanyService.getUserCompanyByUserId(registerUser));
-		
 		model.addAttribute("registrationPage3", regPage3);
-
+		model.addAttribute("upgradeDone", false);
 		return "register-page3";
 	}
 	
