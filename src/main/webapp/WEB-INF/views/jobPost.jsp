@@ -24,16 +24,26 @@
 
 <!--=== Content Part ===-->
 <div class="container">
+<c:if test="${isLogin == 'false'}">
+<div class="alert alert-block alert-danger fade in">
+                <!-- <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button> -->
+                <h4>Oh! You are not logged In!</h4>
+                <p>For posting a <strong>job</strong>. You need to <strong>Register</strong> or <strong>Login</strong> if you are existing user.</p>
+                <p>
+                    <a href="./Register" class="btn-u">Register</a> OR <a href="./login" class="btn-u">Login</a>
+                </p>
+</div>
+</c:if>            
 <div class="row blog-page">
 	<div class="col-md-9 mb-margin-bottom-40">
 		<div>
 		 <!--  Alert messages -->
 			<div class="alert alert-danger fade in" id="alertError" hidden="true">
-				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button>
+				<!-- <button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button> -->
 				<label for="myalue" ></label>
 			</div>
 			<div class="alert alert-success" id="alertSuccess" hidden="true">
-				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeSuccessBox();">&times;</button>
+				<!-- <button type="button" class="close" data-dismiss="alert" onclick="javascript:closeSuccessBox();">&times;</button> -->
 				<i class="icon-ok "></i>&nbsp; your job has been post successfully !
 			</div>
 
@@ -112,7 +122,17 @@
 		</div>
 		<br /> <br />
 		<p>
-			<button type="submit" class="btn-u" onclick="javascript:jobPost()">Post</button>
+				<c:choose>
+					<c:when test="${isLogin == 'true'}">
+					<button type="submit" class="btn-u"  onclick="javascript:jobPost()">Post</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn-u btn-u-default" onclick="javascript: moveUp()">Post</button>
+					</c:otherwise>
+				</c:choose>
+
+				
+			
 			<img id="loader-img" src="resources/assets/img/loader.gif" hidden="hidden" height="30" width="30" class="color-img" alt="">
 		</p>
 

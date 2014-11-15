@@ -21,7 +21,17 @@
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<div class="container">		
+<div class="container">
+<c:if test="${logged == 'false'}">
+<div class="alert alert-block alert-danger fade in">
+                <!-- <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button> -->
+                <h4>Oh! You are not logged In!</h4>
+                <p>For posting <strong>comments</strong>. You need to <strong>Register</strong> or <strong>Login</strong> if you are existing user.</p>
+                <p>
+                    <a href="./Register" class="btn-u">Register</a> OR <a href="./login" class="btn-u">Login</a>
+                </p>
+</div>
+</c:if>		
 	<div class="row blog-page blog-item">
         <!-- Left Sidebar -->
     	<div class="col-md-9 md-margin-bottom-60">
@@ -101,21 +111,21 @@
                     <!--  Alert messages -->
                     <div class="alert alert-danger fade in" id="alertError"
                          hidden="true">
-                        <button type="button" class="close" data-dismiss="alert"
-                                onclick="javascript:closeErrorBox();">&times;</button>
+                       <!--  <button type="button" class="close" data-dismiss="alert"
+                                onclick="javascript:closeErrorBox();">&times;</button> -->
                         <label for="myalue"></label>
                     </div>
                     <div class="alert alert-success" id="alertSuccess"
                          hidden="true">
-                        <button type="button" class="close" data-dismiss="alert"
-                                onclick="javascript:closeSuccessBox();">&times;</button>
+                        <!-- <button type="button" class="close" data-dismiss="alert"
+                                onclick="javascript:closeSuccessBox();">&times;</button> -->
                         <i class="icon-ok "></i>&nbsp; your comment has been
                         post successfully!
                     </div>
                     <!--  alert messages end -->
                 </c:when>
                 <c:otherwise>
-                    <h3>To comment you should be logged in</h3>
+                    <!-- <h3>To comment you should be logged in</h3> -->
                 </c:otherwise>
             </c:choose>
 

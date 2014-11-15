@@ -32,11 +32,11 @@
             <p>Please be assured, we will never sell or distribute the personal information you provide to us.</p><br>
             <!--  Alert messages -->
 			<div class="alert alert-danger fade in" id="alertError" hidden="true">
-				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button>
+				<!-- <button type="button" class="close" data-dismiss="alert" onclick="javascript:closeErrorBox();">&times;</button> -->
 				<label for="myalue" ></label>
 			</div>
 			<div class="alert alert-success" id="alertSuccess" hidden="true">
-				<button type="button" class="close" data-dismiss="alert" onclick="javascript:closeSuccessBox();">&times;</button>
+				<!-- <button type="button" class="close" data-dismiss="alert" onclick="javascript:closeSuccessBox();">&times;</button> -->
 				<i class="icon-ok "></i>&nbsp; Your request has been sent. we will reply you soon !
 			</div>
 
