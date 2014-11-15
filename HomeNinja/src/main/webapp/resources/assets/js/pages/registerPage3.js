@@ -14,7 +14,7 @@ function closeSuccessBox() {
 
 }
 
-$(document).ready(
+/*$(document).ready(
 		function() {
 			$.getJSON('./getUserTypes', {
 				ajax : 'true',
@@ -35,7 +35,7 @@ $(document).ready(
 				// now that we have our options, give them to our select
 				$('#userType').html(html);
 			});
-		});
+		});*/
 
 $(document)
 		.ready(
@@ -136,44 +136,22 @@ $(document).ready(function() {
 				strArray[result.jobCatId] = ' ';				
 			}
 			strArray[result.jobCatId] = strArray[result.jobCatId] + str;
-/*     		else if ( typeof strArray[ result.jobCatId] === 'undefined') {
-				strArray[result.jobCatId] = str;
-			}*/
-			
 		});
 
  		$.each(strArray, function(index, result) {
 			$("#subcategoriescheckboxes" + index).html(strArray[index]);
-		})
+		});
 		// now that we have our options, give them to our select
 		// $("'#subcategoriescheckboxes"+result.jobCatId +"'").html(str);
 	});
 });
 
 function getSubCategories(id) {
-/*	$jobcategorycheckbox = $("#userJobCategoryList" + id +"jobCategoryIsSet" + id);
-	alert($jobcategorycheckbox.prop("checked"));
-    if($jobcategorycheckbox.prop("checked") == true){
-
-        alert("Checkbox is checked.");
-        $jobcategorycheckbox.val("true");
-
-    }
-
-    else if($jobcategorycheckbox.prop("checked") == false){
-
-        alert("Checkbox is not checked.");
-        $jobcategorycheckbox.val("false");
-
-    }*/
 	$subcategoriescheckboxes = $("#subcategoriescheckboxes" + id);
 	$subcategoriescheckboxes.toggle();
 };
 
 function doRegister() {
-	/*validate email Id%/
-	 * 
-	 */
 	var validateReg1 = "true";
 	var userEmailId = $("#userType").val();
 	if (userEmailId == "") {

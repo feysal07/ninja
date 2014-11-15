@@ -43,7 +43,7 @@
 							<strong><em>Job Categories:</em></strong>&nbsp;&nbsp;&nbsp;
 							<!--<c:forEach var="userJobCat" items="${user.jobCategoriesList}">-->
 								<c:out value="${user.jobCategories}" />
-							<!--</c:forEach>-->
+							<!--</c:forEach>--><br> 
 
 							<br> <strong><em>Job Sub-Categories:</em></strong>&nbsp;&nbsp;&nbsp;
 							<!--<c:forEach var="userSubJobCat"

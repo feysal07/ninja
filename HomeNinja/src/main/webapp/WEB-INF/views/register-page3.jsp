@@ -27,7 +27,7 @@
 <!--=== End Breadcrumbs ===-->
 
 <!--=== Content Part ===-->
-<form:form action="./doRegisterPage3" method="POST" id="registerpage3"
+<form:form action="./do-user-upgrade" method="POST" id="registerpage3"
 	modelAttribute="registrationPage3" commandname="registrationPage3">
 <form:input type="hidden" id="siteUserid" path="userId"
 	value="${siteUser.userId}"/>
@@ -35,29 +35,27 @@
 	
 <!--=== Content Part ===-->
 <div class="container">
-	<div class="col-md-9 mb-margin-bottom-30">
-		<div>
-			<div class="headline">
-				<h2>Upgrade User</h2>
-			</div>
-			<div class="row">
-			
-			<!--  Alert messages -->
+<!--  Alert messages -->
 			<div class="alert alert-danger fade in" id="alertError" hidden="true">
 				<button type="button" class="close" data-dismiss="alert"
 					onclick="javascript:closeErrorBox();">&times;</button>
-				<strong>Oh!</strong> <label for="myalue"></label>
+				 <label for="myalue"></label>
 			</div>
-
-			<div class="alert alert-success" id="alertSuccess" hidden="true">
+            <c:if test="${upgradeDone=='true'}">
+			<div class="alert alert-success" id="alertSuccess">
 				<button type="button" class="close" data-dismiss="alert"
 					onclick="javascript:closeSuccessBox();">&times;</button>
-				<strong>Well done!</strong> User information updated successfully!
+				  <i class="icon-ok "></i>&nbsp;User information updated successfully!
 			</div>
+			</c:if>
 			<!--  alert messages end -->
-			
-			
-				<div class="col-lg-4">
+	<div class="col-md-9 mb-margin-bottom-30">
+		<div>
+			<div class="headline">
+				<h2>Upgrade as Contractor</h2>
+			</div>
+			<div class="row">		
+				<%-- <div class="col-lg-4">
 					<label>Upgrade As<span class="color-red">*</span></label>
 					 <form:select
 						id="userType"  path="userType.id" class="form-control" >
@@ -66,7 +64,7 @@
 									<option>Supplier</option>
 									<option>Both</option> -->
 					</form:select>
-				</div>
+				</div> --%>
 			</div>
 			<br /> <label>Company Name</label>
 			<div class="row margin-bottom-20">

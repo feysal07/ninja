@@ -43,6 +43,10 @@
 	        App.initSliders();
 	        Index.initParallaxSlider();
 	    });
+	    
+	    function moveUp(){
+	    	$('#topcontrol').click();
+	    }
 	</script>
     <script type="text/javascript"
             src="resources/assets/js/pages/allBlogs.js"></script>

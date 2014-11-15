@@ -70,33 +70,33 @@
 
 					<div class="alert alert-danger fade in" id="alertError"
 						hidden="true">
-						<button type="button" class="close" data-dismiss="alert"
-							onclick="javascript:closeErrorBox();">&times;</button>
+						<!-- <button type="button" class="close" data-dismiss="alert"
+							onclick="javascript:closeErrorBox();">&times;</button> -->
 						<label for="myalue"><i class="icon-warning-sign"></i>&nbsp; Invalid Email
 							address!</label>
 					</div>
 
 					<div class="alert alert-danger fade in" id="alertError4"
 						hidden="true">
-						<button type="button" class="close" data-dismiss="alert"
-							onclick="javascript:closeError4Box();">&times;</button>
-						<strong>Oh!</strong> <label for="myalue"> Please enter
+						<!-- <button type="button" class="close" data-dismiss="alert"
+							onclick="javascript:closeError4Box();">&times;</button> -->
+						<label for="myalue"><i class="icon-warning-sign"></i>&nbsp; Please enter
 							password!</label>
 					</div>
 
 					<div class="alert alert-danger fade in" id="alertError5"
 						hidden="true">
-						<button type="button" class="close" data-dismiss="alert"
-							onclick="javascript:closeError5Box();">&times;</button>
-						<strong>Oh!</strong> <label for="myalue"> Please enter
+						<!-- <button type="button" class="close" data-dismiss="alert"
+							onclick="javascript:closeError5Box();">&times;</button> -->
+						<label for="myalue"> <i class="icon-warning-sign"></i>&nbsp;Please enter
 							confirm password!</label>
 					</div>
 
 					<div class="alert alert-danger fade in" id="alertError6"
 						hidden="true">
-						<button type="button" class="close" data-dismiss="alert"
-							onclick="javascript:closeError6Box();">&times;</button>
-						<strong>Oh!</strong> <label for="myalue">Confirm password
+						<!-- <button type="button" class="close" data-dismiss="alert"
+							onclick="javascript:closeError6Box();">&times;</button> -->
+						<label for="myalue"><i class="icon-warning-sign"></i>&nbsp;Confirm password
 							does not match the entered password!</label>
 					</div>
 

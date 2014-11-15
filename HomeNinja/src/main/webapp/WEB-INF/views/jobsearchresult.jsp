@@ -1,5 +1,8 @@
 <%@ page contentType="application/json; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+<c:choose>
+ <c:when test='${not empty jobsSearchSet.jobsSearchList}'>
 <c:forEach var="user" items="${jobsSearchSet.jobsSearchList}">
 
 	<!--Blog Post-->
@@ -8,29 +11,29 @@
 		<c:if test="${user.index % 4 == 3 }">search-blocks-left-orange</c:if>
 		<c:if test="${user.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if>">
 		<div class="row">
-
+            
+            <div class="col-md-8">
+            <h2><a href="#"><c:out value="${user.title}" /></a></h2>
 			<p>
-				 Job Title: 
-				<c:out value="${user.title}" />
+				
+				<strong><em>Date:</strong></em>
+				<c:set var="createdDate" value="${user.postDate}"/>&nbsp;&nbsp;
+				${fn:substring(createdDate,0,10)}
 
-				<br> Job Details:
+				<br><strong><em>Details:</strong></em>&nbsp;&nbsp;&nbsp;
 				<c:out value="${user.jobDetails}" />
 				&nbsp;
-
-				Job Post Date:
-				<c:out value="${user.postDate}"/>
 			
 			</p>
 
 			<p>
-				Job Category:
+				 <strong><em>Category:</strong></em>&nbsp;&nbsp;&nbsp;
 				<c:set var="jobCategoryId" value="${user.jobCategory}" />
 				<c:out value="${jobCatHashMap[jobCategoryId]}" />
 
-				<br> Job Sub-Categories:
+				<br> <strong><em>Specificatiion:</strong></em>&nbsp;&nbsp;&nbsp;
 				<c:forEach var="jobsubJobCat" items="${user.jobSubCategoriesList}">
 					<c:out value="${jobsubJobCat}" />
-					<%-- <c:out value="${jobSubCatHashMap[userJobCat]}" /> --%>
 				</c:forEach>
 			</p>
 
@@ -47,6 +50,7 @@
 							value="${stateHashMap[stateId]}" /> <c:out value="${stateName}" />
 					</li>
 				</ul>
+			</div>
 			</div>
 <%-- 			<div class="col-md-8">
 								<h2>
@@ -70,9 +74,13 @@
 
 
 </c:forEach>
-
+</c:when>
+ <c:otherwise>
+   <h2 class="color-green">No records found.</h2>  
+ </c:otherwise>
+</c:choose>
 <!--Pagination-->
-<c:if test="${jobsSearchSet.pageCount > 0}">
+<c:if test="${jobsSearchSet.pageCount > 10}">
 	<div class="text-center">
 		<ul class="pagination">
 
