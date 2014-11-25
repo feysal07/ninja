@@ -171,6 +171,29 @@ function previousPage( pageNumber) {
 	});
 }
 
+function sendRequestToContractor(jobId){
+	$.ajax({
+		type : "POST",
+		url : "./sendMessage",
+		data : JSON.stringify(jobId),
+		contentType : 'application/json',
+
+		beforeSend : function() {
+
+		},
+		success : function(result) {
+
+
+		},
+		complete : function() {
+
+		},
+		error : function(errorThrown) {
+			console.log(errorThrown);
+
+		}
+	});
+}
 function nextPage(pageNumber) {
 	 var myObject = new Object();
      var jobSubCatArray=[];
