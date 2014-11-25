@@ -27,5 +27,7 @@ public interface JobCategoryService {
 	public boolean removeJobSubCategory(UserJobSubCategoryMap userJobsubCategoryMap);
 
 	public Set<JobSubCategory> getJobSubCategoryByJobCatId(long jobCatId);
+	
+	public JobCategory getJobCategoryById(int jobCategoryId);
 
 }

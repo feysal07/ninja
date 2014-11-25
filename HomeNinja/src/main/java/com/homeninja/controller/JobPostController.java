@@ -30,13 +30,17 @@ import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.Jobs;
 import com.homeninja.entities.JobsSubCategoryMap;
 import com.homeninja.entities.MessageLimits;
+import com.homeninja.entities.SiteUsers;
 import com.homeninja.helping.entities.GeoLocation;
 import com.homeninja.helping.entities.JobSearchCriteria;
 import com.homeninja.helping.entities.MyJobs;
 import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.JobCategoryService;
 import com.homeninja.service.JobPostService;
+import com.homeninja.service.SiteUserService;
+import com.homeninja.service.TwilioSmsService;
 import com.homeninja.vo.UserInfo;
+import com.twilio.sdk.TwilioRestException;
 
 @Controller
 @SessionAttributes("userInfo")
@@ -49,6 +53,12 @@ public class JobPostController {
 
 	@Resource
 	public GeoLocationService geoLocationService;
+	
+	@Resource
+	public TwilioSmsService twilioSmsService;
+	
+	@Resource
+	public SiteUserService siteUserService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(JobPostController.class);
@@ -110,7 +120,7 @@ public class JobPostController {
 		
 		
 		//get geolocation by address
-		GeoLocation geoLocation=geoLocationService.getGeoLocation(jobPost.getAddress());
+		GeoLocation geoLocation=geoLocationService.getGeoLocation(jobPost.getLocation());
 		if (null != geoLocation) {
 			jobPost.setLatitude(geoLocation.getLat());
 			jobPost.setLongitude(geoLocation.getLng());
@@ -208,30 +218,59 @@ public class JobPostController {
 	}
 	
 	
-	@RequestMapping(value="/sendMessage",method=RequestMethod.GET)
+	@RequestMapping(value="/sendMessage",method=RequestMethod.POST)
 	@ResponseBody
 	public String sendMessage(Model model,@RequestBody String myObject){
-		int jobId=Integer.parseInt(myObject);
-		//TODO:Need to implement Message Gateway.
-		//add a message count to job
-		 if(jobPostService.availableToSendMessage(jobId)){
+		long jobId=Long.parseLong(myObject);
+		
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+			return "login";
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+				return "login";
+			}
+		}
+		 if(jobPostService.availableToSendMessage(jobId) && userInfo.getUserType()==2){
+			 Long jobUserId=jobPostService.whoPostTheJob(jobId);
+			 String userPhoneNo=siteUserService.getUserPhoneNo(jobUserId);
+			 String contractorPhoneNo=siteUserService.getUserPhoneNo(userInfo.getUserId());
+			 String textMessage="Hello,I'm "+userInfo.getUserName()+"intrested in your requirnment,"
+			 		+ "Please find my contact no:- "+contractorPhoneNo;
+			 try {
+				twilioSmsService.sentSms(userPhoneNo, textMessage);
+			} catch (TwilioRestException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		  	 
 		 }else{
-			 
+			 return "not-sent";
 		 }
+		 
 		 return "not-sent";
-	
 	}
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	@RequestMapping(value = "/jobDetails", method = RequestMethod.POST)
+	public 
+	String getJobDetailsById(HttpServletRequest req, @RequestParam(value = "jobId",
+            required = true) long jobId,Model model){
+		//long jobId=Long.parseLong(myObject);
+		Jobs job=jobPostService.getJobPostById(jobId);
+		job.setStrJobCategory(jobCategoryService.getJobCategoryById(job.getJobCategoryId()).getJobCat());
+		job.setStrCity(geoLocationService.getCityById(job.getCity()));
+		job.setStrState(geoLocationService.getStateById(job.getState()));
+		model.addAttribute("jobDetails", job);
+		return "jobDetails";
+	}
 	
 	
 }

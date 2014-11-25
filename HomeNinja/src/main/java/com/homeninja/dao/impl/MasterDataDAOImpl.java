@@ -102,4 +102,37 @@ public class MasterDataDAOImpl implements MasterDataDAO{
 		
 	}
 
+	@Override
+	public String getCityById(long cityId) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from MasterDataValue where masterDataId=:masterDataId");
+			query.setParameter("masterDataId", cityId);
+			MasterDataValue city=(MasterDataValue) query.list().get(0);
+			return city.getValue();
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+	@Override
+	public String getStateById(long stateId) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from MasterDataValue where masterDataId=:masterDataId");
+			query.setParameter("masterDataId", stateId);
+			MasterDataValue state=(MasterDataValue) query.list().get(0);
+			return state.getValue();
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
+
+
 }

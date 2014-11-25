@@ -39,7 +39,7 @@ public class BlogPostController {
     @Resource
     private CommentService commentService;
 
-    @RequestMapping(value = "/allBlogs", method = RequestMethod.GET)
+    @RequestMapping(value = "/blogs", method = RequestMethod.GET)
     public ModelAndView allBlog(@RequestParam(value = "pageNumber",
             required = true, defaultValue = "1") String pageNumber) {
         ModelAndView mv = new ModelAndView("allBlogs");

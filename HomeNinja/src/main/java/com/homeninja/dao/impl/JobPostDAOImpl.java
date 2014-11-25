@@ -114,7 +114,7 @@ public class JobPostDAOImpl implements JobPostDAO {
 	}
 
 	@Override
-	public boolean availableToSendMessage(int jobId) {
+	public boolean availableToSendMessage(long jobId) {
 	try {
 			Jobs job = (Jobs) this.sessionFactory.getCurrentSession().get(
 					Jobs.class, jobId);
@@ -156,6 +156,31 @@ public class JobPostDAOImpl implements JobPostDAO {
 					"from JobCategory where id = :id ");
 			query.setParameter("id", jobCatId);
 			return (JobCategory) query.list().get(0);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Jobs getJobPostById(long jobId) {
+		try{
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from Jobs where id = :jobId ");
+			query.setParameter("jobId", jobId);
+			return (Jobs)query.list().get(0);
+		} catch (Exception e) {
+			return null;
+		}
+	}
+
+	@Override
+	public Long whoPostTheJob(long jobId) {
+		try{
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"select j.postBy from Jobs j where id = :jobId ");
+			query.setParameter("jobId", jobId);
+			long userId=(Long)query.uniqueResult();
+			return userId;
 		} catch (Exception e) {
 			return null;
 		}

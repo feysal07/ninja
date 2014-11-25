@@ -247,38 +247,6 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 	}
 
 	@Override
-	public String getCityById(long cityId) {
-		try {
-
-			Query query = sessionFactory.getCurrentSession().createQuery(
-					"from MasterDataValue where masterDataId=:masterDataId");
-			query.setParameter("masterDataId", cityId);
-			MasterDataValue city=(MasterDataValue) query.list().get(0);
-			return city.getValue();
-
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	@Override
-	public String getStateById(long stateId) {
-		try {
-
-			Query query = sessionFactory.getCurrentSession().createQuery(
-					"from MasterDataValue where masterDataId=:masterDataId");
-			query.setParameter("masterDataId", stateId);
-			MasterDataValue state=(MasterDataValue) query.list().get(0);
-			return state.getValue();
-
-		} catch (HibernateException e) {
-			e.printStackTrace();
-			return null;
-		}
-	}
-
-	@Override
 	public boolean isUsernameExist(String username) {
 		try {
 
@@ -294,6 +262,25 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			return false;
+		}
+	}
+
+	@Override
+	public String getUserPhoneNo(long userId) {
+		try {
+
+			Query query = sessionFactory.getCurrentSession().createSQLQuery(
+					"SELECT phoneNumber from site_users where userId=:userId").setParameter("userId", userId);
+			String phoneNo=(String)query.uniqueResult();
+			if(phoneNo !=null){
+				return phoneNo;
+			}else{
+				return null;
+			}
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
 		}
 	}
 	

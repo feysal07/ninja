@@ -192,4 +192,17 @@ public class JobCategoryDAOImpl implements JobCategoryDAO {
 			return null;
 		}
 	}
+
+	@Override
+	public JobCategory getJobCategoryById(int jobCategoryId) {
+		try {
+			Query query = sessionFactory.getCurrentSession().createQuery(
+					"from JobCategory where id = :jobCatId");
+			query.setParameter("jobCatId", jobCategoryId);
+			return (JobCategory)query.list().get(0);
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 }

@@ -11,5 +11,7 @@ public interface GeoLocationService {
 	public Set<City> getCitiesForState(long stateOrderId);
 	public Set<City> getCities();
 	public GeoLocation getGeoLocation(String address);
+	public String getCityById(long cityId);
+    public String getStateById(long stateId);
 
 }

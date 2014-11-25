@@ -97,22 +97,17 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 		return  siteUserDAO.getUserJobSubCategories(userId);
 	}
 
-	@Override
-	public String getCityById(long cityId) {
-		// TODO Auto-generated method stub
-		return  siteUserDAO.getCityById(cityId);
-	}
-
-	@Override
-	public String getStateById(long stateId) {
-		// TODO Auto-generated method stub
-		return  siteUserDAO.getStateById(stateId);
-	}
 
 	@Override
 	public boolean isUsernameExist(String username) {
 		// TODO Auto-generated method stub
 		return siteUserDAO.isUsernameExist(username);
+	}
+
+	@Override
+	public String getUserPhoneNo(long userId) {
+		// TODO Auto-generated method stub
+		return siteUserDAO.getUserPhoneNo(userId);
 	}
 
 	

@@ -37,12 +37,14 @@ public class Jobs {
 	private double latitude;
 	
 	@Transient
-	private String address;
+	private String strCity;
 	
-	/*@OneToOne
-	@JoinColumn(name="jobCategoryID")
-	private JobCategory jobCategory;*/
-	 
+	@Transient
+	private String strState;
+	
+	@Transient
+	private String strJobCategory;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="jobId")
 	private List<JobsSubCategoryMap> JobsSubCategoryMap;
@@ -204,12 +206,28 @@ public class Jobs {
 		this.latitude = latitude;
 	}
 
-	public String getAddress() {
-		return address;
+	public String getStrCity() {
+		return strCity;
 	}
 
-	public void setAddress(String address) {
-		this.address = address;
+	public void setStrCity(String strCity) {
+		this.strCity = strCity;
+	}
+
+	public String getStrState() {
+		return strState;
+	}
+
+	public void setStrState(String strState) {
+		this.strState = strState;
+	}
+
+	public String getStrJobCategory() {
+		return strJobCategory;
+	}
+
+	public void setStrJobCategory(String strJobCategory) {
+		this.strJobCategory = strJobCategory;
 	}
 
 	
