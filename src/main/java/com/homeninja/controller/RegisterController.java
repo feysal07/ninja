@@ -114,7 +114,7 @@ public class RegisterController implements ServletContextAware {
 	ModelAndView doUserUpgrade(
 			@ModelAttribute("registrationPage3") RegistrationPage3 registrationPage3) {
 		logger.debug("doUserUpgrade");
-		Map <Long, String> jobCategoryValueHashMap = new HashMap<Long, String>();
+		Map <Integer, String> jobCategoryValueHashMap = new HashMap<Integer, String>();
 		Set jobCategorySet = jobCategoryService.getJobCategory();
 		Iterator jobCategorySetSetItr = jobCategorySet.iterator();
 		while (jobCategorySetSetItr.hasNext()){

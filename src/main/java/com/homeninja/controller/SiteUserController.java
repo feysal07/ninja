@@ -19,6 +19,7 @@ import com.google.gson.Gson;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.entities.UserJobCategoryMap;
 import com.homeninja.entities.UserJobSubCategoryMap;
+import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.SiteUserService;
 import com.homeninja.utils.Utils;
 import com.homeninja.vo.ChangePasswordVO;
@@ -31,6 +32,9 @@ public class SiteUserController {
 	
 	@Resource
 	private SiteUserService siteUserService;
+	
+	@Resource
+	private GeoLocationService geoLocationService;
 	
 	@RequestMapping(value = "/myProfile", method = RequestMethod.GET)
 	public String getMyProfile(Model model) throws IOException {
@@ -92,8 +96,8 @@ public class SiteUserController {
 		userProfile.setAboutMe(userDetails.getAboutMe());
 		if(userDetails.getAddress() !=null){
 		userProfile.setAddress(userDetails.getAddress().get(0).getAddress());
-	    userProfile.setCity(siteUserService.getCityById(userDetails.getAddress().get(0).getState()));
-		userProfile.setState(siteUserService.getStateById(userDetails.getAddress().get(0).getState()));
+	    userProfile.setCity(geoLocationService.getCityById(userDetails.getAddress().get(0).getState()));
+		userProfile.setState(geoLocationService.getStateById(userDetails.getAddress().get(0).getState()));
 		}else{
 			userProfile.setCity("NA");
 			userProfile.setState("NA");

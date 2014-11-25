@@ -76,6 +76,11 @@ public final class JobCategoryServiceImpl implements JobCategoryService {
 	public Set<JobSubCategory> getJobSubCategoryByJobCatId(long jobCatId) {
 		return jobCategoryDAO.getJobSubCategoryByJobCatId(jobCatId);
 	}
+
+	@Override
+	public JobCategory getJobCategoryById(int jobCategoryId) {
+		return jobCategoryDAO.getJobCategoryById(jobCategoryId);
+	}
 	
 	
 

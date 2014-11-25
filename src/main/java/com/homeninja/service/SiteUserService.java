@@ -27,10 +27,9 @@ public interface SiteUserService {
 		public UserType getUserType(long id);
 		public List<UserJobCategoryMap> getUserJobCategories(long userId);
 		public List<UserJobSubCategoryMap> getUserJobSubCategories(long userId);
-	    public String getCityById(long cityId);
-	    public String getStateById(long stateId);
-		public boolean isUsernameExist(String newUsername);
-		;
+	    public boolean isUsernameExist(String newUsername);
+		public String getUserPhoneNo(long userId);
+		
 	    
 		
 		

@@ -15,7 +15,7 @@ import javax.persistence.Table;
 public class JobCategory implements Comparable<JobCategory> {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	private long id;
+	private int id;
 	private String jobCat;
 	private String userTypeId;
 	
@@ -23,11 +23,11 @@ public class JobCategory implements Comparable<JobCategory> {
 	Set<JobSubCategory> jobSubCategorySet;
 	*/
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 

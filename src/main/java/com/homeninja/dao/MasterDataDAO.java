@@ -13,4 +13,8 @@ public interface MasterDataDAO {
 	public Set<City> getCitiesForState(long stateOrderId);
 	
 	public Set<City> getCities();
+
+	public String getCityById(long cityId);
+
+	public String getStateById(long stateId);
 }

@@ -49,7 +49,7 @@ public class JobPostServiceImpl implements JobPostService {
 	}
 
 	@Override
-	public boolean availableToSendMessage(int jobId) {
+	public boolean availableToSendMessage(long jobId) {
 		// TODO Auto-generated method stub
 		return jobPostDAO.availableToSendMessage(jobId);
 	}
@@ -62,6 +62,17 @@ public class JobPostServiceImpl implements JobPostService {
 	@Override
 	public JobCategory getJobCategoryById(long jobCatId) {
 		return jobPostDAO.getJobCategoryById(jobCatId);
+	}
+
+	@Override
+	public Jobs getJobPostById(long jobId) {
+		
+		return jobPostDAO.getJobPostById(jobId);
+	}
+
+	@Override
+	public Long whoPostTheJob(long jobId) {
+		return jobPostDAO.whoPostTheJob(jobId);
 	}
 
 	

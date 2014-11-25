@@ -23,7 +23,7 @@ public class TwilioSmsServiceImpl implements TwilioSmsService{
 			throws TwilioRestException, IOException {
 		
 		PropertyFileReader propertyFileReader=new PropertyFileReader();
-		Properties prop = propertyFileReader.getPropValues("sms.property");
+		Properties prop = propertyFileReader.getPropValues("sms.properties");
 
 		String accSID = prop.getProperty("ACCOUNT_SID");
 		String authTocken = prop.getProperty("AUTH_TOKEN");

@@ -83,7 +83,7 @@ public class UserSearchController {
 
 	@ModelAttribute("jobCatHashMap")
 	Map getAllJobCat() {
-		Map <Long, String> jobCategories = new HashMap<Long, String>();
+		Map <Integer, String> jobCategories = new HashMap<Integer, String>();
 		Set jobCategorySet = jobCategoryService.getJobCategory();
 		Iterator jobCategorySetSetItr = jobCategorySet.iterator();
 		while (jobCategorySetSetItr.hasNext()){

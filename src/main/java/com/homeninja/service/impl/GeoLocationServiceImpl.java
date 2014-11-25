@@ -6,22 +6,14 @@ import java.io.InputStreamReader;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Properties;
 import java.util.Set;
 
 import javax.annotation.Resource;
 
 import org.apache.commons.httpclient.util.URIUtil;
-import org.json.simple.JSONObject;
 import org.springframework.stereotype.Service;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonArray;
-import com.google.gson.JsonObject;
-import com.google.gson.JsonParser;
 import com.homeninja.dao.MasterDataDAO;
 import com.homeninja.helping.entities.GeoLocation;
 import com.homeninja.service.GeoLocationService;
@@ -97,8 +89,13 @@ public class GeoLocationServiceImpl implements GeoLocationService {
 		return geoLocation;
 	}
 
-	public static void main(String[] args) {
-		GeoLocationServiceImpl obj=new GeoLocationServiceImpl();
-		obj.getGeoLocation("BTM 2nd stage bangalore");
+	@Override
+	public String getCityById(long cityId) {
+		return masterDataDAO.getCityById(cityId);
+	}
+
+	@Override
+	public String getStateById(long stateId) {
+		return masterDataDAO.getStateById(stateId);
 	}
 }
