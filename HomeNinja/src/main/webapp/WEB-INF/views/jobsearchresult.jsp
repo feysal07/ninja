@@ -3,36 +3,36 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:choose>
  <c:when test='${not empty jobsSearchSet.jobsSearchList}'>
-<c:forEach var="user" items="${jobsSearchSet.jobsSearchList}">
+<c:forEach var="jobs" items="${jobsSearchSet.jobsSearchList}">
 
 	<!--Blog Post-->
-	<div class="search-blocks <c:if test="${user.index % 4 == 1 }">search-blocks-left-green</c:if>
-		<c:if test="${user.index % 4 == 2 }"> search-blocks-colored search-blocks-red</c:if>
-		<c:if test="${user.index % 4 == 3 }">search-blocks-left-orange</c:if>
-		<c:if test="${user.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if>">
+	<div class="search-blocks <c:if test="${jobs.index % 4 == 1 }">search-blocks-left-green</c:if>
+		<c:if test="${jobs.index % 4 == 2 }"> search-blocks-colored search-blocks-red</c:if>
+		<c:if test="${jobs.index % 4 == 3 }">search-blocks-left-orange</c:if>
+		<c:if test="${jobs.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if>">
 		<div class="row">
             
             <div class="col-md-8">
-            <h2><a href="#"><c:out value="${user.title}" /></a></h2>
+            <h2><a href="#"><c:out value="${jobs.title}" /></a></h2>
 			<p>
 				
 				<strong><em>Date:</strong></em>
-				<c:set var="createdDate" value="${user.postDate}"/>&nbsp;&nbsp;
+				<c:set var="createdDate" value="${jobs.postDate}"/>&nbsp;&nbsp;
 				${fn:substring(createdDate,0,10)}
 
 				<br><strong><em>Details:</strong></em>&nbsp;&nbsp;&nbsp;
-				<c:out value="${user.jobDetails}" />
+				<c:out value="${jobs.jobDetails}" />
 				&nbsp;
 			
 			</p>
 
 			<p>
 				 <strong><em>Category:</strong></em>&nbsp;&nbsp;&nbsp;
-				<c:set var="jobCategoryId" value="${user.jobCategory}" />
+				<c:set var="jobCategoryId" value="${jobs.jobCategory}" />
 				<c:out value="${jobCatHashMap[jobCategoryId]}" />
 
 				<br> <strong><em>Specificatiion:</strong></em>&nbsp;&nbsp;&nbsp;
-				<c:forEach var="jobsubJobCat" items="${user.jobSubCategoriesList}">
+				<c:forEach var="jobsubJobCat" items="${jobs.jobSubCategoriesList}">
 					<c:out value="${jobsubJobCat}" />
 				</c:forEach>
 			</p>
@@ -42,11 +42,11 @@
 			<div class="col-md-4 search-img">
 				<ul class="list-unstyled">
 					<li><i class="icon-briefcase"></i> <c:set var="cityId"
-							value="${user.cityL }" /> <c:set var="cityName"
+							value="${jobs.cityL }" /> <c:set var="cityName"
 							value="${cityHashMap[cityId]}" /> <c:out value="${cityName}" />
 					</li>
 					<li><i class="icon-map-marker"></i> <c:set var="stateId"
-							value="${user.stateL }" /> <c:set var="stateName"
+							value="${jobs.stateL }" /> <c:set var="stateName"
 							value="${stateHashMap[stateId]}" /> <c:out value="${stateName}" />
 					</li>
 				</ul>
@@ -65,8 +65,16 @@
 				</ul>
 				<a class="btn-u btn-u-sea" href="#">read more</a>
 			</div> --%>
-		</div>
-	</div>
+					<div class="col-md-8">
+						<form action="./jobDetails" method="post">
+							<input type="hidden" id="jobId" name="jobId" value="${jobs.id}" />
+							<button type="submit" class="btn-u btn-u-sea">Details</button></form>
+						<button class="btn-u btn-u-sea"
+							onclick="javascript:sendRequestToContractor(${jobs.id})">Show
+							Intrest</button>
+						
+					</div>
+				</div>
 	<!--End Blog Post-->
 	<div class="margin-bottom-20 clearfix"></div>
 
