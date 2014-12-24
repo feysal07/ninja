@@ -91,7 +91,7 @@ function submitQuery(){
 		
 	$.ajax({
 			type : "POST",
-			url : "./submitQuery",
+			url : "./submit-query",
 			data : JSON.stringify(myObject),
 			contentType: 'application/json',
 
@@ -124,7 +124,7 @@ function submitQuery(){
 
 $(document).ready(
 		function() {
-			$.getJSON('./getContactPurpose', {
+			$.getJSON('./contact-purpose', {
 				ajax : 'true'
 			}, function(data) {
 				var html = '<option value="0">Select</option>';

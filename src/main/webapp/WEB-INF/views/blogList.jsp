@@ -4,7 +4,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <c:forEach items="${blogs}" var="blog">
     <!--Blog Post-->
-    <form action="./blogDetails" method="post">
+    <form action="./blog-details" method="post">
         <div class="row blog blog-medium margin-bottom-40">
             <%--<div class="col-md-5">--%>
                 <%--<img class="img-responsive" src="resources/assets/img/main/11.jpg" alt="">--%>

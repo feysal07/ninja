@@ -27,10 +27,19 @@
 
 <!--=== Content Part ===-->
 <div class="container">	
-
+<c:if test="${logged == 'false'}">
+<div class="alert alert-block alert-danger fade in">
+                <!-- <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button> -->
+                <h4>Oh! You are not logged In!</h4>
+                <p>For showing <strong>interest in jobs</strong>. You need to <strong>Register</strong> or <strong>Login</strong> if you are existing user.</p>
+                <p>
+                    <a href="./Register" class="btn-u">Register</a> OR <a href="./login" class="btn-u">Login</a>
+                </p>
+</div>
+</c:if>	
 <div class="panel panel-grey margin-bottom-40">
                 <div class="panel-heading">
-                    <h3 class="panel-title"><i class="icon-tasks"></i>Search Contractors/Suppliers</h3>
+                    <h3 class="panel-title"><i class="icon-tasks"></i>Search Jobs</h3>
                 </div>
                 
                 <div class="panel-body">                                                      

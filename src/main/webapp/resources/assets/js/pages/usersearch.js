@@ -139,7 +139,7 @@ function searchUsers() {
 	if (validateReg1 == "true") {
 		$.ajax({
 			type : "POST",
-			url : "./searchUsers",
+			url : "./search-users",
 			data : JSON.stringify(myObject),
 			contentType : 'application/json',
 
@@ -147,7 +147,7 @@ function searchUsers() {
 
 			},
 			success : function(result) {
-				$("#page").load("./usersearchresult", myObject);
+				$("#page").load("./user-search-result", myObject);
 
 			},
 			complete : function() {
@@ -178,7 +178,7 @@ function previousPage(pageNumber) {
 
 	$.ajax({
 		type : "POST",
-		url : "./searchUsers",
+		url : "./search-users",
 		data : JSON.stringify(myObject),
 		contentType : 'application/json',
 
@@ -186,7 +186,7 @@ function previousPage(pageNumber) {
 
 		},
 		success : function(result) {
-			$("#page").load("./usersearchresult", myObject);
+			$("#page").load("./user-search-result", myObject);
 
 			/*
 			 * if (response == "login-fail-nouser" || response ==
@@ -222,7 +222,7 @@ function nextPage(pageNumber) {
 
 	$.ajax({
 		type : "POST",
-		url : "./searchUsers",
+		url : "./search-users",
 		data : JSON.stringify(myObject),
 		contentType : 'application/json',
 
@@ -230,7 +230,7 @@ function nextPage(pageNumber) {
 
 		},
 		success : function(result) {
-			$("#page").load("./usersearchresult", myObject);
+			$("#page").load("./user-search-result", myObject);
 
 			/*
 			 * if (response == "login-fail-nouser" || response ==

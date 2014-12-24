@@ -83,7 +83,7 @@
 
 			<h4>Forget your Password ?</h4>
 			<p>
-				No worries, <a class="color-green" href="./forgotPassword">click
+				No worries, <a class="color-green" href="./forgot-password">click
 					here</a> to reset your password.
 			</p>
 
