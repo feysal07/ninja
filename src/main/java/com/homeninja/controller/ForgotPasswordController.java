@@ -27,13 +27,13 @@ public class ForgotPasswordController {
 	private static final Logger logger = LoggerFactory
 			.getLogger(LoginController.class);
 
-	@RequestMapping(value = "/forgotPassword", method = RequestMethod.GET)
+	@RequestMapping(value = "/forgot-password", method = RequestMethod.GET)
 	public String forgotPassword() {
 		logger.info("inside forgotPassword method");
 		return "forgotPassword";
 	}
 
-	@RequestMapping(value = "/sendForgotPassword", method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value = "/send-forgot-password", method = RequestMethod.POST, consumes = "application/json")
 	
 	@ResponseBody
 	public String sendForgotPassword(@RequestBody String myObject) throws Exception {

@@ -88,7 +88,7 @@ public class JobPostController {
 		return "jobPost";
 	}
 
-	@RequestMapping(value = "/postJob", method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value = "/post-job", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
 	String doJobPost(HttpServletRequest req, @RequestBody String myObject,Model model)
 			throws IOException {
@@ -151,7 +151,7 @@ public class JobPostController {
 		return jobSubCategory;
 	}
 
-	@RequestMapping(value = "/myJob", method = RequestMethod.GET)
+	@RequestMapping(value = "/my-job", method = RequestMethod.GET)
 	public String getAllPostedJobs(Model model) throws IOException {
 		Map modelMap = model.asMap();
 		UserInfo userInfo=null;
@@ -259,7 +259,7 @@ public class JobPostController {
 		 return "not-sent";
 	}
 	
-	@RequestMapping(value = "/jobDetails", method = RequestMethod.POST)
+	@RequestMapping(value = "/job-details", method = RequestMethod.POST)
 	public 
 	String getJobDetailsById(HttpServletRequest req, @RequestParam(value = "jobId",
             required = true) long jobId,Model model){

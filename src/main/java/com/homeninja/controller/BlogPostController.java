@@ -61,7 +61,7 @@ public class BlogPostController {
     }
 
 
-    @RequestMapping(value = "/blogDetails", method = RequestMethod.POST)
+    @RequestMapping(value = "/blog-details", method = RequestMethod.POST)
     public ModelAndView blogDetails(@RequestParam(value = "id",
             required = true) Long id, Model model) {
         ModelAndView mv = new ModelAndView("blogDetails");
@@ -82,7 +82,7 @@ public class BlogPostController {
         return mv;
     }
 
-    @RequestMapping(value = "/blogPost", method = RequestMethod.GET)
+    @RequestMapping(value = "/blog-write", method = RequestMethod.GET)
     public ModelAndView blogPost(@RequestParam(value = "status", required = false) Boolean status) {
         ModelAndView mv = new ModelAndView("blogPost");
         if (status != null) {
@@ -91,7 +91,7 @@ public class BlogPostController {
         return mv;
     }
 
-    @RequestMapping(value = "/postBlog", method = RequestMethod.POST)
+    @RequestMapping(value = "/post-blog", method = RequestMethod.POST)
     public @ResponseBody String postBlog(@RequestParam(value = "title",
             required = true) String title, @RequestParam(value = "blogContent",
             required = true) String content, @RequestParam(value = "tags",
@@ -125,7 +125,7 @@ public class BlogPostController {
         return blogTagsService.findAllTags();
     }
 
-    @RequestMapping(value = "/postComment", method = RequestMethod.POST)
+    @RequestMapping(value = "/post-comment", method = RequestMethod.POST)
     public ModelAndView postComment(Model model,
                                     @RequestParam(value = "message",
                                             required = true) String

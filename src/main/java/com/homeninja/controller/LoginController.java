@@ -52,7 +52,7 @@ public class LoginController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/doLogin", method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value = "/do-login", method = RequestMethod.POST, consumes = "application/json")
 	public @ResponseBody
 	String dologin(HttpServletResponse response, @RequestBody String myObject, Model model) {
 		logger.info("inside dologin method");

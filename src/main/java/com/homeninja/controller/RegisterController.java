@@ -389,7 +389,7 @@ public class RegisterController implements ServletContextAware {
 	}
 
 	
-	@RequestMapping(value = "/upgradeAccount", method = RequestMethod.GET)
+	@RequestMapping(value = "/upgrade-account", method = RequestMethod.GET)
 	String upgradeAccount(Model model)
 			throws IOException {
 		Map modelMap = model.asMap();
@@ -648,7 +648,7 @@ public class RegisterController implements ServletContextAware {
 
 	}
 
-	@RequestMapping(value = "/manageProfile", method = RequestMethod.GET)
+	@RequestMapping(value = "/manage-profile", method = RequestMethod.GET)
 	public 	String manageProfile(HttpServletRequest req,Model model)									
 			throws IOException {
 		Map modelMap = model.asMap();

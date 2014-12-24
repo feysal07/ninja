@@ -116,24 +116,25 @@ public class JobSearchController {
 	}
 
 	// private JobPostDAO jobPostDao;
-	@RequestMapping(value = "/jobSearch", method = RequestMethod.GET)
+	@RequestMapping(value = "/job-search", method = RequestMethod.GET)
 	public String jobSearch(Model model) throws IOException {
 		logger.debug("inside Register Method");
-		/*Map modelMap = model.asMap();
-		
+		boolean loggedIn=true;
+		Map modelMap = model.asMap();
 		if(!modelMap.containsKey("userInfo")){
-			return "login";
+			loggedIn= false;
 		}
 		
 		if(modelMap.containsKey("userInfo")){
 			UserInfo userInfo = (UserInfo)modelMap.get("userInfo");
 			if(userInfo.getLoggedIn() == null){
-				return "login";
+				loggedIn= false;
 			}
 			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
-				return "login";
+				loggedIn= false;
 			}
-		}*/
+		}
+		model.addAttribute("logged",loggedIn);
 		return "jobsearch";
 	}
 
@@ -143,7 +144,7 @@ public class JobSearchController {
 		return "jobsearch";
 	}
 	
-	@RequestMapping(value = "/jobsearchresult", method = RequestMethod.POST)
+	@RequestMapping(value = "/job-search-result", method = RequestMethod.POST)
 	String userSearchResult(ModelMap model,
 			@RequestParam(value = "state", required=false) Integer state,
 			@RequestParam(value = "city", required=false) Integer city,
