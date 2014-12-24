@@ -36,7 +36,7 @@ public class SiteUserController {
 	@Resource
 	private GeoLocationService geoLocationService;
 	
-	@RequestMapping(value = "/myProfile", method = RequestMethod.GET)
+	@RequestMapping(value = "/my-profile", method = RequestMethod.GET)
 	public String getMyProfile(Model model) throws IOException {
 		Map modelMap = model.asMap();
 		UserInfo userInfo=null;
@@ -107,7 +107,7 @@ public class SiteUserController {
 		return userProfile;
 	}
 	
-	@RequestMapping(value = "/changePassword", method = RequestMethod.GET)
+	@RequestMapping(value = "/change-password", method = RequestMethod.GET)
 	public String changePassword(Model model){
 		Map modelMap = model.asMap();
 		UserInfo userInfo=null;
@@ -129,7 +129,7 @@ public class SiteUserController {
 	
 	
 	
-	@RequestMapping(value = "/changePassword", method = RequestMethod.POST,consumes = "application/json")
+	@RequestMapping(value = "/change-password", method = RequestMethod.POST,consumes = "application/json")
 	@ResponseBody
 	public String changePassword(@RequestBody String myObject,Model model) throws Exception{
 		//ModelAndView mav = new ModelAndView();

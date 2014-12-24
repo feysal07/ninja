@@ -32,19 +32,19 @@ public class ContactUsController {
 	/*@Resource
 	public PropertyFileReader  propertyFileReader;*/
 
-	@RequestMapping(value = "/contactUs", method = RequestMethod.GET)
+	@RequestMapping(value = "/contact-us", method = RequestMethod.GET)
 	public String contactUs(Model model){
 		return "contactUs";
 	}
 	
-	@RequestMapping(value = "/getContactPurpose", method = RequestMethod.GET)
+	@RequestMapping(value = "/contact-purpose", method = RequestMethod.GET)
 	public @ResponseBody
 	List<ContactPurpose> getContactPurpose() {
 		List<ContactPurpose> ddlContactPurpose=contactUsService.getContactPurpose(); 
 		return ddlContactPurpose;
 	}
 	
-	@RequestMapping(value = "/submitQuery", method = RequestMethod.POST, consumes = "application/json")
+	@RequestMapping(value = "/submit-query", method = RequestMethod.POST, consumes = "application/json")
 	@ResponseBody
 	public String submitContactUs(@RequestBody String myObject,Model model) throws Exception{
 		

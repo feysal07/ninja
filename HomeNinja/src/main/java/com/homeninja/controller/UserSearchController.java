@@ -109,7 +109,7 @@ public class UserSearchController {
 		return jobSubCategories;
 	}
 	
-	@RequestMapping(value = "/searchUsers", method = RequestMethod.POST)
+	@RequestMapping(value = "/search-users", method = RequestMethod.POST)
 	public @ResponseBody
 	Set<UsersSearch> searchUsersByCriteria(@RequestBody String myObject,
 			ModelMap model) {
@@ -127,7 +127,7 @@ public class UserSearchController {
 		return null;
 	}
 
-	@RequestMapping(value = "/usersearch", method = RequestMethod.GET)
+	@RequestMapping(value = "/search-users", method = RequestMethod.GET)
 	ModelAndView userSearch(Model model) throws IOException {
 		ModelAndView mav = new ModelAndView("usersearch");
 		SiteUsers siteUser = new SiteUsers();
@@ -151,7 +151,7 @@ public class UserSearchController {
 		return mav;
 	}
 
-	@RequestMapping(value = "/usersearchresult", method = RequestMethod.POST)
+	@RequestMapping(value = "/user-search-result", method = RequestMethod.POST)
 	String userSearchResult(ModelMap model,
 			@RequestParam(value = "userTypeId",required=false,defaultValue="2") String userTypeIdString,
 			@RequestParam(value = "state",required=false) Long state,
