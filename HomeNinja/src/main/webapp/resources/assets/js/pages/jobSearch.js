@@ -25,7 +25,7 @@ function jobSearch(){
 				
 			},
 			success : function(response) {
-				$("#page").load("./jobsearchresult", myObject);
+				$("#page").load("./job-search-result", myObject);
 			
 			},
 			complete : function() {
@@ -150,7 +150,7 @@ function previousPage( pageNumber) {
 
 		},
 		success : function(result) {
-			$("#page").load("./jobsearchresult", myObject);
+			$("#page").load("./job-search-result", myObject);
 
 /*			if (response == "login-fail-nouser"
 					|| response == "login-fail-usernoexist") {
@@ -218,7 +218,7 @@ function nextPage(pageNumber) {
 
 		},
 		success : function(result) {
-			$("#page").load("./jobsearchresult", myObject);
+			$("#page").load("./job-search-result", myObject);
 
 /*			if (response == "login-fail-nouser"
 					|| response == "login-fail-usernoexist") {

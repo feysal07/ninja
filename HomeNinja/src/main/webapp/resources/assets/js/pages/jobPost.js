@@ -88,7 +88,7 @@ function jobPost(){
 					+" "+$('#states :selected').text();
 	$.ajax({
 			type : "POST",
-			url : "./postJob",
+			url : "./post-job",
 			data : JSON.stringify(myObject),
 			contentType: 'application/json',
 

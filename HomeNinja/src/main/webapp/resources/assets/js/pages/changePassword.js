@@ -42,7 +42,7 @@ function changePassword(){
 	if(flag== "true"){
 	$.ajax({
 			type : "POST",
-			url : "./changePassword",
+			url : "./change-password",
 			data : JSON.stringify(myObject),
 			contentType: 'application/json',
 

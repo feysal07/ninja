@@ -66,7 +66,7 @@
 				<a class="btn-u btn-u-sea" href="#">read more</a>
 			</div> --%>
 					<div class="col-md-8">
-						<form action="./jobDetails" method="post">
+						<form action="./job-details" method="post">
 							<input type="hidden" id="jobId" name="jobId" value="${jobs.id}" />
 							<button type="submit" class="btn-u btn-u-sea">Details</button></form>
 						<button class="btn-u btn-u-sea"

@@ -62,7 +62,7 @@ function blogPost(){
 	 
 	var flag=isBlogValid(myObject);
 	if(flag== "true"){
-	 $.post("./postBlog", {title: $('#title').val(), blogContent: $('#blogContent').val(),
+	 $.post("./post-blog", {title: $('#title').val(), blogContent: $('#blogContent').val(),
          tags: $('#tags :selected').val()}).done(
          function(data){
             switch(data){
@@ -97,7 +97,7 @@ function postComment(){
     var flag=isCommentValid(myObject);
 
     if(flag== "true"){
-    $.post("./postComment", {message: $('#message').val(), blog: $('#blog').val()})
+    $.post("./post-comment", {message: $('#message').val(), blog: $('#blog').val()})
         .done(function(data){
             $('#comments').html(data);
         });}

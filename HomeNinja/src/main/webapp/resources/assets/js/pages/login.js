@@ -44,7 +44,7 @@ function doLogin() {
 	if (flag == "true") {
 		$.ajax({
 			type : "POST",
-			url : "./doLogin",
+			url : "./do-login",
 			data : JSON.stringify(myObject),
 			contentType : 'application/json',
 

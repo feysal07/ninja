@@ -45,7 +45,7 @@ function doValidateAndSendEmail() {
 		if(flag== "true"){
 		$.ajax({
 			type : "POST",
-			url : "./sendForgotPassword",
+			url : "./send-forgot-password",
 			data : myObject,
 			contentType : 'application/json',
 

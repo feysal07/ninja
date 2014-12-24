@@ -73,7 +73,7 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href=".">Home</a></li>
-							<li><a href="./aboutUs">About Us</a></li>
+							<li><a href="./about-us">About Us</a></li>
 						</ul></li>
 						
 					<c:if test="${userInfo != null}">
@@ -84,11 +84,11 @@
 							<i class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="./manageProfile">Manage Account</a></li>
-							<li><a href="./upgradeAccount">Upgrade Account</a></li>
-							<li><a href="./changePassword">Change Password</a></li>
-							<li><a href="./myProfile">Public Profile</a></li>
-							<li><a href="./myJob">Posted Jobs</a></li>
+							<li><a href="./manage-profile">Manage Account</a></li>
+							<li><a href="./upgrade-account">Upgrade Account</a></li>
+							<li><a href="./change-password">Change Password</a></li>
+							<li><a href="./my-profile">Public Profile</a></li>
+							<li><a href="./my-job">Posted Jobs</a></li>
 						</ul></li>
 						</c:if>	
 					</c:if>	
@@ -97,7 +97,7 @@
 						data-close-others="false">Find <i class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="./usersearch">Contractors</a></li>
+							<li><a href="./search-users">Contractors</a></li>
 						</ul></li>
 					<li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-hover="dropdown" data-delay="0"
@@ -105,7 +105,7 @@
 					</a>
 						<ul class="dropdown-menu">
 							<li><a href="./jobs">Post A Job</a></li>
-							<li><a href="./jobSearch">Search Jobs</a></li>
+							<li><a href="./job-search">Search Jobs</a></li>
 						</ul></li>
 					<!-- <li class="dropdown"><a href="#" class="dropdown-toggle"
 						data-toggle="dropdown" data-hover="dropdown" data-delay="0"
@@ -122,7 +122,7 @@
 					</a>
 						<ul class="dropdown-menu">
 						    <c:if test="${userInfo['class'] == 'class com.homeninja.vo.UserInfo' && userInfo.loggedIn != null && userInfo.loggedIn == 'true' && userInfo.userType==5}">
-							<li><a href="./blogPost">Post A Blog </a></li>
+							<li><a href="./blog-write">Post A Blog </a></li>
 							</c:if>
 							<li><a href="./blogs">Blogs</a></li>
 						</ul></li>
@@ -131,7 +131,7 @@
 						data-close-others="false">Contacts <i class="icon-angle-down"></i>
 					</a>
 						<ul class="dropdown-menu">
-							<li><a href="./contactUs">Contact Us</a></li>
+							<li><a href="./contact-us">Contact Us</a></li>
 						</ul></li>
 				<!-- 	<li class="hidden-sm"><a class="search"><i
 							class="icon-search search-btn"></i></a></li> -->
