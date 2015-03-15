@@ -12,7 +12,7 @@ public class MasterDataValue {
 	private String mnemonic;
 	private String value;
 	private long orderId;
-	private byte isactive;
+	private int isActive;
 	public long getMasterDataId() {
 		return masterDataId;
 	}
@@ -37,12 +37,13 @@ public class MasterDataValue {
 	public void setOrderId(long orderId) {
 		this.orderId = orderId;
 	}
-	public byte getIsactive() {
-		return isactive;
+	public int getIsActive() {
+		return isActive;
 	}
-	public void setIsactive(byte isactive) {
-		this.isactive = isactive;
+	public void setIsActive(int isActive) {
+		this.isActive = isActive;
 	}
+	
 
 	
 }

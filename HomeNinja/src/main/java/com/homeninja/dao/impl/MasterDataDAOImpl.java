@@ -10,6 +10,7 @@ import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Example;
+import org.hibernate.criterion.Order;
 import org.hibernate.criterion.Restrictions;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -33,7 +34,8 @@ public class MasterDataDAOImpl implements MasterDataDAO{
 			Set<State> stateSet = new HashSet<State>();
 			
 			Query query = sessionFactory.getCurrentSession().createQuery(
-					"from MasterDataValue where mnemonic = 'STATES_NAME'");
+					"from MasterDataValue where mnemonic = 'STATES_NAME'"
+					+ " and isActive=1 order by value asc ");
 			List list = query.list();
 			for (Object object : list) {
 				MasterDataValue masterDataValue = (MasterDataValue)object;
@@ -59,7 +61,10 @@ public class MasterDataDAOImpl implements MasterDataDAO{
 			Set<City> citySet = new HashSet<City>();
 			List list =  sessionFactory.getCurrentSession().createCriteria("com.homeninja.entities.MasterDataValue").
 			 add(Restrictions.eq("mnemonic", "CITY_NAME")).
-			 add(Restrictions.eq("orderId", stateOrderId)).list();
+			 add(Restrictions.eq("isActive", 1)).
+			 add(Restrictions.eq("orderId", stateOrderId)).
+			 addOrder(Order.asc("value"))
+			 .list();
 			
 			for (Object object : list) {
 				MasterDataValue masterDataValue = (MasterDataValue)object;
@@ -83,7 +88,9 @@ public class MasterDataDAOImpl implements MasterDataDAO{
 		try{
 			Set<City> citySet = new HashSet<City>();
 			List list =  sessionFactory.getCurrentSession().createCriteria("com.homeninja.entities.MasterDataValue").
-			 add(Restrictions.eq("mnemonic", "CITY_NAME"))
+			 add(Restrictions.eq("mnemonic", "CITY_NAME")).
+			 add(Restrictions.eq("isActive", 1)).
+			 addOrder(Order.asc("value"))			
 			 .list();
 			
 			for (Object object : list) {
@@ -107,7 +114,8 @@ public class MasterDataDAOImpl implements MasterDataDAO{
 		try {
 
 			Query query = sessionFactory.getCurrentSession().createQuery(
-					"from MasterDataValue where masterDataId=:masterDataId");
+					"from MasterDataValue where masterDataId=:masterDataId"
+					+ " and isAcitve=1 ");
 			query.setParameter("masterDataId", cityId);
 			MasterDataValue city=(MasterDataValue) query.list().get(0);
 			return city.getValue();
@@ -123,7 +131,8 @@ public class MasterDataDAOImpl implements MasterDataDAO{
 		try {
 
 			Query query = sessionFactory.getCurrentSession().createQuery(
-					"from MasterDataValue where masterDataId=:masterDataId");
+					"from MasterDataValue where masterDataId=:masterDataId"
+					+ " and isAcitve=1 ");
 			query.setParameter("masterDataId", stateId);
 			MasterDataValue state=(MasterDataValue) query.list().get(0);
 			return state.getValue();
