@@ -678,6 +678,17 @@ public class RegisterController implements ServletContextAware {
 		return "register-page2";
 	}
 	
+	@RequestMapping(value = "/isEmailExist", method = RequestMethod.POST,consumes = "application/json")
+	public 	@ResponseBody
+	String emailExist(HttpServletRequest req,@RequestBody String email)									
+			throws IOException {
+		
+		if (siteUserService.isEmailExists(email)) {
+			return "true";
+		} else {
+			return "false";
+		}
+	}
 	
 	@RequestMapping(value = "/doRegisterPage1", method = RequestMethod.POST)
 	public @ResponseBody

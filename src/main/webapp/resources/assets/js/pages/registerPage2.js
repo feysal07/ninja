@@ -214,10 +214,12 @@ function saveSection1() {
 }
 
 function saveSection2() {
+	closeErrorBox1();
+	closeSuccessBox1();
 	var validation = "valid";
 
 	var myObject = new Object();
-	myObject.userId = $('#siteUserid').val();
+	//myObject.userId = $('#siteUserid').val();
 	myObject.address = $('#address').val();
 	myObject.state = $("#states").val();
 	myObject.city = $('#citiesforstate').val();
@@ -225,7 +227,7 @@ function saveSection2() {
 	myObject.fullAddress=$('#address').val()+" "+$('#pincode').val()+
 						" "+$('#citiesforstate :selected').text()+" "+$("#states :selected").text();
 
-	if (myObject.address == "") {
+	if (myObject.state == "") {
 		$alertError = $("#alertError2");
 		jQuery("label[for='myalue']").html("Please select your state");
 		$alertError.show();
