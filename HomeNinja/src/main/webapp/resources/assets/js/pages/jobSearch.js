@@ -18,7 +18,7 @@ function jobSearch(){
   $.ajax({
 			type : "POST",
 			url : "./doSearchJob",
-			data : JSON.stringify(myObject),
+			data : myObject,
 			contentType: 'application/json',
 
 			beforeSend : function() {

@@ -1,6 +1,7 @@
 /**
  * 
  */
+var isEmailAlreadyExist="false";
 
 function closeErrorBox() {
 	$alertError = $("#alertError");
@@ -23,6 +24,7 @@ function doRegister() {
 	/*validate email Id%/
 	 * 
 	 */
+	
 	var validateReg1 = "true";
 	var errorMessage = '';
 	
@@ -58,6 +60,12 @@ function doRegister() {
 			/*		$alertError = $("#alertError3");
 			 $alertError.show();*/
 			errorMessage += '<i class="icon-warning-sign"></i>&nbsp; Invalid Email address! <br>';
+			validateReg1 = "false";
+		}
+		// check email is already exist or not
+		isEmailExist(userEmailId);
+		if(isEmailAlreadyExist=="true"){
+			errorMessage += '<i class="icon-warning-sign"></i>&nbsp; Email address already exist! <br>';
 			validateReg1 = "false";
 		}
 	}
@@ -103,4 +111,20 @@ function doRegister() {
 		$("#registerpage1").submit();
 	}
 
+}
+
+function isEmailExist(email){
+	  
+ $.ajax({
+			type : "POST",
+			url : "./isEmailExist",
+			data : email,
+			dataType: "json",
+			contentType: 'application/json',
+			success : function(data) {
+				isEmailAlreadyExist=data.toString();
+			
+			}
+		});
+	
 }
