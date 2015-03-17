@@ -135,14 +135,14 @@ var cityVal=${siteUserAddress.city}
 				<!--  Alert messages -->
 				<div class="alert alert-danger fade in" id="alertError2"
 					hidden="true">
-					<button type="button" class="close" data-dismiss="alert"
-						onclick="javascript:closeErrorBox2();">&times;</button>
+					<!-- <button type="button" class="close" data-dismiss="alert"
+						onclick="javascript:closeErrorBox2();">&times;</button> -->
 					 <label for="myalue"></label>
 				</div>
 
 				<div class="alert alert-success" id="alertSuccess2" hidden="true">
-					<button type="button" class="close" data-dismiss="alert"
-						onclick="javascript:closeSuccessBox2();">&times;</button>
+					<!-- <button type="button" class="close" data-dismiss="alert"
+						onclick="javascript:closeSuccessBox2();">&times;</button> -->
 					 <i class="icon-ok "></i>&nbsp;Your information updated successfully!
 				</div>
 				<!--  alert messages end -->
