@@ -81,14 +81,18 @@ public class SiteUserController {
 		
 		List<UserJobCategoryMap> userJobCatList=siteUserService.getUserJobCategories(userId);
 		List<UserJobSubCategoryMap> userJobSubCatMap=siteUserService.getUserJobSubCategories(userId);
-		for (UserJobCategoryMap userJobCategoryMap : userJobCatList) {
-			userJobCat =userJobCat+","+userJobCategoryMap.getJobCategory().getJobCat()+",";
+		if(userJobCatList !=null){
+			for (UserJobCategoryMap userJobCategoryMap : userJobCatList) {
+				userJobCat =userJobCat+","+userJobCategoryMap.getJobCategory().getJobCat()+",";
+			}
+			userJobCat=userJobCat.substring(0, userJobCat.lastIndexOf(","));
 		}
-		for(UserJobSubCategoryMap userJobSubCategoryMap:userJobSubCatMap){
-			userJobSubCat=userJobSubCat+","+ userJobSubCategoryMap.getJobSubCategory().getJobSubCat()+",";
+		if(userJobSubCatMap !=null){
+			for(UserJobSubCategoryMap userJobSubCategoryMap:userJobSubCatMap){
+				userJobSubCat=userJobSubCat+","+ userJobSubCategoryMap.getJobSubCategory().getJobSubCat()+",";
+			}
+			userJobSubCat=userJobSubCat.substring(0, userJobSubCat.lastIndexOf(","));
 		}
-		userJobCat=userJobCat.substring(0, userJobCat.lastIndexOf(","));
-		userJobSubCat=userJobSubCat.substring(0, userJobSubCat.lastIndexOf(","));
 		
 		userProfile.setJobCategory(userJobCat);
 		userProfile.setJobSubCategory(userJobSubCat);
