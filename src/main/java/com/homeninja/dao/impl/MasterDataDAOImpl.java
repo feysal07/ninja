@@ -1,8 +1,11 @@
 package com.homeninja.dao.impl;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.SortedSet;
+import java.util.TreeSet;
 
 import javax.annotation.Resource;
 
@@ -31,7 +34,7 @@ public class MasterDataDAOImpl implements MasterDataDAO{
 	@Override
 	public Set<State> getStates() {
 		try {
-			Set<State> stateSet = new HashSet<State>();
+			SortedSet<State> stateSet = new TreeSet<State>();
 			
 			Query query = sessionFactory.getCurrentSession().createQuery(
 					"from MasterDataValue where mnemonic = 'STATES_NAME'"
@@ -58,7 +61,7 @@ public class MasterDataDAOImpl implements MasterDataDAO{
 	@Override
 	public Set<City> getCitiesForState(long stateOrderId){
 		try{
-			Set<City> citySet = new HashSet<City>();
+		    SortedSet<City> citySet = new TreeSet<City>();
 			List list =  sessionFactory.getCurrentSession().createCriteria("com.homeninja.entities.MasterDataValue").
 			 add(Restrictions.eq("mnemonic", "CITY_NAME")).
 			 add(Restrictions.eq("isActive", 1)).

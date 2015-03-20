@@ -72,14 +72,15 @@ $(document).ready(
 			$.getJSON('./states', {
 				ajax : 'true'
 			}, function(data) {
-				var html = '';
+				var html = '<option value="Select" selected="true">Select</option>';
 				var len = data.length;
 				for (var i = 0; i < len; i++) {
 					html += '<option value="' + data[ i].stateOrderId + '">'
 							+ data[i].name + '</option>';
 				}
+				html += '</option>';
 				//now that we have our options, give them to our select
-				$('#states').append(html);
+				$('#states').html(html);
 
 				if (stateVal != null) {
 					$('#states').val(stateVal);
@@ -94,15 +95,15 @@ function getCitiesforState() {
 		ajax : 'true',
 		stateOrderId : $('#states').val(),
 	}, function(data) {
-		var html = '';
+		var html = '<option value="">Select</option>';
 		var len = data.length;
 		for (var i = 0; i < len; i++) {
 			html += '<option value="' + data[i].masterDataId + '">'
 					+ data[i].name + '</option>';
 		}
-		//html += '</option>';
+		html += '</option>';
 		//now that we have our options, give them to our select
-		$('#citiesforstate').append(html);
+		$('#citiesforstate').html(html);
 		if (cityVal != null) {
 			$('#citiesforstate').val(cityVal);
 		}
