@@ -34,6 +34,13 @@ var cityVal=${siteUserAddress.city}
 <div class="container">
 	<div class="row margin-bottom-30">
 		<div class="col-md-3">
+			
+			<!--  Alert messages -->
+			<div class="alert alert-danger fade in" id="alertUploadError"
+				hidden="true">
+				 <label for="uploadError"></label>
+			</div>
+			
 			<!-- Google Map -->
 			<div class="headline">
 				<h2>Upload Image</h2>
@@ -42,7 +49,7 @@ var cityVal=${siteUserAddress.city}
 			<div>
 				<img alt="" src="./getimage/<c:out value="${siteUser.userId}"/>/00"
 					class="img-responsive" id="image-upload-pic" width="199"
-					height="152">
+					height="152" default="resources/assets/img/user.png">
 			</div>
 			<br />
 			<p>
@@ -51,7 +58,7 @@ var cityVal=${siteUserAddress.city}
 						<button type="submit" class="btn-u" id="image-upload1">Upload</button>
 					</p>
 			<p>
-				<input type="file" size="40" style="visibility:hidden;" name="image-upload" id="image-upload">&nbsp;&nbsp;
+				<input type="file" size="40" style="visibility:hidden;" name="image-upload" id="image-upload" required="true">&nbsp;&nbsp;
 				<!-- <button type="submit" class="btn-u" id="image-upload1">Upload</button> -->
 
 
@@ -85,20 +92,20 @@ var cityVal=${siteUserAddress.city}
 						<label>UserName <span class="color-red">*</span></label> <input
 							type="text" id="userName"
 							value='<c:out value="${siteUser.userName}"/>'
-							class="form-control margin-bottom-20">
+							class="form-control margin-bottom-20" readonly="true">
 					</div>
 				</div>
 				<div class="row">
 					<div class="col-lg-4">
 						<label>First Name <span class="color-red">*</span></label> <input
 							id="firstName" value='<c:out value="${siteUser.firstName}"/>'
-							type="text" class="form-control margin-bottom-20">
+							type="text" class="form-control margin-bottom-20" readonly="true">
 					</div>
 					<div class="col-lg-4">
 						<label>Last Name <span class="color-red">*</span></label> <input
 							type="text" id="lastName"
 							value='<c:out value="${siteUser.lastName}"/>'
-							class="form-control margin-bottom-20">
+							class="form-control margin-bottom-20" readonly="true">
 					</div>
 				</div>
 				<div class="row">
@@ -106,25 +113,25 @@ var cityVal=${siteUserAddress.city}
 						<label>Email <span class="color-red">*</span></label> <input
 							type="text" id="loginEmail"
 							value='<c:out value="${siteUser.loginEmail}"/>'
-							class="form-control margin-bottom-20">
+							class="form-control margin-bottom-20" readonly="true">
 					</div>
 					<div class="col-lg-4">
 						<label>Contact <span class="color-red">*</span></label> <input
 							type="text" id="phoneNumber"
 							value='<c:out value="${siteUser.phoneNumber}"/>'
-							class="form-control margin-bottom-20">
+							class="form-control margin-bottom-20" readonly="true">
 					</div>
 				</div>
 				
 				<label>About Me</label>
 				<div class="row margin-bottom-20">
 					<div class="col-md-9 col-md-offset-0">
-						<textarea rows="8" class="form-control" id="aboutMe"> <c:out
-								value="${siteUser.aboutMe}" /></textarea>
+						<textarea rows="8" class="form-control" id="aboutMe" readonly> <c:out
+								value="${siteUser.aboutMe}"/></textarea>
 					</div>
 				</div>
 				<p>
-					<button type="submit" class="btn-u">Edit</button>
+					<button type="submit" class="btn-u" onclick="javascript:editBasicInfo()">Edit</button>
 					&nbsp;&nbsp;
 					<button type="submit" class="btn-u" id="section1-save"
 						onclick="javascript:saveSection1()">Save</button>
@@ -153,22 +160,22 @@ var cityVal=${siteUserAddress.city}
 					<label>Address</label>
 					<div class="row margin-bottom-20">
 						<div class="col-md-7 col-md-offset-0">
-							<textarea rows="8" class="form-control" id="address"><c:out
-									value="${siteUserAddress.address}" /></textarea>
+							<textarea rows="8" class="form-control" id="address" readonly><c:out
+									value="${siteUserAddress.address}"/></textarea>
 						</div>
 					</div>
 					<br />
 					<div class="row">
 						<div class="col-lg-4">
 							<label>State <span class="color-red">*</span></label> <select
-								id="states" class="form-control"
+								id="states" class="form-control" disabled="true"
 								onchange="javascript:getCitiesforState()">
-								<option value="">Select</option>
+								<option value="" selected="true">Select</option>
 								</select>
 						</div>
 						<div class="col-lg-4">
 							<label>City<span class="color-red">*</span></label> <select
-								id="citiesforstate" class="form-control">
+								id="citiesforstate" class="form-control" disabled="true">
 								<option value="">Select</option>
 							</select>
 						</div>
@@ -176,12 +183,12 @@ var cityVal=${siteUserAddress.city}
 					<br /> <label>Pincode</label>
 					<div class="row margin-bottom-20">
 						<div class="col-lg-4">
-							<input type="text" id="pincode" class="form-control" value="${siteUserAddress.pincode}">
+							<input type="text" id="pincode" class="form-control" value="${siteUserAddress.pincode}" readonly>
 						</div>
 					</div>
 
 					<p>
-						<button type="submit" class="btn-u">Edit</button>
+						<button type="submit" class="btn-u" onclick="javascript:editAddress()">Edit</button>
 						&nbsp;&nbsp;
 						<button type="submit" class="btn-u" id="section2-save"
 							onclick="javascript:saveSection2()">Save</button>

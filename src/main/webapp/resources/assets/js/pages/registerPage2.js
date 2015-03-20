@@ -23,6 +23,22 @@ function goToRegPage3() {
 	$("#moveToRegPage3").submit();
 }
 
+function editBasicInfo(){
+	$('#userName').prop('readonly', false);
+	$('#firstName').prop('readonly', false);
+	$('#lastName').prop('readonly', false);
+	$('#loginEmail').prop('readonly', false);
+	$('#phoneNumber').prop('readonly', false);
+	$('#aboutMe').prop('readonly', false);
+}
+
+function editAddress(){
+	$('#address').prop('readonly', false);
+	$('#states').prop('disabled', false);
+	$('#citiesforstate').prop('disabled', false);
+	$('#pincode').prop('readonly', false);
+}
+
 /*$(document).ready(function() {
 	var myObject = new Object();
 	myObject.userId = $('#siteUserid').val();
@@ -56,15 +72,14 @@ $(document).ready(
 			$.getJSON('./states', {
 				ajax : 'true'
 			}, function(data) {
-				var html = '<option value="">Select</option>';
+				var html = '';
 				var len = data.length;
 				for (var i = 0; i < len; i++) {
-					html += '<option value="' + data[i].stateOrderId + '">'
+					html += '<option value="' + data[ i].stateOrderId + '">'
 							+ data[i].name + '</option>';
 				}
-				html += '</option>';
 				//now that we have our options, give them to our select
-				$('#states').html(html);
+				$('#states').append(html);
 
 				if (stateVal != null) {
 					$('#states').val(stateVal);
@@ -79,15 +94,15 @@ function getCitiesforState() {
 		ajax : 'true',
 		stateOrderId : $('#states').val(),
 	}, function(data) {
-		var html = '<option value="">Select</option>';
+		var html = '';
 		var len = data.length;
 		for (var i = 0; i < len; i++) {
 			html += '<option value="' + data[i].masterDataId + '">'
 					+ data[i].name + '</option>';
 		}
-		html += '</option>';
+		//html += '</option>';
 		//now that we have our options, give them to our select
-		$('#citiesforstate').html(html);
+		$('#citiesforstate').append(html);
 		if (cityVal != null) {
 			$('#citiesforstate').val(cityVal);
 		}
@@ -397,39 +412,53 @@ function saveSection3() {
 
 		uploadImage : function() {
 			var _this = this, $imgInput = $('#image-upload');
-			var myObject = new Object();
-			myObject.userId = $('#siteUserid').val();
+			var validation = "valid";
+			var ext = $('#image-upload').val().split('.').pop().toLowerCase();
+			if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+				$alertError = $("#alertUploadError");
+				jQuery("label[for='uploadError']").html("<i class='icon-warning-sign'></i>&nbsp;Invalid Image Extension!");
+				$alertError.show();
+				validation = "inValid";
+			}
+			
+			if(validation == "valid") {
+				var myObject = new Object();
+				myObject.userId = $('#siteUserid').val();
+	
+				this.cache.$form.find('.loading').show();
+				$('.img-data').remove(); //remove any previous image data
 
-			this.cache.$form.find('.loading').show();
-			$('.img-data').remove(); //remove any previous image data
-
-			$.ajaxFileUpload({
-				url : _this.settings.uploadImageUrl,
-				secureuri : false,
-				fileElementId : 'image-upload',
-				enctype : "multipart/form-data",
-				contentType : "application/json,image/jpg",
-				dataType : "text/html",
-				data : JSON.stringify(myObject),
-				success : function(data) {
-					console.log(data);
-					_this.cache.$imgUploadPic.attr('src', data);
-
-					$('#image-upload').val(null);
-					//show img data
-					$('#remove-image-upload').show();
-
-				},
-				error : function(xhr, textStatus, errorThrown) {
-					console.log(xhr, textStatus, errorThrown + 'error');
-					return false;
-				},
-				complete : function() {
-					//hide loading image
-					_this.cache.$imgUploadPic.show();
-				}
-
-			});
+			
+				$.ajaxFileUpload({
+					url : _this.settings.uploadImageUrl,
+					secureuri : false,
+					fileElementId : 'image-upload',
+					enctype : "multipart/form-data",
+					contentType : "application/json,image/jpg",
+					dataType : "text/html",
+					data : JSON.stringify(myObject),
+					success : function(data) {
+						console.log(data);
+						_this.cache.$imgUploadPic.attr('src', data);
+						
+						$alertError.hide();
+	
+						$('#image-upload').val(null);
+						//show img data
+						$('#remove-image-upload').show();
+	
+					},
+					error : function(xhr, textStatus, errorThrown) {
+						console.log(xhr, textStatus, errorThrown + 'error');
+						return false;
+					},
+					complete : function() {
+						//hide loading image
+						_this.cache.$imgUploadPic.show();
+					}
+	
+				});
+			}
 
 		},
 
