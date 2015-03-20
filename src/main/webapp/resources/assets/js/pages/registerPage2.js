@@ -72,7 +72,7 @@ $(document).ready(
 			$.getJSON('./states', {
 				ajax : 'true'
 			}, function(data) {
-				var html = '<option value="Select" selected="true">Select</option>';
+				var html = '<option value="">Select</option>';
 				var len = data.length;
 				for (var i = 0; i < len; i++) {
 					html += '<option value="' + data[ i].stateOrderId + '">'
@@ -81,6 +81,7 @@ $(document).ready(
 				html += '</option>';
 				//now that we have our options, give them to our select
 				$('#states').html(html);
+				$('#states').options[$('#states').options.selectedIndex].selected = true;
 
 				if (stateVal != null) {
 					$('#states').val(stateVal);
@@ -104,6 +105,7 @@ function getCitiesforState() {
 		html += '</option>';
 		//now that we have our options, give them to our select
 		$('#citiesforstate').html(html);
+		$('#citiesforstate').options[$('#citiesforstate').options.selectedIndex].selected = true;
 		if (cityVal != null) {
 			$('#citiesforstate').val(cityVal);
 		}
