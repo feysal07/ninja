@@ -166,7 +166,7 @@ public class RegisterController implements ServletContextAware {
 			if (userJobCategoryVOList.get(jobCategoryId).getJobCategoryIsSet()
 					.equals("true")) {
 				jobCategoryService.saveUserJobCategory(userJobCategoryMap);
-				sbJobCat.append(jobCategoryValueHashMap.get(jobCategoryId * 1L));
+				sbJobCat.append(jobCategoryValueHashMap.get(jobCategoryId));
 				sbJobCat.append("|");
 			} else {
 				jobCategoryService.removeJobCategory(userJobCategoryMap);
@@ -223,16 +223,20 @@ public class RegisterController implements ServletContextAware {
 		siteUserService.updateUser(siteUsers);
 		
 		UsersSearch usersSearch = usersSearchService.getUserSearchRecordById(registrationPage3.getUserId());
-		if(sbJobCat.toString().contains("|"))
+		if(sbJobCat.toString().length() > 0 && sbJobCat.toString().contains("|"))
 		usersSearch.setJobCategories(sbJobCat.toString().substring(0,sbJobCat.lastIndexOf("|")));
-		if(sbJobSubCat.toString().contains("|"))
+		if(sbJobSubCat.toString().length() > 0 && sbJobSubCat.toString().contains("|"))
 		usersSearch.setJobSubCategories(sbJobSubCat.toString().substring(0,sbJobSubCat.lastIndexOf("|")));
+		usersSearch.setUserTypeId(2);
 		
 		usersSearchService.updateUsersSearch(usersSearch);
 		
 		UserCompanyMap userCompanyMap = userCompanyService.getUserCompanyByUserId(siteUsers);
 		userCompanyMap.setCompanyName(registrationPage3.getUserCompanyMap().getCompanyName());
 		userCompanyMap.setAboutCompany(registrationPage3.getUserCompanyMap().getAboutCompany());
+		if(userCompanyMap.getUserId() == 0) {
+		    userCompanyMap.setUserId(registrationPage3.getUserId());
+		}
 		userCompanyService.saveOrUpdateUserCompanyMap(userCompanyMap);
 
 		ModelAndView mav = new ModelAndView();
@@ -277,7 +281,7 @@ public class RegisterController implements ServletContextAware {
 			jobCategoryWithSelectionList.add(jobCategoryWS);
 		}
 		
-		 Collections.sort(jobCategoryWithSelectionList);
+		Collections.sort(jobCategoryWithSelectionList);
 		
 		Set <UserJobCategoryMap> userJobCategorySet = 
 				jobCategoryService.getUserJobCategoryMap(userId);

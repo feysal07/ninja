@@ -3,7 +3,7 @@ package com.homeninja.vo;
 
 public class JobCategoryWithSelection implements Comparable<JobCategoryWithSelection>{
 	
-	private long id;
+	private int id;
 	private String jobCat;
 	private String userTypeId;
 	private String isSet;
@@ -12,11 +12,11 @@ public class JobCategoryWithSelection implements Comparable<JobCategoryWithSelec
 	Set<JobSubCategory> jobSubCategorySet;
 	*/
 
-	public long getId() {
+	public int getId() {
 		return id;
 	}
 
-	public void setId(long id) {
+	public void setId(int id) {
 		this.id = id;
 	}
 
