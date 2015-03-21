@@ -61,7 +61,7 @@ $(document)
 															}
 															str += 'value="true"  onclick="javascript:getSubCategories('
 																	+ result.id
-																	+ ')" id ="userJobCategoryList';
+																	+ ', this)" id ="userJobCategoryList';
 															str += result.id;
 															str += '.jobCategoryIsSet';
 															str += result.id+1;
@@ -149,9 +149,13 @@ $(document).ready(function() {
 	});
 });
 
-function getSubCategories(id) {
+function getSubCategories(id, cb) {
 	$subcategoriescheckboxes = $("#subcategoriescheckboxes" + id);
-	$subcategoriescheckboxes.toggle();
+	if(cb.checked) {
+		$subcategoriescheckboxes.show();
+	} else {
+		$subcategoriescheckboxes.hide();
+	}
 };
 
 function doRegister() {
