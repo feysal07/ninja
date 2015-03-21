@@ -54,7 +54,8 @@ $(document)
 												.each(
 														data,
 														function(index, result) {
-															str += '<label> <input type="checkbox" name="userJobCategoryList[' + result.id + '].jobCategoryIsSet"';
+															str += '<div class="col-md-6 columns">';
+															str += '<label class="checkbox-inline col-md-6 columns"> <input type="checkbox" name="userJobCategoryList[' + result.id + '].jobCategoryIsSet"';
 															if(result.isSet == "true"){
 																str += ' checked = "checked"';
 															}
@@ -70,10 +71,11 @@ $(document)
 															str += result.id;
 															str += '].jobCategory" value="on"/>';
 															str += '</label>';
-															str += '<br>';
+															str += '</div>';
 															
 
 														});
+										str += '<br>';
 										// now that we have our options, give
 										// them to our select
 										$('#categoriescheckboxes').html(str);
@@ -111,7 +113,8 @@ $(document).ready(function() {
 			}
 
 			str = ' ';
-			str += '<label> <input type="checkbox" name="userJobSubCategoryList[' + result.id + '].jobSubCategoryIsSet"';
+			str += '<div class="col-md-6 columns">';
+			str += '<label class="checkbox-inline col-md-6 columns"> <input type="checkbox" name="userJobSubCategoryList[' + result.id + '].jobSubCategoryIsSet"';
 			if(result.isSet == "true"){
 				str += ' checked = "checked"';
 				$subcategoriescheckboxes = $("#subcategoriescheckboxes" + result.jobCatId);
@@ -128,7 +131,7 @@ $(document).ready(function() {
 			str += result.id;
 			str += '].jobCategory" value="on"/>';
 			str += '</label>';
-			str += '<br>';
+			str += '</div>';
 
  
 			
