@@ -49,7 +49,7 @@ var cityVal=${siteUserAddress.city}
 			<div>
 				<img alt="" src="./getimage/<c:out value="${siteUser.userId}"/>/00"
 					class="img-responsive" id="image-upload-pic" width="199"
-					height="152" default="resources/assets/img/user.png">
+					height="152" default="resources/assets/img/user.jpg">
 			</div>
 			<br />
 			<p>
@@ -131,7 +131,7 @@ var cityVal=${siteUserAddress.city}
 					</div>
 				</div>
 				<p>
-					<button type="submit" class="btn-u" onclick="javascript:editBasicInfo()">Edit</button>
+					<button type="submit" class="btn-u" onclick="javascript:editBasicInfo(false)">Edit</button>
 					&nbsp;&nbsp;
 					<button type="submit" class="btn-u" id="section1-save"
 						onclick="javascript:saveSection1()">Save</button>
@@ -188,7 +188,7 @@ var cityVal=${siteUserAddress.city}
 					</div>
 
 					<p>
-						<button type="submit" class="btn-u" onclick="javascript:editAddress()">Edit</button>
+						<button type="submit" class="btn-u" onclick="javascript:editAddress(false)">Edit</button>
 						&nbsp;&nbsp;
 						<button type="submit" class="btn-u" id="section2-save"
 							onclick="javascript:saveSection2()">Save</button>

@@ -23,20 +23,20 @@ function goToRegPage3() {
 	$("#moveToRegPage3").submit();
 }
 
-function editBasicInfo(){
-	$('#userName').prop('readonly', false);
-	$('#firstName').prop('readonly', false);
-	$('#lastName').prop('readonly', false);
-	$('#loginEmail').prop('readonly', false);
-	$('#phoneNumber').prop('readonly', false);
-	$('#aboutMe').prop('readonly', false);
+function editBasicInfo(enabled){
+	$('#userName').prop('readonly', enabled);
+	$('#firstName').prop('readonly', enabled);
+	$('#lastName').prop('readonly', enabled);
+	$('#loginEmail').prop('readonly', enabled);
+	$('#phoneNumber').prop('readonly', enabled);
+	$('#aboutMe').prop('readonly', enabled);
 }
 
-function editAddress(){
-	$('#address').prop('readonly', false);
-	$('#states').prop('disabled', false);
-	$('#citiesforstate').prop('disabled', false);
-	$('#pincode').prop('readonly', false);
+function editAddress(enabled){
+	$('#address').prop('readonly', enabled);
+	$('#states').prop('disabled', enabled);
+	$('#citiesforstate').prop('disabled', enabled);
+	$('#pincode').prop('readonly', enabled);
 }
 
 /*$(document).ready(function() {
@@ -81,12 +81,14 @@ $(document).ready(
 				html += '</option>';
 				//now that we have our options, give them to our select
 				$('#states').html(html);
-				$('#states').options[$('#states').options.selectedIndex].selected = true;
 
-				if (stateVal != null) {
+				if (stateVal != null && stateVal != 0) {
 					$('#states').val(stateVal);
 					getCitiesforState();
+				} else {
+					$('#states').options[$('#states').options.selectedIndex].selected = true;
 				}
+				
 
 			});
 		});
@@ -105,9 +107,11 @@ function getCitiesforState() {
 		html += '</option>';
 		//now that we have our options, give them to our select
 		$('#citiesforstate').html(html);
-		$('#citiesforstate').options[$('#citiesforstate').options.selectedIndex].selected = true;
-		if (cityVal != null) {
+
+		if (cityVal != null && cityVal != 0) {
 			$('#citiesforstate').val(cityVal);
+		} else {
+			$('#citiesforstate').options[$('#citiesforstate').options.selectedIndex].selected = true;
 		}
 
 	});
@@ -202,6 +206,7 @@ function saveSection1() {
 					$alertSuccess = $("#alertSuccess1");
 					jQuery("label[for='myalue']").html(
 							"<i class='icon-ok'></i>&nbsp;Information updated successfully");
+					editBasicInfo(true);
 					$alertSuccess.show();
 				}
 				if (response == "email-exist") {
@@ -279,6 +284,7 @@ function saveSection2() {
 					$alertSuccess = $("#alertSuccess2");
 					jQuery("label[for='myalue']").html(
 							"Information updated successfully");
+					editAddress(true);
 					$alertSuccess.show();
 				}
 			},
