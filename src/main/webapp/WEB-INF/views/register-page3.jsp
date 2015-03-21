@@ -90,7 +90,7 @@
 				<label>Choose your service categories</label>
 				<div class="checkbox" id="categoriescheckboxes">
 				</div>
-					<br /> <label>Specialties</label>
+					<br/><br/><br/><br/><br/><br/><br/><br/><br/> <label>Specialities</label>
 				<div class="checkbox" id="subcategoriescheckboxes" >
 				</div>
 
