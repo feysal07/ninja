@@ -85,9 +85,16 @@ $(document)
 												.each(
 														data,
 														function(index, result) {
-															str += '<div class="checkbox" style="display: none;" id="subcategoriescheckboxes'
+															if(result.isSet == 'true') {
+																str += '<div class="checkbox" id="subcategoriescheckboxes'
 																	+ result.id
 																	+ '" />';
+																$('#specialities').show();
+															} else {
+																str += '<div class="checkbox" style="display: none;" id="subcategoriescheckboxes'
+																	+ result.id
+																	+ '" />';
+															}
 
 														});
 
@@ -153,10 +160,27 @@ function getSubCategories(id, cb) {
 	$subcategoriescheckboxes = $("#subcategoriescheckboxes" + id);
 	if(cb.checked) {
 		$subcategoriescheckboxes.show();
+		$('#specialities').show();
 	} else {
 		$subcategoriescheckboxes.hide();
+		confirmSpecialitiesHide();
 	}
 };
+
+function confirmSpecialitiesHide() {
+	var categoriescheckboxes = document.getElementById('categoriescheckboxes');
+	var inputs = categoriescheckboxes.getElementsByTagName('input');
+	var is_checked = false;
+	
+	for(var x = 0; x < inputs.length; x++) {
+	    if(inputs[x].type == 'checkbox') {
+	        is_checked = inputs[x].checked;
+	        if(is_checked) break;
+	    }
+	}
+
+	if(!is_checked) $('#specialities').hide();
+}
 
 function doRegister() {
 	var validateReg1 = "true";

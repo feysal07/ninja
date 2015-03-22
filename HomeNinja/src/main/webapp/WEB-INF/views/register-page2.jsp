@@ -49,7 +49,8 @@ var cityVal=${siteUserAddress.city}
 			<div>
 				<img alt="" src="./getimage/<c:out value="${siteUser.userId}"/>/00"
 					class="img-responsive" id="image-upload-pic" width="199"
-					height="152" default="resources/assets/img/user.jpg">
+					height="152" default="resources/assets/img/user.jpg" >
+					<label for="imageName"></label>
 			</div>
 			<br />
 			<p>
@@ -58,7 +59,7 @@ var cityVal=${siteUserAddress.city}
 						<button type="submit" class="btn-u" id="image-upload1">Upload</button>
 					</p>
 			<p>
-				<input type="file" size="40" style="visibility:hidden;" name="image-upload" id="image-upload" required="true">&nbsp;&nbsp;
+				<input type="file" size="40" style="visibility:hidden;" name="image-upload" id="image-upload" required="true" onchange="javascript:displayFileName(this.value)">&nbsp;&nbsp;
 				<!-- <button type="submit" class="btn-u" id="image-upload1">Upload</button> -->
 
 
