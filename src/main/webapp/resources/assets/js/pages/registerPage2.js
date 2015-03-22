@@ -16,6 +16,7 @@ function uploadImage(){
 }
 
 function displayFileName(fileName) {
+	fileName = fileName.replace(/C:\\fakepath\\/i, '');
 	jQuery("label[for='imageName']").html(fileName);
 }
 
