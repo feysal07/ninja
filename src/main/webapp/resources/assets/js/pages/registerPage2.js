@@ -15,6 +15,10 @@ function uploadImage(){
 	$('#image-upload').click();
 }
 
+function displayFileName(fileName) {
+	jQuery("label[for='imageName']").html(fileName);
+}
+
 function goToRegPage3() {
 	/*		var userId = $('#siteUserid').val();
 	 var url = './RegisterPage3' +"?userId=" +userId;
