@@ -37,14 +37,14 @@
 <div class="container">
 <!--  Alert messages -->
 			<div class="alert alert-danger fade in" id="alertError" hidden="true">
-				<button type="button" class="close" data-dismiss="alert"
-					onclick="javascript:closeErrorBox();">&times;</button>
+				<!-- <button type="button" class="close" data-dismiss="alert"
+					onclick="javascript:closeErrorBox();">&times;</button> -->
 				 <label for="myalue"></label>
 			</div>
             <c:if test="${upgradeDone=='true'}">
 			<div class="alert alert-success" id="alertSuccess">
-				<button type="button" class="close" data-dismiss="alert"
-					onclick="javascript:closeSuccessBox();">&times;</button>
+				<!-- <button type="button" class="close" data-dismiss="alert"
+					onclick="javascript:closeSuccessBox();">&times;</button> -->
 				  <i class="icon-ok "></i>&nbsp;User information updated successfully!
 			</div>
 			</c:if>

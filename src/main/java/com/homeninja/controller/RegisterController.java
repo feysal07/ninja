@@ -223,10 +223,16 @@ public class RegisterController implements ServletContextAware {
 		siteUserService.updateUser(siteUsers);
 		
 		UsersSearch usersSearch = usersSearchService.getUserSearchRecordById(registrationPage3.getUserId());
-		if(sbJobCat.toString().length() > 0 && sbJobCat.toString().contains("|"))
+		if(sbJobCat.toString().length() > 0 && sbJobCat.toString().contains("|")){
 		usersSearch.setJobCategories(sbJobCat.toString().substring(0,sbJobCat.lastIndexOf("|")));
-		if(sbJobSubCat.toString().length() > 0 && sbJobSubCat.toString().contains("|"))
+		}else{
+			usersSearch.setJobCategories(null);
+		}
+		if(sbJobSubCat.toString().length() > 0 && sbJobSubCat.toString().contains("|")){
 		usersSearch.setJobSubCategories(sbJobSubCat.toString().substring(0,sbJobSubCat.lastIndexOf("|")));
+		}else{
+			usersSearch.setJobSubCategories(null);
+		}
 		usersSearch.setUserTypeId(2);
 		
 		usersSearchService.updateUsersSearch(usersSearch);
