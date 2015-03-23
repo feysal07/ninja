@@ -29,6 +29,7 @@ public interface SiteUserService {
 		public List<UserJobSubCategoryMap> getUserJobSubCategories(long userId);
 	    public boolean isUsernameExist(String newUsername);
 		public String getUserPhoneNo(long userId);
+		public String getUserLoginEmailAddress(long userId);
 		
 	    
 		

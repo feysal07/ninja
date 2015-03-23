@@ -22,6 +22,8 @@ public class TwilioSmsServiceImpl implements TwilioSmsService{
  public void sentSms(String phoneNo, String textMessage)
 			throws TwilioRestException, IOException {
 		
+	 	final String plus_sign = "+";
+	 
 		PropertyFileReader propertyFileReader=new PropertyFileReader();
 		Properties prop = propertyFileReader.getPropValues("sms.properties");
 
@@ -32,14 +34,13 @@ public class TwilioSmsServiceImpl implements TwilioSmsService{
 
 		// Build the parameters
 		List<NameValuePair> params = new ArrayList<NameValuePair>();
-		params.add(new BasicNameValuePair("To", phoneNo));
+		params.add(new BasicNameValuePair("To", plus_sign + phoneNo));
 		params.add(new BasicNameValuePair("From", fromContact));
 		params.add(new BasicNameValuePair("Body", textMessage));
 
 		MessageFactory messageFactory = client.getAccount().getMessageFactory();
 		Message message = messageFactory.create(params);
-		System.out.println(message.getSid());
-
+		System.out.println("Message sent: "+message.getSid());
 	} 
 
 	

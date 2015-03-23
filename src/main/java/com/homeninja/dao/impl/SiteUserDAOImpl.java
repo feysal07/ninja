@@ -197,6 +197,8 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 			return null;
 		}
 	}
+	
+	
 
 	@Override
 	public boolean saveUserAddress(Address address) {
@@ -284,6 +286,23 @@ public class SiteUserDAOImpl implements SiteUserDAO {
 		}
 	}
 	
+	
+	@Override
+	public String getUserLoginEmailAddress(long userId) {
+		try {
+			Query query = sessionFactory.getCurrentSession().createSQLQuery("SELECT loginEmail from site_users where userId=:userId").setParameter("userId", userId);
+			String emailAddr=(String)query.uniqueResult();
+			if(emailAddr !=null){
+				return emailAddr;
+			}else{
+				return null;
+			}
+
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			return null;
+		}
+	}
 	
 
 }

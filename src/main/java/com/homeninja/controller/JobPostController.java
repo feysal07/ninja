@@ -30,10 +30,10 @@ import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.Jobs;
 import com.homeninja.entities.JobsSubCategoryMap;
 import com.homeninja.entities.MessageLimits;
-import com.homeninja.entities.SiteUsers;
 import com.homeninja.helping.entities.GeoLocation;
 import com.homeninja.helping.entities.JobSearchCriteria;
 import com.homeninja.helping.entities.MyJobs;
+import com.homeninja.service.EmailService;
 import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.JobCategoryService;
 import com.homeninja.service.JobPostService;
@@ -56,6 +56,10 @@ public class JobPostController {
 	
 	@Resource
 	public TwilioSmsService twilioSmsService;
+	
+	@Resource
+	public EmailService emailService;
+	
 	
 	@Resource
 	public SiteUserService siteUserService;
@@ -238,11 +242,12 @@ public class JobPostController {
 				return "login";
 			}
 		}
-		 if(jobPostService.availableToSendMessage(jobId) && userInfo.getUserType()==2){
+		
+		if(jobPostService.availableToSendMessage(jobId) && userInfo.getUserType()==2){
 			 Long jobUserId=jobPostService.whoPostTheJob(jobId);
 			 String userPhoneNo=siteUserService.getUserPhoneNo(jobUserId);
 			 String contractorPhoneNo=siteUserService.getUserPhoneNo(userInfo.getUserId());
-			 String textMessage="Hello,I'm "+userInfo.getUserName()+"intrested in your requirnment,"
+			 String textMessage="Hello,I'm "+userInfo.getUserName()+" interested in your requirement,"
 			 		+ "Please find my contact no:- "+contractorPhoneNo;
 			 try {
 				twilioSmsService.sentSms(userPhoneNo, textMessage);
@@ -251,7 +256,15 @@ public class JobPostController {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		  	 
+			 
+			String contractorEmailAddres =  siteUserService
+					.getUserLoginEmailAddress(userInfo.getUserId());
+			try {
+				emailService.sendInterestEmail(contractorEmailAddres, textMessage);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+			
 		 }else{
 			 return "not-sent";
 		 }
