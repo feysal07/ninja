@@ -45,22 +45,22 @@
                 <div class="panel-body">                                                      
                     <div class="form-inline" role="form">
 					<div class="row">
-							<div class="col-lg-2">
+							<div class="col-lg-3">
 								<label>State</label>
 								<select class="form-control" id="states" onchange="javascript:getCitiesforState()">
 								</select>
 							</div>
-							<div class="col-lg-2">
+							<div class="col-lg-3">
 								<label>City</label>
 								<select class="form-control" id="citiesforstate">
 									<option value="">Select</option>
 								</select>
 							</div>
-							<div class="col-lg-2">
+							<div class="col-lg-3">
                       			<label> Pincode</label>
                         		<input type="text" class="form-control" id="pincode" placeholder="XXXXXX">
                     	    </div>
-							<div class="col-lg-2">
+							<div class="col-lg-3">
 								<label>Job Category</label>
 								<select class="form-control" id="categories" onchange="javascript:getSubCategoriesforJob()">
 								</select>
