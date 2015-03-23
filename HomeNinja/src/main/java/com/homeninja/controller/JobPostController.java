@@ -230,18 +230,23 @@ public class JobPostController {
 		Map modelMap = model.asMap();
 		UserInfo userInfo=null;
 		if(!modelMap.containsKey("userInfo")){
+		    model.addAttribute("logged",false);
 			return "login";
 		}
 		
 		if(modelMap.containsKey("userInfo")){
 			userInfo = (UserInfo)modelMap.get("userInfo");
 			if(userInfo.getLoggedIn() == null){
+			    model.addAttribute("logged",false);
 				return "login";
 			}
 			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+			    model.addAttribute("logged",false);
 				return "login";
 			}
 		}
+		
+		model.addAttribute("logged",true);
 		
 		if(jobPostService.availableToSendMessage(jobId)){
 			if(userInfo.getUserType()==2){
@@ -262,9 +267,11 @@ public class JobPostController {
 				String contractorEmailAddres =  siteUserService.getUserLoginEmailAddress(userInfo.getUserId());
 				try {
 					emailService.sendInterestEmail(contractorEmailAddres, textMessage);
+					return "email-sent";
 				} catch (IOException e) {
 					e.printStackTrace();
 				}
+				
 				}else{
 					return "not-contractor";
 				}

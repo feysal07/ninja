@@ -155,6 +155,23 @@ public class JobSearchController {
 			throws IOException {
 		logger.info("inside jobSearchResult method");
 		
+		boolean loggedIn=true;
+		ModelMap modelMap = model;
+        if(!modelMap.containsKey("userInfo")){
+            loggedIn= false;
+        }
+        
+        if(modelMap.containsKey("userInfo")){
+            UserInfo userInfo = (UserInfo)modelMap.get("userInfo");
+            if(userInfo.getLoggedIn() == null){
+                loggedIn= false;
+            }
+            else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+                loggedIn= false;
+            }
+        }
+        model.addAttribute("logged",loggedIn);
+		
 		JobsSearchCriteria jobsSearchCriteria = new JobsSearchCriteria();
 		jobsSearchCriteria.setState(state);
 		jobsSearchCriteria.setCity(city);

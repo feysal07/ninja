@@ -201,6 +201,11 @@ function sendRequestToContractor(jobId, button){
 		success : function(result) {
 			if (result == "not-available" ){
 				button.disabled = true;
+			} else if (result == "email-sent" ){
+				$alertSuccess = $("#" + jobId);
+				jQuery("label[for='myvalue']").html(
+						"Your request has been sent to the customer");
+				$alertSuccess.show();
 			}
 		},
 		complete : function() {
