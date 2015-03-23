@@ -8,10 +8,10 @@
 
 	<!--Blog Post-->
 	<div class="search-blocks 
-		<c:if test="${user.index % 4 == 1 }">search-blocks-left-green</c:if>
-		<c:if test="${user.index % 4 == 2 }"> search-blocks-colored search-blocks-red</c:if>
-		<c:if test="${user.index % 4 == 3 }">search-blocks-left-orange</c:if>
-		<c:if test="${user.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if> ">
+		<c:if test="${jobs.index % 4 == 1 }">search-blocks-left-green</c:if>
+		<c:if test="${jobs.index % 4 == 2 }"> search-blocks-colored search-blocks-red</c:if>
+		<c:if test="${jobs.index % 4 == 3 }">search-blocks-left-orange</c:if>
+		<c:if test="${jobs.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if> ">
 		<div class="row">
             
             <div class="col-md-8">
