@@ -68,7 +68,7 @@ public class JobsSearchDAOImpl implements JobsSearchDAO {
 			{
 				List<Integer> jobCategoryList = jobsSearchCriteria.getJobCategoryList();
 				for (Integer jobCategory : jobCategoryList) {
-					criteriaForUser.add(Restrictions.eq("jobCategory.id", jobCategory * 1L));
+					criteriaForUser.add(Restrictions.eq("jobCategoryId", jobCategory));
 					 
 				}
 			}
