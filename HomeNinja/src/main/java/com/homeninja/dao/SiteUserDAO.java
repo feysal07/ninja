@@ -28,5 +28,6 @@ public interface SiteUserDAO {
 		public List<UserJobSubCategoryMap> getUserJobSubCategories(long userId);
 		public boolean isUsernameExist(String username);
 		public String getUserPhoneNo(long userId);
+		public String getUserLoginEmailAddress(long userId);
 		
 }

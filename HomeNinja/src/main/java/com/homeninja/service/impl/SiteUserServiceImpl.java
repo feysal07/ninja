@@ -110,6 +110,11 @@ public class SiteUserServiceImpl  implements  SiteUserService{
 		return siteUserDAO.getUserPhoneNo(userId);
 	}
 
+	@Override
+	public String getUserLoginEmailAddress(long userId) {
+		return siteUserDAO.getUserLoginEmailAddress(userId);
+	}
+
 	
 	
 }
