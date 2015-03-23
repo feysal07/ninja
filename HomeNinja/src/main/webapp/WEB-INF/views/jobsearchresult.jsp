@@ -1,15 +1,17 @@
 <%@ page contentType="application/json; charset=UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
+
 <c:choose>
  <c:when test='${not empty jobsSearchSet.jobsSearchList}'>
 <c:forEach var="jobs" items="${jobsSearchSet.jobsSearchList}">
 
 	<!--Blog Post-->
-	<div class="search-blocks <c:if test="${jobs.index % 4 == 1 }">search-blocks-left-green</c:if>
-		<c:if test="${jobs.index % 4 == 2 }"> search-blocks-colored search-blocks-red</c:if>
-		<c:if test="${jobs.index % 4 == 3 }">search-blocks-left-orange</c:if>
-		<c:if test="${jobs.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if>">
+	<div class="search-blocks 
+		<c:if test="${user.index % 4 == 1 }">search-blocks-left-green</c:if>
+		<c:if test="${user.index % 4 == 2 }"> search-blocks-colored search-blocks-red</c:if>
+		<c:if test="${user.index % 4 == 3 }">search-blocks-left-orange</c:if>
+		<c:if test="${user.index % 4 == 0 }">search-blocks-colored search-blocks-blue</c:if> ">
 		<div class="row">
             
             <div class="col-md-8">
@@ -75,6 +77,7 @@
 						
 					</div>
 				</div>
+	 </div>
 	<!--End Blog Post-->
 	<div class="margin-bottom-20 clearfix"></div>
 
