@@ -65,15 +65,20 @@
 								<select class="form-control" id="categories" onchange="javascript:getSubCategoriesforJob()">
 								</select>
 							</div>
-							<div class="col-lg-2">
-								<label>Job Sub Category</label>
-								<div  id ="subcategories"></div>
-							</div>	
+					
 							<!-- <div class="col-lg-2">
                       			<label> Pincode</label>
                         		<input type="text" class="form-control" id="pincode" placeholder="XXXXXX">
                     	    </div>	 -->					
 						</div>
+						
+						<div class="row subcategory">
+							<div id="subcategory" style="display:none;">
+									<label>Job Sub Category</label>
+									<div  id ="subcategories" style="width:65%;"></div>
+								</div>	
+						</div>
+						
 						<br/>
                        <p>
 							<button class="btn-u pull-right" onclick="javascript:jobSearch()">Search</button>

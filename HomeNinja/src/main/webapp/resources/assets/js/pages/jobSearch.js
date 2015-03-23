@@ -45,28 +45,45 @@ function getSubCategoriesforJob() {
 		ajax : 'true',
 		contentType : 'application/json',
 	}, function(data) {
-
+		$('#subcategory').show();
+		
 		var jobCategory = $('#categories').val();
-		var str = ' ';
+		var str = ' <table style="padding: 10px;"><tr>';
 		var len = data.length;
+		var col = 0;
 		for (var i = 0; i < len; i++) {
 			if (data[i].jobCatId == jobCategory) {
-				str += '<input type="checkbox" name="jobSubCat"';
-				str += 'value ="' + data[i].jobSubCat + '" '
-						+ 'id ="userJobSubCategoryList';
+				
+				if(col % 3 == 0 && col != 0){
+					str += '</tr><tr>';
+				}
+				
+				str += '<td class="subcategoryCheckbox">';
+				str += '<input type="checkbox" name="jobSubCat" value ="' 
+					+ data[i].jobSubCat + '" ' + 'id ="userJobSubCategoryList';
 				str += data[i].id;
 				str += '.jobSubCategoryIsSet';
-				str += '"/>';
+				str += '"/>  ';
 				str +=  data[i].jobSubCat;
-				str += '<br>';
+				str += '</td>';
+				col++;
 			}
-
 		}
 
+		str += '</table> ';
 		$('#subcategories').html(str);
+		confirmSpecialitiesHide();
 
 	});
+	
+}
 
+function confirmSpecialitiesHide() {
+	var categoriescheckboxes = document.getElementById('subcategories');
+	var inputs = categoriescheckboxes.getElementsByTagName('td');
+	if(inputs.length == 0) {
+		$('#subcategory').hide();
+	}
 }
 
 $(document).ready(
@@ -179,7 +196,7 @@ function sendRequestToContractor(jobId){
 		contentType : 'application/json',
 
 		beforeSend : function() {
-
+			
 		},
 		success : function(result) {
 
@@ -194,6 +211,10 @@ function sendRequestToContractor(jobId){
 		}
 	});
 }
+
+
+
+
 function nextPage(pageNumber) {
 	 var myObject = new Object();
      var jobSubCatArray=[];
