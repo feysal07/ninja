@@ -67,14 +67,37 @@
 				</ul>
 				<a class="btn-u btn-u-sea" href="#">read more</a>
 			</div> --%>
-					<div class="col-md-8">
-						<form action="./job-details" method="post">
-							<input type="hidden" id="jobId" name="jobId" value="${jobs.id}" />
-							<button type="submit" class="btn-u btn-u-sea">Details</button></form>
-						<button class="btn-u btn-u-sea" <c:if test="${jobs.showInterestDisabled == true }">disabled="disabled"</c:if>
-							onclick="javascript:sendRequestToContractor(${jobs.id}, this)">Show
-							Interest</button>
-						
+					<div class="col-md-8" style="width:73%;">
+						<div class="form-inline" role="form">
+							<div class="row">
+							<div class="col-lg-2">
+								<form action="./job-details" method="post">
+									<input type="hidden" id="jobId" name="jobId" value="${jobs.id}" />
+									<button type="submit" class="btn-u btn-u-sea">Details</button></div></form>
+									
+									<div class="col-lg-4">
+									
+										<c:choose>
+											<c:when test="${logged == 'true' && jobs.showInterestDisabled == 'false'}">
+												<button class="btn-u btn-u-sea"
+															onclick="javascript:sendRequestToContractor(${jobs.id}, this)">Show
+															Interest</button>
+											</c:when>
+											<c:otherwise>
+												<button type="button" class="btn-u btn-u-default" onclick="javascript: moveUp()">Show Interest</button>
+											</c:otherwise>
+										</c:choose>
+									</div>
+									
+									<c:if test="${jobs.showInterestDisabled == true }">
+									<div class="col-lg-6">
+										<label>Sorry maximum request has been reached</label></div>
+									</c:if>
+									<div id="${jobs.id}" hidden="true" class="col-lg-12">
+										<label  for="myvalue">Your request has been sent to the customer</label>
+									</div>
+							</div>
+						</div>
 					</div>
 				</div>
 	 </div>
