@@ -45,6 +45,9 @@ public class Jobs {
 	@Transient
 	private String strJobCategory;
 	
+	@Transient
+	private boolean showInterestDisabled;
+	
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinColumn(name="jobId")
 	private List<JobsSubCategoryMap> JobsSubCategoryMap;
@@ -229,6 +232,14 @@ public class Jobs {
 	public void setStrJobCategory(String strJobCategory) {
 		this.strJobCategory = strJobCategory;
 	}
+
+    public boolean isShowInterestDisabled() {
+        return showInterestDisabled;
+    }
+
+    public void setShowInterestDisabled(boolean showInterestDisabled) {
+        this.showInterestDisabled = showInterestDisabled;
+    }
 
 	
 	

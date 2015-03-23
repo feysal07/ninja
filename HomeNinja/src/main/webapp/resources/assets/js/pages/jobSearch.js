@@ -188,7 +188,7 @@ function previousPage( pageNumber) {
 	});
 }
 
-function sendRequestToContractor(jobId){
+function sendRequestToContractor(jobId, button){
 	$.ajax({
 		type : "POST",
 		url : "./sendMessage",
@@ -199,8 +199,9 @@ function sendRequestToContractor(jobId){
 			
 		},
 		success : function(result) {
-
-
+			if (result == "not-available" ){
+				button.disabled = true;
+			}
 		},
 		complete : function() {
 

@@ -71,9 +71,9 @@
 						<form action="./job-details" method="post">
 							<input type="hidden" id="jobId" name="jobId" value="${jobs.id}" />
 							<button type="submit" class="btn-u btn-u-sea">Details</button></form>
-						<button class="btn-u btn-u-sea"
-							onclick="javascript:sendRequestToContractor(${jobs.id})">Show
-							Intrest</button>
+						<button class="btn-u btn-u-sea" <c:if test="${jobs.showInterestDisabled == true }">disabled="disabled"</c:if>
+							onclick="javascript:sendRequestToContractor(${jobs.id}, this)">Show
+							Interest</button>
 						
 					</div>
 				</div>

@@ -32,6 +32,7 @@ public class JobsSearch {
 	private double longitude;
 	private double latitude;
 	private int index;
+	private boolean showInterestDisabled;
 
 	public long getId() {
 		return id;
@@ -212,6 +213,18 @@ public class JobsSearch {
 	public void setLatitude(double latitude) {
 		this.latitude = latitude;
 	}
+
+    public boolean isShowInterestDisabled() {
+        return showInterestDisabled;
+    }
+
+    public void setShowInterestDisabled(boolean showInterestDisabled) {
+        if(requestLimit >= requestCount || requestLimit == 0) {
+            this.showInterestDisabled = false;
+        } else {
+            this.showInterestDisabled = true;
+        }
+    }
 
 
 

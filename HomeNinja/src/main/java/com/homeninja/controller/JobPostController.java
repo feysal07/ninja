@@ -243,34 +243,38 @@ public class JobPostController {
 			}
 		}
 		
-		if(jobPostService.availableToSendMessage(jobId) && userInfo.getUserType()==2){
-			 Long jobUserId=jobPostService.whoPostTheJob(jobId);
-			 String userPhoneNo=siteUserService.getUserPhoneNo(jobUserId);
-			 String contractorPhoneNo=siteUserService.getUserPhoneNo(userInfo.getUserId());
-			 String textMessage="Hello,I'm "+userInfo.getUserName()+" interested in your requirement,"
-			 		+ "Please find my contact no:- "+contractorPhoneNo;
-			 try {
-				twilioSmsService.sentSms(userPhoneNo, textMessage);
-			} catch (TwilioRestException e) {
-				e.printStackTrace();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
+		if(jobPostService.availableToSendMessage(jobId)){
+			if(userInfo.getUserType()==2){
 			 
-			String contractorEmailAddres =  siteUserService
-					.getUserLoginEmailAddress(userInfo.getUserId());
-			try {
-				emailService.sendInterestEmail(contractorEmailAddres, textMessage);
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			
+				Long jobUserId=jobPostService.whoPostTheJob(jobId);
+				String userPhoneNo=siteUserService.getUserPhoneNo(jobUserId);
+				String contractorPhoneNo=siteUserService.getUserPhoneNo(userInfo.getUserId());
+				String textMessage="Hello,I'm "+userInfo.getUserName()+" interested in your requirnment,"
+			 		+ "Please find my contact no:- "+contractorPhoneNo;
+				try {
+					twilioSmsService.sentSms(userPhoneNo, textMessage);
+				} catch (TwilioRestException e) {
+					e.printStackTrace();
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				 
+				String contractorEmailAddres =  siteUserService.getUserLoginEmailAddress(userInfo.getUserId());
+				try {
+					emailService.sendInterestEmail(contractorEmailAddres, textMessage);
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
+				}else{
+					return "not-contractor";
+				}
 		 }else{
-			 return "not-sent";
+			 return "not-available";
 		 }
 		 
 		 return "not-sent";
 	}
+
 	
 	@RequestMapping(value = "/job-details", method = RequestMethod.POST)
 	public 
