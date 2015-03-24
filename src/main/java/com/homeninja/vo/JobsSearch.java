@@ -219,10 +219,10 @@ public class JobsSearch {
     }
 
     public void setShowInterestDisabled(boolean showInterestDisabled) {
-        if(requestLimit >= requestCount || requestLimit == 0) {
-            this.showInterestDisabled = false;
-        } else {
+        if(requestCount >= requestLimit || requestLimit == 0) {
             this.showInterestDisabled = true;
+        } else {
+            this.showInterestDisabled = false;
         }
     }
 

@@ -63,7 +63,7 @@
 						<label  for="myvalue">Your request has been sent to the contractor</label>
 				  </div>
 				  
-				  <div class="pull-right" style="padding-right:20px;">
+				  <div class="pull-right" style="padding-right:20px;padding-top:77px;">
 				  <c:choose>
 					<c:when test="${logged == 'true'}">
 						<button type="button" class="btn-u btn-u-sea" onclick="showInterestToContractor(${user.userId}, this)">Show Interest</button>
@@ -74,7 +74,7 @@
 				  </c:choose>
 				  </div>
 				  
-				  <div class="pull-right" style="padding-right:20px;"><button type="submit" class="btn-u btn-u-sea pull-right"></i>Details</button> </div>
+				  <div class="pull-right" style="padding-right:20px;padding-top:77px;"><button type="submit" class="btn-u btn-u-sea pull-right"></i>Details</button> </div>
 				  
 			    </form>
 			</div>
