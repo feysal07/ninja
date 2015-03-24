@@ -67,7 +67,7 @@
 				</ul>
 				<a class="btn-u btn-u-sea" href="#">read more</a>
 			</div> --%>
-					<div class="col-md-8" style="width:83%;">
+					<div class="col-md-8" style="width:100%;">
 						<div class="form-inline" role="form">
 							<div class="row">
 							<c:if test="${jobs.showInterestDisabled == true }">
@@ -78,14 +78,7 @@
 										<label  for="myvalue">Your request has been sent to the customer</label>
 									</div>
 									
-							<div class="col-lg-2">
-								<form action="./job-details" method="post">
-								
-									<input type="hidden" id="jobId" name="jobId" value="${jobs.id}" />
-									<button type="submit" class="btn-u btn-u-sea">Details</button>
-							</div></form>
-									
-									<div class="col-lg-4">
+									<div class="pull-right" style="padding-right:20px;">
 									
 										<c:choose>
 											<c:when test="${logged == 'true' && jobs.showInterestDisabled == 'false'}">
@@ -98,7 +91,15 @@
 											</c:otherwise>
 										</c:choose>
 									</div>
-			
+									
+									<div class="pull-right" style="padding-right:20px;">
+										<form action="./job-details" method="post">
+										
+											<input type="hidden" id="jobId" name="jobId" value="${jobs.id}" />
+											<button type="submit" class="btn-u btn-u-sea">Details</button>
+											</form>
+									</div>
+									
 							</div>
 						</div>
 					</div>
