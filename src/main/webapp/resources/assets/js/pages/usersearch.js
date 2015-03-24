@@ -109,7 +109,7 @@ function showInterestToContractor(userId, button){
 			}
 		},
 		complete : function() {
-
+			$('#topcontrol').click();
 		},
 		error : function(errorThrown) {
 			console.log(errorThrown);
