@@ -58,7 +58,24 @@
 				<form action="./profile" method="post">
 				 <input type="hidden" id="userId" name="userId" value="${user.userId}"/>
 				  <%-- <a class="btn-u btn-u-sea" onclick="return getPersonProfile(${user.userId});">Details</a> --%>
-				  <p><button type="submit" class="btn-u btn-u-sea"></i>Details</button></p>
+				  
+				  <div class="col-lg-2"><button type="submit" class="btn-u btn-u-sea"></i>Details</button> </div>
+				 
+				  <div class="col-lg-4">
+				  <c:choose>
+					<c:when test="${logged == 'true'}">
+						<button type="button" class="btn-u btn-u-sea" onclick="showInterestToContractor(${user.userId}, this)">Show Interest</button>
+					</c:when>
+					<c:otherwise>
+						<button type="button" class="btn-u btn-u-default" onclick="javascript: moveUp()">Show Interest</button>
+					</c:otherwise>
+				  </c:choose>
+				  </div>
+				  
+				  <div id="${user.userId}" hidden="true" class="col-lg-12">
+						<label  for="myvalue">Your request has been sent to the contractor</label>
+				  </div>
+				  
 			    </form>
 			</div>
 		</div>

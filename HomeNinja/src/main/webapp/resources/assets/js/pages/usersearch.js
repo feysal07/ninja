@@ -88,6 +88,36 @@ $(document).ready(
 			});
 		});
 
+
+function showInterestToContractor(userId, button){
+	$.ajax({
+		type : "POST",
+		url : "./showInterestToContractor",
+		data : JSON.stringify(userId),
+		contentType : 'application/json',
+
+		beforeSend : function() {
+			
+		},
+		success : function(result) {
+			
+			if (result == "email-sent" ){
+				$alertSuccess = $("#" + userId);
+				jQuery("label[for='myvalue']").html(
+						"Your request has been sent to the contractor");
+				$alertSuccess.show();
+			}
+		},
+		complete : function() {
+
+		},
+		error : function(errorThrown) {
+			console.log(errorThrown);
+
+		}
+	});
+}
+
 function getSubCategoriesforJob() {
 	$.getJSON('./getJobSubCategories', {
 		ajax : 'true',

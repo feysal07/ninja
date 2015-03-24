@@ -92,7 +92,7 @@
 	</div>
 	<div class="row blog-page">
 		<!-- Left Sidebar -->
-		<div class="col-md-9 md-margin-bottom-40">
+		<div class="col-md-11 md-margin-bottom-40">
 			<!--Blog Post-->
 			<span id="page"></span>
 			<!--End Blog Post-->

@@ -45,256 +45,239 @@ import com.twilio.sdk.TwilioRestException;
 @Controller
 @SessionAttributes("userInfo")
 public class JobPostController {
-	@Resource
-	public JobPostService jobPostService;
+    @Resource
+    public JobPostService jobPostService;
 
-	@Resource
-	public JobCategoryService jobCategoryService;
+    @Resource
+    public JobCategoryService jobCategoryService;
 
-	@Resource
-	public GeoLocationService geoLocationService;
-	
-	@Resource
-	public TwilioSmsService twilioSmsService;
-	
-	@Resource
-	public EmailService emailService;
-	
-	
-	@Resource
-	public SiteUserService siteUserService;
+    @Resource
+    public GeoLocationService geoLocationService;
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(JobPostController.class);
+    @Resource
+    public TwilioSmsService twilioSmsService;
 
-	// private JobPostDAO jobPostDao;
-	@RequestMapping(value = "/jobs", method = RequestMethod.GET)
-	public String jobPost(Model model) throws IOException {
-		logger.debug("inside Register Method");
-		String isLogin="true";
-		Map modelMap = model.asMap();
-		UserInfo userInfo=null;
-		if(!modelMap.containsKey("userInfo")){
-			isLogin= "false";
-		}
-		
-		if(modelMap.containsKey("userInfo")){
-			userInfo = (UserInfo)modelMap.get("userInfo");
-			if(userInfo.getLoggedIn() == null){
-				isLogin ="false";
-			}
-			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
-				isLogin= "false";
-			}
-		}
-		
-		model.addAttribute("isLogin", isLogin);
-		return "jobPost";
-	}
+    @Resource
+    public EmailService emailService;
 
-	@RequestMapping(value = "/post-job", method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody
-	String doJobPost(HttpServletRequest req, @RequestBody String myObject,Model model)
-			throws IOException {
-		logger.debug("inside doRegister Method");
-		Map modelMap = model.asMap();
-		UserInfo userInfo=null;
-		if(!modelMap.containsKey("userInfo")){
-			return "login";
-		}
-		
-		if(modelMap.containsKey("userInfo")){
-			userInfo = (UserInfo)modelMap.get("userInfo");
-			if(userInfo.getLoggedIn() == null){
-				return "login";
-			}
-			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
-				return "login";
-			}
-		}
+    @Resource
+    public SiteUserService siteUserService;
 
-		
-		
-		Gson gson = new Gson();
-		Date currentDate = new Date();
-		Jobs jobPost = gson.fromJson(myObject, Jobs.class);
-		jobPost.setPostBy(userInfo.getUserId());
-		jobPost.setPostDate(currentDate);
-		jobPost.setMaxRequestReached(false); 
-		
-		
-		//get geolocation by address
-		GeoLocation geoLocation=geoLocationService.getGeoLocation(jobPost.getLocation());
-		if (null != geoLocation) {
-			jobPost.setLatitude(geoLocation.getLat());
-			jobPost.setLongitude(geoLocation.getLng());
-		}
-		List<JobsSubCategoryMap> objList = new ArrayList<JobsSubCategoryMap>();
-		for (int jobSubCatId : jobPost.getJobSubCatIds()) {
-			JobsSubCategoryMap obj = new JobsSubCategoryMap(jobSubCatId);
-			objList.add(obj);
+    private static final Logger logger = LoggerFactory.getLogger(JobPostController.class);
 
-		}
-		jobPost.setJobsSubCategoryMap(objList);
+    // private JobPostDAO jobPostDao;
+    @RequestMapping(value = "/jobs", method = RequestMethod.GET)
+    public String jobPost(Model model) throws IOException {
+        logger.debug("inside Register Method");
+        String isLogin = "true";
+        Map modelMap = model.asMap();
+        UserInfo userInfo = null;
+        if (!modelMap.containsKey("userInfo")) {
+            isLogin = "false";
+        }
 
-		boolean flag = jobPostService.saveOrUpdatePostedJob(jobPost);
+        if (modelMap.containsKey("userInfo")) {
+            userInfo = (UserInfo) modelMap.get("userInfo");
+            if (userInfo.getLoggedIn() == null) {
+                isLogin = "false";
+            } else if (!userInfo.getLoggedIn().equalsIgnoreCase("true")) {
+                isLogin = "false";
+            }
+        }
 
-		model.addAttribute("status", flag);
-		return "jobPost";
-	}
+        model.addAttribute("isLogin", isLogin);
+        return "jobPost";
+    }
 
-	@RequestMapping(value = "/getJobSubCatByJobCatId", method = RequestMethod.GET)
-	public @ResponseBody
-	Set<JobSubCategory> getCitiesForState(
-			@RequestParam(value = "jobCatId", required = true) long jobCatId) {
-		logger.debug("finding all job sub categories for job category id");
-		Set<JobSubCategory> jobSubCategory = new HashSet<JobSubCategory>();
+    @RequestMapping(value = "/post-job", method = RequestMethod.POST, consumes = "application/json")
+    public @ResponseBody
+    String doJobPost(HttpServletRequest req, @RequestBody String myObject, Model model) throws IOException {
+        logger.debug("inside doRegister Method");
+        Map modelMap = model.asMap();
+        UserInfo userInfo = null;
+        if (!modelMap.containsKey("userInfo")) {
+            return "login";
+        }
 
-		jobSubCategory = jobCategoryService
-				.getJobSubCategoryByJobCatId(jobCatId);
-		return jobSubCategory;
-	}
+        if (modelMap.containsKey("userInfo")) {
+            userInfo = (UserInfo) modelMap.get("userInfo");
+            if (userInfo.getLoggedIn() == null) {
+                return "login";
+            } else if (!userInfo.getLoggedIn().equalsIgnoreCase("true")) {
+                return "login";
+            }
+        }
 
-	@RequestMapping(value = "/my-job", method = RequestMethod.GET)
-	public String getAllPostedJobs(Model model) throws IOException {
-		Map modelMap = model.asMap();
-		UserInfo userInfo=null;
-		if(!modelMap.containsKey("userInfo")){
-			return "login";
-		}
-		
-		if(modelMap.containsKey("userInfo")){
-			userInfo = (UserInfo)modelMap.get("userInfo");
-			if(userInfo.getLoggedIn() == null){
-				return "login";
-			}
-			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
-				return "login";
-			}
-		}
-		List<Jobs> jobPosts = jobPostService.getAllPostedJobsByMe(userInfo.getUserId());
-		List<MyJobs> myJobs=new  ArrayList<MyJobs>();
-		int count=1;
-		for (Jobs jobs : jobPosts) {
-			MyJobs mjob=new MyJobs();
-			
-			mjob.setsNo(count);
-			mjob.setJobId(Double.toString(jobs.getId()));
-			mjob.setJobTitle(jobs.getTitle());
-			mjob.setJobDetails(jobs.getJobDetails());
-			JobCategory jobCat=jobPostService.getJobCategoryById(jobs.getJobCategoryId());
-			if(null !=jobCat){
-			mjob.setJobCategory(jobCat.getJobCat());
-			}
-			String maxLimitReach="No";
-			String jobSubCategories=jobs.getJobSubCategories();
-			jobSubCategories=jobSubCategories.substring(1, jobSubCategories.length());
-			jobSubCategories=jobSubCategories.replace("-", ",");
-			if(jobs.isMaxRequestReached()){
-				maxLimitReach="Yes";
-			}
-			mjob.setJobSubCategory(jobSubCategories);
-			DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
-			String dateString = dateFormat.format(jobs.getPostDate());
-			mjob.setMaxLimitReached(maxLimitReach);
-			mjob.setPostDate(dateString);
-			myJobs.add(mjob);
-			count++;
-		}
-		
-		
-		
-		model.addAttribute("jobPosts", myJobs);
-		return "myJobs";
-	}
-	@RequestMapping(value = "/searchJob", method = RequestMethod.GET)
-	@ResponseBody
-	public List<Jobs>  searchJob(HttpServletRequest req, @RequestBody String myObject) throws IOException {
-		Gson gson=new Gson();
-		JobSearchCriteria jobSearchCriteria = gson.fromJson(myObject, JobSearchCriteria.class);
-		return jobPostService.getJobPostByCriteria(jobSearchCriteria);
-	}
-	
-	@RequestMapping(value="/messageMaxLimit",method=RequestMethod.GET)
-	@ResponseBody
-	public List<MessageLimits> getMessageLimits(Model model){
-		return  jobPostService.getMessageLimits();
-	}
-	
-	
-	@RequestMapping(value="/sendMessage",method=RequestMethod.POST)
-	@ResponseBody
-	public String sendMessage(Model model,@RequestBody String myObject){
-		long jobId=Long.parseLong(myObject);
-		
-		Map modelMap = model.asMap();
-		UserInfo userInfo=null;
-		if(!modelMap.containsKey("userInfo")){
-		    model.addAttribute("logged",false);
-			return "login";
-		}
-		
-		if(modelMap.containsKey("userInfo")){
-			userInfo = (UserInfo)modelMap.get("userInfo");
-			if(userInfo.getLoggedIn() == null){
-			    model.addAttribute("logged",false);
-				return "login";
-			}
-			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
-			    model.addAttribute("logged",false);
-				return "login";
-			}
-		}
-		
-		model.addAttribute("logged",true);
-		
-		if(jobPostService.availableToSendMessage(jobId)){
-			if(userInfo.getUserType()==2){
-			 
-				Long jobUserId=jobPostService.whoPostTheJob(jobId);
-				String userPhoneNo=siteUserService.getUserPhoneNo(jobUserId);
-				String contractorPhoneNo=siteUserService.getUserPhoneNo(userInfo.getUserId());
-				String textMessage="Hello,I'm "+userInfo.getUserName()+" interested in your requirnment,"
-			 		+ "Please find my contact no:- "+contractorPhoneNo;
-				try {
-					twilioSmsService.sentSms(userPhoneNo, textMessage);
-				} catch (TwilioRestException e) {
-					e.printStackTrace();
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				 
-				String contractorEmailAddres =  siteUserService.getUserLoginEmailAddress(userInfo.getUserId());
-				try {
-					emailService.sendInterestEmail(contractorEmailAddres, textMessage);
-					return "email-sent";
-				} catch (IOException e) {
-					e.printStackTrace();
-				}
-				
-				}else{
-					return "not-contractor";
-				}
-		 }else{
-			 return "not-available";
-		 }
-		 
-		 return "not-sent";
-	}
+        Gson gson = new Gson();
+        Date currentDate = new Date();
+        Jobs jobPost = gson.fromJson(myObject, Jobs.class);
+        jobPost.setPostBy(userInfo.getUserId());
+        jobPost.setPostDate(currentDate);
+        jobPost.setMaxRequestReached(false);
 
-	
-	@RequestMapping(value = "/job-details", method = RequestMethod.POST)
-	public 
-	String getJobDetailsById(HttpServletRequest req, @RequestParam(value = "jobId",
-            required = true) long jobId,Model model){
-		//long jobId=Long.parseLong(myObject);
-		Jobs job=jobPostService.getJobPostById(jobId);
-		job.setStrJobCategory(jobCategoryService.getJobCategoryById(job.getJobCategoryId()).getJobCat());
-		job.setStrCity(geoLocationService.getCityById(job.getCity()));
-		job.setStrState(geoLocationService.getStateById(job.getState()));
-		model.addAttribute("jobDetails", job);
-		return "jobDetails";
-	}
-	
-	
+        // get geolocation by address
+        GeoLocation geoLocation = geoLocationService.getGeoLocation(jobPost.getLocation());
+        if (null != geoLocation) {
+            jobPost.setLatitude(geoLocation.getLat());
+            jobPost.setLongitude(geoLocation.getLng());
+        }
+        List<JobsSubCategoryMap> objList = new ArrayList<JobsSubCategoryMap>();
+        for (int jobSubCatId : jobPost.getJobSubCatIds()) {
+            JobsSubCategoryMap obj = new JobsSubCategoryMap(jobSubCatId);
+            objList.add(obj);
+
+        }
+        jobPost.setJobsSubCategoryMap(objList);
+
+        boolean flag = jobPostService.saveOrUpdatePostedJob(jobPost);
+
+        model.addAttribute("status", flag);
+        return "jobPost";
+    }
+
+    @RequestMapping(value = "/getJobSubCatByJobCatId", method = RequestMethod.GET)
+    public @ResponseBody
+    Set<JobSubCategory> getCitiesForState(@RequestParam(value = "jobCatId", required = true) long jobCatId) {
+        logger.debug("finding all job sub categories for job category id");
+        Set<JobSubCategory> jobSubCategory = new HashSet<JobSubCategory>();
+
+        jobSubCategory = jobCategoryService.getJobSubCategoryByJobCatId(jobCatId);
+        return jobSubCategory;
+    }
+
+    @RequestMapping(value = "/my-job", method = RequestMethod.GET)
+    public String getAllPostedJobs(Model model) throws IOException {
+        Map modelMap = model.asMap();
+        UserInfo userInfo = null;
+        if (!modelMap.containsKey("userInfo")) {
+            return "login";
+        }
+
+        if (modelMap.containsKey("userInfo")) {
+            userInfo = (UserInfo) modelMap.get("userInfo");
+            if (userInfo.getLoggedIn() == null) {
+                return "login";
+            } else if (!userInfo.getLoggedIn().equalsIgnoreCase("true")) {
+                return "login";
+            }
+        }
+        List<Jobs> jobPosts = jobPostService.getAllPostedJobsByMe(userInfo.getUserId());
+        List<MyJobs> myJobs = new ArrayList<MyJobs>();
+        int count = 1;
+        for (Jobs jobs : jobPosts) {
+            MyJobs mjob = new MyJobs();
+
+            mjob.setsNo(count);
+            mjob.setJobId(Double.toString(jobs.getId()));
+            mjob.setJobTitle(jobs.getTitle());
+            mjob.setJobDetails(jobs.getJobDetails());
+            JobCategory jobCat = jobPostService.getJobCategoryById(jobs.getJobCategoryId());
+            if (null != jobCat) {
+                mjob.setJobCategory(jobCat.getJobCat());
+            }
+            String maxLimitReach = "No";
+            String jobSubCategories = jobs.getJobSubCategories();
+            jobSubCategories = jobSubCategories.substring(1, jobSubCategories.length());
+            jobSubCategories = jobSubCategories.replace("-", ",");
+            if (jobs.isMaxRequestReached()) {
+                maxLimitReach = "Yes";
+            }
+            mjob.setJobSubCategory(jobSubCategories);
+            DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+            String dateString = dateFormat.format(jobs.getPostDate());
+            mjob.setMaxLimitReached(maxLimitReach);
+            mjob.setPostDate(dateString);
+            myJobs.add(mjob);
+            count++;
+        }
+
+        model.addAttribute("jobPosts", myJobs);
+        return "myJobs";
+    }
+
+    @RequestMapping(value = "/searchJob", method = RequestMethod.GET)
+    @ResponseBody
+    public List<Jobs> searchJob(HttpServletRequest req, @RequestBody String myObject) throws IOException {
+        Gson gson = new Gson();
+        JobSearchCriteria jobSearchCriteria = gson.fromJson(myObject, JobSearchCriteria.class);
+        return jobPostService.getJobPostByCriteria(jobSearchCriteria);
+    }
+
+    @RequestMapping(value = "/messageMaxLimit", method = RequestMethod.GET)
+    @ResponseBody
+    public List<MessageLimits> getMessageLimits(Model model) {
+        return jobPostService.getMessageLimits();
+    }
+
+    @RequestMapping(value = "/sendMessage", method = RequestMethod.POST)
+    @ResponseBody
+    public String sendMessage(Model model, @RequestBody String myObject) {
+        long jobId = Long.parseLong(myObject);
+
+        Map modelMap = model.asMap();
+        UserInfo userInfo = null;
+        if (!modelMap.containsKey("userInfo")) {
+            model.addAttribute("logged", false);
+            return "login";
+        }
+
+        if (modelMap.containsKey("userInfo")) {
+            userInfo = (UserInfo) modelMap.get("userInfo");
+            if (userInfo.getLoggedIn() == null) {
+                model.addAttribute("logged", false);
+                return "login";
+            } else if (!userInfo.getLoggedIn().equalsIgnoreCase("true")) {
+                model.addAttribute("logged", false);
+                return "login";
+            }
+        }
+
+        model.addAttribute("logged", true);
+
+        if (jobPostService.availableToSendMessage(jobId)) {
+            if (userInfo.getUserType() == 2) {
+
+                Long jobUserId = jobPostService.whoPostTheJob(jobId);
+                String userPhoneNo = siteUserService.getUserPhoneNo(jobUserId);
+                String contractorPhoneNo = siteUserService.getUserPhoneNo(userInfo.getUserId());
+                String textMessage =
+                    "Hello,I'm " + userInfo.getUserName() + " interested in your requirnment,"
+                            + "Please find my contact no:- " + contractorPhoneNo;
+                try {
+                    twilioSmsService.sentSms(userPhoneNo, textMessage);
+                } catch (TwilioRestException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+                String contractorEmailAddres = siteUserService.getUserLoginEmailAddress(userInfo.getUserId());
+                try {
+                    emailService.sendInterestEmail(contractorEmailAddres, textMessage);
+                    return "email-sent";
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+
+            } else {
+                return "not-contractor";
+            }
+        } else {
+            return "not-available";
+        }
+
+        return "not-sent";
+    }
+
+    @RequestMapping(value = "/job-details", method = RequestMethod.POST)
+    public String getJobDetailsById(HttpServletRequest req,
+            @RequestParam(value = "jobId", required = true) long jobId, Model model) {
+        // long jobId=Long.parseLong(myObject);
+        Jobs job = jobPostService.getJobPostById(jobId);
+        job.setStrJobCategory(jobCategoryService.getJobCategoryById(job.getJobCategoryId()).getJobCat());
+        job.setStrCity(geoLocationService.getCityById(job.getCity()));
+        job.setStrState(geoLocationService.getStateById(job.getState()));
+        model.addAttribute("jobDetails", job);
+        return "jobDetails";
+    }
 }
