@@ -67,13 +67,23 @@
 				</ul>
 				<a class="btn-u btn-u-sea" href="#">read more</a>
 			</div> --%>
-					<div class="col-md-8" style="width:73%;">
+					<div class="col-md-8" style="width:83%;">
 						<div class="form-inline" role="form">
 							<div class="row">
+							<c:if test="${jobs.showInterestDisabled == true }">
+									<div class="col-lg-6">
+										<label>Sorry maximum request has been reached</label></div>
+									</c:if>
+									<div id="${jobs.id}" hidden="true" class="col-lg-5">
+										<label  for="myvalue">Your request has been sent to the customer</label>
+									</div>
+									
 							<div class="col-lg-2">
 								<form action="./job-details" method="post">
+								
 									<input type="hidden" id="jobId" name="jobId" value="${jobs.id}" />
-									<button type="submit" class="btn-u btn-u-sea">Details</button></div></form>
+									<button type="submit" class="btn-u btn-u-sea">Details</button>
+							</div></form>
 									
 									<div class="col-lg-4">
 									
@@ -88,14 +98,7 @@
 											</c:otherwise>
 										</c:choose>
 									</div>
-									
-									<c:if test="${jobs.showInterestDisabled == true }">
-									<div class="col-lg-6">
-										<label>Sorry maximum request has been reached</label></div>
-									</c:if>
-									<div id="${jobs.id}" hidden="true" class="col-lg-12">
-										<label  for="myvalue">Your request has been sent to the customer</label>
-									</div>
+			
 							</div>
 						</div>
 					</div>
