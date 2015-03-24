@@ -28,14 +28,18 @@ import com.homeninja.entities.JobCategory;
 import com.homeninja.entities.JobSubCategory;
 import com.homeninja.entities.SiteUsers;
 import com.homeninja.entities.UsersSearch;
+import com.homeninja.service.EmailService;
 import com.homeninja.service.GeoLocationService;
 import com.homeninja.service.JobCategoryService;
+import com.homeninja.service.SiteUserService;
+import com.homeninja.service.TwilioSmsService;
 import com.homeninja.service.UsersSearchService;
 import com.homeninja.vo.City;
 import com.homeninja.vo.State;
 import com.homeninja.vo.UserInfo;
 import com.homeninja.vo.UsersSearchCriteria;
 import com.homeninja.vo.UsersSearchResult;
+import com.twilio.sdk.TwilioRestException;
 
 @Controller
 @SessionAttributes("userInfo")
@@ -49,6 +53,15 @@ public class UserSearchController {
 	
 	@Resource
 	public JobCategoryService jobCategoryService;
+	
+	@Resource 
+	public SiteUserService siteUserService;
+	
+	@Resource 
+	public TwilioSmsService twilioSmsService;
+	
+	@Resource 
+	public EmailService emailService;
 
 	private static final Logger logger = LoggerFactory
 			.getLogger(RegisterController.class);
@@ -167,6 +180,23 @@ public class UserSearchController {
 			userTypeId = Long.parseLong(userTypeIdString);
 		}	
 		
+		boolean loggedIn=true;
+		ModelMap modelMap = model;
+        if(!modelMap.containsKey("userInfo")){
+            loggedIn= false;
+        }
+        
+        if(modelMap.containsKey("userInfo")){
+            UserInfo userInfo = (UserInfo)modelMap.get("userInfo");
+            if(userInfo.getLoggedIn() == null){
+                loggedIn= false;
+            }
+            else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+                loggedIn= false;
+            }
+        }
+        model.addAttribute("logged",loggedIn);
+		
 		UsersSearchCriteria usersSearchCriteria = new UsersSearchCriteria();
 		usersSearchCriteria.setUserTypeId(userTypeId);	
 		usersSearchCriteria.setState(state);
@@ -200,6 +230,58 @@ public class UserSearchController {
 
 		model.addAttribute("usersSearchSet", usersSearchResult);
 		return "usersearchresult";
+	}
+	
+	@RequestMapping(value="/showInterestToContractor",method=RequestMethod.POST)
+	@ResponseBody
+	public String showInterestToContractor(Model model,@RequestBody String myObject){
+		long userId=Long.parseLong(myObject);
+		
+		Map modelMap = model.asMap();
+		UserInfo userInfo=null;
+		if(!modelMap.containsKey("userInfo")){
+		    model.addAttribute("logged",false);
+			return "login";
+		}
+		
+		if(modelMap.containsKey("userInfo")){
+			userInfo = (UserInfo)modelMap.get("userInfo");
+			if(userInfo.getLoggedIn() == null){
+			    model.addAttribute("logged",false);
+				return "login";
+			}
+			else if(!userInfo.getLoggedIn().equalsIgnoreCase("true")){
+			    model.addAttribute("logged",false);
+				return "login";
+			}
+		}
+		
+		model.addAttribute("logged",true);
+			 
+		SiteUsers contractorInfo = siteUserService.getSiteUsersById(userId);
+			  
+		String contractorPhoneNo = contractorInfo.getPhoneNumber();
+		String userPhoneNo = siteUserService.getUserPhoneNo(userInfo.getUserId());
+		String textMessage="Hello,I'm "+userInfo.getUserName()+" interested in your service,"
+			 		+ "Please find my contact no:- "+userPhoneNo;
+		String contractorEmailAddres = contractorInfo.getLoginEmail();
+				
+		try {
+			twilioSmsService.sentSms(contractorPhoneNo, textMessage);
+		} catch (TwilioRestException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+				 
+		try {
+			emailService.sendInterestEmail(contractorEmailAddres, textMessage);
+		return "email-sent";
+			} catch (IOException e) {
+			e.printStackTrace();
+		}
+				
+		return "not-sent";
 	}
 
 }
